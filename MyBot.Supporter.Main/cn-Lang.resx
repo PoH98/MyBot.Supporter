@@ -1,0 +1,894 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddNewProfile_Button" xml:space="preserve">
+    <value>创建新的MyBot Profile</value>
+  </data>
+  <data name="AdsBlock_CheckBox" xml:space="preserve">
+    <value>拦截广告</value>
+  </data>
+  <data name="AllSelected" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Autorun_CheckBox" xml:space="preserve">
+    <value>开机自启</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>电池</value>
+  </data>
+  <data name="CloseRunningBot_Button" xml:space="preserve">
+    <value>关闭运行中MyBot和模拟器</value>
+  </data>
+  <data name="Close_LID_CheckBox" xml:space="preserve">
+    <value>关闭屏幕节省电源</value>
+  </data>
+  <data name="CopySettings_Button" xml:space="preserve">
+    <value>覆盖其他MyBot设置成当前选中MyBot设置</value>
+  </data>
+  <data name="CreateDebug_Button" xml:space="preserve">
+    <value>开始/重置Debug</value>
+  </data>
+  <data name="CSV_Writer_Button" xml:space="preserve">
+    <value>CSV 编写器</value>
+  </data>
+  <data name="DestroyingPerformanceMode_Button" xml:space="preserve">
+    <value>毁灭模式</value>
+  </data>
+  <data name="DockBot_Botton" xml:space="preserve">
+    <value>合并Bot</value>
+  </data>
+  <data name="DownloadAutoIT_Button" xml:space="preserve">
+    <value>下载AutoIt</value>
+  </data>
+  <data name="EmulatorDownload_Button" xml:space="preserve">
+    <value>下载模拟器</value>
+  </data>
+  <data name="F1GroupBox1" xml:space="preserve">
+    <value>特殊通知</value>
+  </data>
+  <data name="F1GroupBox2" xml:space="preserve">
+    <value>定时通知</value>
+  </data>
+  <data name="F1Label01" xml:space="preserve">
+    <value>当CPU运行超过70%，设置CPU频率最高</value>
+  </data>
+  <data name="F1Label02" xml:space="preserve">
+    <value>当CPU运行恢复正常，设置CPU频率最高</value>
+  </data>
+  <data name="F1Label03" xml:space="preserve">
+    <value>程序</value>
+  </data>
+  <data name="F1Label04" xml:space="preserve">
+    <value>开始小时</value>
+  </data>
+  <data name="F1Label05" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="F1Label06" xml:space="preserve">
+    <value>结束小时</value>
+  </data>
+  <data name="F1Label07" xml:space="preserve">
+    <value>网络</value>
+  </data>
+  <data name="F1Label08" xml:space="preserve">
+    <value>选择要覆盖的Profile:</value>
+  </data>
+  <data name="F1Label09" xml:space="preserve">
+    <value>选择主 Profile</value>
+  </data>
+  <data name="F1Label10" xml:space="preserve">
+    <value>屏幕关闭</value>
+  </data>
+  <data name="F1Label11" xml:space="preserve">
+    <value>设备休眠</value>
+  </data>
+  <data name="F1Label12" xml:space="preserve">
+    <value>网络已接受</value>
+  </data>
+  <data name="F1Label13" xml:space="preserve">
+    <value>网络已发送</value>
+  </data>
+  <data name="F1Label14" xml:space="preserve">
+    <value>CPU使用率</value>
+  </data>
+  <data name="F1Label15" xml:space="preserve">
+    <value>RAM使用率</value>
+  </data>
+  <data name="F1Label16" xml:space="preserve">
+    <value>下载速度</value>
+  </data>
+  <data name="F1Label17" xml:space="preserve">
+    <value>上传速度</value>
+  </data>
+  <data name="CPUName" xml:space="preserve">
+    <value>CPU型号: </value>
+  </data>
+  <data name="CPUTemp" xml:space="preserve">
+    <value>CPU温度: </value>
+  </data>
+  <data name="CPUPower" xml:space="preserve">
+    <value>CPU电力消耗: </value>
+  </data>
+  <data name="CPUFrequency" xml:space="preserve">
+    <value>CPU频率: </value>
+  </data>
+  <data name="CPUMaxFrequency" xml:space="preserve">
+    <value>CPU最高频率: </value>
+  </data>
+  <data name="CPUMaxTemp" xml:space="preserve">
+    <value>CPU最高温度: </value>
+  </data>
+  <data name="F1Label24" xml:space="preserve">
+    <value>定时通知频率</value>
+  </data>
+  <data name="F1Label18" xml:space="preserve">
+    <value>切换</value>
+  </data>
+  <data name="F1Label19" xml:space="preserve">
+    <value>大本营等级</value>
+  </data>
+  <data name="F1TabPage1" xml:space="preserve">
+    <value>其他程序自启设置</value>
+  </data>
+  <data name="F1TabPage10" xml:space="preserve">
+    <value>翻墙设置</value>
+  </data>
+  <data name="F1TabPage11" xml:space="preserve">
+    <value>电报通知</value>
+  </data>
+  <data name="F1Tabpage2" xml:space="preserve">
+    <value>一般设置</value>
+  </data>
+  <data name="F1Tabpage3" xml:space="preserve">
+    <value>高级设置</value>
+  </data>
+  <data name="F1Tabpage4" xml:space="preserve">
+    <value>MyBot设置</value>
+  </data>
+  <data name="F1TabPage5" xml:space="preserve">
+    <value>多开自启设置</value>
+  </data>
+  <data name="F1Tabpage6" xml:space="preserve">
+    <value>其他设置</value>
+  </data>
+  <data name="F1Tabpage7" xml:space="preserve">
+    <value>电脑环境设置</value>
+  </data>
+  <data name="F1TabPage8" xml:space="preserve">
+    <value>退出管理器后的电源设置</value>
+  </data>
+  <data name="F1TabPage9" xml:space="preserve">
+    <value>通知设置</value>
+  </data>
+  <data name="Form1" xml:space="preserve">
+    <value>MyBot管理器</value>
+  </data>
+  <data name="Help_Message1" xml:space="preserve">
+    <value>帮助：
+
+*一般设置内自动产生的Profile可能与模拟器里的游戏账号不相符，如有需要可在高级设置调整。
+
+*想要取消某个Bot的启动，就直接在高级设置内不要启动的Profile增加#符号，符号周围必须加上空格
+
+* 有任何错误或者闪退的情况，便在此软件的文件夹内找error.log发给PoH98
+
+快捷键帮助：
+
+*Enter直接开始一键启动Bot / 隐藏显示Bot
+
+* Esc直接退出管理器 / 关闭所有Bot回到设置页面
+
+*CTRL + G 自动生成Profile</value>
+  </data>
+  <data name="Help_Message2" xml:space="preserve">
+    <value>帮助:
+
+* 你可以点击“修改选中MyBot的设置”调整选中的MyBot设置
+
+* 你可以点击“覆盖其他MyBot设置成当前选中的MyBot设置”覆盖其他MyBot如造兵和进攻等设置成为选中的MyBot设置
+
+* 你可以点击“关闭运行中的MyBot和模拟器”关闭正在运行的全部MyBot
+
+* 你可以点击“MyBot注射器”直接修改MyBot的ini设置文件
+
+* 你可以点击“下载模拟器”直接下载MyBot支持的模拟器以及最佳版本
+
+* 你可以点击“下载AutoIT”下载MyBot所需要使用的AutoIT</value>
+  </data>
+  <data name="Help_Message3" xml:space="preserve">
+    <value>*这里是用来设置定时启动MyBot以外的软件
+
+* 请使用隔壁的按钮选择要启动的软件位置
+
+* 定时启动的软件禁止是恶作剧以及病毒程序，管理器拒绝一切vbs和js脚本类程序</value>
+  </data>
+  <data name="Help_Message4" xml:space="preserve">
+    <value>帮助: 
+
+* 点击停止挂机后会自动关闭MyBot
+
+快捷键帮助：
+
+* 点击H可以直接隐藏MyBot和模拟器
+
+* 点击S可以直接显示MyBot和模拟器
+
+*点击Esc可以直接停止挂机</value>
+  </data>
+  <data name="HideBot_CheckBox" xml:space="preserve">
+    <value>隐藏MyBot</value>
+  </data>
+  <data name="HideEmulator_CheckBox" xml:space="preserve">
+    <value>隐藏模拟器</value>
+  </data>
+  <data name="HideFromTaskBar_CheckBox" xml:space="preserve">
+    <value>从任务栏隐藏</value>
+  </data>
+  <data name="HighPerformanceMode_Button" xml:space="preserve">
+    <value>高性能模式</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>时</value>
+  </data>
+  <data name="HouSetting_CheckBox" xml:space="preserve">
+    <value>12小时格式</value>
+  </data>
+  <data name="Injector_Button" xml:space="preserve">
+    <value>MyBot注射器</value>
+  </data>
+  <data name="LowPerformaceMode_Button" xml:space="preserve">
+    <value>省电降温模式</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="MyBotTutorial_Button" xml:space="preserve">
+    <value>MyBot.run教学</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>选择Profile</value>
+  </data>
+  <data name="NormalPerformanceMode_Button" xml:space="preserve">
+    <value>默认设置</value>
+  </data>
+  <data name="OnPower" xml:space="preserve">
+    <value>电源</value>
+  </data>
+  <data name="Priority_CheckBox" xml:space="preserve">
+    <value>自动调整优先度</value>
+  </data>
+  <data name="QuotaLimit_CheckBox" xml:space="preserve">
+    <value>限制流量使用</value>
+  </data>
+  <data name="RAMCleaner_CheckBox" xml:space="preserve">
+    <value>关闭其他程序腾出内存</value>
+  </data>
+  <data name="Regenerate_Button" xml:space="preserve">
+    <value>自动生成Supporter设置</value>
+  </data>
+  <data name="Reset_Button" xml:space="preserve">
+    <value>重置全部Supporter设置</value>
+  </data>
+  <data name="RestartBot_CheckBox" xml:space="preserve">
+    <value>MyBot关闭后马上重启</value>
+  </data>
+  <data name="Restart_Button" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="ScheduledShutdown_CheckBox" xml:space="preserve">
+    <value>定时关机</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="SendDebug_Button" xml:space="preserve">
+    <value>发送Debug日志</value>
+  </data>
+  <data name="ShutdownWhenLimitReached_CheckBox" xml:space="preserve">
+    <value>流量上限抵达后关机</value>
+  </data>
+  <data name="ShutdownWhenNoNetwork_CheckBox" xml:space="preserve">
+    <value>无网络关机</value>
+  </data>
+  <data name="Shutdown_Button" xml:space="preserve">
+    <value>关机</value>
+  </data>
+  <data name="Shutdown_ToolTripMenu" xml:space="preserve">
+    <value>关机/重启</value>
+  </data>
+  <data name="StartSelectedMyBot_Button" xml:space="preserve">
+    <value>修改选中MyBot的设置</value>
+  </data>
+  <data name="Start_Button" xml:space="preserve">
+    <value>开始启动MyBot</value>
+  </data>
+  <data name="StopBotOnBattery_CheckBox" xml:space="preserve">
+    <value>电池状态停止挂机</value>
+  </data>
+  <data name="StopDebug_Button" xml:space="preserve">
+    <value>停止Debug</value>
+  </data>
+  <data name="Stop_Button" xml:space="preserve">
+    <value>停止挂机</value>
+  </data>
+  <data name="SupporterTutorial_Button" xml:space="preserve">
+    <value>MyBot.Supporter教学</value>
+  </data>
+  <data name="TelegramTokenUpdate_Button" xml:space="preserve">
+    <value>更新token</value>
+  </data>
+  <data name="Telegram_BotClose_CheckBox" xml:space="preserve">
+    <value>MyBot正在关闭</value>
+  </data>
+  <data name="Telegram_BotStart_CheckBox" xml:space="preserve">
+    <value>MyBot正在启动</value>
+  </data>
+  <data name="Telegram_ClosingSupporter_CheckBox" xml:space="preserve">
+    <value>管理器正在关闭</value>
+  </data>
+  <data name="Telegram_CPUStatus_CheckBox" xml:space="preserve">
+    <value>CPU情况</value>
+  </data>
+  <data name="Telegram_OverHeat_CheckBox" xml:space="preserve">
+    <value>CPU过热</value>
+  </data>
+  <data name="Telegram_RunningBotCount_CheckBox" xml:space="preserve">
+    <value>正在运行的MyBot数量</value>
+  </data>
+  <data name="Telegram_RunningBotEarned_CheckBox" xml:space="preserve">
+    <value>当前已赚取资源</value>
+  </data>
+  <data name="Telegram_RunningBotStatus_CheckBox" xml:space="preserve">
+    <value>当前资源，杯数与工人资料</value>
+  </data>
+  <data name="Telegram_StartBotting_CheckBox" xml:space="preserve">
+    <value>管理器已开始挂机</value>
+  </data>
+  <data name="Telegram_StopBotting_CheckBox" xml:space="preserve">
+    <value>管理器已停止挂机</value>
+  </data>
+  <data name="Tutorial_ToolTripMenu" xml:space="preserve">
+    <value>新手教学</value>
+  </data>
+  <data name="_Net4_5Needed" xml:space="preserve">
+    <value>您需要.NET 4.5以上才能运行！</value>
+  </data>
+  <data name="BotNameNeeded" xml:space="preserve">
+    <value>请输入要创建的Bot名字！</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误！</value>
+  </data>
+  <data name="F1Label27" xml:space="preserve">
+    <value>后关闭</value>
+  </data>
+  <data name="NoNetwork" xml:space="preserve">
+    <value>请检查网络连接</value>
+  </data>
+  <data name="PleaseInputNameOfProfile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RunningBotCount" xml:space="preserve">
+    <value>正在运行的Bot数量：</value>
+  </data>
+  <data name="ScheduledBotCount" xml:space="preserve">
+    <value>已设置需要运行的Bot数量：</value>
+  </data>
+  <data name="SelectEmulatorNeeded" xml:space="preserve">
+    <value>请选择模拟器！</value>
+  </data>
+  <data name="NoNet" xml:space="preserve">
+    <value>网络断开</value>
+  </data>
+  <data name="AdvancedCPU" xml:space="preserve">
+    <value>高级CPU资料显示</value>
+  </data>
+  <data name="EarnedGoldPH" xml:space="preserve">
+    <value>每小时金币收入:</value>
+  </data>
+  <data name="EarnedDarkElixirPH" xml:space="preserve">
+    <value>每小时黑油收入:</value>
+  </data>
+  <data name="Builders" xml:space="preserve">
+    <value>建筑工人：</value>
+  </data>
+  <data name="BabyDrag" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Balloons" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BattleChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Bowlers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Castle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ClanGame" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CurrentSelectedProfile" xml:space="preserve">
+    <value>当前选中Profile的切换为:</value>
+  </data>
+  <data name="DestructionChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DonateSpells" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DonateTroops" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Dragons" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Earthquake" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EnableSwitch" xml:space="preserve">
+    <value>启用切换Profile</value>
+  </data>
+  <data name="FirstInstanceLeftEmpty" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Freeze" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Giants" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Goblins" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Golems" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroundTroopsChallenges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Hastle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Heal" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Healers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Help_Message5" xml:space="preserve">
+    <value>帮助：
+
+*管理器将会在选中的Profile资源满后进行切换（如果有设置）
+
+ *管理器只能切换在多开设置内已经被取消启动的Profile （Profile前增加#符号后空格的Profile）
+
+ *管理器将会切换回原本Profile，当其中资源（金币或圣水）低于 1，000，000 或黑油低于 10，000"</value>
+  </data>
+  <data name="Hogs" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Jump" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lava" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lightning" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LootChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Miners" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Minions" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MiscellaneousChallenges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoSpammers" xml:space="preserve">
+    <value>禁止任何形式的刷屏！</value>
+  </data>
+  <data name="Pekkas" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PleaseEnter" xml:space="preserve">
+    <value>请输入</value>
+  </data>
+  <data name="PleaseInputEmulatorInstanceNumber" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Poison" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ProfileToInject" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PurgeChallenges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Rage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SelectedProfile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SelectEmulatorUsedByProfile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Skeletons" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SwitchProfileIfResourcesFull" xml:space="preserve">
+    <value>资源满后切换到选择的Profile</value>
+  </data>
+  <data name="Valkryines" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Village" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WallBreakers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Witches" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Wizards" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EarnedElixirPH" xml:space="preserve">
+    <value>每小时圣水收入:</value>
+  </data>
+  <data name="EarnedTrophyPH" xml:space="preserve">
+    <value>每小时奖杯收入: </value>
+  </data>
+  <data name="CannonCarnage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DarckElixirChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DarkElixirHeist" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DestroyAirDefenses" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DestroyAirSweepers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ElixirChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ElixirEmbezzlement" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoldChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoldGrab" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HuntforThreeStars" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LordofDestruction" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MortarMauling" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoHeroicsAllowed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="No_MagicZone" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PileOfVictories" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SlayingTheTitans" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StarCollector" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinningStreak" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WizardTowerWarfare" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NetworkNeededForTutorial" xml:space="preserve">
+    <value>需要网络才能打开教学！</value>
+  </data>
+  <data name="NumbersOnly" xml:space="preserve">
+    <value>您只能在这里输入数字与'-'号！</value>
+  </data>
+  <data name="Sorry" xml:space="preserve">
+    <value>抱歉</value>
+  </data>
+  <data name="AnotherSupporterIsRunning" xml:space="preserve">
+    <value>多开管理已在运行！是否关闭旧管理器？</value>
+  </data>
+  <data name="CancelStartOtherPrgram" xml:space="preserve">
+    <value>软件！已取消启动该软件！</value>
+  </data>
+  <data name="CSVNameNeeded" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DisallowOtherThanEXE" xml:space="preserve">
+    <value>你不被允许运行除了以exe结尾以外的程序！！</value>
+  </data>
+  <data name="EditMyBot" xml:space="preserve">
+    <value>设置完毕后请关闭MyBot，从这里再点击开始</value>
+  </data>
+  <data name="InvalidProfile" xml:space="preserve">
+    <value>请选择有效的Profile!</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Token无效！</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="NoneProfileSelected" xml:space="preserve">
+    <value>请在格子里选择有效的Profile</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>提醒</value>
+  </data>
+  <data name="OverWriteConfirmation" xml:space="preserve">
+    <value>是否确定覆盖设置？</value>
+  </data>
+  <data name="OverwriteSuccess" xml:space="preserve">
+    <value>成功覆盖MyBot设置！</value>
+  </data>
+  <data name="ResetConfirmation" xml:space="preserve">
+    <value>你确定真的要重置所有目前设置吗？</value>
+  </data>
+  <data name="SameProfileSelected" xml:space="preserve">
+    <value>不能选择一样的Profile!</value>
+  </data>
+  <data name="SelectSwicthAccount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsExist" xml:space="preserve">
+    <value>管理器已存在设置，</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功！</value>
+  </data>
+  <data name="TelegramHelpMessage" xml:space="preserve">
+    <value>欢迎使用MyBot管理器！
+命令帮助：
+/s 开始和停止挂机 
+/en 切换语言到英文
+/cn 切换语言到中文
+/cpu 显示目前CPU状态资料 
+/list 显示目前Profile列表
+/status 可查看当前全部号资源剩余以及杯段和建筑工人情况
+/earn 可查看当前每个MyBot已赚取多少资源
+/h 可隐藏MyBot和模拟器
+/capt 可截取当前屏幕图片
+/sh 可显示隐藏的MyBot和模拟器
+/sd 关闭电脑
+/re 重启电脑
+/p 暂停/恢复当前运行的所有MyBot</value>
+  </data>
+  <data name="TelegramSupporterClose" xml:space="preserve">
+    <value>管理器正在关闭！</value>
+  </data>
+  <data name="TelegramSupporterStop" xml:space="preserve">
+    <value>管理器正在停止挂机</value>
+  </data>
+  <data name="UnableToLocate" xml:space="preserve">
+    <value>找不到 </value>
+  </data>
+  <data name="CreateCSV" xml:space="preserve">
+    <value>创建新脚本</value>
+  </data>
+  <data name="EditCSV" xml:space="preserve">
+    <value>修改已存在脚本</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="ProfileNotFound1" xml:space="preserve">
+    <value>多开设置内的 </value>
+  </data>
+  <data name="ProfileNotFound2" xml:space="preserve">
+    <value> 不存在于Profile内！请创建新Profile！</value>
+  </data>
+  <data name="NetStatus" xml:space="preserve">
+    <value>网络情况</value>
+  </data>
+  <data name="PCStatus" xml:space="preserve">
+    <value>电脑情况</value>
+  </data>
+  <data name="ErrorAutoIT" xml:space="preserve">
+    <value>AutoIT错误</value>
+  </data>
+  <data name="ErrorImgloc" xml:space="preserve">
+    <value>未经授权或非法使用MyBot错误</value>
+  </data>
+  <data name="ErrorTab" xml:space="preserve">
+    <value>错误报告</value>
+  </data>
+  <data name="MBResources" xml:space="preserve">
+    <value>MyBot运行情况</value>
+  </data>
+  <data name="DarkElixir" xml:space="preserve">
+    <value>暗黑重油: </value>
+  </data>
+  <data name="EarnedDarkElixir" xml:space="preserve">
+    <value>已赚取暗黑重油: </value>
+  </data>
+  <data name="EarnedElixir" xml:space="preserve">
+    <value>已赚取圣水: </value>
+  </data>
+  <data name="EarnedGold" xml:space="preserve">
+    <value>已赚取金币: </value>
+  </data>
+  <data name="EarnedTrophy" xml:space="preserve">
+    <value>已赚取奖杯: </value>
+  </data>
+  <data name="Elixir" xml:space="preserve">
+    <value>圣水: </value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>金币: </value>
+  </data>
+  <data name="Trophy" xml:space="preserve">
+    <value>奖杯: </value>
+  </data>
+  <data name="HadClosed" xml:space="preserve">
+    <value>已关闭/脱离管理器控制</value>
+  </data>
+  <data name="BlackColor" xml:space="preserve">
+    <value>黑暗</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>颜色主题</value>
+  </data>
+  <data name="WhiteColor" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="TelegramFrequency" xml:space="preserve">
+    <value>电报通知频率</value>
+  </data>
+  <data name="EmulatorNotFound" xml:space="preserve">
+    <value>管理器无法找到已安装模拟器，请自行到生成管理器设置或者到Profile设置内调整</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value> 次</value>
+  </data>
+</root>

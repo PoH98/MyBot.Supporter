@@ -1,0 +1,90 @@
+MyBot.Supporter
+Stop Botting
+Start Botting
+Auto Priority Setter
+Auto Close LID
+Shutdown when no internet connections
+Shutdown when Quota Limit reached
+AdsBlock
+Schedule Shutdown
+Restart Bot when Bot closed
+Hide Emulators
+Hide MyBot
+Dock Bot
+Stop Botting On Battery Power
+Hide from Taskbar
+12-Hour Clock
+Close other application to free up RAM
+MyBot Closing
+MyBot Starting
+Supporter Stop Botting
+Supporter Start Botting
+CPU overheat
+Supporter is Closing
+Current running Bot count
+Current Profile Status from MyBot's result
+Current Earnings from MyBot's result
+CPU status
+Generate Profiles for Supporter
+Close Running MyBot and Emulator
+Edit/Start Selected MyBot Profile Settings
+Sycn MyBot Profile Settings
+CSV Writer
+MyBot Injector
+Create new MyBot Profile
+Power Saving Mode
+High Performance Mode
+Default Mode
+Destroy Mode
+Update Token
+CPU Usage
+Processor Number: 
+CPU Temperature: 
+CPU Max Temp: 
+CPU Frequency: 
+CPU Power Usage: 
+RAM Usage
+Network
+Net Sended
+Net Received
+Upload Speed
+Download Speed
+Start Time
+End Time
+Program Path
+
+Select Profile
+Select Profile to sync
+When CPU usage over 70%, set CPU maximum
+When CPU usage is normal, set CPU maximum
+Battery
+Power
+
+H
+M
+S
+
+PC Environment Settings
+ImgLoc Error
+Telegram Auto Notify Frequency
+AutoIT Error
+Network Connection Lost
+Power Settings after closed
+Specific situations notification
+Fixed time notification
+Multi-Bot Settings
+Other Program AutoRun Settings
+PC Environment Settings
+Telegram Notification
+VPN Settings
+Screen Off Time
+Sleep Device Time
+PC Status
+Net Status
+Error Report
+MyBot Status
+Error!
+
+
+
+

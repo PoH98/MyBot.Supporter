@@ -1,0 +1,811 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddNewProfile_Button" xml:space="preserve">
+    <value>Create new MyBot Profile</value>
+  </data>
+  <data name="AdsBlock_CheckBox" xml:space="preserve">
+    <value>AdsBlock</value>
+  </data>
+  <data name="AllSelected" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Autorun_CheckBox" xml:space="preserve">
+    <value>AutoRun</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Battery</value>
+  </data>
+  <data name="CloseRunningBot_Button" xml:space="preserve">
+    <value>Close Running MyBot and Emulator</value>
+  </data>
+  <data name="Close_LID_CheckBox" xml:space="preserve">
+    <value>Auto Close LID</value>
+  </data>
+  <data name="CopySettings_Button" xml:space="preserve">
+    <value>Sycn MyBot Profile Settings</value>
+  </data>
+  <data name="CreateDebug_Button" xml:space="preserve">
+    <value>Start/Reset Debug</value>
+  </data>
+  <data name="CSV_Writer_Button" xml:space="preserve">
+    <value>CSV Writer</value>
+  </data>
+  <data name="DestroyingPerformanceMode_Button" xml:space="preserve">
+    <value>Destroy Mode</value>
+  </data>
+  <data name="DockBot_Botton" xml:space="preserve">
+    <value>Dock Bot</value>
+  </data>
+  <data name="DownloadAutoIT_Button" xml:space="preserve">
+    <value>Download AutoIT</value>
+  </data>
+  <data name="EmulatorDownload_Button" xml:space="preserve">
+    <value>Download Emulator</value>
+  </data>
+  <data name="F1GroupBox1" xml:space="preserve">
+    <value>Specific situations notification</value>
+  </data>
+  <data name="F1GroupBox2" xml:space="preserve">
+    <value>Fixed time notification</value>
+  </data>
+  <data name="F1Label01" xml:space="preserve">
+    <value>When CPU usage over 70%, set CPU maximum</value>
+  </data>
+  <data name="F1Label02" xml:space="preserve">
+    <value>When CPU usage is normal, set CPU maximum</value>
+  </data>
+  <data name="F1Label03" xml:space="preserve">
+    <value>Program Path</value>
+  </data>
+  <data name="F1Label04" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="F1Label05" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="F1Label06" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="F1Label07" xml:space="preserve">
+    <value>Network</value>
+  </data>
+  <data name="F1Label08" xml:space="preserve">
+    <value>Select Profile to sync</value>
+  </data>
+  <data name="F1Label09" xml:space="preserve">
+    <value>Select Profile</value>
+  </data>
+  <data name="F1Label10" xml:space="preserve">
+    <value>Screen Off Time</value>
+  </data>
+  <data name="F1Label11" xml:space="preserve">
+    <value>Sleep Device Time</value>
+  </data>
+  <data name="F1Label12" xml:space="preserve">
+    <value>Net Received</value>
+  </data>
+  <data name="F1Label13" xml:space="preserve">
+    <value>Net Sended</value>
+  </data>
+  <data name="F1Label14" xml:space="preserve">
+    <value>CPU Usage</value>
+  </data>
+  <data name="F1Label15" xml:space="preserve">
+    <value>RAM Usage</value>
+  </data>
+  <data name="F1Label16" xml:space="preserve">
+    <value>Download Speed</value>
+  </data>
+  <data name="F1Label17" xml:space="preserve">
+    <value>Upload Speed</value>
+  </data>
+  <data name="CPUName" xml:space="preserve">
+    <value>Processor Number: </value>
+  </data>
+  <data name="CPUTemp" xml:space="preserve">
+    <value>CPU Temperature: </value>
+  </data>
+  <data name="CPUPower" xml:space="preserve">
+    <value>CPU Power Usage: </value>
+  </data>
+  <data name="CPUFrequency" xml:space="preserve">
+    <value>CPU Frequency: </value>
+  </data>
+  <data name="CPUMaxFrequency" xml:space="preserve">
+    <value>CPU Max Frequency: </value>
+  </data>
+  <data name="CPUMaxTemp" xml:space="preserve">
+    <value>CPU Max Temp: </value>
+  </data>
+  <data name="F1Label24" xml:space="preserve">
+    <value>Frequency of Fixed Time notification</value>
+  </data>
+  <data name="F1Label18" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="F1Label19" xml:space="preserve">
+    <value>TH Level</value>
+  </data>
+  <data name="F1TabPage1" xml:space="preserve">
+    <value>Other Program AutoRun Settings</value>
+  </data>
+  <data name="F1TabPage10" xml:space="preserve">
+    <value>VPN Settings</value>
+  </data>
+  <data name="F1TabPage11" xml:space="preserve">
+    <value>Telegram Notification</value>
+  </data>
+  <data name="F1Tabpage2" xml:space="preserve">
+    <value>Normal Settings</value>
+  </data>
+  <data name="F1Tabpage3" xml:space="preserve">
+    <value>Advance Settings</value>
+  </data>
+  <data name="F1Tabpage4" xml:space="preserve">
+    <value>MyBot Settings</value>
+  </data>
+  <data name="F1TabPage5" xml:space="preserve">
+    <value>Multi-Bot Settings</value>
+  </data>
+  <data name="F1Tabpage6" xml:space="preserve">
+    <value>Other Setings</value>
+  </data>
+  <data name="F1Tabpage7" xml:space="preserve">
+    <value>PC Environment Settings</value>
+  </data>
+  <data name="F1TabPage8" xml:space="preserve">
+    <value>Power Settings after closed</value>
+  </data>
+  <data name="F1TabPage9" xml:space="preserve">
+    <value>Telegram Notification</value>
+  </data>
+  <data name="Form1" xml:space="preserve">
+    <value>MyBot Supporter</value>
+  </data>
+  <data name="Help_Message1" xml:space="preserve">
+    <value>This program is designed by PoH98 and used for schedule start for MyBot
+
+Quick Help: 
+
+* Auto Generated Profile need to be checked in Advance Settings to make sure no wrong Profile and Emulator matched
+
+* Just simply add # mark in profile with spacebar around it to disable launch of that profile
+
+* This Supporter might cause your device sleep and screen off settings reset, Pls kindly use the function in [ OtherSettings\\Power Setting After Closed ]</value>
+  </data>
+  <data name="Help_Message2" xml:space="preserve">
+    <value>Help:
+
+* You can set one MyBot Profile by clicking "Edit Selected Profile Settings" 
+
+* You can overwrite other MyBot Profile settings such as troops making and attack settings by using "Sync MyBot Profile Settings" button
+
+* You can close all running MyBot by clicking "Close all Emulators and MyBot" 
+
+* You can now Inject MyBot ini files with using MyBot Injector"
+
+* You can download all the MyBot Supported Emulators by clicking "Download Emulator" button
+
+* You can download AutoIT which needed by MyBot from "Download AutoIT" button</value>
+  </data>
+  <data name="Help_Message3" xml:space="preserve">
+    <value>* Here you can set the programs other than MyBot to startup at the schedulled time.
+
+* Do not use this function for malwares and viruses startup!
+
+* This function will only start exe type programs.
+
+* You can tick the network box if your program needs a network to start";</value>
+  </data>
+  <data name="Help_Message4" xml:space="preserve">
+    <value>Help: 
+
+* After clicking Stop Botting will kill all MyBots and Emulators Processes
+
+* You can press H for hiding all the bots
+
+* You can press S for showing all the bots
+
+* You can stop botting by pressing ESC button</value>
+  </data>
+  <data name="HideBot_CheckBox" xml:space="preserve">
+    <value>Hide MyBot</value>
+  </data>
+  <data name="HideEmulator_CheckBox" xml:space="preserve">
+    <value>Hide Emulators</value>
+  </data>
+  <data name="HideFromTaskBar_CheckBox" xml:space="preserve">
+    <value>Hide from Taskbar</value>
+  </data>
+  <data name="HighPerformanceMode_Button" xml:space="preserve">
+    <value>High Performance Mode</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>H</value>
+  </data>
+  <data name="HouSetting_CheckBox" xml:space="preserve">
+    <value>12-Hour Clock</value>
+  </data>
+  <data name="Injector_Button" xml:space="preserve">
+    <value>MyBot Injector</value>
+  </data>
+  <data name="LowPerformaceMode_Button" xml:space="preserve">
+    <value>Power Saving Mode</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="MyBotTutorial_Button" xml:space="preserve">
+    <value>MyBot.run tutorial</value>
+  </data>
+  <data name="NoneSelected" xml:space="preserve">
+    <value>Select Profile</value>
+  </data>
+  <data name="NormalPerformanceMode_Button" xml:space="preserve">
+    <value>Default Mode</value>
+  </data>
+  <data name="OnPower" xml:space="preserve">
+    <value>Power</value>
+  </data>
+  <data name="Priority_CheckBox" xml:space="preserve">
+    <value>Auto Set Priority</value>
+  </data>
+  <data name="QuotaLimit_CheckBox" xml:space="preserve">
+    <value>Limit Internet Quota Usage</value>
+  </data>
+  <data name="RAMCleaner_CheckBox" xml:space="preserve">
+    <value>Close other application to free up RAM</value>
+  </data>
+  <data name="Regenerate_Button" xml:space="preserve">
+    <value>Generate Profiles for Supporter</value>
+  </data>
+  <data name="Reset_Button" xml:space="preserve">
+    <value>Reset Profiles for Supporter</value>
+  </data>
+  <data name="RestartBot_CheckBox" xml:space="preserve">
+    <value>Restart Bot when Bot closed</value>
+  </data>
+  <data name="Restart_Button" xml:space="preserve">
+    <value>Restart PC</value>
+  </data>
+  <data name="ScheduledShutdown_CheckBox" xml:space="preserve">
+    <value>Schedule Shutdown</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="SendDebug_Button" xml:space="preserve">
+    <value>Send Debug Log</value>
+  </data>
+  <data name="ShutdownWhenLimitReached_CheckBox" xml:space="preserve">
+    <value>Shutdown when Quota Limit reached</value>
+  </data>
+  <data name="ShutdownWhenNoNetwork_CheckBox" xml:space="preserve">
+    <value>Shutdown when no internet connections</value>
+  </data>
+  <data name="Shutdown_Button" xml:space="preserve">
+    <value>Shutdown PC</value>
+  </data>
+  <data name="Shutdown_ToolTripMenu" xml:space="preserve">
+    <value>Shutdown/Restart</value>
+  </data>
+  <data name="StartSelectedMyBot_Button" xml:space="preserve">
+    <value>Edit Selected MyBot Profile Settings</value>
+  </data>
+  <data name="Start_Button" xml:space="preserve">
+    <value>Start Botting</value>
+  </data>
+  <data name="StopBotOnBattery_CheckBox" xml:space="preserve">
+    <value>Stop Botting On Battery Power</value>
+  </data>
+  <data name="StopDebug_Button" xml:space="preserve">
+    <value>Stop Debug</value>
+  </data>
+  <data name="Stop_Button" xml:space="preserve">
+    <value>Stop Botting</value>
+  </data>
+  <data name="TelegramTokenUpdate_Button" xml:space="preserve">
+    <value>Update Token</value>
+  </data>
+  <data name="Telegram_BotClose_CheckBox" xml:space="preserve">
+    <value>MyBot Closing</value>
+  </data>
+  <data name="Telegram_BotStart_CheckBox" xml:space="preserve">
+    <value>MyBot Starting</value>
+  </data>
+  <data name="Telegram_ClosingSupporter_CheckBox" xml:space="preserve">
+    <value>Supporter is Closing</value>
+  </data>
+  <data name="Telegram_CPUStatus_CheckBox" xml:space="preserve">
+    <value>CPU status</value>
+  </data>
+  <data name="Telegram_OverHeat_CheckBox" xml:space="preserve">
+    <value>CPU overheat</value>
+  </data>
+  <data name="Telegram_RunningBotCount_CheckBox" xml:space="preserve">
+    <value>Current running Bot count</value>
+  </data>
+  <data name="Telegram_RunningBotEarned_CheckBox" xml:space="preserve">
+    <value>Current Earnings from MyBot's result</value>
+  </data>
+  <data name="Telegram_RunningBotStatus_CheckBox" xml:space="preserve">
+    <value>Current Profile Status from MyBot's result</value>
+  </data>
+  <data name="Telegram_StartBotting_CheckBox" xml:space="preserve">
+    <value>Supporter Start Botting</value>
+  </data>
+  <data name="Telegram_StopBotting_CheckBox" xml:space="preserve">
+    <value>Supporter Stop Botting</value>
+  </data>
+  <data name="Tutorial_ToolTripMenu" xml:space="preserve">
+    <value>Newbie Tutorial</value>
+  </data>
+  <data name="_Net4_5Needed" xml:space="preserve">
+    <value>.NET4.5 above needed</value>
+  </data>
+  <data name="BotNameNeeded" xml:space="preserve">
+    <value>Please input the name of the bot!</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="F1Label27" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoNetwork" xml:space="preserve">
+    <value>Network Not Available!</value>
+  </data>
+  <data name="PleaseInputNameOfProfile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SelectEmulatorNeeded" xml:space="preserve">
+    <value>Please Select Emulator!</value>
+  </data>
+  <data name="AddToSupporterProfile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AirTroopsChallenges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Archers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AttackPlan" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Babarians" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BabyDrag" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Balloons" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BattleChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Bowlers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Castle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ClanGame" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CurrentSelectedProfile" xml:space="preserve">
+    <value>Current selected profile will switch to...</value>
+  </data>
+  <data name="DestructionChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DonateSpells" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DonateTroops" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Dragons" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Earthquake" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EnableSwitch" xml:space="preserve">
+    <value>Enable Switch</value>
+  </data>
+  <data name="FirstInstanceLeftEmpty" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Freeze" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Giants" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Goblins" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Golems" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GroundTroopsChallenges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Hastle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Heal" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Healers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Help_Message5" xml:space="preserve">
+    <value>帮助：
+
+*管理器将会在选中的Profile资源满后进行切换（如果有设置）
+
+ *管理器只能切换在多开设置内已经被取消启动的Profile （Profile前增加#符号后空格的Profile）
+
+ *管理器将会切换回原本Profile，当其中资源（金币或圣水）低于 1，000，000 或黑油低于 10，000"</value>
+  </data>
+  <data name="Hogs" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Jump" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lava" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lightning" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LootChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Miners" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Minions" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MiscellaneousChallenges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoSpammers" xml:space="preserve">
+    <value>禁止任何形式的刷屏！</value>
+  </data>
+  <data name="Pekkas" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PleaseEnter" xml:space="preserve">
+    <value>Please Enter</value>
+  </data>
+  <data name="PleaseInputEmulatorInstanceNumber" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Poison" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ProfileToInject" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PurgeChallenges" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Rage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SelectedProfile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SelectEmulatorUsedByProfile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Skeletons" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Skip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Valkryines" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Village" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WallBreakers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Witches" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Wizards" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ArcherTowerAssault" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AttackUp" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CannonCarnage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DarckElixirChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DarkElixirHeist" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DestroyAirDefenses" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DestroyAirSweepers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ElixirChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ElixirEmbezzlement" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoldChallenge" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoldGrab" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HuntforThreeStars" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LordofDestruction" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MortarMauling" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NoHeroicsAllowed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="No_MagicZone" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PileOfVictories" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SlayingTheTitans" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StarCollector" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinningStreak" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WizardTowerWarfare" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NetworkNeededForTutorial" xml:space="preserve">
+    <value>需要网络才能打开教学！</value>
+  </data>
+  <data name="NumbersOnly" xml:space="preserve">
+    <value>您只能在这里输入数字与'-'号！</value>
+  </data>
+  <data name="Sorry" xml:space="preserve">
+    <value>Sorry</value>
+  </data>
+  <data name="AnotherSupporterIsRunning" xml:space="preserve">
+    <value>There is another Supporter already running, are you want to close it?</value>
+  </data>
+  <data name="CSVNameNeeded" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EditMyBot" xml:space="preserve">
+    <value>Please close MyBot and restart it using Supporter after setup your MyBot</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="SelectSwicthAccount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TelegramSupporterStop" xml:space="preserve">
+    <value>Supporter was Stopped Botting</value>
+  </data>
+  <data name="ProfileNotFound1" xml:space="preserve">
+    <value>The profile </value>
+  </data>
+  <data name="ProfileNotFound2" xml:space="preserve">
+    <value> in Multi-Bot is not exist! Please generate it!</value>
+  </data>
+  <data name="InvalidProfile" xml:space="preserve">
+    <value>Invalid profile!</value>
+  </data>
+  <data name="OverWriteConfirmation" xml:space="preserve">
+    <value>Are you sure you want to overwrite current settings?</value>
+  </data>
+  <data name="OverWriteSuccess" xml:space="preserve">
+    <value>Overwrite Success!</value>
+  </data>
+  <data name="NetStatus" xml:space="preserve">
+    <value>Net Status</value>
+  </data>
+  <data name="PCStatus" xml:space="preserve">
+    <value>PC Status</value>
+  </data>
+  <data name="ElectricBill" xml:space="preserve">
+    <value>Your current Electricity Bill</value>
+  </data>
+  <data name="ElectricPrice" xml:space="preserve">
+    <value>Please Input your Electricity Price</value>
+  </data>
+  <data name="ElectricTab" xml:space="preserve">
+    <value>Electricity</value>
+  </data>
+  <data name="MBResources" xml:space="preserve">
+    <value>MyBot Status</value>
+  </data>
+  <data name="DarkElixir" xml:space="preserve">
+    <value>DarkElixir: </value>
+  </data>
+  <data name="EarnedDarkElixir" xml:space="preserve">
+    <value>Earned DarkElixir: </value>
+  </data>
+  <data name="EarnedElixir" xml:space="preserve">
+    <value>Earned Elixir: </value>
+  </data>
+  <data name="EarnedGold" xml:space="preserve">
+    <value>Earned Gold: </value>
+  </data>
+  <data name="EarnedTrophy" xml:space="preserve">
+    <value>Earned Trophy: </value>
+  </data>
+  <data name="Elixir" xml:space="preserve">
+    <value>Elixir: </value>
+  </data>
+  <data name="Gold" xml:space="preserve">
+    <value>Gold: </value>
+  </data>
+  <data name="Trophy" xml:space="preserve">
+    <value>Trophy: </value>
+  </data>
+  <data name="HadClosed" xml:space="preserve">
+    <value>Had Closed / Out of Supporter control</value>
+  </data>
+  <data name="BlackColor" xml:space="preserve">
+    <value>Black</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Theme Color</value>
+  </data>
+  <data name="WhiteColor" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+</root>
