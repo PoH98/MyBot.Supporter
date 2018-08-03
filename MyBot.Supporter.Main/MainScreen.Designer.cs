@@ -69,51 +69,6 @@
             this.label37 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label86 = new System.Windows.Forms.Label();
-            this.label87 = new System.Windows.Forms.Label();
-            this.label88 = new System.Windows.Forms.Label();
-            this.label89 = new System.Windows.Forms.Label();
-            this.label90 = new System.Windows.Forms.Label();
-            this.label91 = new System.Windows.Forms.Label();
-            this.label92 = new System.Windows.Forms.Label();
-            this.label93 = new System.Windows.Forms.Label();
-            this.label94 = new System.Windows.Forms.Label();
-            this.label95 = new System.Windows.Forms.Label();
-            this.label96 = new System.Windows.Forms.Label();
-            this.label97 = new System.Windows.Forms.Label();
-            this.label98 = new System.Windows.Forms.Label();
-            this.label99 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.label70 = new System.Windows.Forms.Label();
-            this.label71 = new System.Windows.Forms.Label();
-            this.label72 = new System.Windows.Forms.Label();
-            this.label73 = new System.Windows.Forms.Label();
-            this.label74 = new System.Windows.Forms.Label();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label83 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
-            this.textBox63 = new System.Windows.Forms.TextBox();
-            this.textBox62 = new System.Windows.Forms.TextBox();
-            this.textBox61 = new System.Windows.Forms.TextBox();
-            this.textBox60 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
@@ -129,114 +84,160 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.emin15 = new System.Windows.Forms.NumericUpDown();
-            this.emin14 = new System.Windows.Forms.NumericUpDown();
-            this.emin13 = new System.Windows.Forms.NumericUpDown();
-            this.emin12 = new System.Windows.Forms.NumericUpDown();
-            this.emin11 = new System.Windows.Forms.NumericUpDown();
-            this.emin10 = new System.Windows.Forms.NumericUpDown();
-            this.emin9 = new System.Windows.Forms.NumericUpDown();
-            this.emin8 = new System.Windows.Forms.NumericUpDown();
-            this.emin7 = new System.Windows.Forms.NumericUpDown();
-            this.emin6 = new System.Windows.Forms.NumericUpDown();
-            this.emin5 = new System.Windows.Forms.NumericUpDown();
-            this.emin4 = new System.Windows.Forms.NumericUpDown();
-            this.emin3 = new System.Windows.Forms.NumericUpDown();
-            this.emin2 = new System.Windows.Forms.NumericUpDown();
-            this.emin1 = new System.Windows.Forms.NumericUpDown();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.ehour15 = new System.Windows.Forms.NumericUpDown();
-            this.label17 = new System.Windows.Forms.Label();
-            this.ehour14 = new System.Windows.Forms.NumericUpDown();
-            this.ehour13 = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.ehour12 = new System.Windows.Forms.NumericUpDown();
-            this.ehour11 = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.ehour10 = new System.Windows.Forms.NumericUpDown();
-            this.ehour9 = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.ehour8 = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
-            this.ehour7 = new System.Windows.Forms.NumericUpDown();
-            this.ehour6 = new System.Windows.Forms.NumericUpDown();
-            this.label19 = new System.Windows.Forms.Label();
-            this.ehour5 = new System.Windows.Forms.NumericUpDown();
-            this.label20 = new System.Windows.Forms.Label();
-            this.ehour4 = new System.Windows.Forms.NumericUpDown();
-            this.label23 = new System.Windows.Forms.Label();
-            this.ehour3 = new System.Windows.Forms.NumericUpDown();
-            this.label24 = new System.Windows.Forms.Label();
-            this.ehour2 = new System.Windows.Forms.NumericUpDown();
-            this.label25 = new System.Windows.Forms.Label();
-            this.ehour1 = new System.Windows.Forms.NumericUpDown();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.smin15 = new System.Windows.Forms.NumericUpDown();
-            this.smin14 = new System.Windows.Forms.NumericUpDown();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.smin13 = new System.Windows.Forms.NumericUpDown();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.smin12 = new System.Windows.Forms.NumericUpDown();
-            this.smin11 = new System.Windows.Forms.NumericUpDown();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.smin10 = new System.Windows.Forms.NumericUpDown();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.smin9 = new System.Windows.Forms.NumericUpDown();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.smin8 = new System.Windows.Forms.NumericUpDown();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.smin7 = new System.Windows.Forms.NumericUpDown();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.smin6 = new System.Windows.Forms.NumericUpDown();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.smin5 = new System.Windows.Forms.NumericUpDown();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.smin4 = new System.Windows.Forms.NumericUpDown();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.smin3 = new System.Windows.Forms.NumericUpDown();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.smin2 = new System.Windows.Forms.NumericUpDown();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.smin1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.shour1 = new System.Windows.Forms.NumericUpDown();
-            this.shour2 = new System.Windows.Forms.NumericUpDown();
-            this.shour3 = new System.Windows.Forms.NumericUpDown();
-            this.shour4 = new System.Windows.Forms.NumericUpDown();
-            this.shour15 = new System.Windows.Forms.NumericUpDown();
-            this.shour5 = new System.Windows.Forms.NumericUpDown();
-            this.shour14 = new System.Windows.Forms.NumericUpDown();
-            this.shour6 = new System.Windows.Forms.NumericUpDown();
-            this.shour13 = new System.Windows.Forms.NumericUpDown();
-            this.shour7 = new System.Windows.Forms.NumericUpDown();
-            this.shour12 = new System.Windows.Forms.NumericUpDown();
-            this.shour8 = new System.Windows.Forms.NumericUpDown();
-            this.shour11 = new System.Windows.Forms.NumericUpDown();
-            this.shour9 = new System.Windows.Forms.NumericUpDown();
+            this.label86 = new System.Windows.Forms.Label();
             this.shour10 = new System.Windows.Forms.NumericUpDown();
+            this.label87 = new System.Windows.Forms.Label();
+            this.shour9 = new System.Windows.Forms.NumericUpDown();
+            this.label88 = new System.Windows.Forms.Label();
+            this.shour11 = new System.Windows.Forms.NumericUpDown();
+            this.label89 = new System.Windows.Forms.Label();
+            this.shour8 = new System.Windows.Forms.NumericUpDown();
+            this.label90 = new System.Windows.Forms.Label();
+            this.shour12 = new System.Windows.Forms.NumericUpDown();
+            this.label91 = new System.Windows.Forms.Label();
+            this.shour7 = new System.Windows.Forms.NumericUpDown();
+            this.label92 = new System.Windows.Forms.Label();
+            this.shour13 = new System.Windows.Forms.NumericUpDown();
+            this.label93 = new System.Windows.Forms.Label();
+            this.shour6 = new System.Windows.Forms.NumericUpDown();
+            this.label94 = new System.Windows.Forms.Label();
+            this.shour14 = new System.Windows.Forms.NumericUpDown();
+            this.label95 = new System.Windows.Forms.Label();
+            this.shour5 = new System.Windows.Forms.NumericUpDown();
+            this.label96 = new System.Windows.Forms.Label();
+            this.shour15 = new System.Windows.Forms.NumericUpDown();
+            this.label97 = new System.Windows.Forms.Label();
+            this.shour4 = new System.Windows.Forms.NumericUpDown();
+            this.label98 = new System.Windows.Forms.Label();
+            this.shour3 = new System.Windows.Forms.NumericUpDown();
+            this.label99 = new System.Windows.Forms.Label();
+            this.shour2 = new System.Windows.Forms.NumericUpDown();
+            this.label100 = new System.Windows.Forms.Label();
+            this.shour1 = new System.Windows.Forms.NumericUpDown();
+            this.label64 = new System.Windows.Forms.Label();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.label65 = new System.Windows.Forms.Label();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.smin1 = new System.Windows.Forms.NumericUpDown();
+            this.label69 = new System.Windows.Forms.Label();
+            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.smin2 = new System.Windows.Forms.NumericUpDown();
+            this.label71 = new System.Windows.Forms.Label();
+            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.smin3 = new System.Windows.Forms.NumericUpDown();
+            this.label73 = new System.Windows.Forms.Label();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.label74 = new System.Windows.Forms.Label();
+            this.smin4 = new System.Windows.Forms.NumericUpDown();
+            this.label79 = new System.Windows.Forms.Label();
+            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.label80 = new System.Windows.Forms.Label();
+            this.smin5 = new System.Windows.Forms.NumericUpDown();
+            this.label83 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label84 = new System.Windows.Forms.Label();
+            this.smin6 = new System.Windows.Forms.NumericUpDown();
+            this.label85 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.textBox63 = new System.Windows.Forms.TextBox();
+            this.smin7 = new System.Windows.Forms.NumericUpDown();
+            this.textBox62 = new System.Windows.Forms.TextBox();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.textBox61 = new System.Windows.Forms.TextBox();
+            this.smin8 = new System.Windows.Forms.NumericUpDown();
+            this.textBox60 = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.smin9 = new System.Windows.Forms.NumericUpDown();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.smin10 = new System.Windows.Forms.NumericUpDown();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.smin11 = new System.Windows.Forms.NumericUpDown();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.smin12 = new System.Windows.Forms.NumericUpDown();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.smin13 = new System.Windows.Forms.NumericUpDown();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.smin14 = new System.Windows.Forms.NumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.smin15 = new System.Windows.Forms.NumericUpDown();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.ehour1 = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
+            this.ehour2 = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
+            this.ehour3 = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.ehour4 = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
+            this.ehour5 = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.ehour6 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.ehour7 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.ehour8 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.ehour9 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.ehour10 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.ehour11 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.ehour12 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.ehour13 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.ehour14 = new System.Windows.Forms.NumericUpDown();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.ehour15 = new System.Windows.Forms.NumericUpDown();
+            this.emin15 = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.emin14 = new System.Windows.Forms.NumericUpDown();
+            this.label22 = new System.Windows.Forms.Label();
+            this.emin13 = new System.Windows.Forms.NumericUpDown();
+            this.emin1 = new System.Windows.Forms.NumericUpDown();
+            this.emin12 = new System.Windows.Forms.NumericUpDown();
+            this.emin2 = new System.Windows.Forms.NumericUpDown();
+            this.emin11 = new System.Windows.Forms.NumericUpDown();
+            this.emin3 = new System.Windows.Forms.NumericUpDown();
+            this.emin10 = new System.Windows.Forms.NumericUpDown();
+            this.emin4 = new System.Windows.Forms.NumericUpDown();
+            this.emin9 = new System.Windows.Forms.NumericUpDown();
+            this.emin5 = new System.Windows.Forms.NumericUpDown();
+            this.emin8 = new System.Windows.Forms.NumericUpDown();
+            this.emin6 = new System.Windows.Forms.NumericUpDown();
+            this.emin7 = new System.Windows.Forms.NumericUpDown();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox156 = new System.Windows.Forms.NumericUpDown();
@@ -432,7 +433,6 @@
             this.label56 = new System.Windows.Forms.Label();
             this.SleepOnBatterySize = new System.Windows.Forms.ComboBox();
             this.SleepOnPowerSize = new System.Windows.Forms.ComboBox();
-            this.button27 = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.comboBox16 = new System.Windows.Forms.ComboBox();
@@ -440,6 +440,7 @@
             this.button18 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -454,6 +455,7 @@
             this.startBottingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopBottingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBar2)).BeginInit();
@@ -462,66 +464,67 @@
             this.tabPage9.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.shour10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin7)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textBox156)).BeginInit();
@@ -614,7 +617,7 @@
             // 
             this.Time.Enabled = false;
             this.Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Time.Location = new System.Drawing.Point(15, 211);
+            this.Time.Location = new System.Drawing.Point(15, 208);
             this.Time.MaxLength = 30;
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
@@ -1001,51 +1004,6 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
-            this.tabPage3.Controls.Add(this.label86);
-            this.tabPage3.Controls.Add(this.label87);
-            this.tabPage3.Controls.Add(this.label88);
-            this.tabPage3.Controls.Add(this.label89);
-            this.tabPage3.Controls.Add(this.label90);
-            this.tabPage3.Controls.Add(this.label91);
-            this.tabPage3.Controls.Add(this.label92);
-            this.tabPage3.Controls.Add(this.label93);
-            this.tabPage3.Controls.Add(this.label94);
-            this.tabPage3.Controls.Add(this.label95);
-            this.tabPage3.Controls.Add(this.label96);
-            this.tabPage3.Controls.Add(this.label97);
-            this.tabPage3.Controls.Add(this.label98);
-            this.tabPage3.Controls.Add(this.label99);
-            this.tabPage3.Controls.Add(this.label100);
-            this.tabPage3.Controls.Add(this.label64);
-            this.tabPage3.Controls.Add(this.label65);
-            this.tabPage3.Controls.Add(this.label66);
-            this.tabPage3.Controls.Add(this.label68);
-            this.tabPage3.Controls.Add(this.label69);
-            this.tabPage3.Controls.Add(this.label70);
-            this.tabPage3.Controls.Add(this.label71);
-            this.tabPage3.Controls.Add(this.label72);
-            this.tabPage3.Controls.Add(this.label73);
-            this.tabPage3.Controls.Add(this.label74);
-            this.tabPage3.Controls.Add(this.label79);
-            this.tabPage3.Controls.Add(this.label80);
-            this.tabPage3.Controls.Add(this.label83);
-            this.tabPage3.Controls.Add(this.label84);
-            this.tabPage3.Controls.Add(this.label85);
-            this.tabPage3.Controls.Add(this.textBox63);
-            this.tabPage3.Controls.Add(this.textBox62);
-            this.tabPage3.Controls.Add(this.textBox61);
-            this.tabPage3.Controls.Add(this.textBox60);
-            this.tabPage3.Controls.Add(this.textBox11);
-            this.tabPage3.Controls.Add(this.textBox10);
-            this.tabPage3.Controls.Add(this.textBox9);
-            this.tabPage3.Controls.Add(this.textBox8);
-            this.tabPage3.Controls.Add(this.textBox7);
-            this.tabPage3.Controls.Add(this.textBox6);
-            this.tabPage3.Controls.Add(this.textBox5);
-            this.tabPage3.Controls.Add(this.textBox4);
-            this.tabPage3.Controls.Add(this.textBox3);
-            this.tabPage3.Controls.Add(this.textBox2);
-            this.tabPage3.Controls.Add(this.textBox1);
             this.tabPage3.Controls.Add(this.checkBox15);
             this.tabPage3.Controls.Add(this.checkBox14);
             this.tabPage3.Controls.Add(this.checkBox13);
@@ -1061,114 +1019,7 @@
             this.tabPage3.Controls.Add(this.checkBox3);
             this.tabPage3.Controls.Add(this.checkBox2);
             this.tabPage3.Controls.Add(this.checkBox1);
-            this.tabPage3.Controls.Add(this.comboBox15);
-            this.tabPage3.Controls.Add(this.comboBox14);
-            this.tabPage3.Controls.Add(this.comboBox13);
-            this.tabPage3.Controls.Add(this.comboBox12);
-            this.tabPage3.Controls.Add(this.comboBox11);
-            this.tabPage3.Controls.Add(this.comboBox10);
-            this.tabPage3.Controls.Add(this.comboBox9);
-            this.tabPage3.Controls.Add(this.comboBox8);
-            this.tabPage3.Controls.Add(this.comboBox7);
-            this.tabPage3.Controls.Add(this.comboBox6);
-            this.tabPage3.Controls.Add(this.comboBox5);
-            this.tabPage3.Controls.Add(this.comboBox4);
-            this.tabPage3.Controls.Add(this.comboBox3);
-            this.tabPage3.Controls.Add(this.comboBox2);
-            this.tabPage3.Controls.Add(this.comboBox1);
-            this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.emin15);
-            this.tabPage3.Controls.Add(this.emin14);
-            this.tabPage3.Controls.Add(this.emin13);
-            this.tabPage3.Controls.Add(this.emin12);
-            this.tabPage3.Controls.Add(this.emin11);
-            this.tabPage3.Controls.Add(this.emin10);
-            this.tabPage3.Controls.Add(this.emin9);
-            this.tabPage3.Controls.Add(this.emin8);
-            this.tabPage3.Controls.Add(this.emin7);
-            this.tabPage3.Controls.Add(this.emin6);
-            this.tabPage3.Controls.Add(this.emin5);
-            this.tabPage3.Controls.Add(this.emin4);
-            this.tabPage3.Controls.Add(this.emin3);
-            this.tabPage3.Controls.Add(this.emin2);
-            this.tabPage3.Controls.Add(this.emin1);
-            this.tabPage3.Controls.Add(this.label22);
-            this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.ehour15);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.ehour14);
-            this.tabPage3.Controls.Add(this.ehour13);
-            this.tabPage3.Controls.Add(this.label16);
-            this.tabPage3.Controls.Add(this.ehour12);
-            this.tabPage3.Controls.Add(this.ehour11);
-            this.tabPage3.Controls.Add(this.label15);
-            this.tabPage3.Controls.Add(this.ehour10);
-            this.tabPage3.Controls.Add(this.ehour9);
-            this.tabPage3.Controls.Add(this.label14);
-            this.tabPage3.Controls.Add(this.ehour8);
-            this.tabPage3.Controls.Add(this.label18);
-            this.tabPage3.Controls.Add(this.ehour7);
-            this.tabPage3.Controls.Add(this.ehour6);
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Controls.Add(this.ehour5);
-            this.tabPage3.Controls.Add(this.label20);
-            this.tabPage3.Controls.Add(this.ehour4);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.ehour3);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.ehour2);
-            this.tabPage3.Controls.Add(this.label25);
-            this.tabPage3.Controls.Add(this.ehour1);
-            this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Controls.Add(this.label28);
-            this.tabPage3.Controls.Add(this.label29);
-            this.tabPage3.Controls.Add(this.label30);
-            this.tabPage3.Controls.Add(this.smin15);
-            this.tabPage3.Controls.Add(this.smin14);
-            this.tabPage3.Controls.Add(this.textBox15);
-            this.tabPage3.Controls.Add(this.smin13);
-            this.tabPage3.Controls.Add(this.textBox14);
-            this.tabPage3.Controls.Add(this.smin12);
-            this.tabPage3.Controls.Add(this.smin11);
-            this.tabPage3.Controls.Add(this.textBox13);
-            this.tabPage3.Controls.Add(this.smin10);
-            this.tabPage3.Controls.Add(this.textBox12);
-            this.tabPage3.Controls.Add(this.smin9);
-            this.tabPage3.Controls.Add(this.textBox16);
-            this.tabPage3.Controls.Add(this.smin8);
-            this.tabPage3.Controls.Add(this.textBox17);
-            this.tabPage3.Controls.Add(this.smin7);
-            this.tabPage3.Controls.Add(this.textBox18);
-            this.tabPage3.Controls.Add(this.smin6);
-            this.tabPage3.Controls.Add(this.textBox19);
-            this.tabPage3.Controls.Add(this.smin5);
-            this.tabPage3.Controls.Add(this.textBox21);
-            this.tabPage3.Controls.Add(this.smin4);
-            this.tabPage3.Controls.Add(this.textBox22);
-            this.tabPage3.Controls.Add(this.smin3);
-            this.tabPage3.Controls.Add(this.textBox23);
-            this.tabPage3.Controls.Add(this.smin2);
-            this.tabPage3.Controls.Add(this.textBox24);
-            this.tabPage3.Controls.Add(this.smin1);
-            this.tabPage3.Controls.Add(this.textBox25);
-            this.tabPage3.Controls.Add(this.textBox26);
-            this.tabPage3.Controls.Add(this.textBox27);
-            this.tabPage3.Controls.Add(this.shour1);
-            this.tabPage3.Controls.Add(this.shour2);
-            this.tabPage3.Controls.Add(this.shour3);
-            this.tabPage3.Controls.Add(this.shour4);
-            this.tabPage3.Controls.Add(this.shour15);
-            this.tabPage3.Controls.Add(this.shour5);
-            this.tabPage3.Controls.Add(this.shour14);
-            this.tabPage3.Controls.Add(this.shour6);
-            this.tabPage3.Controls.Add(this.shour13);
-            this.tabPage3.Controls.Add(this.shour7);
-            this.tabPage3.Controls.Add(this.shour12);
-            this.tabPage3.Controls.Add(this.shour8);
-            this.tabPage3.Controls.Add(this.shour11);
-            this.tabPage3.Controls.Add(this.shour9);
-            this.tabPage3.Controls.Add(this.shour10);
+            this.tabPage3.Controls.Add(this.panel4);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -1176,486 +1027,6 @@
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "多开设置";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label86
-            // 
-            this.label86.AutoSize = true;
-            this.label86.BackColor = System.Drawing.Color.Transparent;
-            this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label86.ForeColor = System.Drawing.Color.Black;
-            this.label86.Location = new System.Drawing.Point(529, 370);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(11, 13);
-            this.label86.TabIndex = 570;
-            this.label86.Text = ":";
-            // 
-            // label87
-            // 
-            this.label87.AutoSize = true;
-            this.label87.BackColor = System.Drawing.Color.Transparent;
-            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label87.ForeColor = System.Drawing.Color.Black;
-            this.label87.Location = new System.Drawing.Point(529, 345);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(11, 13);
-            this.label87.TabIndex = 569;
-            this.label87.Text = ":";
-            // 
-            // label88
-            // 
-            this.label88.AutoSize = true;
-            this.label88.BackColor = System.Drawing.Color.Transparent;
-            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label88.ForeColor = System.Drawing.Color.Black;
-            this.label88.Location = new System.Drawing.Point(529, 320);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(11, 13);
-            this.label88.TabIndex = 568;
-            this.label88.Text = ":";
-            // 
-            // label89
-            // 
-            this.label89.AutoSize = true;
-            this.label89.BackColor = System.Drawing.Color.Transparent;
-            this.label89.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label89.ForeColor = System.Drawing.Color.Black;
-            this.label89.Location = new System.Drawing.Point(529, 295);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(11, 13);
-            this.label89.TabIndex = 567;
-            this.label89.Text = ":";
-            // 
-            // label90
-            // 
-            this.label90.AutoSize = true;
-            this.label90.BackColor = System.Drawing.Color.Transparent;
-            this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.ForeColor = System.Drawing.Color.Black;
-            this.label90.Location = new System.Drawing.Point(529, 270);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(11, 13);
-            this.label90.TabIndex = 566;
-            this.label90.Text = ":";
-            // 
-            // label91
-            // 
-            this.label91.AutoSize = true;
-            this.label91.BackColor = System.Drawing.Color.Transparent;
-            this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label91.ForeColor = System.Drawing.Color.Black;
-            this.label91.Location = new System.Drawing.Point(529, 245);
-            this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(11, 13);
-            this.label91.TabIndex = 565;
-            this.label91.Text = ":";
-            // 
-            // label92
-            // 
-            this.label92.AutoSize = true;
-            this.label92.BackColor = System.Drawing.Color.Transparent;
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label92.ForeColor = System.Drawing.Color.Black;
-            this.label92.Location = new System.Drawing.Point(529, 220);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(11, 13);
-            this.label92.TabIndex = 564;
-            this.label92.Text = ":";
-            // 
-            // label93
-            // 
-            this.label93.AutoSize = true;
-            this.label93.BackColor = System.Drawing.Color.Transparent;
-            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.ForeColor = System.Drawing.Color.Black;
-            this.label93.Location = new System.Drawing.Point(529, 195);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(11, 13);
-            this.label93.TabIndex = 563;
-            this.label93.Text = ":";
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.BackColor = System.Drawing.Color.Transparent;
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.ForeColor = System.Drawing.Color.Black;
-            this.label94.Location = new System.Drawing.Point(529, 170);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(11, 13);
-            this.label94.TabIndex = 562;
-            this.label94.Text = ":";
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.BackColor = System.Drawing.Color.Transparent;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.ForeColor = System.Drawing.Color.Black;
-            this.label95.Location = new System.Drawing.Point(529, 145);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(11, 13);
-            this.label95.TabIndex = 561;
-            this.label95.Text = ":";
-            // 
-            // label96
-            // 
-            this.label96.AutoSize = true;
-            this.label96.BackColor = System.Drawing.Color.Transparent;
-            this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.ForeColor = System.Drawing.Color.Black;
-            this.label96.Location = new System.Drawing.Point(529, 120);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(11, 13);
-            this.label96.TabIndex = 560;
-            this.label96.Text = ":";
-            // 
-            // label97
-            // 
-            this.label97.AutoSize = true;
-            this.label97.BackColor = System.Drawing.Color.Transparent;
-            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label97.ForeColor = System.Drawing.Color.Black;
-            this.label97.Location = new System.Drawing.Point(529, 95);
-            this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(11, 13);
-            this.label97.TabIndex = 559;
-            this.label97.Text = ":";
-            // 
-            // label98
-            // 
-            this.label98.AutoSize = true;
-            this.label98.BackColor = System.Drawing.Color.Transparent;
-            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label98.ForeColor = System.Drawing.Color.Black;
-            this.label98.Location = new System.Drawing.Point(529, 70);
-            this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(11, 13);
-            this.label98.TabIndex = 558;
-            this.label98.Text = ":";
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.BackColor = System.Drawing.Color.Transparent;
-            this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label99.ForeColor = System.Drawing.Color.Black;
-            this.label99.Location = new System.Drawing.Point(529, 45);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(11, 13);
-            this.label99.TabIndex = 557;
-            this.label99.Text = ":";
-            // 
-            // label100
-            // 
-            this.label100.AutoSize = true;
-            this.label100.BackColor = System.Drawing.Color.Transparent;
-            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label100.ForeColor = System.Drawing.Color.Black;
-            this.label100.Location = new System.Drawing.Point(529, 24);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(11, 13);
-            this.label100.TabIndex = 556;
-            this.label100.Text = ":";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.BackColor = System.Drawing.Color.Transparent;
-            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.ForeColor = System.Drawing.Color.Black;
-            this.label64.Location = new System.Drawing.Point(374, 369);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(11, 13);
-            this.label64.TabIndex = 555;
-            this.label64.Text = ":";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.BackColor = System.Drawing.Color.Transparent;
-            this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.ForeColor = System.Drawing.Color.Black;
-            this.label65.Location = new System.Drawing.Point(374, 344);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(11, 13);
-            this.label65.TabIndex = 554;
-            this.label65.Text = ":";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.BackColor = System.Drawing.Color.Transparent;
-            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.ForeColor = System.Drawing.Color.Black;
-            this.label66.Location = new System.Drawing.Point(374, 319);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(11, 13);
-            this.label66.TabIndex = 553;
-            this.label66.Text = ":";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.BackColor = System.Drawing.Color.Transparent;
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.ForeColor = System.Drawing.Color.Black;
-            this.label68.Location = new System.Drawing.Point(374, 294);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(11, 13);
-            this.label68.TabIndex = 552;
-            this.label68.Text = ":";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.BackColor = System.Drawing.Color.Transparent;
-            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.ForeColor = System.Drawing.Color.Black;
-            this.label69.Location = new System.Drawing.Point(374, 269);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(11, 13);
-            this.label69.TabIndex = 551;
-            this.label69.Text = ":";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.BackColor = System.Drawing.Color.Transparent;
-            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.ForeColor = System.Drawing.Color.Black;
-            this.label70.Location = new System.Drawing.Point(374, 244);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(11, 13);
-            this.label70.TabIndex = 550;
-            this.label70.Text = ":";
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.BackColor = System.Drawing.Color.Transparent;
-            this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label71.ForeColor = System.Drawing.Color.Black;
-            this.label71.Location = new System.Drawing.Point(374, 219);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(11, 13);
-            this.label71.TabIndex = 549;
-            this.label71.Text = ":";
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.BackColor = System.Drawing.Color.Transparent;
-            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label72.ForeColor = System.Drawing.Color.Black;
-            this.label72.Location = new System.Drawing.Point(374, 194);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(11, 13);
-            this.label72.TabIndex = 548;
-            this.label72.Text = ":";
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.BackColor = System.Drawing.Color.Transparent;
-            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label73.ForeColor = System.Drawing.Color.Black;
-            this.label73.Location = new System.Drawing.Point(374, 169);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(11, 13);
-            this.label73.TabIndex = 547;
-            this.label73.Text = ":";
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.BackColor = System.Drawing.Color.Transparent;
-            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label74.ForeColor = System.Drawing.Color.Black;
-            this.label74.Location = new System.Drawing.Point(374, 144);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(11, 13);
-            this.label74.TabIndex = 546;
-            this.label74.Text = ":";
-            // 
-            // label79
-            // 
-            this.label79.AutoSize = true;
-            this.label79.BackColor = System.Drawing.Color.Transparent;
-            this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label79.ForeColor = System.Drawing.Color.Black;
-            this.label79.Location = new System.Drawing.Point(374, 119);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(11, 13);
-            this.label79.TabIndex = 545;
-            this.label79.Text = ":";
-            // 
-            // label80
-            // 
-            this.label80.AutoSize = true;
-            this.label80.BackColor = System.Drawing.Color.Transparent;
-            this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label80.ForeColor = System.Drawing.Color.Black;
-            this.label80.Location = new System.Drawing.Point(374, 94);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(11, 13);
-            this.label80.TabIndex = 544;
-            this.label80.Text = ":";
-            // 
-            // label83
-            // 
-            this.label83.AutoSize = true;
-            this.label83.BackColor = System.Drawing.Color.Transparent;
-            this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.ForeColor = System.Drawing.Color.Black;
-            this.label83.Location = new System.Drawing.Point(374, 69);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(11, 13);
-            this.label83.TabIndex = 543;
-            this.label83.Text = ":";
-            // 
-            // label84
-            // 
-            this.label84.AutoSize = true;
-            this.label84.BackColor = System.Drawing.Color.Transparent;
-            this.label84.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label84.ForeColor = System.Drawing.Color.Black;
-            this.label84.Location = new System.Drawing.Point(374, 44);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(11, 13);
-            this.label84.TabIndex = 542;
-            this.label84.Text = ":";
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.BackColor = System.Drawing.Color.Transparent;
-            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.ForeColor = System.Drawing.Color.Black;
-            this.label85.Location = new System.Drawing.Point(374, 23);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(11, 13);
-            this.label85.TabIndex = 541;
-            this.label85.Text = ":";
-            // 
-            // textBox63
-            // 
-            this.textBox63.Location = new System.Drawing.Point(233, 369);
-            this.textBox63.MaxLength = 10;
-            this.textBox63.Name = "textBox63";
-            this.textBox63.Size = new System.Drawing.Size(73, 20);
-            this.textBox63.TabIndex = 525;
-            // 
-            // textBox62
-            // 
-            this.textBox62.Location = new System.Drawing.Point(233, 344);
-            this.textBox62.MaxLength = 10;
-            this.textBox62.Name = "textBox62";
-            this.textBox62.Size = new System.Drawing.Size(73, 20);
-            this.textBox62.TabIndex = 524;
-            // 
-            // textBox61
-            // 
-            this.textBox61.Location = new System.Drawing.Point(233, 318);
-            this.textBox61.MaxLength = 10;
-            this.textBox61.Name = "textBox61";
-            this.textBox61.Size = new System.Drawing.Size(73, 20);
-            this.textBox61.TabIndex = 523;
-            // 
-            // textBox60
-            // 
-            this.textBox60.Location = new System.Drawing.Point(233, 294);
-            this.textBox60.MaxLength = 10;
-            this.textBox60.Name = "textBox60";
-            this.textBox60.Size = new System.Drawing.Size(73, 20);
-            this.textBox60.TabIndex = 522;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(233, 269);
-            this.textBox11.MaxLength = 10;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(73, 20);
-            this.textBox11.TabIndex = 521;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(233, 244);
-            this.textBox10.MaxLength = 10;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(73, 20);
-            this.textBox10.TabIndex = 520;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(233, 219);
-            this.textBox9.MaxLength = 10;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(73, 20);
-            this.textBox9.TabIndex = 519;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(233, 193);
-            this.textBox8.MaxLength = 10;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(73, 20);
-            this.textBox8.TabIndex = 518;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(233, 169);
-            this.textBox7.MaxLength = 10;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(73, 20);
-            this.textBox7.TabIndex = 517;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(233, 144);
-            this.textBox6.MaxLength = 10;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(73, 20);
-            this.textBox6.TabIndex = 516;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(233, 119);
-            this.textBox5.MaxLength = 10;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(73, 20);
-            this.textBox5.TabIndex = 515;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(233, 94);
-            this.textBox4.MaxLength = 10;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(73, 20);
-            this.textBox4.TabIndex = 514;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(233, 69);
-            this.textBox3.MaxLength = 10;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(73, 20);
-            this.textBox3.TabIndex = 513;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(233, 44);
-            this.textBox2.MaxLength = 10;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(73, 20);
-            this.textBox2.TabIndex = 512;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(233, 19);
-            this.textBox1.MaxLength = 10;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(73, 20);
-            this.textBox1.TabIndex = 511;
             // 
             // checkBox15
             // 
@@ -1665,6 +1036,7 @@
             this.checkBox15.Size = new System.Drawing.Size(15, 14);
             this.checkBox15.TabIndex = 510;
             this.checkBox15.UseVisualStyleBackColor = true;
+            this.checkBox15.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox14
             // 
@@ -1674,6 +1046,7 @@
             this.checkBox14.Size = new System.Drawing.Size(15, 14);
             this.checkBox14.TabIndex = 509;
             this.checkBox14.UseVisualStyleBackColor = true;
+            this.checkBox14.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox13
             // 
@@ -1683,6 +1056,7 @@
             this.checkBox13.Size = new System.Drawing.Size(15, 14);
             this.checkBox13.TabIndex = 508;
             this.checkBox13.UseVisualStyleBackColor = true;
+            this.checkBox13.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox12
             // 
@@ -1692,6 +1066,7 @@
             this.checkBox12.Size = new System.Drawing.Size(15, 14);
             this.checkBox12.TabIndex = 507;
             this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox11
             // 
@@ -1701,6 +1076,7 @@
             this.checkBox11.Size = new System.Drawing.Size(15, 14);
             this.checkBox11.TabIndex = 506;
             this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox10
             // 
@@ -1710,6 +1086,7 @@
             this.checkBox10.Size = new System.Drawing.Size(15, 14);
             this.checkBox10.TabIndex = 505;
             this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox9
             // 
@@ -1719,6 +1096,7 @@
             this.checkBox9.Size = new System.Drawing.Size(15, 14);
             this.checkBox9.TabIndex = 504;
             this.checkBox9.UseVisualStyleBackColor = true;
+            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox8
             // 
@@ -1728,6 +1106,7 @@
             this.checkBox8.Size = new System.Drawing.Size(15, 14);
             this.checkBox8.TabIndex = 503;
             this.checkBox8.UseVisualStyleBackColor = true;
+            this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox7
             // 
@@ -1737,6 +1116,7 @@
             this.checkBox7.Size = new System.Drawing.Size(15, 14);
             this.checkBox7.TabIndex = 502;
             this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox6
             // 
@@ -1746,6 +1126,7 @@
             this.checkBox6.Size = new System.Drawing.Size(15, 14);
             this.checkBox6.TabIndex = 501;
             this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox5
             // 
@@ -1755,6 +1136,7 @@
             this.checkBox5.Size = new System.Drawing.Size(15, 14);
             this.checkBox5.TabIndex = 500;
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox4
             // 
@@ -1764,6 +1146,7 @@
             this.checkBox4.Size = new System.Drawing.Size(15, 14);
             this.checkBox4.TabIndex = 499;
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -1773,6 +1156,7 @@
             this.checkBox3.Size = new System.Drawing.Size(15, 14);
             this.checkBox3.TabIndex = 498;
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -1782,6 +1166,7 @@
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
             this.checkBox2.TabIndex = 497;
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -1791,176 +1176,167 @@
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 496;
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
             // 
-            // comboBox15
+            // panel4
             // 
-            this.comboBox15.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox15.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox15.Location = new System.Drawing.Point(136, 369);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(91, 21);
-            this.comboBox15.TabIndex = 495;
-            // 
-            // comboBox14
-            // 
-            this.comboBox14.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox14.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox14.Location = new System.Drawing.Point(136, 344);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(91, 21);
-            this.comboBox14.TabIndex = 494;
-            // 
-            // comboBox13
-            // 
-            this.comboBox13.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox13.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox13.Location = new System.Drawing.Point(136, 319);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(91, 21);
-            this.comboBox13.TabIndex = 493;
-            // 
-            // comboBox12
-            // 
-            this.comboBox12.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox12.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox12.Location = new System.Drawing.Point(136, 294);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(91, 21);
-            this.comboBox12.TabIndex = 492;
-            // 
-            // comboBox11
-            // 
-            this.comboBox11.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox11.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox11.Location = new System.Drawing.Point(136, 269);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(91, 21);
-            this.comboBox11.TabIndex = 491;
-            // 
-            // comboBox10
-            // 
-            this.comboBox10.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox10.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox10.Location = new System.Drawing.Point(136, 244);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(91, 21);
-            this.comboBox10.TabIndex = 490;
-            // 
-            // comboBox9
-            // 
-            this.comboBox9.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox9.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox9.Location = new System.Drawing.Point(136, 219);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(91, 21);
-            this.comboBox9.TabIndex = 489;
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox8.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox8.Location = new System.Drawing.Point(136, 194);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(91, 21);
-            this.comboBox8.TabIndex = 488;
-            // 
-            // comboBox7
-            // 
-            this.comboBox7.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox7.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox7.Location = new System.Drawing.Point(136, 168);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(91, 21);
-            this.comboBox7.TabIndex = 487;
-            // 
-            // comboBox6
-            // 
-            this.comboBox6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
-            "MEmu",
-            "Bluestacks",
-            "Nox",
-            "Itools",
-            "LeapDroid",
-            "Droi4X"});
-            this.comboBox6.Location = new System.Drawing.Point(136, 143);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(91, 21);
-            this.comboBox6.TabIndex = 486;
+            this.panel4.Controls.Add(this.comboBox5);
+            this.panel4.Controls.Add(this.label13);
+            this.panel4.Controls.Add(this.label86);
+            this.panel4.Controls.Add(this.shour10);
+            this.panel4.Controls.Add(this.label87);
+            this.panel4.Controls.Add(this.shour9);
+            this.panel4.Controls.Add(this.label88);
+            this.panel4.Controls.Add(this.shour11);
+            this.panel4.Controls.Add(this.label89);
+            this.panel4.Controls.Add(this.shour8);
+            this.panel4.Controls.Add(this.label90);
+            this.panel4.Controls.Add(this.shour12);
+            this.panel4.Controls.Add(this.label91);
+            this.panel4.Controls.Add(this.shour7);
+            this.panel4.Controls.Add(this.label92);
+            this.panel4.Controls.Add(this.shour13);
+            this.panel4.Controls.Add(this.label93);
+            this.panel4.Controls.Add(this.shour6);
+            this.panel4.Controls.Add(this.label94);
+            this.panel4.Controls.Add(this.shour14);
+            this.panel4.Controls.Add(this.label95);
+            this.panel4.Controls.Add(this.shour5);
+            this.panel4.Controls.Add(this.label96);
+            this.panel4.Controls.Add(this.shour15);
+            this.panel4.Controls.Add(this.label97);
+            this.panel4.Controls.Add(this.shour4);
+            this.panel4.Controls.Add(this.label98);
+            this.panel4.Controls.Add(this.shour3);
+            this.panel4.Controls.Add(this.label99);
+            this.panel4.Controls.Add(this.shour2);
+            this.panel4.Controls.Add(this.label100);
+            this.panel4.Controls.Add(this.shour1);
+            this.panel4.Controls.Add(this.label64);
+            this.panel4.Controls.Add(this.textBox27);
+            this.panel4.Controls.Add(this.label65);
+            this.panel4.Controls.Add(this.textBox26);
+            this.panel4.Controls.Add(this.label66);
+            this.panel4.Controls.Add(this.textBox25);
+            this.panel4.Controls.Add(this.label68);
+            this.panel4.Controls.Add(this.smin1);
+            this.panel4.Controls.Add(this.label69);
+            this.panel4.Controls.Add(this.textBox24);
+            this.panel4.Controls.Add(this.label70);
+            this.panel4.Controls.Add(this.smin2);
+            this.panel4.Controls.Add(this.label71);
+            this.panel4.Controls.Add(this.textBox23);
+            this.panel4.Controls.Add(this.label72);
+            this.panel4.Controls.Add(this.smin3);
+            this.panel4.Controls.Add(this.label73);
+            this.panel4.Controls.Add(this.textBox22);
+            this.panel4.Controls.Add(this.label74);
+            this.panel4.Controls.Add(this.smin4);
+            this.panel4.Controls.Add(this.label79);
+            this.panel4.Controls.Add(this.textBox21);
+            this.panel4.Controls.Add(this.label80);
+            this.panel4.Controls.Add(this.smin5);
+            this.panel4.Controls.Add(this.label83);
+            this.panel4.Controls.Add(this.textBox19);
+            this.panel4.Controls.Add(this.label84);
+            this.panel4.Controls.Add(this.smin6);
+            this.panel4.Controls.Add(this.label85);
+            this.panel4.Controls.Add(this.textBox18);
+            this.panel4.Controls.Add(this.textBox63);
+            this.panel4.Controls.Add(this.smin7);
+            this.panel4.Controls.Add(this.textBox62);
+            this.panel4.Controls.Add(this.textBox17);
+            this.panel4.Controls.Add(this.textBox61);
+            this.panel4.Controls.Add(this.smin8);
+            this.panel4.Controls.Add(this.textBox60);
+            this.panel4.Controls.Add(this.textBox16);
+            this.panel4.Controls.Add(this.textBox11);
+            this.panel4.Controls.Add(this.smin9);
+            this.panel4.Controls.Add(this.textBox10);
+            this.panel4.Controls.Add(this.textBox12);
+            this.panel4.Controls.Add(this.textBox9);
+            this.panel4.Controls.Add(this.smin10);
+            this.panel4.Controls.Add(this.textBox8);
+            this.panel4.Controls.Add(this.textBox13);
+            this.panel4.Controls.Add(this.textBox7);
+            this.panel4.Controls.Add(this.smin11);
+            this.panel4.Controls.Add(this.textBox6);
+            this.panel4.Controls.Add(this.smin12);
+            this.panel4.Controls.Add(this.textBox5);
+            this.panel4.Controls.Add(this.textBox14);
+            this.panel4.Controls.Add(this.textBox4);
+            this.panel4.Controls.Add(this.smin13);
+            this.panel4.Controls.Add(this.textBox3);
+            this.panel4.Controls.Add(this.textBox15);
+            this.panel4.Controls.Add(this.textBox2);
+            this.panel4.Controls.Add(this.smin14);
+            this.panel4.Controls.Add(this.textBox1);
+            this.panel4.Controls.Add(this.smin15);
+            this.panel4.Controls.Add(this.label30);
+            this.panel4.Controls.Add(this.label29);
+            this.panel4.Controls.Add(this.label28);
+            this.panel4.Controls.Add(this.label27);
+            this.panel4.Controls.Add(this.label26);
+            this.panel4.Controls.Add(this.ehour1);
+            this.panel4.Controls.Add(this.label25);
+            this.panel4.Controls.Add(this.ehour2);
+            this.panel4.Controls.Add(this.label24);
+            this.panel4.Controls.Add(this.ehour3);
+            this.panel4.Controls.Add(this.label23);
+            this.panel4.Controls.Add(this.ehour4);
+            this.panel4.Controls.Add(this.label20);
+            this.panel4.Controls.Add(this.ehour5);
+            this.panel4.Controls.Add(this.label19);
+            this.panel4.Controls.Add(this.comboBox15);
+            this.panel4.Controls.Add(this.ehour6);
+            this.panel4.Controls.Add(this.comboBox14);
+            this.panel4.Controls.Add(this.ehour7);
+            this.panel4.Controls.Add(this.comboBox13);
+            this.panel4.Controls.Add(this.label18);
+            this.panel4.Controls.Add(this.comboBox12);
+            this.panel4.Controls.Add(this.ehour8);
+            this.panel4.Controls.Add(this.comboBox11);
+            this.panel4.Controls.Add(this.label14);
+            this.panel4.Controls.Add(this.comboBox10);
+            this.panel4.Controls.Add(this.ehour9);
+            this.panel4.Controls.Add(this.comboBox9);
+            this.panel4.Controls.Add(this.ehour10);
+            this.panel4.Controls.Add(this.comboBox8);
+            this.panel4.Controls.Add(this.label15);
+            this.panel4.Controls.Add(this.comboBox7);
+            this.panel4.Controls.Add(this.ehour11);
+            this.panel4.Controls.Add(this.comboBox6);
+            this.panel4.Controls.Add(this.ehour12);
+            this.panel4.Controls.Add(this.comboBox4);
+            this.panel4.Controls.Add(this.label16);
+            this.panel4.Controls.Add(this.comboBox3);
+            this.panel4.Controls.Add(this.ehour13);
+            this.panel4.Controls.Add(this.comboBox2);
+            this.panel4.Controls.Add(this.ehour14);
+            this.panel4.Controls.Add(this.comboBox1);
+            this.panel4.Controls.Add(this.label17);
+            this.panel4.Controls.Add(this.ehour15);
+            this.panel4.Controls.Add(this.emin15);
+            this.panel4.Controls.Add(this.label21);
+            this.panel4.Controls.Add(this.emin14);
+            this.panel4.Controls.Add(this.label22);
+            this.panel4.Controls.Add(this.emin13);
+            this.panel4.Controls.Add(this.emin1);
+            this.panel4.Controls.Add(this.emin12);
+            this.panel4.Controls.Add(this.emin2);
+            this.panel4.Controls.Add(this.emin11);
+            this.panel4.Controls.Add(this.emin3);
+            this.panel4.Controls.Add(this.emin10);
+            this.panel4.Controls.Add(this.emin4);
+            this.panel4.Controls.Add(this.emin9);
+            this.panel4.Controls.Add(this.emin5);
+            this.panel4.Controls.Add(this.emin8);
+            this.panel4.Controls.Add(this.emin6);
+            this.panel4.Controls.Add(this.emin7);
+            this.panel4.Location = new System.Drawing.Point(13, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(596, 394);
+            this.panel4.TabIndex = 571;
             // 
             // comboBox5
             // 
@@ -1974,10 +1350,1454 @@
             "Itools",
             "LeapDroid",
             "Droi4X"});
-            this.comboBox5.Location = new System.Drawing.Point(136, 119);
+            this.comboBox5.Location = new System.Drawing.Point(123, 114);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(91, 21);
             this.comboBox5.TabIndex = 485;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(20, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(36, 13);
+            this.label13.TabIndex = 401;
+            this.label13.Text = "Profile";
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.BackColor = System.Drawing.Color.Transparent;
+            this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label86.ForeColor = System.Drawing.Color.Black;
+            this.label86.Location = new System.Drawing.Point(516, 366);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(11, 13);
+            this.label86.TabIndex = 570;
+            this.label86.Text = ":";
+            // 
+            // shour10
+            // 
+            this.shour10.Location = new System.Drawing.Point(299, 240);
+            this.shour10.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour10.Name = "shour10";
+            this.shour10.Size = new System.Drawing.Size(59, 20);
+            this.shour10.TabIndex = 431;
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.BackColor = System.Drawing.Color.Transparent;
+            this.label87.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label87.ForeColor = System.Drawing.Color.Black;
+            this.label87.Location = new System.Drawing.Point(516, 341);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(11, 13);
+            this.label87.TabIndex = 569;
+            this.label87.Text = ":";
+            // 
+            // shour9
+            // 
+            this.shour9.Location = new System.Drawing.Point(299, 214);
+            this.shour9.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour9.Name = "shour9";
+            this.shour9.Size = new System.Drawing.Size(59, 20);
+            this.shour9.TabIndex = 429;
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.BackColor = System.Drawing.Color.Transparent;
+            this.label88.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label88.ForeColor = System.Drawing.Color.Black;
+            this.label88.Location = new System.Drawing.Point(516, 316);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(11, 13);
+            this.label88.TabIndex = 568;
+            this.label88.Text = ":";
+            // 
+            // shour11
+            // 
+            this.shour11.Location = new System.Drawing.Point(299, 266);
+            this.shour11.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour11.Name = "shour11";
+            this.shour11.Size = new System.Drawing.Size(59, 20);
+            this.shour11.TabIndex = 430;
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.BackColor = System.Drawing.Color.Transparent;
+            this.label89.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label89.ForeColor = System.Drawing.Color.Black;
+            this.label89.Location = new System.Drawing.Point(516, 291);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(11, 13);
+            this.label89.TabIndex = 567;
+            this.label89.Text = ":";
+            // 
+            // shour8
+            // 
+            this.shour8.Location = new System.Drawing.Point(299, 190);
+            this.shour8.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour8.Name = "shour8";
+            this.shour8.Size = new System.Drawing.Size(59, 20);
+            this.shour8.TabIndex = 428;
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.BackColor = System.Drawing.Color.Transparent;
+            this.label90.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label90.ForeColor = System.Drawing.Color.Black;
+            this.label90.Location = new System.Drawing.Point(516, 266);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(11, 13);
+            this.label90.TabIndex = 566;
+            this.label90.Text = ":";
+            // 
+            // shour12
+            // 
+            this.shour12.Location = new System.Drawing.Point(299, 291);
+            this.shour12.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour12.Name = "shour12";
+            this.shour12.Size = new System.Drawing.Size(59, 20);
+            this.shour12.TabIndex = 432;
+            // 
+            // label91
+            // 
+            this.label91.AutoSize = true;
+            this.label91.BackColor = System.Drawing.Color.Transparent;
+            this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label91.ForeColor = System.Drawing.Color.Black;
+            this.label91.Location = new System.Drawing.Point(516, 241);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(11, 13);
+            this.label91.TabIndex = 565;
+            this.label91.Text = ":";
+            // 
+            // shour7
+            // 
+            this.shour7.Location = new System.Drawing.Point(299, 165);
+            this.shour7.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour7.Name = "shour7";
+            this.shour7.Size = new System.Drawing.Size(59, 20);
+            this.shour7.TabIndex = 427;
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.BackColor = System.Drawing.Color.Transparent;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.ForeColor = System.Drawing.Color.Black;
+            this.label92.Location = new System.Drawing.Point(516, 216);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(11, 13);
+            this.label92.TabIndex = 564;
+            this.label92.Text = ":";
+            // 
+            // shour13
+            // 
+            this.shour13.Location = new System.Drawing.Point(299, 316);
+            this.shour13.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour13.Name = "shour13";
+            this.shour13.Size = new System.Drawing.Size(59, 20);
+            this.shour13.TabIndex = 433;
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.BackColor = System.Drawing.Color.Transparent;
+            this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label93.ForeColor = System.Drawing.Color.Black;
+            this.label93.Location = new System.Drawing.Point(516, 191);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(11, 13);
+            this.label93.TabIndex = 563;
+            this.label93.Text = ":";
+            // 
+            // shour6
+            // 
+            this.shour6.Location = new System.Drawing.Point(299, 141);
+            this.shour6.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour6.Name = "shour6";
+            this.shour6.Size = new System.Drawing.Size(59, 20);
+            this.shour6.TabIndex = 426;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.BackColor = System.Drawing.Color.Transparent;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.ForeColor = System.Drawing.Color.Black;
+            this.label94.Location = new System.Drawing.Point(516, 166);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(11, 13);
+            this.label94.TabIndex = 562;
+            this.label94.Text = ":";
+            // 
+            // shour14
+            // 
+            this.shour14.Location = new System.Drawing.Point(299, 341);
+            this.shour14.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour14.Name = "shour14";
+            this.shour14.Size = new System.Drawing.Size(59, 20);
+            this.shour14.TabIndex = 434;
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.BackColor = System.Drawing.Color.Transparent;
+            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.ForeColor = System.Drawing.Color.Black;
+            this.label95.Location = new System.Drawing.Point(516, 141);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(11, 13);
+            this.label95.TabIndex = 561;
+            this.label95.Text = ":";
+            // 
+            // shour5
+            // 
+            this.shour5.Location = new System.Drawing.Point(299, 116);
+            this.shour5.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour5.Name = "shour5";
+            this.shour5.Size = new System.Drawing.Size(59, 20);
+            this.shour5.TabIndex = 424;
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.BackColor = System.Drawing.Color.Transparent;
+            this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label96.ForeColor = System.Drawing.Color.Black;
+            this.label96.Location = new System.Drawing.Point(516, 116);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(11, 13);
+            this.label96.TabIndex = 560;
+            this.label96.Text = ":";
+            // 
+            // shour15
+            // 
+            this.shour15.Location = new System.Drawing.Point(299, 365);
+            this.shour15.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour15.Name = "shour15";
+            this.shour15.Size = new System.Drawing.Size(59, 20);
+            this.shour15.TabIndex = 435;
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.BackColor = System.Drawing.Color.Transparent;
+            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label97.ForeColor = System.Drawing.Color.Black;
+            this.label97.Location = new System.Drawing.Point(516, 91);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(11, 13);
+            this.label97.TabIndex = 559;
+            this.label97.Text = ":";
+            // 
+            // shour4
+            // 
+            this.shour4.Location = new System.Drawing.Point(299, 90);
+            this.shour4.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour4.Name = "shour4";
+            this.shour4.Size = new System.Drawing.Size(59, 20);
+            this.shour4.TabIndex = 425;
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.BackColor = System.Drawing.Color.Transparent;
+            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label98.ForeColor = System.Drawing.Color.Black;
+            this.label98.Location = new System.Drawing.Point(516, 66);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(11, 13);
+            this.label98.TabIndex = 558;
+            this.label98.Text = ":";
+            // 
+            // shour3
+            // 
+            this.shour3.Location = new System.Drawing.Point(299, 64);
+            this.shour3.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour3.Name = "shour3";
+            this.shour3.Size = new System.Drawing.Size(59, 20);
+            this.shour3.TabIndex = 423;
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.BackColor = System.Drawing.Color.Transparent;
+            this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label99.ForeColor = System.Drawing.Color.Black;
+            this.label99.Location = new System.Drawing.Point(516, 41);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(11, 13);
+            this.label99.TabIndex = 557;
+            this.label99.Text = ":";
+            // 
+            // shour2
+            // 
+            this.shour2.Location = new System.Drawing.Point(299, 40);
+            this.shour2.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour2.Name = "shour2";
+            this.shour2.Size = new System.Drawing.Size(59, 20);
+            this.shour2.TabIndex = 422;
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.BackColor = System.Drawing.Color.Transparent;
+            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label100.ForeColor = System.Drawing.Color.Black;
+            this.label100.Location = new System.Drawing.Point(516, 20);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(11, 13);
+            this.label100.TabIndex = 556;
+            this.label100.Text = ":";
+            // 
+            // shour1
+            // 
+            this.shour1.Location = new System.Drawing.Point(299, 15);
+            this.shour1.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.shour1.Name = "shour1";
+            this.shour1.Size = new System.Drawing.Size(59, 20);
+            this.shour1.TabIndex = 421;
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.BackColor = System.Drawing.Color.Transparent;
+            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.ForeColor = System.Drawing.Color.Black;
+            this.label64.Location = new System.Drawing.Point(361, 365);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(11, 13);
+            this.label64.TabIndex = 555;
+            this.label64.Text = ":";
+            // 
+            // textBox27
+            // 
+            this.textBox27.BackColor = System.Drawing.Color.White;
+            this.textBox27.ForeColor = System.Drawing.Color.Black;
+            this.textBox27.Location = new System.Drawing.Point(10, 15);
+            this.textBox27.MaxLength = 20;
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(107, 20);
+            this.textBox27.TabIndex = 386;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.BackColor = System.Drawing.Color.Transparent;
+            this.label65.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.ForeColor = System.Drawing.Color.Black;
+            this.label65.Location = new System.Drawing.Point(361, 340);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(11, 13);
+            this.label65.TabIndex = 554;
+            this.label65.Text = ":";
+            // 
+            // textBox26
+            // 
+            this.textBox26.ForeColor = System.Drawing.Color.Black;
+            this.textBox26.Location = new System.Drawing.Point(10, 40);
+            this.textBox26.MaxLength = 20;
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(107, 20);
+            this.textBox26.TabIndex = 387;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.BackColor = System.Drawing.Color.Transparent;
+            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.ForeColor = System.Drawing.Color.Black;
+            this.label66.Location = new System.Drawing.Point(361, 315);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(11, 13);
+            this.label66.TabIndex = 553;
+            this.label66.Text = ":";
+            // 
+            // textBox25
+            // 
+            this.textBox25.ForeColor = System.Drawing.Color.Black;
+            this.textBox25.Location = new System.Drawing.Point(10, 65);
+            this.textBox25.MaxLength = 20;
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(107, 20);
+            this.textBox25.TabIndex = 388;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.BackColor = System.Drawing.Color.Transparent;
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(361, 290);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(11, 13);
+            this.label68.TabIndex = 552;
+            this.label68.Text = ":";
+            // 
+            // smin1
+            // 
+            this.smin1.Location = new System.Drawing.Point(377, 15);
+            this.smin1.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin1.Name = "smin1";
+            this.smin1.Size = new System.Drawing.Size(59, 20);
+            this.smin1.TabIndex = 436;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.BackColor = System.Drawing.Color.Transparent;
+            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.ForeColor = System.Drawing.Color.Black;
+            this.label69.Location = new System.Drawing.Point(361, 265);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(11, 13);
+            this.label69.TabIndex = 551;
+            this.label69.Text = ":";
+            // 
+            // textBox24
+            // 
+            this.textBox24.ForeColor = System.Drawing.Color.Black;
+            this.textBox24.Location = new System.Drawing.Point(10, 90);
+            this.textBox24.MaxLength = 20;
+            this.textBox24.Name = "textBox24";
+            this.textBox24.Size = new System.Drawing.Size(107, 20);
+            this.textBox24.TabIndex = 389;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.BackColor = System.Drawing.Color.Transparent;
+            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.ForeColor = System.Drawing.Color.Black;
+            this.label70.Location = new System.Drawing.Point(361, 240);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(11, 13);
+            this.label70.TabIndex = 550;
+            this.label70.Text = ":";
+            // 
+            // smin2
+            // 
+            this.smin2.Location = new System.Drawing.Point(377, 40);
+            this.smin2.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin2.Name = "smin2";
+            this.smin2.Size = new System.Drawing.Size(59, 20);
+            this.smin2.TabIndex = 437;
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.BackColor = System.Drawing.Color.Transparent;
+            this.label71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label71.ForeColor = System.Drawing.Color.Black;
+            this.label71.Location = new System.Drawing.Point(361, 215);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(11, 13);
+            this.label71.TabIndex = 549;
+            this.label71.Text = ":";
+            // 
+            // textBox23
+            // 
+            this.textBox23.ForeColor = System.Drawing.Color.Black;
+            this.textBox23.Location = new System.Drawing.Point(10, 115);
+            this.textBox23.MaxLength = 20;
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(107, 20);
+            this.textBox23.TabIndex = 390;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.BackColor = System.Drawing.Color.Transparent;
+            this.label72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.ForeColor = System.Drawing.Color.Black;
+            this.label72.Location = new System.Drawing.Point(361, 190);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(11, 13);
+            this.label72.TabIndex = 548;
+            this.label72.Text = ":";
+            // 
+            // smin3
+            // 
+            this.smin3.Location = new System.Drawing.Point(377, 64);
+            this.smin3.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin3.Name = "smin3";
+            this.smin3.Size = new System.Drawing.Size(59, 20);
+            this.smin3.TabIndex = 438;
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.BackColor = System.Drawing.Color.Transparent;
+            this.label73.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label73.ForeColor = System.Drawing.Color.Black;
+            this.label73.Location = new System.Drawing.Point(361, 165);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(11, 13);
+            this.label73.TabIndex = 547;
+            this.label73.Text = ":";
+            // 
+            // textBox22
+            // 
+            this.textBox22.ForeColor = System.Drawing.Color.Black;
+            this.textBox22.Location = new System.Drawing.Point(10, 140);
+            this.textBox22.MaxLength = 20;
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(107, 20);
+            this.textBox22.TabIndex = 391;
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.BackColor = System.Drawing.Color.Transparent;
+            this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.ForeColor = System.Drawing.Color.Black;
+            this.label74.Location = new System.Drawing.Point(361, 140);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(11, 13);
+            this.label74.TabIndex = 546;
+            this.label74.Text = ":";
+            // 
+            // smin4
+            // 
+            this.smin4.Location = new System.Drawing.Point(377, 90);
+            this.smin4.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin4.Name = "smin4";
+            this.smin4.Size = new System.Drawing.Size(59, 20);
+            this.smin4.TabIndex = 439;
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.BackColor = System.Drawing.Color.Transparent;
+            this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label79.ForeColor = System.Drawing.Color.Black;
+            this.label79.Location = new System.Drawing.Point(361, 115);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(11, 13);
+            this.label79.TabIndex = 545;
+            this.label79.Text = ":";
+            // 
+            // textBox21
+            // 
+            this.textBox21.ForeColor = System.Drawing.Color.Black;
+            this.textBox21.Location = new System.Drawing.Point(10, 165);
+            this.textBox21.MaxLength = 20;
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(107, 20);
+            this.textBox21.TabIndex = 392;
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.BackColor = System.Drawing.Color.Transparent;
+            this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label80.ForeColor = System.Drawing.Color.Black;
+            this.label80.Location = new System.Drawing.Point(361, 90);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(11, 13);
+            this.label80.TabIndex = 544;
+            this.label80.Text = ":";
+            // 
+            // smin5
+            // 
+            this.smin5.Location = new System.Drawing.Point(377, 116);
+            this.smin5.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin5.Name = "smin5";
+            this.smin5.Size = new System.Drawing.Size(59, 20);
+            this.smin5.TabIndex = 440;
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.BackColor = System.Drawing.Color.Transparent;
+            this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.ForeColor = System.Drawing.Color.Black;
+            this.label83.Location = new System.Drawing.Point(361, 65);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(11, 13);
+            this.label83.TabIndex = 543;
+            this.label83.Text = ":";
+            // 
+            // textBox19
+            // 
+            this.textBox19.ForeColor = System.Drawing.Color.Black;
+            this.textBox19.Location = new System.Drawing.Point(10, 190);
+            this.textBox19.MaxLength = 20;
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(107, 20);
+            this.textBox19.TabIndex = 393;
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.BackColor = System.Drawing.Color.Transparent;
+            this.label84.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label84.ForeColor = System.Drawing.Color.Black;
+            this.label84.Location = new System.Drawing.Point(361, 40);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(11, 13);
+            this.label84.TabIndex = 542;
+            this.label84.Text = ":";
+            // 
+            // smin6
+            // 
+            this.smin6.Location = new System.Drawing.Point(377, 141);
+            this.smin6.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin6.Name = "smin6";
+            this.smin6.Size = new System.Drawing.Size(59, 20);
+            this.smin6.TabIndex = 441;
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.BackColor = System.Drawing.Color.Transparent;
+            this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.ForeColor = System.Drawing.Color.Black;
+            this.label85.Location = new System.Drawing.Point(361, 19);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(11, 13);
+            this.label85.TabIndex = 541;
+            this.label85.Text = ":";
+            // 
+            // textBox18
+            // 
+            this.textBox18.ForeColor = System.Drawing.Color.Black;
+            this.textBox18.Location = new System.Drawing.Point(10, 215);
+            this.textBox18.MaxLength = 20;
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(107, 20);
+            this.textBox18.TabIndex = 394;
+            // 
+            // textBox63
+            // 
+            this.textBox63.Location = new System.Drawing.Point(220, 365);
+            this.textBox63.MaxLength = 10;
+            this.textBox63.Name = "textBox63";
+            this.textBox63.Size = new System.Drawing.Size(73, 20);
+            this.textBox63.TabIndex = 525;
+            // 
+            // smin7
+            // 
+            this.smin7.Location = new System.Drawing.Point(377, 165);
+            this.smin7.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin7.Name = "smin7";
+            this.smin7.Size = new System.Drawing.Size(59, 20);
+            this.smin7.TabIndex = 442;
+            // 
+            // textBox62
+            // 
+            this.textBox62.Location = new System.Drawing.Point(220, 340);
+            this.textBox62.MaxLength = 10;
+            this.textBox62.Name = "textBox62";
+            this.textBox62.Size = new System.Drawing.Size(73, 20);
+            this.textBox62.TabIndex = 524;
+            // 
+            // textBox17
+            // 
+            this.textBox17.ForeColor = System.Drawing.Color.Black;
+            this.textBox17.Location = new System.Drawing.Point(10, 240);
+            this.textBox17.MaxLength = 20;
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(107, 20);
+            this.textBox17.TabIndex = 395;
+            // 
+            // textBox61
+            // 
+            this.textBox61.Location = new System.Drawing.Point(220, 314);
+            this.textBox61.MaxLength = 10;
+            this.textBox61.Name = "textBox61";
+            this.textBox61.Size = new System.Drawing.Size(73, 20);
+            this.textBox61.TabIndex = 523;
+            // 
+            // smin8
+            // 
+            this.smin8.Location = new System.Drawing.Point(377, 190);
+            this.smin8.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin8.Name = "smin8";
+            this.smin8.Size = new System.Drawing.Size(59, 20);
+            this.smin8.TabIndex = 443;
+            // 
+            // textBox60
+            // 
+            this.textBox60.Location = new System.Drawing.Point(220, 290);
+            this.textBox60.MaxLength = 10;
+            this.textBox60.Name = "textBox60";
+            this.textBox60.Size = new System.Drawing.Size(73, 20);
+            this.textBox60.TabIndex = 522;
+            // 
+            // textBox16
+            // 
+            this.textBox16.ForeColor = System.Drawing.Color.Black;
+            this.textBox16.Location = new System.Drawing.Point(10, 265);
+            this.textBox16.MaxLength = 20;
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(107, 20);
+            this.textBox16.TabIndex = 396;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(220, 265);
+            this.textBox11.MaxLength = 10;
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(73, 20);
+            this.textBox11.TabIndex = 521;
+            // 
+            // smin9
+            // 
+            this.smin9.Location = new System.Drawing.Point(377, 214);
+            this.smin9.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin9.Name = "smin9";
+            this.smin9.Size = new System.Drawing.Size(59, 20);
+            this.smin9.TabIndex = 444;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(220, 240);
+            this.textBox10.MaxLength = 10;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(73, 20);
+            this.textBox10.TabIndex = 520;
+            // 
+            // textBox12
+            // 
+            this.textBox12.ForeColor = System.Drawing.Color.Black;
+            this.textBox12.Location = new System.Drawing.Point(10, 290);
+            this.textBox12.MaxLength = 20;
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(107, 20);
+            this.textBox12.TabIndex = 397;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(220, 215);
+            this.textBox9.MaxLength = 10;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(73, 20);
+            this.textBox9.TabIndex = 519;
+            // 
+            // smin10
+            // 
+            this.smin10.Location = new System.Drawing.Point(377, 240);
+            this.smin10.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin10.Name = "smin10";
+            this.smin10.Size = new System.Drawing.Size(59, 20);
+            this.smin10.TabIndex = 446;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(220, 189);
+            this.textBox8.MaxLength = 10;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(73, 20);
+            this.textBox8.TabIndex = 518;
+            // 
+            // textBox13
+            // 
+            this.textBox13.ForeColor = System.Drawing.Color.Black;
+            this.textBox13.Location = new System.Drawing.Point(10, 315);
+            this.textBox13.MaxLength = 20;
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(107, 20);
+            this.textBox13.TabIndex = 398;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(220, 165);
+            this.textBox7.MaxLength = 10;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(73, 20);
+            this.textBox7.TabIndex = 517;
+            // 
+            // smin11
+            // 
+            this.smin11.Location = new System.Drawing.Point(377, 266);
+            this.smin11.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin11.Name = "smin11";
+            this.smin11.Size = new System.Drawing.Size(59, 20);
+            this.smin11.TabIndex = 445;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(220, 140);
+            this.textBox6.MaxLength = 10;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(73, 20);
+            this.textBox6.TabIndex = 516;
+            // 
+            // smin12
+            // 
+            this.smin12.Location = new System.Drawing.Point(377, 291);
+            this.smin12.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin12.Name = "smin12";
+            this.smin12.Size = new System.Drawing.Size(59, 20);
+            this.smin12.TabIndex = 447;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(220, 115);
+            this.textBox5.MaxLength = 10;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(73, 20);
+            this.textBox5.TabIndex = 515;
+            // 
+            // textBox14
+            // 
+            this.textBox14.ForeColor = System.Drawing.Color.Black;
+            this.textBox14.Location = new System.Drawing.Point(10, 340);
+            this.textBox14.MaxLength = 20;
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(107, 20);
+            this.textBox14.TabIndex = 399;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(220, 90);
+            this.textBox4.MaxLength = 10;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(73, 20);
+            this.textBox4.TabIndex = 514;
+            // 
+            // smin13
+            // 
+            this.smin13.Location = new System.Drawing.Point(377, 316);
+            this.smin13.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin13.Name = "smin13";
+            this.smin13.Size = new System.Drawing.Size(59, 20);
+            this.smin13.TabIndex = 448;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(220, 65);
+            this.textBox3.MaxLength = 10;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(73, 20);
+            this.textBox3.TabIndex = 513;
+            // 
+            // textBox15
+            // 
+            this.textBox15.ForeColor = System.Drawing.Color.Black;
+            this.textBox15.Location = new System.Drawing.Point(10, 365);
+            this.textBox15.MaxLength = 20;
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(107, 20);
+            this.textBox15.TabIndex = 400;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(220, 40);
+            this.textBox2.MaxLength = 10;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(73, 20);
+            this.textBox2.TabIndex = 512;
+            // 
+            // smin14
+            // 
+            this.smin14.Location = new System.Drawing.Point(377, 341);
+            this.smin14.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin14.Name = "smin14";
+            this.smin14.Size = new System.Drawing.Size(59, 20);
+            this.smin14.TabIndex = 449;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(220, 15);
+            this.textBox1.MaxLength = 10;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(73, 20);
+            this.textBox1.TabIndex = 511;
+            // 
+            // smin15
+            // 
+            this.smin15.Location = new System.Drawing.Point(377, 365);
+            this.smin15.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.smin15.Name = "smin15";
+            this.smin15.Size = new System.Drawing.Size(59, 20);
+            this.smin15.TabIndex = 450;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(438, 21);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(10, 13);
+            this.label30.TabIndex = 402;
+            this.label30.Text = "-";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(438, 42);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(10, 13);
+            this.label29.TabIndex = 403;
+            this.label29.Text = "-";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(438, 67);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(10, 13);
+            this.label28.TabIndex = 404;
+            this.label28.Text = "-";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(438, 92);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(10, 13);
+            this.label27.TabIndex = 405;
+            this.label27.Text = "-";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.ForeColor = System.Drawing.Color.Black;
+            this.label26.Location = new System.Drawing.Point(438, 117);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(10, 13);
+            this.label26.TabIndex = 406;
+            this.label26.Text = "-";
+            // 
+            // ehour1
+            // 
+            this.ehour1.Location = new System.Drawing.Point(454, 14);
+            this.ehour1.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour1.Name = "ehour1";
+            this.ehour1.Size = new System.Drawing.Size(59, 20);
+            this.ehour1.TabIndex = 451;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Transparent;
+            this.label25.ForeColor = System.Drawing.Color.Black;
+            this.label25.Location = new System.Drawing.Point(438, 142);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(10, 13);
+            this.label25.TabIndex = 407;
+            this.label25.Text = "-";
+            // 
+            // ehour2
+            // 
+            this.ehour2.Location = new System.Drawing.Point(454, 38);
+            this.ehour2.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour2.Name = "ehour2";
+            this.ehour2.Size = new System.Drawing.Size(59, 20);
+            this.ehour2.TabIndex = 452;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Transparent;
+            this.label24.ForeColor = System.Drawing.Color.Black;
+            this.label24.Location = new System.Drawing.Point(438, 167);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(10, 13);
+            this.label24.TabIndex = 408;
+            this.label24.Text = "-";
+            // 
+            // ehour3
+            // 
+            this.ehour3.Location = new System.Drawing.Point(454, 62);
+            this.ehour3.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour3.Name = "ehour3";
+            this.ehour3.Size = new System.Drawing.Size(59, 20);
+            this.ehour3.TabIndex = 453;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(438, 192);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(10, 13);
+            this.label23.TabIndex = 409;
+            this.label23.Text = "-";
+            // 
+            // ehour4
+            // 
+            this.ehour4.Location = new System.Drawing.Point(454, 88);
+            this.ehour4.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour4.Name = "ehour4";
+            this.ehour4.Size = new System.Drawing.Size(59, 20);
+            this.ehour4.TabIndex = 454;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Transparent;
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(438, 217);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(10, 13);
+            this.label20.TabIndex = 410;
+            this.label20.Text = "-";
+            // 
+            // ehour5
+            // 
+            this.ehour5.Location = new System.Drawing.Point(454, 114);
+            this.ehour5.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour5.Name = "ehour5";
+            this.ehour5.Size = new System.Drawing.Size(59, 20);
+            this.ehour5.TabIndex = 455;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(438, 242);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(10, 13);
+            this.label19.TabIndex = 411;
+            this.label19.Text = "-";
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox15.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox15.Location = new System.Drawing.Point(123, 365);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(91, 21);
+            this.comboBox15.TabIndex = 495;
+            // 
+            // ehour6
+            // 
+            this.ehour6.Location = new System.Drawing.Point(454, 139);
+            this.ehour6.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour6.Name = "ehour6";
+            this.ehour6.Size = new System.Drawing.Size(59, 20);
+            this.ehour6.TabIndex = 456;
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox14.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox14.FormattingEnabled = true;
+            this.comboBox14.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox14.Location = new System.Drawing.Point(123, 340);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(91, 21);
+            this.comboBox14.TabIndex = 494;
+            // 
+            // ehour7
+            // 
+            this.ehour7.Location = new System.Drawing.Point(454, 163);
+            this.ehour7.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour7.Name = "ehour7";
+            this.ehour7.Size = new System.Drawing.Size(59, 20);
+            this.ehour7.TabIndex = 457;
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox13.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox13.Location = new System.Drawing.Point(123, 315);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(91, 21);
+            this.comboBox13.TabIndex = 493;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(438, 267);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(10, 13);
+            this.label18.TabIndex = 412;
+            this.label18.Text = "-";
+            // 
+            // comboBox12
+            // 
+            this.comboBox12.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox12.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox12.FormattingEnabled = true;
+            this.comboBox12.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox12.Location = new System.Drawing.Point(123, 290);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(91, 21);
+            this.comboBox12.TabIndex = 492;
+            // 
+            // ehour8
+            // 
+            this.ehour8.Location = new System.Drawing.Point(454, 188);
+            this.ehour8.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour8.Name = "ehour8";
+            this.ehour8.Size = new System.Drawing.Size(59, 20);
+            this.ehour8.TabIndex = 458;
+            // 
+            // comboBox11
+            // 
+            this.comboBox11.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox11.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox11.FormattingEnabled = true;
+            this.comboBox11.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox11.Location = new System.Drawing.Point(123, 265);
+            this.comboBox11.Name = "comboBox11";
+            this.comboBox11.Size = new System.Drawing.Size(91, 21);
+            this.comboBox11.TabIndex = 491;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(438, 292);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(10, 13);
+            this.label14.TabIndex = 413;
+            this.label14.Text = "-";
+            // 
+            // comboBox10
+            // 
+            this.comboBox10.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox10.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox10.FormattingEnabled = true;
+            this.comboBox10.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox10.Location = new System.Drawing.Point(123, 240);
+            this.comboBox10.Name = "comboBox10";
+            this.comboBox10.Size = new System.Drawing.Size(91, 21);
+            this.comboBox10.TabIndex = 490;
+            // 
+            // ehour9
+            // 
+            this.ehour9.Location = new System.Drawing.Point(454, 212);
+            this.ehour9.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour9.Name = "ehour9";
+            this.ehour9.Size = new System.Drawing.Size(59, 20);
+            this.ehour9.TabIndex = 459;
+            // 
+            // comboBox9
+            // 
+            this.comboBox9.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox9.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox9.FormattingEnabled = true;
+            this.comboBox9.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox9.Location = new System.Drawing.Point(123, 215);
+            this.comboBox9.Name = "comboBox9";
+            this.comboBox9.Size = new System.Drawing.Size(91, 21);
+            this.comboBox9.TabIndex = 489;
+            // 
+            // ehour10
+            // 
+            this.ehour10.Location = new System.Drawing.Point(454, 238);
+            this.ehour10.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour10.Name = "ehour10";
+            this.ehour10.Size = new System.Drawing.Size(59, 20);
+            this.ehour10.TabIndex = 461;
+            // 
+            // comboBox8
+            // 
+            this.comboBox8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox8.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox8.Location = new System.Drawing.Point(123, 190);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(91, 21);
+            this.comboBox8.TabIndex = 488;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(438, 317);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(10, 13);
+            this.label15.TabIndex = 414;
+            this.label15.Text = "-";
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox7.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox7.Location = new System.Drawing.Point(123, 164);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(91, 21);
+            this.comboBox7.TabIndex = 487;
+            // 
+            // ehour11
+            // 
+            this.ehour11.Location = new System.Drawing.Point(454, 264);
+            this.ehour11.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour11.Name = "ehour11";
+            this.ehour11.Size = new System.Drawing.Size(59, 20);
+            this.ehour11.TabIndex = 460;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "MEmu",
+            "Bluestacks",
+            "Nox",
+            "Itools",
+            "LeapDroid",
+            "Droi4X"});
+            this.comboBox6.Location = new System.Drawing.Point(123, 139);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(91, 21);
+            this.comboBox6.TabIndex = 486;
+            // 
+            // ehour12
+            // 
+            this.ehour12.Location = new System.Drawing.Point(454, 289);
+            this.ehour12.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour12.Name = "ehour12";
+            this.ehour12.Size = new System.Drawing.Size(59, 20);
+            this.ehour12.TabIndex = 462;
             // 
             // comboBox4
             // 
@@ -1991,10 +2811,21 @@
             "Itools",
             "LeapDroid",
             "Droi4X"});
-            this.comboBox4.Location = new System.Drawing.Point(136, 94);
+            this.comboBox4.Location = new System.Drawing.Point(123, 90);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(91, 21);
             this.comboBox4.TabIndex = 484;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(438, 342);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(10, 13);
+            this.label16.TabIndex = 415;
+            this.label16.Text = "-";
             // 
             // comboBox3
             // 
@@ -2008,10 +2839,22 @@
             "Itools",
             "LeapDroid",
             "Droi4X"});
-            this.comboBox3.Location = new System.Drawing.Point(136, 69);
+            this.comboBox3.Location = new System.Drawing.Point(123, 65);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(91, 21);
             this.comboBox3.TabIndex = 483;
+            // 
+            // ehour13
+            // 
+            this.ehour13.Location = new System.Drawing.Point(454, 314);
+            this.ehour13.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour13.Name = "ehour13";
+            this.ehour13.Size = new System.Drawing.Size(59, 20);
+            this.ehour13.TabIndex = 463;
             // 
             // comboBox2
             // 
@@ -2025,10 +2868,22 @@
             "Itools",
             "LeapDroid",
             "Droi4X"});
-            this.comboBox2.Location = new System.Drawing.Point(136, 44);
+            this.comboBox2.Location = new System.Drawing.Point(123, 40);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(91, 21);
             this.comboBox2.TabIndex = 482;
+            // 
+            // ehour14
+            // 
+            this.ehour14.Location = new System.Drawing.Point(454, 339);
+            this.ehour14.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.ehour14.Name = "ehour14";
+            this.ehour14.Size = new System.Drawing.Size(59, 20);
+            this.ehour14.TabIndex = 464;
             // 
             // comboBox1
             // 
@@ -2042,227 +2897,25 @@
             "Itools",
             "LeapDroid",
             "Droi4X"});
-            this.comboBox1.Location = new System.Drawing.Point(136, 19);
+            this.comboBox1.Location = new System.Drawing.Point(123, 15);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(91, 21);
             this.comboBox1.TabIndex = 481;
             // 
-            // label13
+            // label17
             // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(33, 4);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 13);
-            this.label13.TabIndex = 401;
-            this.label13.Text = "Profile";
-            // 
-            // emin15
-            // 
-            this.emin15.Location = new System.Drawing.Point(546, 365);
-            this.emin15.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin15.Name = "emin15";
-            this.emin15.Size = new System.Drawing.Size(59, 20);
-            this.emin15.TabIndex = 480;
-            // 
-            // emin14
-            // 
-            this.emin14.Location = new System.Drawing.Point(545, 342);
-            this.emin14.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin14.Name = "emin14";
-            this.emin14.Size = new System.Drawing.Size(59, 20);
-            this.emin14.TabIndex = 479;
-            // 
-            // emin13
-            // 
-            this.emin13.Location = new System.Drawing.Point(545, 317);
-            this.emin13.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin13.Name = "emin13";
-            this.emin13.Size = new System.Drawing.Size(59, 20);
-            this.emin13.TabIndex = 478;
-            // 
-            // emin12
-            // 
-            this.emin12.Location = new System.Drawing.Point(545, 292);
-            this.emin12.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin12.Name = "emin12";
-            this.emin12.Size = new System.Drawing.Size(59, 20);
-            this.emin12.TabIndex = 477;
-            // 
-            // emin11
-            // 
-            this.emin11.Location = new System.Drawing.Point(545, 267);
-            this.emin11.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin11.Name = "emin11";
-            this.emin11.Size = new System.Drawing.Size(59, 20);
-            this.emin11.TabIndex = 475;
-            // 
-            // emin10
-            // 
-            this.emin10.Location = new System.Drawing.Point(545, 241);
-            this.emin10.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin10.Name = "emin10";
-            this.emin10.Size = new System.Drawing.Size(59, 20);
-            this.emin10.TabIndex = 476;
-            // 
-            // emin9
-            // 
-            this.emin9.Location = new System.Drawing.Point(545, 215);
-            this.emin9.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin9.Name = "emin9";
-            this.emin9.Size = new System.Drawing.Size(59, 20);
-            this.emin9.TabIndex = 474;
-            // 
-            // emin8
-            // 
-            this.emin8.Location = new System.Drawing.Point(545, 191);
-            this.emin8.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin8.Name = "emin8";
-            this.emin8.Size = new System.Drawing.Size(59, 20);
-            this.emin8.TabIndex = 473;
-            // 
-            // emin7
-            // 
-            this.emin7.Location = new System.Drawing.Point(545, 166);
-            this.emin7.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin7.Name = "emin7";
-            this.emin7.Size = new System.Drawing.Size(59, 20);
-            this.emin7.TabIndex = 472;
-            // 
-            // emin6
-            // 
-            this.emin6.Location = new System.Drawing.Point(545, 142);
-            this.emin6.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin6.Name = "emin6";
-            this.emin6.Size = new System.Drawing.Size(59, 20);
-            this.emin6.TabIndex = 471;
-            // 
-            // emin5
-            // 
-            this.emin5.Location = new System.Drawing.Point(545, 117);
-            this.emin5.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin5.Name = "emin5";
-            this.emin5.Size = new System.Drawing.Size(59, 20);
-            this.emin5.TabIndex = 470;
-            // 
-            // emin4
-            // 
-            this.emin4.Location = new System.Drawing.Point(545, 91);
-            this.emin4.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin4.Name = "emin4";
-            this.emin4.Size = new System.Drawing.Size(59, 20);
-            this.emin4.TabIndex = 469;
-            // 
-            // emin3
-            // 
-            this.emin3.Location = new System.Drawing.Point(545, 65);
-            this.emin3.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin3.Name = "emin3";
-            this.emin3.Size = new System.Drawing.Size(59, 20);
-            this.emin3.TabIndex = 468;
-            // 
-            // emin2
-            // 
-            this.emin2.Location = new System.Drawing.Point(545, 41);
-            this.emin2.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin2.Name = "emin2";
-            this.emin2.Size = new System.Drawing.Size(59, 20);
-            this.emin2.TabIndex = 467;
-            // 
-            // emin1
-            // 
-            this.emin1.Location = new System.Drawing.Point(545, 16);
-            this.emin1.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.emin1.Name = "emin1";
-            this.emin1.Size = new System.Drawing.Size(59, 20);
-            this.emin1.TabIndex = 466;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(464, 4);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(55, 13);
-            this.label22.TabIndex = 418;
-            this.label22.Text = "结束时间";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(309, 4);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(55, 13);
-            this.label21.TabIndex = 417;
-            this.label21.Text = "开始时间";
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(438, 367);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(10, 13);
+            this.label17.TabIndex = 416;
+            this.label17.Text = "-";
             // 
             // ehour15
             // 
-            this.ehour15.Location = new System.Drawing.Point(467, 367);
+            this.ehour15.Location = new System.Drawing.Point(454, 363);
             this.ehour15.Maximum = new decimal(new int[] {
             23,
             0,
@@ -2272,834 +2925,207 @@
             this.ehour15.Size = new System.Drawing.Size(59, 20);
             this.ehour15.TabIndex = 465;
             // 
-            // label17
+            // emin15
             // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(451, 371);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(10, 13);
-            this.label17.TabIndex = 416;
-            this.label17.Text = "-";
-            // 
-            // ehour14
-            // 
-            this.ehour14.Location = new System.Drawing.Point(467, 343);
-            this.ehour14.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour14.Name = "ehour14";
-            this.ehour14.Size = new System.Drawing.Size(59, 20);
-            this.ehour14.TabIndex = 464;
-            // 
-            // ehour13
-            // 
-            this.ehour13.Location = new System.Drawing.Point(467, 318);
-            this.ehour13.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour13.Name = "ehour13";
-            this.ehour13.Size = new System.Drawing.Size(59, 20);
-            this.ehour13.TabIndex = 463;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(451, 346);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(10, 13);
-            this.label16.TabIndex = 415;
-            this.label16.Text = "-";
-            // 
-            // ehour12
-            // 
-            this.ehour12.Location = new System.Drawing.Point(467, 293);
-            this.ehour12.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour12.Name = "ehour12";
-            this.ehour12.Size = new System.Drawing.Size(59, 20);
-            this.ehour12.TabIndex = 462;
-            // 
-            // ehour11
-            // 
-            this.ehour11.Location = new System.Drawing.Point(467, 268);
-            this.ehour11.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour11.Name = "ehour11";
-            this.ehour11.Size = new System.Drawing.Size(59, 20);
-            this.ehour11.TabIndex = 460;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(451, 321);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(10, 13);
-            this.label15.TabIndex = 414;
-            this.label15.Text = "-";
-            // 
-            // ehour10
-            // 
-            this.ehour10.Location = new System.Drawing.Point(467, 242);
-            this.ehour10.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour10.Name = "ehour10";
-            this.ehour10.Size = new System.Drawing.Size(59, 20);
-            this.ehour10.TabIndex = 461;
-            // 
-            // ehour9
-            // 
-            this.ehour9.Location = new System.Drawing.Point(467, 216);
-            this.ehour9.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour9.Name = "ehour9";
-            this.ehour9.Size = new System.Drawing.Size(59, 20);
-            this.ehour9.TabIndex = 459;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(451, 296);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(10, 13);
-            this.label14.TabIndex = 413;
-            this.label14.Text = "-";
-            // 
-            // ehour8
-            // 
-            this.ehour8.Location = new System.Drawing.Point(467, 192);
-            this.ehour8.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour8.Name = "ehour8";
-            this.ehour8.Size = new System.Drawing.Size(59, 20);
-            this.ehour8.TabIndex = 458;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(451, 271);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(10, 13);
-            this.label18.TabIndex = 412;
-            this.label18.Text = "-";
-            // 
-            // ehour7
-            // 
-            this.ehour7.Location = new System.Drawing.Point(467, 167);
-            this.ehour7.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour7.Name = "ehour7";
-            this.ehour7.Size = new System.Drawing.Size(59, 20);
-            this.ehour7.TabIndex = 457;
-            // 
-            // ehour6
-            // 
-            this.ehour6.Location = new System.Drawing.Point(467, 143);
-            this.ehour6.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour6.Name = "ehour6";
-            this.ehour6.Size = new System.Drawing.Size(59, 20);
-            this.ehour6.TabIndex = 456;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(451, 246);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(10, 13);
-            this.label19.TabIndex = 411;
-            this.label19.Text = "-";
-            // 
-            // ehour5
-            // 
-            this.ehour5.Location = new System.Drawing.Point(467, 118);
-            this.ehour5.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour5.Name = "ehour5";
-            this.ehour5.Size = new System.Drawing.Size(59, 20);
-            this.ehour5.TabIndex = 455;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(451, 221);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(10, 13);
-            this.label20.TabIndex = 410;
-            this.label20.Text = "-";
-            // 
-            // ehour4
-            // 
-            this.ehour4.Location = new System.Drawing.Point(467, 92);
-            this.ehour4.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour4.Name = "ehour4";
-            this.ehour4.Size = new System.Drawing.Size(59, 20);
-            this.ehour4.TabIndex = 454;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(451, 196);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(10, 13);
-            this.label23.TabIndex = 409;
-            this.label23.Text = "-";
-            // 
-            // ehour3
-            // 
-            this.ehour3.Location = new System.Drawing.Point(467, 66);
-            this.ehour3.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour3.Name = "ehour3";
-            this.ehour3.Size = new System.Drawing.Size(59, 20);
-            this.ehour3.TabIndex = 453;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.ForeColor = System.Drawing.Color.Black;
-            this.label24.Location = new System.Drawing.Point(451, 171);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(10, 13);
-            this.label24.TabIndex = 408;
-            this.label24.Text = "-";
-            // 
-            // ehour2
-            // 
-            this.ehour2.Location = new System.Drawing.Point(467, 42);
-            this.ehour2.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour2.Name = "ehour2";
-            this.ehour2.Size = new System.Drawing.Size(59, 20);
-            this.ehour2.TabIndex = 452;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(451, 146);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(10, 13);
-            this.label25.TabIndex = 407;
-            this.label25.Text = "-";
-            // 
-            // ehour1
-            // 
-            this.ehour1.Location = new System.Drawing.Point(467, 18);
-            this.ehour1.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.ehour1.Name = "ehour1";
-            this.ehour1.Size = new System.Drawing.Size(59, 20);
-            this.ehour1.TabIndex = 451;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.ForeColor = System.Drawing.Color.Black;
-            this.label26.Location = new System.Drawing.Point(451, 121);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(10, 13);
-            this.label26.TabIndex = 406;
-            this.label26.Text = "-";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(451, 96);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(10, 13);
-            this.label27.TabIndex = 405;
-            this.label27.Text = "-";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(451, 71);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(10, 13);
-            this.label28.TabIndex = 404;
-            this.label28.Text = "-";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(451, 46);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(10, 13);
-            this.label29.TabIndex = 403;
-            this.label29.Text = "-";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(451, 25);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(10, 13);
-            this.label30.TabIndex = 402;
-            this.label30.Text = "-";
-            // 
-            // smin15
-            // 
-            this.smin15.Location = new System.Drawing.Point(390, 369);
-            this.smin15.Maximum = new decimal(new int[] {
+            this.emin15.Location = new System.Drawing.Point(533, 361);
+            this.emin15.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin15.Name = "smin15";
-            this.smin15.Size = new System.Drawing.Size(59, 20);
-            this.smin15.TabIndex = 450;
+            this.emin15.Name = "emin15";
+            this.emin15.Size = new System.Drawing.Size(59, 20);
+            this.emin15.TabIndex = 480;
             // 
-            // smin14
+            // label21
             // 
-            this.smin14.Location = new System.Drawing.Point(390, 345);
-            this.smin14.Maximum = new decimal(new int[] {
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(296, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(55, 13);
+            this.label21.TabIndex = 417;
+            this.label21.Text = "开始时间";
+            // 
+            // emin14
+            // 
+            this.emin14.Location = new System.Drawing.Point(532, 338);
+            this.emin14.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin14.Name = "smin14";
-            this.smin14.Size = new System.Drawing.Size(59, 20);
-            this.smin14.TabIndex = 449;
+            this.emin14.Name = "emin14";
+            this.emin14.Size = new System.Drawing.Size(59, 20);
+            this.emin14.TabIndex = 479;
             // 
-            // textBox15
+            // label22
             // 
-            this.textBox15.ForeColor = System.Drawing.Color.Black;
-            this.textBox15.Location = new System.Drawing.Point(23, 369);
-            this.textBox15.MaxLength = 20;
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(107, 20);
-            this.textBox15.TabIndex = 400;
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(451, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(55, 13);
+            this.label22.TabIndex = 418;
+            this.label22.Text = "结束时间";
             // 
-            // smin13
+            // emin13
             // 
-            this.smin13.Location = new System.Drawing.Point(390, 320);
-            this.smin13.Maximum = new decimal(new int[] {
+            this.emin13.Location = new System.Drawing.Point(532, 313);
+            this.emin13.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin13.Name = "smin13";
-            this.smin13.Size = new System.Drawing.Size(59, 20);
-            this.smin13.TabIndex = 448;
+            this.emin13.Name = "emin13";
+            this.emin13.Size = new System.Drawing.Size(59, 20);
+            this.emin13.TabIndex = 478;
             // 
-            // textBox14
+            // emin1
             // 
-            this.textBox14.ForeColor = System.Drawing.Color.Black;
-            this.textBox14.Location = new System.Drawing.Point(23, 344);
-            this.textBox14.MaxLength = 20;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(107, 20);
-            this.textBox14.TabIndex = 399;
-            // 
-            // smin12
-            // 
-            this.smin12.Location = new System.Drawing.Point(390, 295);
-            this.smin12.Maximum = new decimal(new int[] {
+            this.emin1.Location = new System.Drawing.Point(532, 12);
+            this.emin1.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin12.Name = "smin12";
-            this.smin12.Size = new System.Drawing.Size(59, 20);
-            this.smin12.TabIndex = 447;
+            this.emin1.Name = "emin1";
+            this.emin1.Size = new System.Drawing.Size(59, 20);
+            this.emin1.TabIndex = 466;
             // 
-            // smin11
+            // emin12
             // 
-            this.smin11.Location = new System.Drawing.Point(390, 270);
-            this.smin11.Maximum = new decimal(new int[] {
+            this.emin12.Location = new System.Drawing.Point(532, 288);
+            this.emin12.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin11.Name = "smin11";
-            this.smin11.Size = new System.Drawing.Size(59, 20);
-            this.smin11.TabIndex = 445;
+            this.emin12.Name = "emin12";
+            this.emin12.Size = new System.Drawing.Size(59, 20);
+            this.emin12.TabIndex = 477;
             // 
-            // textBox13
+            // emin2
             // 
-            this.textBox13.ForeColor = System.Drawing.Color.Black;
-            this.textBox13.Location = new System.Drawing.Point(23, 319);
-            this.textBox13.MaxLength = 20;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(107, 20);
-            this.textBox13.TabIndex = 398;
-            // 
-            // smin10
-            // 
-            this.smin10.Location = new System.Drawing.Point(390, 244);
-            this.smin10.Maximum = new decimal(new int[] {
+            this.emin2.Location = new System.Drawing.Point(532, 37);
+            this.emin2.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin10.Name = "smin10";
-            this.smin10.Size = new System.Drawing.Size(59, 20);
-            this.smin10.TabIndex = 446;
+            this.emin2.Name = "emin2";
+            this.emin2.Size = new System.Drawing.Size(59, 20);
+            this.emin2.TabIndex = 467;
             // 
-            // textBox12
+            // emin11
             // 
-            this.textBox12.ForeColor = System.Drawing.Color.Black;
-            this.textBox12.Location = new System.Drawing.Point(23, 294);
-            this.textBox12.MaxLength = 20;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(107, 20);
-            this.textBox12.TabIndex = 397;
-            // 
-            // smin9
-            // 
-            this.smin9.Location = new System.Drawing.Point(390, 218);
-            this.smin9.Maximum = new decimal(new int[] {
+            this.emin11.Location = new System.Drawing.Point(532, 263);
+            this.emin11.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin9.Name = "smin9";
-            this.smin9.Size = new System.Drawing.Size(59, 20);
-            this.smin9.TabIndex = 444;
+            this.emin11.Name = "emin11";
+            this.emin11.Size = new System.Drawing.Size(59, 20);
+            this.emin11.TabIndex = 475;
             // 
-            // textBox16
+            // emin3
             // 
-            this.textBox16.ForeColor = System.Drawing.Color.Black;
-            this.textBox16.Location = new System.Drawing.Point(23, 269);
-            this.textBox16.MaxLength = 20;
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(107, 20);
-            this.textBox16.TabIndex = 396;
-            // 
-            // smin8
-            // 
-            this.smin8.Location = new System.Drawing.Point(390, 194);
-            this.smin8.Maximum = new decimal(new int[] {
+            this.emin3.Location = new System.Drawing.Point(532, 61);
+            this.emin3.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin8.Name = "smin8";
-            this.smin8.Size = new System.Drawing.Size(59, 20);
-            this.smin8.TabIndex = 443;
+            this.emin3.Name = "emin3";
+            this.emin3.Size = new System.Drawing.Size(59, 20);
+            this.emin3.TabIndex = 468;
             // 
-            // textBox17
+            // emin10
             // 
-            this.textBox17.ForeColor = System.Drawing.Color.Black;
-            this.textBox17.Location = new System.Drawing.Point(23, 244);
-            this.textBox17.MaxLength = 20;
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(107, 20);
-            this.textBox17.TabIndex = 395;
-            // 
-            // smin7
-            // 
-            this.smin7.Location = new System.Drawing.Point(390, 169);
-            this.smin7.Maximum = new decimal(new int[] {
+            this.emin10.Location = new System.Drawing.Point(532, 237);
+            this.emin10.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin7.Name = "smin7";
-            this.smin7.Size = new System.Drawing.Size(59, 20);
-            this.smin7.TabIndex = 442;
+            this.emin10.Name = "emin10";
+            this.emin10.Size = new System.Drawing.Size(59, 20);
+            this.emin10.TabIndex = 476;
             // 
-            // textBox18
+            // emin4
             // 
-            this.textBox18.ForeColor = System.Drawing.Color.Black;
-            this.textBox18.Location = new System.Drawing.Point(23, 219);
-            this.textBox18.MaxLength = 20;
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(107, 20);
-            this.textBox18.TabIndex = 394;
-            // 
-            // smin6
-            // 
-            this.smin6.Location = new System.Drawing.Point(390, 145);
-            this.smin6.Maximum = new decimal(new int[] {
+            this.emin4.Location = new System.Drawing.Point(532, 87);
+            this.emin4.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin6.Name = "smin6";
-            this.smin6.Size = new System.Drawing.Size(59, 20);
-            this.smin6.TabIndex = 441;
+            this.emin4.Name = "emin4";
+            this.emin4.Size = new System.Drawing.Size(59, 20);
+            this.emin4.TabIndex = 469;
             // 
-            // textBox19
+            // emin9
             // 
-            this.textBox19.ForeColor = System.Drawing.Color.Black;
-            this.textBox19.Location = new System.Drawing.Point(23, 194);
-            this.textBox19.MaxLength = 20;
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(107, 20);
-            this.textBox19.TabIndex = 393;
-            // 
-            // smin5
-            // 
-            this.smin5.Location = new System.Drawing.Point(390, 120);
-            this.smin5.Maximum = new decimal(new int[] {
+            this.emin9.Location = new System.Drawing.Point(532, 211);
+            this.emin9.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin5.Name = "smin5";
-            this.smin5.Size = new System.Drawing.Size(59, 20);
-            this.smin5.TabIndex = 440;
+            this.emin9.Name = "emin9";
+            this.emin9.Size = new System.Drawing.Size(59, 20);
+            this.emin9.TabIndex = 474;
             // 
-            // textBox21
+            // emin5
             // 
-            this.textBox21.ForeColor = System.Drawing.Color.Black;
-            this.textBox21.Location = new System.Drawing.Point(23, 169);
-            this.textBox21.MaxLength = 20;
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(107, 20);
-            this.textBox21.TabIndex = 392;
-            // 
-            // smin4
-            // 
-            this.smin4.Location = new System.Drawing.Point(390, 94);
-            this.smin4.Maximum = new decimal(new int[] {
+            this.emin5.Location = new System.Drawing.Point(532, 113);
+            this.emin5.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin4.Name = "smin4";
-            this.smin4.Size = new System.Drawing.Size(59, 20);
-            this.smin4.TabIndex = 439;
+            this.emin5.Name = "emin5";
+            this.emin5.Size = new System.Drawing.Size(59, 20);
+            this.emin5.TabIndex = 470;
             // 
-            // textBox22
+            // emin8
             // 
-            this.textBox22.ForeColor = System.Drawing.Color.Black;
-            this.textBox22.Location = new System.Drawing.Point(23, 144);
-            this.textBox22.MaxLength = 20;
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(107, 20);
-            this.textBox22.TabIndex = 391;
-            // 
-            // smin3
-            // 
-            this.smin3.Location = new System.Drawing.Point(390, 68);
-            this.smin3.Maximum = new decimal(new int[] {
+            this.emin8.Location = new System.Drawing.Point(532, 187);
+            this.emin8.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin3.Name = "smin3";
-            this.smin3.Size = new System.Drawing.Size(59, 20);
-            this.smin3.TabIndex = 438;
+            this.emin8.Name = "emin8";
+            this.emin8.Size = new System.Drawing.Size(59, 20);
+            this.emin8.TabIndex = 473;
             // 
-            // textBox23
+            // emin6
             // 
-            this.textBox23.ForeColor = System.Drawing.Color.Black;
-            this.textBox23.Location = new System.Drawing.Point(23, 119);
-            this.textBox23.MaxLength = 20;
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(107, 20);
-            this.textBox23.TabIndex = 390;
-            // 
-            // smin2
-            // 
-            this.smin2.Location = new System.Drawing.Point(390, 44);
-            this.smin2.Maximum = new decimal(new int[] {
+            this.emin6.Location = new System.Drawing.Point(532, 138);
+            this.emin6.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin2.Name = "smin2";
-            this.smin2.Size = new System.Drawing.Size(59, 20);
-            this.smin2.TabIndex = 437;
+            this.emin6.Name = "emin6";
+            this.emin6.Size = new System.Drawing.Size(59, 20);
+            this.emin6.TabIndex = 471;
             // 
-            // textBox24
+            // emin7
             // 
-            this.textBox24.ForeColor = System.Drawing.Color.Black;
-            this.textBox24.Location = new System.Drawing.Point(23, 94);
-            this.textBox24.MaxLength = 20;
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(107, 20);
-            this.textBox24.TabIndex = 389;
-            // 
-            // smin1
-            // 
-            this.smin1.Location = new System.Drawing.Point(390, 19);
-            this.smin1.Maximum = new decimal(new int[] {
+            this.emin7.Location = new System.Drawing.Point(532, 162);
+            this.emin7.Maximum = new decimal(new int[] {
             59,
             0,
             0,
             0});
-            this.smin1.Name = "smin1";
-            this.smin1.Size = new System.Drawing.Size(59, 20);
-            this.smin1.TabIndex = 436;
-            // 
-            // textBox25
-            // 
-            this.textBox25.ForeColor = System.Drawing.Color.Black;
-            this.textBox25.Location = new System.Drawing.Point(23, 69);
-            this.textBox25.MaxLength = 20;
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(107, 20);
-            this.textBox25.TabIndex = 388;
-            // 
-            // textBox26
-            // 
-            this.textBox26.ForeColor = System.Drawing.Color.Black;
-            this.textBox26.Location = new System.Drawing.Point(23, 44);
-            this.textBox26.MaxLength = 20;
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(107, 20);
-            this.textBox26.TabIndex = 387;
-            // 
-            // textBox27
-            // 
-            this.textBox27.BackColor = System.Drawing.Color.White;
-            this.textBox27.ForeColor = System.Drawing.Color.Black;
-            this.textBox27.Location = new System.Drawing.Point(23, 19);
-            this.textBox27.MaxLength = 20;
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(107, 20);
-            this.textBox27.TabIndex = 386;
-            // 
-            // shour1
-            // 
-            this.shour1.Location = new System.Drawing.Point(312, 19);
-            this.shour1.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour1.Name = "shour1";
-            this.shour1.Size = new System.Drawing.Size(59, 20);
-            this.shour1.TabIndex = 421;
-            // 
-            // shour2
-            // 
-            this.shour2.Location = new System.Drawing.Point(312, 44);
-            this.shour2.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour2.Name = "shour2";
-            this.shour2.Size = new System.Drawing.Size(59, 20);
-            this.shour2.TabIndex = 422;
-            // 
-            // shour3
-            // 
-            this.shour3.Location = new System.Drawing.Point(312, 68);
-            this.shour3.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour3.Name = "shour3";
-            this.shour3.Size = new System.Drawing.Size(59, 20);
-            this.shour3.TabIndex = 423;
-            // 
-            // shour4
-            // 
-            this.shour4.Location = new System.Drawing.Point(312, 94);
-            this.shour4.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour4.Name = "shour4";
-            this.shour4.Size = new System.Drawing.Size(59, 20);
-            this.shour4.TabIndex = 425;
-            // 
-            // shour15
-            // 
-            this.shour15.Location = new System.Drawing.Point(312, 369);
-            this.shour15.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour15.Name = "shour15";
-            this.shour15.Size = new System.Drawing.Size(59, 20);
-            this.shour15.TabIndex = 435;
-            // 
-            // shour5
-            // 
-            this.shour5.Location = new System.Drawing.Point(312, 120);
-            this.shour5.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour5.Name = "shour5";
-            this.shour5.Size = new System.Drawing.Size(59, 20);
-            this.shour5.TabIndex = 424;
-            // 
-            // shour14
-            // 
-            this.shour14.Location = new System.Drawing.Point(312, 345);
-            this.shour14.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour14.Name = "shour14";
-            this.shour14.Size = new System.Drawing.Size(59, 20);
-            this.shour14.TabIndex = 434;
-            // 
-            // shour6
-            // 
-            this.shour6.Location = new System.Drawing.Point(312, 145);
-            this.shour6.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour6.Name = "shour6";
-            this.shour6.Size = new System.Drawing.Size(59, 20);
-            this.shour6.TabIndex = 426;
-            // 
-            // shour13
-            // 
-            this.shour13.Location = new System.Drawing.Point(312, 320);
-            this.shour13.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour13.Name = "shour13";
-            this.shour13.Size = new System.Drawing.Size(59, 20);
-            this.shour13.TabIndex = 433;
-            // 
-            // shour7
-            // 
-            this.shour7.Location = new System.Drawing.Point(312, 169);
-            this.shour7.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour7.Name = "shour7";
-            this.shour7.Size = new System.Drawing.Size(59, 20);
-            this.shour7.TabIndex = 427;
-            // 
-            // shour12
-            // 
-            this.shour12.Location = new System.Drawing.Point(312, 295);
-            this.shour12.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour12.Name = "shour12";
-            this.shour12.Size = new System.Drawing.Size(59, 20);
-            this.shour12.TabIndex = 432;
-            // 
-            // shour8
-            // 
-            this.shour8.Location = new System.Drawing.Point(312, 194);
-            this.shour8.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour8.Name = "shour8";
-            this.shour8.Size = new System.Drawing.Size(59, 20);
-            this.shour8.TabIndex = 428;
-            // 
-            // shour11
-            // 
-            this.shour11.Location = new System.Drawing.Point(312, 270);
-            this.shour11.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour11.Name = "shour11";
-            this.shour11.Size = new System.Drawing.Size(59, 20);
-            this.shour11.TabIndex = 430;
-            // 
-            // shour9
-            // 
-            this.shour9.Location = new System.Drawing.Point(312, 218);
-            this.shour9.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour9.Name = "shour9";
-            this.shour9.Size = new System.Drawing.Size(59, 20);
-            this.shour9.TabIndex = 429;
-            // 
-            // shour10
-            // 
-            this.shour10.Location = new System.Drawing.Point(312, 244);
-            this.shour10.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.shour10.Name = "shour10";
-            this.shour10.Size = new System.Drawing.Size(59, 20);
-            this.shour10.TabIndex = 431;
+            this.emin7.Name = "emin7";
+            this.emin7.Size = new System.Drawing.Size(59, 20);
+            this.emin7.TabIndex = 472;
             // 
             // tabPage4
             // 
@@ -5066,9 +5092,9 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Lime;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(15, 268);
+            this.button1.Location = new System.Drawing.Point(15, 255);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 45);
+            this.button1.Size = new System.Drawing.Size(227, 39);
             this.button1.TabIndex = 526;
             this.button1.Text = "开始挂机";
             this.button1.UseVisualStyleBackColor = false;
@@ -5076,13 +5102,14 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.Fuchsia;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(15, 320);
+            this.button2.Location = new System.Drawing.Point(15, 342);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(227, 45);
+            this.button2.Size = new System.Drawing.Size(227, 36);
             this.button2.TabIndex = 527;
             this.button2.Text = "自动生成Profile";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox1
@@ -5094,7 +5121,6 @@
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.button27);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.label67);
             this.groupBox1.Controls.Add(this.comboBox16);
@@ -5102,7 +5128,7 @@
             this.groupBox1.Controls.Add(this.button18);
             this.groupBox1.Controls.Add(this.button25);
             this.groupBox1.Controls.Add(this.button19);
-            this.groupBox1.Controls.Add(this.button20);
+            this.groupBox1.Controls.Add(this.button27);
             this.groupBox1.Location = new System.Drawing.Point(15, 424);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1105, 133);
@@ -5114,7 +5140,7 @@
             this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(674, 72);
+            this.label35.Location = new System.Drawing.Point(704, 72);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(53, 7);
             this.label35.TabIndex = 304;
@@ -5123,9 +5149,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox2.Location = new System.Drawing.Point(674, 15);
+            this.pictureBox2.Location = new System.Drawing.Point(562, 86);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(116, 23);
+            this.pictureBox2.Size = new System.Drawing.Size(197, 35);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 303;
             this.pictureBox2.TabStop = false;
@@ -5133,9 +5159,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::MyBot.Supporter.Main.Properties.Resources.ezgif1;
-            this.pictureBox1.Location = new System.Drawing.Point(796, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(765, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 69);
+            this.pictureBox1.Size = new System.Drawing.Size(66, 112);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 302;
             this.pictureBox1.TabStop = false;
@@ -5438,20 +5464,6 @@
             this.SleepOnPowerSize.Size = new System.Drawing.Size(35, 21);
             this.SleepOnPowerSize.TabIndex = 295;
             // 
-            // button27
-            // 
-            this.button27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button27.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button27.ForeColor = System.Drawing.Color.Black;
-            this.button27.Location = new System.Drawing.Point(7, 86);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(268, 35);
-            this.button27.TabIndex = 281;
-            this.button27.Text = "CSV writer";
-            this.button27.UseVisualStyleBackColor = false;
-            this.button27.Click += new System.EventHandler(this.button27_Click);
-            // 
             // label33
             // 
             this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -5511,7 +5523,7 @@
             this.button25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button25.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button25.ForeColor = System.Drawing.Color.Black;
-            this.button25.Location = new System.Drawing.Point(289, 85);
+            this.button25.Location = new System.Drawing.Point(288, 86);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(268, 36);
             this.button25.TabIndex = 280;
@@ -5533,15 +5545,29 @@
             this.button19.UseVisualStyleBackColor = false;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
+            // button27
+            // 
+            this.button27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button27.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button27.ForeColor = System.Drawing.Color.Black;
+            this.button27.Location = new System.Drawing.Point(7, 86);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(268, 35);
+            this.button27.TabIndex = 281;
+            this.button27.Text = "CSV writer";
+            this.button27.UseVisualStyleBackColor = false;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
             // button20
             // 
             this.button20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button20.BackColor = System.Drawing.Color.Fuchsia;
             this.button20.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button20.ForeColor = System.Drawing.Color.Black;
-            this.button20.Location = new System.Drawing.Point(563, 85);
+            this.button20.Location = new System.Drawing.Point(15, 384);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(268, 36);
+            this.button20.Size = new System.Drawing.Size(227, 36);
             this.button20.TabIndex = 277;
             this.button20.Text = "创建新的MyBot Profile";
             this.button20.UseVisualStyleBackColor = false;
@@ -5552,9 +5578,9 @@
             this.button21.BackColor = System.Drawing.Color.Aqua;
             this.button21.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button21.ForeColor = System.Drawing.Color.Black;
-            this.button21.Location = new System.Drawing.Point(15, 371);
+            this.button21.Location = new System.Drawing.Point(15, 300);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(227, 45);
+            this.button21.Size = new System.Drawing.Size(227, 36);
             this.button21.TabIndex = 276;
             this.button21.Text = "关闭在运行中的全部Bot和模拟器";
             this.button21.UseVisualStyleBackColor = false;
@@ -5652,6 +5678,11 @@
             this.notifyIcon1.Text = "MyBot_Supporter";
             this.notifyIcon1.Visible = true;
             // 
+            // timer3
+            // 
+            this.timer3.Interval = 1000;
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5666,6 +5697,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.Time);
             this.Controls.Add(this.monthCalendar1);
+            this.Controls.Add(this.button20);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainScreen";
@@ -5686,66 +5718,68 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.shour10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shour1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.smin15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ehour15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emin2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emin1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ehour1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.smin1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shour10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emin7)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -6014,7 +6048,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button27;
@@ -6270,5 +6303,8 @@
         private System.Windows.Forms.Label label102;
         private System.Windows.Forms.CheckBox checkBox17;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Timer timer3;
+        public System.Windows.Forms.Button button1;
     }
 }

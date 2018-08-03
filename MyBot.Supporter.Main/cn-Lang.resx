@@ -508,23 +508,23 @@
   <data name="Builders" xml:space="preserve">
     <value>建筑工人：</value>
   </data>
-  <data name="BabyDrag" xml:space="preserve">
-    <value />
+  <data name="AutoUpdateFound" xml:space="preserve">
+    <value>发现新更新，是否要后台下载更新？</value>
   </data>
-  <data name="Balloons" xml:space="preserve">
-    <value />
+  <data name="UpdateNow" xml:space="preserve">
+    <value>更新！</value>
   </data>
-  <data name="BattleChallenge" xml:space="preserve">
-    <value />
+  <data name="MyBotUpdateFound" xml:space="preserve">
+    <value>MyBot有更新！是否后台下载？</value>
   </data>
   <data name="Bowlers" xml:space="preserve">
     <value />
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value />
+    <value>取消</value>
   </data>
-  <data name="Castle" xml:space="preserve">
-    <value />
+  <data name="CustomizeMODFoundTitle" xml:space="preserve">
+    <value>已注射MOD</value>
   </data>
   <data name="ClanGame" xml:space="preserve">
     <value />
@@ -670,8 +670,8 @@
   <data name="EarnedTrophyPH" xml:space="preserve">
     <value>每小时奖杯收入: </value>
   </data>
-  <data name="CannonCarnage" xml:space="preserve">
-    <value />
+  <data name="CustomizeMODFound" xml:space="preserve">
+    <value>发现已注射MOD，是否要重新注射？（警告·，新版本·MyBot可能不再支持该MOD或者造成MyBot闪退，请谨慎选择！如果无法启动MyBot，请使用注射器恢复MOD！）</value>
   </data>
   <data name="DarckElixirChallenge" xml:space="preserve">
     <value />

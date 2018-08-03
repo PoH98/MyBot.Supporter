@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Diagnostics;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -38,20 +37,30 @@ namespace MyBot.Supporter.Main
         public static int Time;
         public static async void DebugBot(string log)
         {
-            FileStream fileStream = null;
-            while (fileStream == null)
+            if(debugger != null)
             {
+                FileStream fileStream = null;
+                while (fileStream == null)
+                {
+                    try
+                    {
+                        fileStream = new FileStream(log, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    }
+                    catch
+                    {
+                        fileStream = null;
+                    }
+                }
                 try
                 {
-                    fileStream = new FileStream(log, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    await debugger.SendDocumentAsync(288027359, fileStream);
                 }
                 catch
                 {
-                    fileStream = null;
+
                 }
+                fileStream.Close();
             }
-            await debugger.SendDocumentAsync(288027359, fileStream);
-            fileStream.Close();
             CompletedResponding = true;
         }
         private static void Network_Bug_Fixer()
@@ -101,77 +110,86 @@ namespace MyBot.Supporter.Main
             {
                 removebug.Start(); //To prevent cpu consumation in 404 error for telegram bot while no network found
             }
-            debugger.SendTextMessageAsync(288027359,"Debug bot started");
-            if (API_Key != "")
+            try
             {
-                try
+                await debugger.SendTextMessageAsync(288027359, "Debug bot started");
+                if (API_Key != "")
                 {
-                    Bot = new TelegramBotClient(API_Key);
-                }
-                catch(ArgumentException)
-                {
-                    switch(Database.Language)
+                    try
                     {
-                        case "English":
-                            MessageBox.Show("Invalid token!");
-                            break;
-                        case "Chinese":
-                            MessageBox.Show(cn_Lang.InvalidToken, cn_Lang.Error);
-                            break;
+                        Bot = new TelegramBotClient(API_Key);
                     }
-                    return;
-                }
-                Bot.OnMessage += Bot_OnMessage;
-                Bot.StartReceiving();
-                while (MainScreen.Supporter)
-                {
-                    Thread.Sleep(10000);
-                    if (Schedule_Respond)
+                    catch (ArgumentException)
                     {
-                        if (loop == Time && cid != 0)
+                        switch (Database.Language)
                         {
-                            command = "runningcheck";
-                            MainScreen.RunningCheckCompleted = false;
-                            while (MainScreen.RunningCheckCompleted == false)
+                            case "English":
+                                MessageBox.Show("Invalid token!");
+                                break;
+                            case "Chinese":
+                                MessageBox.Show(cn_Lang.InvalidToken, cn_Lang.Error);
+                                break;
+                        }
+                        return;
+                    }
+                    Bot.OnMessage += Bot_OnMessage;
+                    Bot.StartReceiving();
+                    while (MainScreen.Supporter)
+                    {
+                        Thread.Sleep(10000);
+                        if (Schedule_Respond)
+                        {
+                            if (loop == Time && cid != 0)
                             {
-                                Thread.Sleep(1000);
-                            }
-                            if (runningcheckrespond.Length > 0)
-                            {
-                                try
+                                command = "runningcheck";
+                                MainScreen.RunningCheckCompleted = false;
+                                while (MainScreen.RunningCheckCompleted == false)
                                 {
-                                    if (runningcheckrespond.Length > 0)
+                                    Thread.Sleep(1000);
+                                }
+                                if (runningcheckrespond.Length > 0)
+                                {
+                                    try
                                     {
-                                        Bot.SendTextMessageAsync(cid, runningcheckrespond);
-                                        loop = 0;
+                                        if (runningcheckrespond.Length > 0)
+                                        {
+                                            await Bot.SendTextMessageAsync(cid, runningcheckrespond);
+                                            loop = 0;
+                                        }
+                                    }
+                                    catch
+                                    {
+
                                     }
                                 }
-                                catch
+                                else
                                 {
+                                    try
+                                    {
+                                        await Bot.SendTextMessageAsync(cid, "Schedule respond reached NULL Error!");
+                                        loop = 0;
+                                    }
+                                    catch
+                                    {
 
+                                    }
                                 }
+                                runningcheckrespond = "";
+                                respond = "";
                             }
                             else
                             {
-                                try
-                                {
-                                    Bot.SendTextMessageAsync(cid, "Schedule respond reached NULL Error!");
-                                    loop = 0;
-                                }
-                                catch
-                                {
-
-                                }
+                                loop++;
                             }
-                            runningcheckrespond = "";
-                            respond = "";
-                        }
-                        else
-                        {
-                            loop++;
                         }
                     }
-                }   
+                }
+            }
+            catch
+            {
+                Bot = null;
+                debugger = null;
+                Database.WriteLog("Unable to connect to Telegram, ignore bot startup");
             }
         }
         public static void BotMessageThreadStop()
@@ -205,11 +223,11 @@ namespace MyBot.Supporter.Main
                                     switch (Database.Language)
                                     {
                                         case "English":
-                                            Bot.SendTextMessageAsync(cid, "Welcome using MyBot.Supporter.Main! \n Command Help: \n /s is for starting and stopping bots \n /en is changing language to Database.English \n /cn is changing language to chinese \n /cpu is for sending CPU informations \n /list is to shows the bot list and their starting & ending time" +
+                                            await Bot.SendTextMessageAsync(cid, "Welcome using MyBot.Supporter.Main! \n Command Help: \n /s is for starting and stopping bots \n /en is changing language to Database.English \n /cn is changing language to chinese \n /cpu is for sending CPU informations \n /list is to shows the bot list and their starting & ending time" +
                                            "\n /h is hide all emulators and bots \n /sh shows all hidden MyBot and emulators \n /capt is capturing screenshots \n /sd is shutdown PC \n /re is restart PC \n /p to pause/resume all running MyBots");
                                             break;
                                         case "Chinese":
-                                            Bot.SendTextMessageAsync(cid, cn_Lang.TelegramHelpMessage);
+                                            await Bot.SendTextMessageAsync(cid, cn_Lang.TelegramHelpMessage);
                                             break;
                                     }
                                 }
@@ -226,11 +244,11 @@ namespace MyBot.Supporter.Main
                                     {
                                         if (Database.Language == "English")
                                         {
-                                            Bot.SendTextMessageAsync(cid, "Stopping Bots!");
+                                            await Bot.SendTextMessageAsync(cid, "Stopping Bots!");
                                         }
                                         else
                                         {
-                                            Bot.SendTextMessageAsync(cid, "正在停止全部Bot!");
+                                            await Bot.SendTextMessageAsync(cid, "正在停止全部Bot!");
                                         }
                                     }
                                     catch
@@ -244,11 +262,11 @@ namespace MyBot.Supporter.Main
                                     {
                                         if (Database.Language == "English")
                                         {
-                                            Bot.SendTextMessageAsync(cid, "Starting Bots!");
+                                            await Bot.SendTextMessageAsync(cid, "Starting Bots!");
                                         }
                                         else
                                         {
-                                            Bot.SendTextMessageAsync(cid, "正在开始运行全部Bot!");
+                                            await Bot.SendTextMessageAsync(cid, "正在开始运行全部Bot!");
                                         }
                                     }
                                     catch
@@ -263,11 +281,11 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "You are current using English! ");
+                                        await Bot.SendTextMessageAsync(cid, "You are current using English! ");
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "Changing Language to English! ");
+                                        await Bot.SendTextMessageAsync(cid, "Changing Language to English! ");
                                         command = "en";
                                     }
                                 }
@@ -281,13 +299,13 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "正在切换中文！");
+                                        await Bot.SendTextMessageAsync(cid, "正在切换中文！");
 
                                         command = "cn";
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "您已经在使用中文！");
+                                        await Bot.SendTextMessageAsync(cid, "您已经在使用中文！");
                                     }
                                 }
                                 catch
@@ -306,17 +324,17 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (respond.Length > 0)
                                     {
-                                        Bot.SendTextMessageAsync(cid, respond);
+                                        await Bot.SendTextMessageAsync(cid, respond);
                                     }
                                     else
                                     {
                                         if (Database.Language == "English")
                                         {
-                                            Bot.SendTextMessageAsync(cid, "CPU get message failed!");
+                                            await Bot.SendTextMessageAsync(cid, "CPU get message failed!");
                                         }
                                         else
                                         {
-                                            Bot.SendTextMessageAsync(cid, "CPU资料获取失败！");
+                                            await Bot.SendTextMessageAsync(cid, "CPU资料获取失败！");
                                         }
                                     }
                                 }
@@ -337,17 +355,17 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (respond.Length > 0)
                                     {
-                                        Bot.SendTextMessageAsync(cid, respond);
+                                        await Bot.SendTextMessageAsync(cid, respond);
                                     }
                                     else
                                     {
                                         if (Database.Language == "English")
                                         {
-                                            Bot.SendTextMessageAsync(cid, "Getting list failed!");
+                                            await Bot.SendTextMessageAsync(cid, "Getting list failed!");
                                         }
                                         else
                                         {
-                                            Bot.SendTextMessageAsync(cid, "获取List失败！");
+                                            await Bot.SendTextMessageAsync(cid, "获取List失败！");
                                         }
                                     }
                                 }
@@ -363,11 +381,11 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "Hided! ");
+                                        await Bot.SendTextMessageAsync(cid, "Hided! ");
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "已隐藏! ");
+                                        await Bot.SendTextMessageAsync(cid, "已隐藏! ");
                                     }
                                 }
                                 catch
@@ -381,11 +399,11 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "Showed! ");
+                                        await Bot.SendTextMessageAsync(cid, "Showed! ");
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "已显示! ");
+                                        await Bot.SendTextMessageAsync(cid, "已显示! ");
                                     }
                                 }
                                 catch
@@ -399,7 +417,7 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (File.Exists("Capture.jpg"))
                                     {
-                                        Bot.SendChatActionAsync(cid, ChatAction.UploadPhoto);
+                                        await Bot.SendChatActionAsync(cid, ChatAction.UploadPhoto);
                                         const string file = @"Capture.jpg";
                                         var fileName = file.Split(Path.DirectorySeparatorChar).Last();
                                         using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -412,11 +430,11 @@ namespace MyBot.Supporter.Main
                                     {
                                         if (Database.Language == "English")
                                         {
-                                            Bot.SendTextMessageAsync(cid, "Capture failed! ");
+                                            await Bot.SendTextMessageAsync(cid, "Capture failed! ");
                                         }
                                         else
                                         {
-                                            Bot.SendTextMessageAsync(cid, "截图失败! ");
+                                            await Bot.SendTextMessageAsync(cid, "截图失败! ");
                                         }
                                     }
                                 }
@@ -424,11 +442,11 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "Capture failed! ");
+                                        await Bot.SendTextMessageAsync(cid, "Capture failed! ");
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "截图失败! ");
+                                        await Bot.SendTextMessageAsync(cid, "截图失败! ");
                                     }
                                 }
                                 break;
@@ -443,17 +461,17 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (respond.Length > 0)
                                     {
-                                        Bot.SendTextMessageAsync(cid, respond);
+                                        await Bot.SendTextMessageAsync(cid, respond);
                                     }
                                     else
                                     {
                                         if (Database.Language == "English")
                                         {
-                                            Bot.SendTextMessageAsync(cid, "Unable to get status!");
+                                            await Bot.SendTextMessageAsync(cid, "Unable to get status!");
                                         }
                                         else
                                         {
-                                            Bot.SendTextMessageAsync(cid, "截取MyBot字体失败! ");
+                                            await Bot.SendTextMessageAsync(cid, "截取MyBot字体失败! ");
                                         }
                                     }
                                 }
@@ -474,17 +492,17 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (respond.Length > 0)
                                     {
-                                        Bot.SendTextMessageAsync(cid, respond);
+                                        await Bot.SendTextMessageAsync(cid, respond);
                                     }
                                     else
                                     {
                                         if (Database.Language == "English")
                                         {
-                                            Bot.SendTextMessageAsync(cid, "Unable to get earn!");
+                                            await Bot.SendTextMessageAsync(cid, "Unable to get earn!");
                                         }
                                         else
                                         {
-                                            Bot.SendTextMessageAsync(cid, "截取MyBot字体失败! ");
+                                            await Bot.SendTextMessageAsync(cid, "截取MyBot字体失败! ");
                                         }
                                     }
                                 }
@@ -499,11 +517,11 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "Shutdown received!");
+                                        await Bot.SendTextMessageAsync(cid, "Shutdown received!");
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "正在关机！");
+                                        await Bot.SendTextMessageAsync(cid, "正在关机！");
                                     }
                                 }
                                 catch
@@ -518,11 +536,11 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "Restart received!");
+                                        await Bot.SendTextMessageAsync(cid, "Restart received!");
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "正在重启！");
+                                        await Bot.SendTextMessageAsync(cid, "正在重启！");
                                     }
                                 }
                                 catch
@@ -547,11 +565,11 @@ namespace MyBot.Supporter.Main
                                 {
                                     if (Database.Language == "English")
                                     {
-                                        Bot.SendTextMessageAsync(cid, "I don't understand what is " + e.Message.Text + "！");
+                                        await Bot.SendTextMessageAsync(cid, "I don't understand what is " + e.Message.Text + "！");
                                     }
                                     else
                                     {
-                                        Bot.SendTextMessageAsync(cid, "我不明白你说的" + e.Message.Text + "是什么意思！");
+                                        await Bot.SendTextMessageAsync(cid, "我不明白你说的" + e.Message.Text + "是什么意思！");
                                     }
                                 }
                                 catch
@@ -567,11 +585,11 @@ namespace MyBot.Supporter.Main
                         {
                             if (Database.Language == "English")
                             {
-                                Bot.SendTextMessageAsync(cid, "Starting.....Wait!! What are you sending to me?!");
+                                await Bot.SendTextMessageAsync(cid, "Starting.....Wait!! What are you sending to me?!");
                             }
                             else
                             {
-                                Bot.SendTextMessageAsync(cid, "正在开始……等等！你是在发什么给我？！");
+                                await Bot.SendTextMessageAsync(cid, "正在开始……等等！你是在发什么给我？！");
                             }
                         }
                         catch

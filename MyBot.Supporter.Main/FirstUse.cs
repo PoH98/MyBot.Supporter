@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -24,10 +25,17 @@ namespace MyBot.Supporter.Main
         {
             Database.loadingprocess = 100;
             InitializeComponent();
-            FileStream fs = new FileStream(Environment.CurrentDirectory + "\\images\\Logo.png", FileMode.Open, FileAccess.Read);
-            pictureBox1.Image = Image.FromStream(fs);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            fs.Close();
+            try
+            {
+                FileStream fs = new FileStream(Environment.CurrentDirectory + "\\images\\Logo.png", FileMode.Open, FileAccess.Read);
+                pictureBox1.Image = Image.FromStream(fs);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                fs.Close();
+            }
+            catch
+            {
+
+            }
         }
         public static int Language, CPUO, CPUN;
         private void button1_Click(object sender, EventArgs e)
@@ -47,25 +55,33 @@ namespace MyBot.Supporter.Main
                 MessageBox.Show("Please select a valid language!");
                 return;
             }
-            string[] Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
-            Array.Resize(ref Database.Bot, 44);
-            int x = 0;
-            foreach (var profile in Profiles)
+            if (Directory.Exists(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles"))
             {
-                try
+                string[] Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
+                Array.Resize(ref Database.Bot, 44);
+                int x = 0;
+                foreach (var profile in Profiles)
                 {
-                    var name = profile.Remove(0, profile.LastIndexOf('\\') + 1);
-                    Database.Bot[x] = name;
-                    x++;
+                    try
+                    {
+                        var name = profile.Remove(0, profile.LastIndexOf('\\') + 1);
+                        Database.Bot[x] = name;
+                        x++;
+                    }
+                    catch
+                    {
+                        continue;
+                    }
                 }
-                catch
-                {
-                    continue;
-                }
+                GenerateProfile f = new GenerateProfile();
+                f.Show();
+                f.FormClosing += F_FormClosing;
             }
-            Form5 f = new Form5();
-            f.Show();
-            f.FormClosing += F_FormClosing;
+            panel1.Visible = false;
+            if (!File.Exists("MyBot.Run.exe"))
+            {
+                panel2.Visible = true;
+            }
         }
 
         private void F_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,8 +90,7 @@ namespace MyBot.Supporter.Main
             {
                 label9.Text = "在进入程序后您将可以继续设置更多功能！" + Environment.NewLine + "* 更多电脑性能设置可到电脑环境设置调整" + Environment.NewLine + "* 如果需要调整多开，直接点击自动生成Profile即可" + Environment.NewLine + " * 使用MyBot注射器可创建自己的MOD版MyBot" + Environment.NewLine + "* 电报通知功能则在电报通知设置里面调整" + Environment.NewLine + "* PoH98 祝各位快乐挂机:)";
             }
-            panel1.Visible = false;
-            
+
         }
 
         private void FirstUse_MouseDown(object sender, MouseEventArgs e)
@@ -98,13 +113,63 @@ namespace MyBot.Supporter.Main
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Array.Resize(ref Database.Bot, 44);
             CPUO = Convert.ToInt32(numericUpDown1.Value);
             CPUN = Convert.ToInt32(numericUpDown2.Value);
-            Database.Bot[21] = textBox1.Text;
+            if (textBox1.Text.Length > 0)
+            {
+                Database.Bot[21] = textBox1.Text;
+            }
+            else
+            {
+                Database.Bot[21] = "";
+            }
             Close();
             Database.loadingprocess = 50;
             Thread t = new Thread(Database.Load_);
             t.Start();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "MyBot.Run | MyBot.Run.exe";
+            openFileDialog1.ShowDialog();
+            if (openFileDialog1.FileName != string.Empty)
+            {
+                textBox2.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text != null)
+            {
+                if (File.Exists(textBox2.Text))
+                {
+                    string newPath = openFileDialog1.FileName.Remove(openFileDialog1.FileName.LastIndexOf('\\') + 1); 
+                    if (!File.Exists(newPath + "MyBot.Supporter.Main.exe"))
+                    {
+                        File.Copy(AppDomain.CurrentDomain.FriendlyName, newPath + "MyBot.Supporter.Main.exe");
+                    }
+                    else
+                    {
+                        ProcessStartInfo proc = new ProcessStartInfo();
+                        proc.FileName = newPath +"MyBot.Supporter.Main.exe";
+                        proc.WorkingDirectory = newPath;
+                        Process.Start(proc);
+                        Application.Exit();
+                    }
+                    panel2.Visible = false;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,6 +192,11 @@ namespace MyBot.Supporter.Main
             }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            MyBotUpdator.DownloadMyBotUpdate();
+        }
+
         private void Languages()
         {
             switch (Language)
@@ -139,6 +209,8 @@ namespace MyBot.Supporter.Main
                     label4.Text = "当处理器使用超过70%，自动设置电脑最高性能至";
                     label5.Text = "当处理器使用低于70%，自动设置电脑最高性能至";
                     label6.Text = "电报通知机器人Token（如果不需要用到则留空）";
+                    label10.Text = "请选择MyBot.Run.exe的位置";
+                    label11.Text = "还没下载任何MyBot? 请选择以下的按钮下载后再选择MyBot位置！";
                     break;
                 case 1:
                     label1.Text = "Welcome!";
@@ -148,6 +220,8 @@ namespace MyBot.Supporter.Main
                     label4.Text = "CPU Max Performace when usage above 70%: ";
                     label5.Text = "CPU Max Performance when usage is below 70%: ";
                     label6.Text = "Telegram Bot Token (Leave Blank if you don't use it!)";
+                    label10.Text = "Please select the location of MyBot.Run.exe";
+                    label11.Text = "Haven't own a MyBot? Download it using the buttons below for selecting the server and select the location again!";
                     break;
             }
         }

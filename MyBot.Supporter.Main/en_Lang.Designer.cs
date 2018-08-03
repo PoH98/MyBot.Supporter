@@ -124,20 +124,11 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 An update is available. Do you want to download it automaticly? 的本地化字符串。
         /// </summary>
-        internal static string BabyDrag {
+        internal static string AutoUpdateFound {
             get {
-                return ResourceManager.GetString("BabyDrag", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Balloons {
-            get {
-                return ResourceManager.GetString("Balloons", resourceCulture);
+                return ResourceManager.GetString("AutoUpdateFound", resourceCulture);
             }
         }
         
@@ -147,15 +138,6 @@ namespace MyBot.Supporter.Main {
         internal static string Battery {
             get {
                 return ResourceManager.GetString("Battery", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string BattleChallenge {
-            get {
-                return ResourceManager.GetString("BattleChallenge", resourceCulture);
             }
         }
         
@@ -196,29 +178,11 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string CannonCarnage {
-            get {
-                return ResourceManager.GetString("CannonCarnage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Castle {
-            get {
-                return ResourceManager.GetString("Castle", resourceCulture);
             }
         }
         
@@ -354,6 +318,24 @@ namespace MyBot.Supporter.Main {
         internal static string CurrentSelectedProfile {
             get {
                 return ResourceManager.GetString("CurrentSelectedProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Detected customize MODs by injector, do you want to apply the MODs on the newer version of MyBot? (Warning! The newer version MyBot might not support the MOD and causing it to crush! You can reverse it using injector again if any bad things happen!) 的本地化字符串。
+        /// </summary>
+        internal static string CustomizeMODFound {
+            get {
+                return ResourceManager.GetString("CustomizeMODFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Customize MOD by Injector found! 的本地化字符串。
+        /// </summary>
+        internal static string CustomizeMODFoundTitle {
+            get {
+                return ResourceManager.GetString("CustomizeMODFoundTitle", resourceCulture);
             }
         }
         
@@ -1370,6 +1352,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 MyBot had updated! Do you want to downlod the latest version? 的本地化字符串。
+        /// </summary>
+        internal static string MyBotUpdateFound {
+            get {
+                return ResourceManager.GetString("MyBotUpdateFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Net Status 的本地化字符串。
         /// </summary>
         internal static string NetStatus {
@@ -2005,6 +1996,15 @@ namespace MyBot.Supporter.Main {
         internal static string Tutorial_ToolTripMenu {
             get {
                 return ResourceManager.GetString("Tutorial_ToolTripMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Update Now! 的本地化字符串。
+        /// </summary>
+        internal static string UpdateNow {
+            get {
+                return ResourceManager.GetString("UpdateNow", resourceCulture);
             }
         }
         

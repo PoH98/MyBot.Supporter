@@ -487,23 +487,23 @@ Quick Help:
   <data name="Builders" xml:space="preserve">
     <value>Builders: </value>
   </data>
-  <data name="BabyDrag" xml:space="preserve">
-    <value />
+  <data name="AutoUpdateFound" xml:space="preserve">
+    <value>An update is available. Do you want to download it automaticly?</value>
   </data>
-  <data name="Balloons" xml:space="preserve">
-    <value />
+  <data name="UpdateNow" xml:space="preserve">
+    <value>Update Now!</value>
   </data>
-  <data name="BattleChallenge" xml:space="preserve">
-    <value />
+  <data name="MyBotUpdateFound" xml:space="preserve">
+    <value>MyBot had updated! Do you want to downlod the latest version?</value>
   </data>
   <data name="Bowlers" xml:space="preserve">
     <value />
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value />
+    <value>Cancel</value>
   </data>
-  <data name="Castle" xml:space="preserve">
-    <value />
+  <data name="CustomizeMODFoundTitle" xml:space="preserve">
+    <value>Customize MOD by Injector found!</value>
   </data>
   <data name="ClanGame" xml:space="preserve">
     <value />
@@ -646,8 +646,8 @@ Quick Help:
   <data name="EarnedTrophyPH" xml:space="preserve">
     <value>Trophy gain per hour:</value>
   </data>
-  <data name="CannonCarnage" xml:space="preserve">
-    <value />
+  <data name="CustomizeMODFound" xml:space="preserve">
+    <value>Detected customize MODs by injector, do you want to apply the MODs on the newer version of MyBot? (Warning! The newer version MyBot might not support the MOD and causing it to crush! You can reverse it using injector again if any bad things happen!)</value>
   </data>
   <data name="DarckElixirChallenge" xml:space="preserve">
     <value />

@@ -1123,13 +1123,6 @@ namespace MyBot.Supporter.Main
                         else if (comboBox5.SelectedIndex == 1)
                         {
                             Modded_Settings[x] = "language=Chinese_S";
-                            string Path = Environment.CurrentDirectory + "\\Languages\\";
-                            File.WriteAllBytes("Chinese_S.zip",Characters.Chinese_S);
-                            File.Delete(Path + "Chinese_S.ini");
-                            ZipFile.ExtractToDirectory("Chinese_S.zip", "Chinese_S");
-                            File.Move(Environment.CurrentDirectory + "\\Chinese_S\\Chinese_S.ini", Path + "Chinese_S.ini");
-                            File.Delete("Chinese_S.zip");
-                            Directory.Delete(Environment.CurrentDirectory + "\\Chinese_S");
                         }
 
                     }

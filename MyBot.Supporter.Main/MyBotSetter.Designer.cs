@@ -2881,6 +2881,7 @@
             this.checkBox22.TabIndex = 8;
             this.checkBox22.Text = "移除Demen 11+兵种下兵 MOD";
             this.checkBox22.UseVisualStyleBackColor = true;
+            this.checkBox22.Visible = false;
             // 
             // checkBox20
             // 
@@ -2958,6 +2959,7 @@
             this.checkBox21.TabIndex = 6;
             this.checkBox21.Text = "Demen 11+兵种下兵 MOD";
             this.checkBox21.UseVisualStyleBackColor = true;
+            this.checkBox21.Visible = false;
             // 
             // checkBox19
             // 

@@ -22,7 +22,7 @@ namespace MyBot.Supporter.Main {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Characters {
+    public class Characters {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MyBot.Supporter.Main {
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyBot.Supporter.Main.Characters", typeof(Characters).Assembly);
@@ -51,7 +51,7 @@ namespace MyBot.Supporter.Main {
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon _123456 {
+        public static System.Drawing.Icon _123456 {
             get {
                 object obj = ResourceManager.GetObject("_123456", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -73,17 +73,7 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        internal static byte[] Chinese_S {
-            get {
-                object obj = ResourceManager.GetObject("Chinese_S", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] ClanGames_config {
+        public static byte[] ClanGames_config {
             get {
                 object obj = ResourceManager.GetObject("ClanGames_config", resourceCulture);
                 return ((byte[])(obj));
@@ -91,18 +81,9 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string CNText {
-            get {
-                return ResourceManager.GetString("CNText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        internal static byte[] DLL {
+        public static byte[] DLL {
             get {
                 object obj = ResourceManager.GetObject("DLL", resourceCulture);
                 return ((byte[])(obj));
@@ -110,18 +91,9 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string ENText {
-            get {
-                return ResourceManager.GetString("ENText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap ezgif_com_optimize {
+        public static System.Drawing.Bitmap ezgif_com_optimize {
             get {
                 object obj = ResourceManager.GetObject("ezgif_com_optimize", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -131,7 +103,7 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        internal static byte[] Host {
+        public static byte[] Host {
             get {
                 object obj = ResourceManager.GetObject("Host", resourceCulture);
                 return ((byte[])(obj));
@@ -141,7 +113,7 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        internal static byte[] Resources {
+        public static byte[] Resources {
             get {
                 object obj = ResourceManager.GetObject("Resources", resourceCulture);
                 return ((byte[])(obj));

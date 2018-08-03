@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Resources;
 using System.IO;
 using System.Threading;
 using System.Linq;
@@ -11,15 +9,11 @@ using System.Drawing;
 using System.Management;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using Microsoft.VisualBasic;
-using OpenHardwareMonitor;
 using OpenHardwareMonitor.Hardware;
 using System.Text;
-using Telegram.Bot;
-using Telegram;
-using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Collections;
+using System.Net;
+using System.Reflection;
 
 namespace MyBot.Supporter.Main
 {
@@ -30,19 +24,19 @@ namespace MyBot.Supporter.Main
         static List<string> ExceptionProcessName = new List<string>();
         static NetworkInterface nics;
         static PerformanceCounter CPU = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-        static String[] instancename;
+        //static String[] instancename;
         [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
         private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
         static Thread telegram = new Thread(TBot.BotMessageThreadStart);
         static Computer computer = new Computer();
         static Thread send = new Thread(ReportError);
-        private int size, netcount;
+        private int size;
         static List<string> TreeNode = new List<string>();
-        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, captcha, Advance;
+        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, Advance, ResetUI;
         private static string CPUN;
         private static string[] AdvanceCPU = { };
         private static double CPUTM, CPUFM, CPUF, CPUV, CPUT;
-        private static int NumberOfCPU, CPUL, RAM, RefreshTreeNodes, botcount, AutoIT, NoNet;
+        private static int CPUL, RAM, RefreshTreeNodes, AutoIT, NoNet;
         private static string SelectedCPUV, SelectedCPUF, SelectedCPUT, SelectedRAML, SelectedCPUL;
         public MainScreen()
         {
@@ -188,8 +182,6 @@ namespace MyBot.Supporter.Main
                 Array.Resize(ref Botting.Refresh, 15);
                 Array.Resize(ref Botting.IsRunning, 15);
                 Array.Resize(ref Botting.Trophy, 15);
-                TreeNode.Clear();
-                treeView1.Nodes.Clear();
                 loading.Start();
                 button1.Enabled = false;
                 button2.Enabled = false;
@@ -197,7 +189,7 @@ namespace MyBot.Supporter.Main
                 Database.Disabletab(panel1, false);
                 Database.Disabletab(panel2, false);
                 button25.Enabled = false;
-                Database.Disabletab(tabPage3, false);
+                Database.Disabletab(panel4, false);
                 startBottingToolStripMenuItem.Visible = false;
                 stopBottingToolStripMenuItem.Visible = true;
                 WriteAllSettings();
@@ -217,7 +209,6 @@ namespace MyBot.Supporter.Main
                         MessageBox.Show("屏幕分辨率不足1400*800，自动隐藏任务栏!!");
                     }
                 }
-                int X = 0;
                 Database.WriteLog("Converting Settings");
                 try
                 {
@@ -309,7 +300,7 @@ namespace MyBot.Supporter.Main
                 Database.WriteLog("Enabling Controls");
                 Database.Disabletab(panel1, true);
                 Database.Disabletab(panel2, true);
-                Database.Disabletab(tabPage3, true);
+                Database.Disabletab(panel4, true);
                 button20.Enabled = true;
                 startBottingToolStripMenuItem.Visible = true;
                 stopBottingToolStripMenuItem.Visible = false;
@@ -844,7 +835,7 @@ namespace MyBot.Supporter.Main
                 Database.Time[100] = ScreenOnPower.Text;
                 File.WriteAllText("error.log", ex.ToString());
             }
-            if (NoBotOnBattery.Checked = true)
+            if (NoBotOnBattery.Checked == true)
             {
                 Database.Time[101] = "1";
             }
@@ -1011,7 +1002,7 @@ namespace MyBot.Supporter.Main
             SetTextBox();
         }
 
-        private async void timer1_Tick(object sender, EventArgs e)//Refresh UI values and accept Telegram control commands
+        private void timer1_Tick(object sender, EventArgs e)//Refresh UI values and accept Telegram control commands
         {
             GC.Collect();
             if (Run)
@@ -1176,6 +1167,11 @@ namespace MyBot.Supporter.Main
                     x++;
                 }
             }
+            if (ResetUI)
+            {
+                ResetUI = false;
+                Language();
+            }
             if (!checkBox32.Checked && !checkBox33.Checked && !checkBox34.Checked && !checkBox35.Checked)
             {
                 TBot.Schedule_Respond = false;
@@ -1286,7 +1282,7 @@ namespace MyBot.Supporter.Main
                         }
                         try
                         {
-                            await TBot.Bot.SendTextMessageAsync(TBot.cid, alert);
+                             TBot.Bot.SendTextMessageAsync(TBot.cid, alert);
                         }
                         catch
                         {
@@ -1349,7 +1345,7 @@ namespace MyBot.Supporter.Main
                 progressBar1.Value = CPUL; //Setting tracebar value for CPU
             }
             
-            await Task.Delay(10);
+             Task.Delay(10);
             if (HourSetting.Checked)
             {
                 Time.Text = DateTime.Now.ToString("hh:mm:ss tt");
@@ -1359,7 +1355,7 @@ namespace MyBot.Supporter.Main
                 Time.Text = DateTime.Now.ToString("HH:mm:ss");
             }
 
-            await Task.Delay(10);
+             Task.Delay(10);
             if (Win32.IsRunable)
             {
                 if (!Database.Network)
@@ -1426,7 +1422,6 @@ namespace MyBot.Supporter.Main
             {
                 Database.WriteLog("Entering Tree Nodes");
                 TreeViewHandler();
-                treeView1.Refresh();
                 RefreshTreeNodes = 24;
             }
             else
@@ -1436,7 +1431,7 @@ namespace MyBot.Supporter.Main
             }
             if (Database.Hour > 0 && Database.Hour < 8 && Win32.GetIdleTime() > 60000 && !File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\MBR Global Variables(directX).au3"))
             {
-                if (CloseLID.Checked == false)
+                if (!CloseLID.Checked)
                 {
                     CloseLID.Checked = true; 
                     AutoSet = true;
@@ -1444,7 +1439,7 @@ namespace MyBot.Supporter.Main
             }
             else
             {
-                if (AutoSet == true)
+                if (AutoSet)
                 {
                     CloseLID.Checked = false;
                     AutoSet = false;
@@ -1453,18 +1448,18 @@ namespace MyBot.Supporter.Main
             Database.WriteLog("Checking Power Status");
             if (SystemInformation.PowerStatus.BatteryChargeStatus != BatteryChargeStatus.NoSystemBattery)
             {
-                if (NoBotOnBattery.Checked == true)
+                if (NoBotOnBattery.Checked)
                 {
                     if (SystemInformation.PowerStatus.PowerLineStatus == PowerLineStatus.Online)
                     {
-                        if (Database.OnBattery == true)
+                        if (Database.OnBattery)
                         {
                             Database.OnBattery = false;
                         }
                     }
                     else
                     {
-                        if (Database.OnBattery == false)
+                        if (!Database.OnBattery)
                         {
                             Database.OnBattery = true;
                         }
@@ -1472,7 +1467,7 @@ namespace MyBot.Supporter.Main
                 }
                 else
                 {
-                    if (Database.OnBattery == true)
+                    if (Database.OnBattery)
                     {
                         Database.OnBattery = false;
                     }
@@ -1480,37 +1475,37 @@ namespace MyBot.Supporter.Main
             }
             else
             {
-                if (NoBotOnBattery.Visible == true)
+                if (NoBotOnBattery.Visible)
                 {
                     NoBotOnBattery.Checked = false;
                     NoBotOnBattery.Visible = false;
                     Database.OnBattery = false;
                 }
             }
-            if (EmulatorHide.Checked == true)
+            if (EmulatorHide.Checked)
             {
-                if (checkBox31.Enabled == true)
+                if (checkBox31.Enabled)
                 {
                     checkBox31.Enabled = false;
                 }
             }
             else
             {
-                if (checkBox31.Enabled == false)
+                if (!checkBox31.Enabled)
                 {
                     checkBox31.Enabled = true;
                 }
             }
-            if (checkBox31.Checked == true)
+            if (checkBox31.Checked)
             {
-                if (EmulatorHide.Enabled == true)
+                if (EmulatorHide.Enabled)
                 {
                     EmulatorHide.Enabled = false;
                 }
             }
             else
             {
-                if (EmulatorHide.Enabled == false)
+                if (!EmulatorHide.Enabled)
                 {
                     EmulatorHide.Enabled = true;
                 }
@@ -1580,8 +1575,7 @@ namespace MyBot.Supporter.Main
             IntPtr hwnd = FindWindow("#32770", dialogBoxText);
             if (hwnd != IntPtr.Zero)
             {
-                Thread au = new Thread(AutoIt_Error);
-                au.Start();
+                AutoIt_Error();
             }
             if (send.ThreadState != System.Threading.ThreadState.Running)
             {
@@ -1595,12 +1589,19 @@ namespace MyBot.Supporter.Main
         {
             while (Run)
             {
-                if (File.Exists(Environment.CurrentDirectory + "\\error.log"))
+                if (File.Exists("error.log"))
                 {
-                    FileInfo file = new FileInfo(Environment.CurrentDirectory + "\\error.log");
-                    TBot.DebugBot("error.log");
+                    FileInfo file = new FileInfo("error.log");
+                    try
+                    {
+                        TBot.DebugBot("error.log");
+                    }
+                    catch
+                    {
+
+                    }
                     FileStream stream = null;
-                    while (stream == null)
+                    while (stream == null && File.Exists("error.log"))
                     {
                         try
                         {
@@ -1617,16 +1618,16 @@ namespace MyBot.Supporter.Main
                         }
                     }
                     string filename = "Sended_On_" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "." + DateTime.Now.Second + ".log";
-                    if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error") && File.Exists("error.log"))
-                    {
-                        File.Move("error.log", Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error\\" + filename);
-                    }
-                    else if (File.Exists("error.log"))
+                    if (!Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error"))
                     {
                         Directory.CreateDirectory(Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error");
+                    }
+                    if (File.Exists("error.log"))
+                    {
                         File.Move("error.log", Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error\\" + filename);
                     }
                 }
+                Thread.Sleep(1000);
             }
         }
         private void startBottingToolStripMenuItem_Click(object sender, EventArgs e)//Notification icon function
@@ -1649,7 +1650,6 @@ namespace MyBot.Supporter.Main
                     File.Delete(l);
                 }
             }
-
             Supporter = false;
             Database.WriteLog("-----------------------------------------------");
             Database.WriteLog("MyBot.Supporter running on " + Environment.OSVersion);
@@ -1681,17 +1681,14 @@ namespace MyBot.Supporter.Main
             Database.WriteLog("Checking MyBot.run.exe Called");
             if (!File.Exists(Environment.CurrentDirectory + "\\MyBot.run.exe"))
             {
-                string message = "Where is MyBot.run.exe?!";
-                string caption = "Error！";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                Database.WriteLog("Closing reason - No MyBot.run.exe found in current Directory");
-                Environment.Exit(0);
+                Database.WriteLog("No MyBot.run.exe found in current Directory");
+                FirstUse f = new FirstUse();
+                f.ShowDialog();
+                Hide();
             }
+            Database.loadingprocess = 15;
             Supporter = true;
             Database.WriteLog("Drawing UI");
-            Database.loadingprocess = 15;
             Database.WriteLog("Disabling Tab MouseWheels Controler");
             Database.DisableMouseWheels(tabPage3);
             Database.DisableMouseWheels(tabPage4);
@@ -1902,10 +1899,17 @@ namespace MyBot.Supporter.Main
                 NoNet++;
             }
             x = 0;
-            FileStream fs = new FileStream(Environment.CurrentDirectory + "\\images\\Logo.png", FileMode.Open, FileAccess.Read);
-            pictureBox2.Image = Image.FromStream(fs);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            fs.Close();
+            try
+            {
+                FileStream fs = new FileStream(Environment.CurrentDirectory + "\\images\\Logo.png", FileMode.Open, FileAccess.Read);
+                pictureBox2.Image = Image.FromStream(fs);
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                fs.Close();
+            }
+            catch
+            {
+
+            }
             /*Database.WriteLog("Getting MyDocuments Folder");
             DirectoryInfo di = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             DirectoryInfo download = new DirectoryInfo(Database.DownloadFolder());
@@ -1966,7 +1970,6 @@ namespace MyBot.Supporter.Main
             double highestV = 0;
             double highestT = 0;
             double highestC = 0;
-            double highest = 0;
             double highestL = 0;
             foreach (var h in computer.Hardware)
             {
@@ -2027,24 +2030,27 @@ namespace MyBot.Supporter.Main
                 }
             }
             Database.WriteLog("CPU Name: " + CPUN + SelectedCPUF + SelectedCPUT + SelectedCPUV);
-            Thread Count = new Thread(Performancecounter);
-            Count.Start();
+            timer3.Start();
             timer1.Start();
             CPUName.Text = CPUN;
             //Button Language
-            Database.loadingprocess = 90;
+            Database.loadingprocess = 80;
             Language();
+            Thread up = new Thread(Updator);
+            up.Start();
+            Database.loadingprocess = 90;
+            UpdateMyBot();
             Database.WriteLog("Setting Language");
             GC.Collect();
             Database.loadingprocess = 100;
             Database.WriteLog("Loading Complete");
             Win32.Power_MainScreen();
             Database.WriteLog("Setting Power Management");
+            NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAvailabilityChanged;
             Database.WriteLog("Form close thread handle called");
         }
         private void Language()//Set the language of the UI
         {
-            
             switch (Database.Language)
             {
                 case "English":
@@ -2052,10 +2058,12 @@ namespace MyBot.Supporter.Main
                     if (Run)
                     {
                         button1.Text = en_Lang.Stop_Button;
+                        button1.BackColor = Color.Red;
                     }
                     else
                     {
                         button1.Text = en_Lang.Start_Button;
+                        button1.BackColor = Color.Lime;
                     }
                     Priority.Text = en_Lang.Priority_CheckBox;
                     CloseLID.Text = en_Lang.Close_LID_CheckBox;
@@ -2164,10 +2172,12 @@ namespace MyBot.Supporter.Main
                     if (Run)
                     {
                         button1.Text = cn_Lang.Stop_Button;
+                        button1.BackColor = Color.Red;
                     }
                     else
                     {
                         button1.Text = cn_Lang.Start_Button;
+                        button1.BackColor = Color.Lime;
                     }
                     Priority.Text = cn_Lang.Priority_CheckBox;
                     CloseLID.Text = cn_Lang.Close_LID_CheckBox;
@@ -2297,266 +2307,144 @@ namespace MyBot.Supporter.Main
 
             }
         }
-        private static void CPUTemperature()//Read CPU Temperature and status, using Open Hardware Monitor
+
+        private static void HardwareSensor(ISensor sensor, int x, out int y)
         {
-            int x = 0;
-            foreach (var hardware in computer.Hardware)
+            switch (sensor.SensorType)
             {
-                if (hardware.HardwareType == HardwareType.CPU)
-                {
-                    hardware.Update();
-                    Thread.Sleep(100);
-                    try
+                case SensorType.Temperature:
+                    if (Advance)
                     {
-                        AdvanceCPU[x] = hardware.HardwareType + " : " + hardware.Name;
-                    }
-                    catch
-                    {
-
-                    }
-                    finally
-                    {
-                        x++;
-                    }
-                    foreach (var sensor in hardware.Sensors)
-                    {
-                        Thread.Sleep(10);
-                        switch (sensor.SensorType)
-                        {
-                            case SensorType.Temperature:
-                                if (Advance)
-                                {
-                                    try
-                                    {
-                                        AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " °C";
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                    finally
-                                    {
-                                        x++;
-                                    }
-                                }
-                                if (sensor.Name == SelectedCPUT)
-                                {
-                                    CPUT = Convert.ToDouble(sensor.Value);
-                                    if (CPUTM < CPUT)
-                                    {
-                                        CPUTM = CPUT;
-                                    }
-                                }
-                                break;
-                            case SensorType.Clock:
-                                if (Advance)
-                                {
-                                    try
-                                    {
-                                        AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " Mhz";
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                    finally
-                                    {
-                                        x++;
-                                    }
-                                }
-                                if (sensor.Name == SelectedCPUF)
-                                {
-                                    CPUF = Convert.ToDouble(sensor.Value / 1024);
-                                    if (CPUF > CPUFM)
-                                    {
-                                        CPUFM = CPUF;
-                                    }
-                                }
-                                break;
-                            case SensorType.Power:
-                                if (Advance)
-                                {
-                                    try
-                                    {
-                                        AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " V";
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                    finally
-                                    {
-                                        x++;
-                                    }
-                                }
-                                if (sensor.Name == SelectedCPUV)
-                                {
-                                    CPUV = Convert.ToDouble(sensor.Value);
-                                }
-                                break;
-                            case SensorType.Load:
-                                if (Advance)
-                                {
-                                    try
-                                    {
-                                        AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " %";
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                    finally
-                                    {
-                                        x++;
-                                    }
-                                }
-                                break;
-                        }
-                    }
-                }
-                if (Advance)
-                {
-                    try
-                    {
-                        AdvanceCPU[x] = "============================";
-                    }
-                    catch
-                    {
-
-                    }
-                    finally
-                    {
-                        x++;
-                    }
-                }
-
-                if (hardware.HardwareType == HardwareType.RAM)
-                {
-                    hardware.Update();
-
-                    try
-                    {
-                        AdvanceCPU[x] = hardware.HardwareType + " : " + hardware.Name;
-                    }
-                    catch
-                    {
-
-                    }
-                    finally
-                    {
-                        x++;
-                    }
-
-                    Thread.Sleep(100);
-                    foreach (var sensor in hardware.Sensors)
-                    {
-
-                        switch (sensor.SensorType)
-                        {
-                            case SensorType.Load:
-                                if (sensor.Name == SelectedRAML)
-                                {
-                                    RAM = Convert.ToInt16(sensor.Value);
-                                }
-                                if (Advance)
-                                {
-                                    try
-                                    {
-                                        AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " %";
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                    finally
-                                    {
-                                        x++;
-                                    }
-                                }
-                                break;
-                            case SensorType.Data:
-                                if (Advance)
-                                {
-                                    try
-                                    {
-                                        AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " GB";
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                    finally
-                                    {
-                                        x++;
-                                    }
-                                }
-                                break;
-                        }
-                    }
-
-                }
-                Thread.Sleep(10);
-
-            }
-            if(AdvanceCPU.Length < x)
-            {
-                Array.Resize(ref AdvanceCPU, x);
-            }
-
-            CPUL = Convert.ToInt16(CPU.NextValue());
-        }
-        private static void Performancecounter()//Read Networks and time, using System Performance Counter
-        {
-            NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAvailabilityChanged;
-            while (Supporter)
-            {
-                Thread.Sleep(200);
-                Database.Hour = DateTime.Now.Hour; //Set Time
-                Database.Min = DateTime.Now.Minute;
-                Database.Sec = DateTime.Now.Second;
-                Thread.Sleep(200);
-                Thread cpu = new Thread(CPUTemperature);
-                cpu.Start();
-                Thread.Sleep(200);
-                if (Win32.IsRunable && Database.Network)
-                {
                         try
                         {
-                            Database.Receive = nics.GetIPStatistics().BytesReceived; //Get Received nework data volume
-                            Database.Send = nics.GetIPStatistics().BytesSent; //Get Sended network data volume
-                            Database.newr = Database.Receive;
-                            Database.news = Database.Send;
-                            Database.showr = Database.newr - Database.oldr;
-                            Database.shows = Database.news - Database.olds;
-                            CalSize();
-                            Database.oldr = Database.newr;
-                            Database.olds = Database.news;
+                            AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " °C";
                         }
                         catch
                         {
 
                         }
-                }
-                Thread.Sleep(200);
-                if (CPUL >= 70)
-                {
-                    if (Win32.ProcessorIsMaximum)
-                    {
-                        Thread set = new Thread(Win32.Power_Minimum);
-                        set.Start();
-                        Win32.ProcessorIsMaximum = false;
+                        finally
+                        {
+                            x++;
+                        }
                     }
-                }
-                else
-                {
-                    if (!Win32.ProcessorIsMaximum)
+                    if (sensor.Name == SelectedCPUT)
                     {
-                        Thread set = new Thread(Win32.Power_Maximum);
-                        set.Start();
-                        Win32.ProcessorIsMaximum = true;
+                        CPUT = Convert.ToDouble(sensor.Value);
+                        if (CPUTM < CPUT)
+                        {
+                            CPUTM = CPUT;
+                        }
                     }
-                }
+                    break;
+                case SensorType.Clock:
+                    if (Advance)
+                    {
+                        try
+                        {
+                            AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " Mhz";
+                        }
+                        catch
+                        {
+
+                        }
+                        finally
+                        {
+                            x++;
+                        }
+                    }
+                    if (sensor.Name == SelectedCPUF)
+                    {
+                        CPUF = Convert.ToDouble(sensor.Value / 1024);
+                        if (CPUF > CPUFM)
+                        {
+                            CPUFM = CPUF;
+                        }
+                    }
+                    break;
+                case SensorType.Power:
+                    if (Advance)
+                    {
+                        try
+                        {
+                            AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " V";
+                        }
+                        catch
+                        {
+
+                        }
+                        finally
+                        {
+                            x++;
+                        }
+                    }
+                    if (sensor.Name == SelectedCPUV)
+                    {
+                        CPUV = Convert.ToDouble(sensor.Value);
+                    }
+                    break;
+                case SensorType.Load:
+                    if (Advance)
+                    {
+                        try
+                        {
+                            AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " %";
+                        }
+                        catch
+                        {
+
+                        }
+                        finally
+                        {
+                            x++;
+                        }
+                    }
+                    break;
             }
+            y = x;
+        }
+
+        private static void RAMSensor(ISensor sensor, int x, out int y)
+        {
+            switch (sensor.SensorType)
+            {
+                case SensorType.Load:
+                    if (Advance)
+                    {
+                        try
+                        {
+                            AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " %";
+                        }
+                        catch
+                        {
+
+                        }
+                        finally
+                        {
+                            x++;
+                        }
+                    }
+                    RAM = Convert.ToInt32(sensor.Value);
+                    break;
+                case SensorType.Data:
+                    if (Advance)
+                    {
+                        try
+                        {
+                            AdvanceCPU[x] = sensor.Name + " : " + sensor.SensorType + " : " + Convert.ToDouble(sensor.Value).ToString("0.0") + " GB";
+                        }
+                        catch
+                        {
+
+                        }
+                        finally
+                        {
+                            x++;
+                        }
+                    }
+                    break;
+            }
+            y = x;
         }
 
         private void MainScreen_Resize(object sender, EventArgs e)//Hide window when Hide from taskbar enabled and user minimize it, C# will make the window into small size only when hided from taskbar
@@ -2598,7 +2486,13 @@ namespace MyBot.Supporter.Main
                 button1_Click(sender, e);
             }
             Hide();
+            ProcessStartInfo cmd = new ProcessStartInfo();
+            cmd.FileName = "cmd.exe";
+            cmd.Arguments = "netsh winsock reset";
+            cmd.CreateNoWindow = true;
+            cmd.WindowStyle = ProcessWindowStyle.Hidden;
             WriteAllSettings();
+            Process.Start(cmd);
             Win32.Power_Reset();
             SelectQuery wmiQuery = new SelectQuery("SELECT * FROM Win32_NetworkAdapter WHERE NetConnectionId != NULL");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
@@ -2944,7 +2838,7 @@ namespace MyBot.Supporter.Main
         {
             Database.WriteLog("Button20_Click Called");
             WriteAllSettings();
-            Form set = new Form2();
+            Form set = new AddProfile();
             set.Show();
             set.FormClosing += Set_FormClosing;
         }
@@ -3721,8 +3615,6 @@ namespace MyBot.Supporter.Main
                         Database.Time[x] = "11";
                     }
                 }
-
-                int y = 0;
             }
             catch (Exception ex)
             {
@@ -4034,7 +3926,7 @@ namespace MyBot.Supporter.Main
                                 case "MyBot.run.MiniGui":
                                     try
                                     {
-                                        process.Kill();
+                                        Botting.KillProcessAndChildren(process.Id);
                                     }
                                     catch
                                     {
@@ -4042,26 +3934,7 @@ namespace MyBot.Supporter.Main
                                     }
                                     break;
                             }
-                        }
-                        foreach (var Android in Database.Emulator)
-                        {
-                            if (Android != null)
-                            {
-                                if (Android.Length > 0)
-                                {
-                                    foreach (var Emulator in Process.GetProcessesByName(Android))
-                                    {
-                                        try
-                                        {
-                                            Emulator.Kill();
-                                        }
-                                        catch
-                                        {
-                                            continue;
-                                        }
-                                    }
-                                }
-                            }
+                            Thread.Sleep(10);
                         }
                     }
                 }
@@ -4087,7 +3960,7 @@ namespace MyBot.Supporter.Main
                             case "MyBot.run.MiniGui":
                                 try
                                 {
-                                    process.Kill();
+                                    Botting.KillProcessAndChildren(process.Id);
                                 }
                                 catch
                                 {
@@ -4095,20 +3968,7 @@ namespace MyBot.Supporter.Main
                                 }
                                 break;
                         }
-                    }
-                    foreach (var Android in Database.Emulator)
-                    {
-                        foreach (var Emulator in Process.GetProcessesByName(Android))
-                        {
-                            try
-                            {
-                                Emulator.Kill();
-                            }
-                            catch
-                            {
-                                continue;
-                            }
-                        }
+                        Thread.Sleep(10);
                     }
                     if (Database.Shutdown == 1) //If Shutdown when no Internet is avabile is on
                     {
@@ -4287,7 +4147,6 @@ namespace MyBot.Supporter.Main
             try
             {
                 Database.OtherBot = File.ReadAllLines(Database.Location + "programsave");
-                int X = 0;
             }
             catch (DirectoryNotFoundException exception)
             {
@@ -4522,14 +4381,16 @@ namespace MyBot.Supporter.Main
 
         private void Taskbar_CheckedChanged(object sender, EventArgs e)
         {
+            Hide();
             if (Taskbar.Checked)
             {
-                this.ShowInTaskbar = false;
+                ShowInTaskbar = false;
             }
             else
             {
-                this.ShowInTaskbar = true;
+                ShowInTaskbar = true;
             }
+            Show();
         }
 
         private void MyBotHide_CheckedChanged(object sender, EventArgs e)//Hide MyBot
@@ -4541,6 +4402,21 @@ namespace MyBot.Supporter.Main
             else
             {
                 Database.hide = false;
+            }
+        }
+
+        private void checkBox15_CheckedChanged(object sender, EventArgs e)
+        {
+            Run = false;
+            button1.BackColor = Color.Lime;
+            switch (Database.Language)
+            {
+                case "English":
+                    button1.Text = en_Lang.Start_Button;
+                    break;
+                case "Chinese":
+                    button1.Text = cn_Lang.Start_Button;
+                    break;
             }
         }
 
@@ -4606,7 +4482,7 @@ namespace MyBot.Supporter.Main
                 }
                 x++;
             }
-            Form f = new Form5();
+            Form f = new GenerateProfile();
             f.Show();
             this.Enabled = false;
             f.FormClosing += F_FormClosing;
@@ -4791,6 +4667,370 @@ namespace MyBot.Supporter.Main
 
         }
 
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            Database.Hour = DateTime.Now.Hour; //Set Time
+            Database.Min = DateTime.Now.Minute;
+            Database.Sec = DateTime.Now.Second;
+            int x = 0;
+            foreach (var hardware in computer.Hardware)
+            {
+                if (hardware.HardwareType == HardwareType.CPU)
+                {
+                    hardware.Update();
+                    try
+                    {
+                        AdvanceCPU[x] = hardware.HardwareType + " : " + hardware.Name;
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        x++;
+                    }
+                    foreach (var sensor in hardware.Sensors)
+                    {
+                        HardwareSensor(sensor, x, out x);
+                    }
+                    try
+                    {
+                        AdvanceCPU[x] = "=====================";
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        x++;
+                    }
+
+                }
+                else if (hardware.HardwareType == HardwareType.RAM)
+                {
+                    hardware.Update();
+                    try
+                    {
+                        AdvanceCPU[x] = hardware.HardwareType + " : " + hardware.Name;
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        x++;
+                    }
+                    foreach (var sensor in hardware.Sensors)
+                    {
+                        RAMSensor(sensor, x, out x);
+                    }
+                }
+            }
+            if (AdvanceCPU.Length < x)
+            {
+                Array.Resize(ref AdvanceCPU, x);
+
+            }
+            CPUL = Convert.ToInt16(CPU.NextValue());
+            if (Win32.IsRunable && Database.Network)
+            {
+                try
+                {
+                    Database.Receive = nics.GetIPStatistics().BytesReceived; //Get Received nework data volume
+                    Database.Send = nics.GetIPStatistics().BytesSent; //Get Sended network data volume
+                    Database.newr = Database.Receive;
+                    Database.news = Database.Send;
+                    Database.showr = Database.newr - Database.oldr;
+                    Database.shows = Database.news - Database.olds;
+                    CalSize();
+                    Database.oldr = Database.newr;
+                    Database.olds = Database.news;
+                }
+                catch
+                {
+
+                }
+            }
+            if (CPUL >= 70)
+            {
+                if (Win32.ProcessorIsMaximum)
+                {
+                    Thread set = new Thread(Win32.Power_Minimum);
+                    set.Start();
+                    Win32.ProcessorIsMaximum = false;
+                }
+            }
+            else
+            {
+                if (!Win32.ProcessorIsMaximum)
+                {
+                    Thread set = new Thread(Win32.Power_Maximum);
+                    set.Start();
+                    Win32.ProcessorIsMaximum = true;
+                }
+            }
+        }
+
+        public static bool Pause = false;
+        private void Updator()
+        {
+            Database.WriteLog("Fetching Updates of MyBot.Supporter");
+            try
+            {
+                Ping github = new Ping();
+                var respond = github.Send("www.github.com").Status;
+                if (respond == IPStatus.Success) //Github is usable
+                {
+                    Database.WriteLog("Use Github for checking");
+                    try
+                    {
+                        Assembly assembly = Assembly.GetExecutingAssembly();
+                        FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+                        File.WriteAllText(Database.Location + "CurrentVersion.check", myFileVersionInfo.FileVersion);
+                        ServicePointManager.Expect100Continue = true;
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                        string version = File.ReadAllText(Database.Location + "CurrentVersion.check");
+                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Version.txt";
+                        WebClient wc = new WebClient();
+                        wc.DownloadFile(new Uri(versionfile), Database.Location + "Version.check");
+                        if (version != File.ReadAllText(Database.Location + "Version.check"))
+                        {
+                            if (Run)
+                            {
+                                object sender = new object();
+                                EventArgs e = new EventArgs();
+                                button1_Click(sender, e);
+                                Run = false;
+                                Pause = true;
+                            }
+                            button1.Invoke(new Action(() => button1.Enabled = false));
+                            button1.Invoke(new Action(() => button1.Text = "Updating"));
+                            button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                            MyBotUpdator.Github = true;
+                            Database.SupporterUpdate = true;
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                MyBotUpdator update = new MyBotUpdator();
+                                update.FormClosing += Update_FormClosing;
+                                update.ShowDialog();
+                            });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        File.WriteAllText("error.log", ex.ToString());
+                    }
+                }
+                else //try using Gitee
+                {
+                    Database.WriteLog("Use Gitee for checking");
+                    try
+                    {
+                        Assembly assembly = Assembly.GetExecutingAssembly();
+                        FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+                        File.WriteAllText(Database.Location + "CurrentVersion.check", myFileVersionInfo.FileVersion);
+                        ServicePointManager.Expect100Continue = true;
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                        string version = File.ReadAllText(Database.Location + "CurrentVersion.check");
+                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Version.txt";
+                        WebClient wc = new WebClient();
+                        wc.DownloadFile(new Uri(versionfile), Database.Location + "Version.check");
+                        if (version != File.ReadAllText(Database.Location + "Version.check"))
+                        {
+                            if (Run)
+                            {
+                                object sender = new object();
+                                EventArgs e = new EventArgs();
+                                button1_Click(sender, e);
+                                Run = false;
+                                Pause = true;
+                            }
+                            button1.Invoke(new Action(() => button1.Enabled = false));
+                            button1.Invoke(new Action(() => button1.Text = "Updating"));
+                            button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                            Database.SupporterUpdate = true;
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                MyBotUpdator update = new MyBotUpdator();
+                                update.FormClosing += Update_FormClosing;
+                                update.ShowDialog();
+                            });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        File.WriteAllText("error.log", ex.ToString());
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void Update_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            button1.Invoke(new Action(() => button1.Enabled = true));
+            Database.SupporterUpdate = false;
+            MyBotUpdator.Github = false;
+            MainScreen.ResetUI = true;
+            if (Pause)
+            {
+                object s = new object();
+                EventArgs ev = new EventArgs();
+                button1_Click(s, ev);
+            }
+        }
+
+
+        private void UpdateMyBot()
+        {
+            Database.WriteLog("Checking Update for MyBot.Run");
+            try
+            {
+                Ping github = new Ping();
+                var respond = github.Send("www.github.com").Status;
+                if (respond == IPStatus.Success) //Github is usable
+                {
+                    Database.WriteLog("Using Github for checking");
+                    try
+                    {
+                        string version = "";
+                        if (File.Exists("MyBot.Run.version.au3"))
+                        {
+                            version = File.ReadAllText("MyBot.Run.version.au3");
+                        }
+                        ServicePointManager.Expect100Continue = true;
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;                       
+                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/MyBot.run.version.au3";
+                        WebClient wc = new WebClient();
+                        wc.DownloadFile(new Uri(versionfile), Database.Location + "MyBotVersion.check");
+                        if (version != File.ReadAllText(Database.Location + "MyBotVersion.check"))
+                        {
+                            MyBotUpdator.Github = true;
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                MyBotUpdator update = new MyBotUpdator();
+                                update.FormClosing += Update_FormClosing;
+                                update.ShowDialog();
+                            });
+                            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
+                            {
+                                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
+                                if (MOD.Length > 0)
+                                {
+                                    foreach (var f in MOD)
+                                    {
+                                        File.Delete(f);
+                                    }
+                                    string text = "";
+                                    string caption = "";
+                                    switch (Database.Language)
+                                    {
+                                        case "Chinese":
+                                            text = cn_Lang.CustomizeMODFound;
+                                            caption = cn_Lang.CustomizeMODFoundTitle;
+                                            break;
+                                        case "English":
+                                            text = en_Lang.CustomizeMODFound;
+                                            caption = en_Lang.CustomizeMODFoundTitle;
+                                            break;
+                                    }
+                                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        this.Invoke((MethodInvoker)delegate ()
+                                        {
+                                            MyBotSetter set = new MyBotSetter();
+                                            set.ShowDialog();
+                                        });
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        File.WriteAllText("error.log", ex.ToString());
+                    }
+                }
+                else //try using Gitee
+                {
+                    Database.WriteLog("Using Gitee for checking");
+                    try
+                    {
+                        string version = "";
+                        if (File.Exists("MyBot.Run.version.au3"))
+                        {
+                            version = File.ReadAllText("MyBot.Run.version.au3");
+                        }
+                        ServicePointManager.Expect100Continue = true;
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/MyBot.run.version.au3";
+                        WebClient wc = new WebClient();
+                        wc.DownloadFile(new Uri(versionfile), Database.Location + "MyBotVersion.check");
+                        if (version != File.ReadAllText(Database.Location + "MyBotVersion.check"))
+                        {
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                MyBotUpdator update = new MyBotUpdator();
+                                update.FormClosing += Update_FormClosing;
+                                update.ShowDialog();
+                            });
+                            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
+                            {
+                                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
+                                if (MOD.Length > 0)
+                                {
+                                    foreach (var f in MOD)
+                                    {
+                                        File.Delete(f);
+                                    }
+                                    string text = "";
+                                    string caption = "";
+                                    switch (Database.Language)
+                                    {
+                                        case "Chinese":
+                                            text = cn_Lang.CustomizeMODFound;
+                                            caption = cn_Lang.CustomizeMODFoundTitle;
+                                            break;
+                                        case "English":
+                                            text = en_Lang.CustomizeMODFound;
+                                            caption = en_Lang.CustomizeMODFoundTitle;
+                                            break;
+                                    }
+                                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        this.Invoke((MethodInvoker)delegate ()
+                                        {
+                                            MyBotSetter set = new MyBotSetter();
+                                            set.ShowDialog();
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        File.WriteAllText("error.log", ex.ToString());
+                    }
+                }
+                
+                
+            }
+            catch
+            {
+
+            }
+        }
         //Open file and let user choose an exe file to set into Other program AutoRun system
         #region OpenFileDialog
         private void OpenApplication(TextBox textbox)
@@ -4907,15 +5147,16 @@ namespace MyBot.Supporter.Main
                                 MessageBox.Show(cn_Lang.ProfileNotFound1 + Temp[0] + cn_Lang.ProfileNotFound2);
                                 break;
                         }
-                        break;
                         t = false;
+                        break;
+
                     }
                 }
                 x++;
             }
             return t;
         }
-        public static List<Process> getFileProcesses(string strFile)
+        /*public static List<Process> getFileProcesses(string strFile)
         {
             Process myProcess;
             List<Process> myProcessArray = new List<Process>();
@@ -4942,15 +5183,15 @@ namespace MyBot.Supporter.Main
                             }
                         }
                     }
-                    catch (Exception exception)
+                    catch
                     {
-                        //MsgBox(("Error : " & exception.Message)) 
+
                     }
                 }
             }
 
             return myProcessArray;
-        }
+        }*/
     }
     
 }

@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net.NetworkInformation;
-using System.Threading;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
-using System.Text;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
-using System.Linq;
-using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.IO.Compression;
-using System.ComponentModel;
 
 namespace MyBot.Supporter.Main
 {
     public class Database //Save most public use values
     {
         //Networks
+        public static bool SupporterUpdate;
         public static long Receive, Send;
         public static string NetName, Receive_size, Send_size, rsize, ssize;
         public static double Receive_Print, Send_Print, newr, news, oldr, olds, showr, shows;
@@ -46,7 +40,7 @@ namespace MyBot.Supporter.Main
         public static bool hide, hideEmulator, dock, OnBattery;
         public static string[] Profile;
         //Functions that seperated from original form to prevent crackers
-        public static async void WriteLog(string Log)
+        public static void WriteLog(string Log)
         {
             if (File.Exists("debug.txt"))
             {
@@ -125,10 +119,10 @@ namespace MyBot.Supporter.Main
         public static void Load_()
         {
             WriteLog("Starting Loading Screen");
-            var load = new Form4();
+            var load = new SplashScreen();
             load.ShowDialog();
         }
-        public static void Tutorial(bool net, string link)
+        /*public static void Tutorial(bool net, string link)
         {
             WriteLog("Starting Tutorial");
             if (net == true)
@@ -150,12 +144,12 @@ namespace MyBot.Supporter.Main
 
                 }
             }
-        }
-        public static string DownloadFolder()
+        }*/
+        /*public static string DownloadFolder()
         {
             WriteLog("Fetching Download Folder Path");
             return Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", string.Empty).ToString();
-        }
+        }*/
         public static List<string> CSVcode = new List<string>();
         public static void enabled(Control c,bool e)
         {
@@ -199,7 +193,7 @@ namespace MyBot.Supporter.Main
             {
                 xi = xi + " ";
             }
-            CSVcode.Add(i + "|" + ii + "|" + iii + "|" + iv + "|" + v + "|" + vi + "|" + vii + "|" + viii + "|" + xi + "|,,,");
+            CSVcode.Add(i + "|" + ii + "|" + iii + "|" + iv + "|" + v + "|" + vi + "|" + vii + "|" + viii + "|" + xi + "|");
         }
         public static void CSVcodeReplace(int index, string i, string ii, string iii, string iv, string v, string vi, string vii, string viii, string xi)
         {
@@ -239,7 +233,7 @@ namespace MyBot.Supporter.Main
             {
                 xi = xi + " ";
             }
-            CSVcode[index] = CSVcode[index] + Environment.NewLine + i + "|" + ii + "|" + iii + "|" + iv + "|" + v + "|" + vi + "|" + vii + "|" + viii + "|" + xi + "|,,,";
+            CSVcode[index] = CSVcode[index] + Environment.NewLine + i + "|" + ii + "|" + iii + "|" + iv + "|" + v + "|" + vi + "|" + vii + "|" + viii + "|" + xi + "|";
         }
         public static void WriteAllCode(string path)
         {
@@ -314,6 +308,7 @@ namespace MyBot.Supporter.Main
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
+       
     }
     class Win32 //Win32 controllers, included power management, search for emulators, Get .NET versions and also taskbar hider
     {
@@ -517,7 +512,7 @@ namespace MyBot.Supporter.Main
         public static void GetEmulator()
         {
             Database.loadingprocess = 0;
-            Array.Resize(ref Database.Emulator, 20);
+            Array.Resize(ref Database.Emulator, 5);
             Database.Emulator[0] = "";
             DirectoryInfo di = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
             var subdirectory = di.GetDirectories().Where(d => (d.Attributes & FileAttributes.ReparsePoint) == 0 && (d.Attributes & FileAttributes.System) == 0);
@@ -710,7 +705,7 @@ namespace MyBot.Supporter.Main
             }
             else
             {
-                Form5 f = new Form5();
+                GenerateProfile f = new GenerateProfile();
                 f.Show();
             }
         }

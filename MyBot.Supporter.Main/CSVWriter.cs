@@ -14,6 +14,7 @@ namespace MyBot.Supporter.Main
     public partial class CSVWriter : Form
     {
         static int SelectedLine = -1;
+        static bool IsEditing;
         public CSVWriter()
         {
             InitializeComponent();
@@ -21,14 +22,15 @@ namespace MyBot.Supporter.Main
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if(SelectedLine == Database.CSVcode.Count - 1)
+            IsEditing = false;
+            if (SelectedLine == Database.CSVcode.Count - 1)
             {
                 Database.CSVcodeAdd("SIDE", numericUpDown5.Value.ToString(), numericUpDown6.Value.ToString(), numericUpDown7.Value.ToString(), numericUpDown8.Value.ToString(), numericUpDown9.Value.ToString(), numericUpDown10.Value.ToString(), numericUpDown11.Value.ToString(), "         ");
                 SelectedLine++;
             }
             else
             {
-                Database.CSVcodeReplace(SelectedLine, "SIDE", numericUpDown5.Value.ToString(), numericUpDown6.Value.ToString(), numericUpDown7.Value.ToString(), numericUpDown8.Value.ToString(), numericUpDown9.Value.ToString(), numericUpDown10.Value.ToString(), numericUpDown11.Value.ToString(), "         ");
+                Database.CSVcodeReplace(SelectedLine+1, "SIDE", numericUpDown5.Value.ToString(), numericUpDown6.Value.ToString(), numericUpDown7.Value.ToString(), numericUpDown8.Value.ToString(), numericUpDown9.Value.ToString(), numericUpDown10.Value.ToString(), numericUpDown11.Value.ToString(), "         ");
             }
             Database.enabled(groupBox3, false);
             Database.enabled(groupBox4, true);
@@ -37,6 +39,7 @@ namespace MyBot.Supporter.Main
 
         private void button10_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             if (textBox1.Text.Length > 0)
             {
                 File.Create("CSV\\Attack\\" + textBox1.Text + ".csv");
@@ -60,6 +63,7 @@ namespace MyBot.Supporter.Main
 
         private void button2_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "CSV script|*.csv";
             openFile.Title = "!!!";
@@ -80,7 +84,8 @@ namespace MyBot.Supporter.Main
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if(SelectedLine == Database.CSVcode.Count - 1)
+            IsEditing = false;
+            if (SelectedLine == Database.CSVcode.Count - 1)
             {
                 Database.CSVcodeAdd("      ", "EAGLE      ", "INFERNO    ", "XBOW       ", "WIZTOWER   ", "MORTAR     ", "AIRDEFENSE ", "GEMBOX     ", "GEMBOX     ");
                 Database.CSVcodeAdd("SIDEB", numericUpDown18.Value.ToString(), numericUpDown17.Value.ToString(), numericUpDown16.Value.ToString(), numericUpDown15.Value.ToString(), numericUpDown14.Value.ToString(), numericUpDown13.Value.ToString(), " ", " ");
@@ -91,7 +96,7 @@ namespace MyBot.Supporter.Main
             }
             else
             {
-                Database.CSVcodeReplace(SelectedLine,"SIDEB", numericUpDown18.Value.ToString(), numericUpDown17.Value.ToString(), numericUpDown16.Value.ToString(), numericUpDown15.Value.ToString(), numericUpDown14.Value.ToString(), numericUpDown13.Value.ToString(), " ", " ");
+                Database.CSVcodeReplace(SelectedLine+1,"SIDEB", numericUpDown18.Value.ToString(), numericUpDown17.Value.ToString(), numericUpDown16.Value.ToString(), numericUpDown15.Value.ToString(), numericUpDown14.Value.ToString(), numericUpDown13.Value.ToString(), " ", " ");
                 Database.enabled(groupBox4, false);
                 Database.enabled(groupBox1, true);
             }
@@ -99,7 +104,8 @@ namespace MyBot.Supporter.Main
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if(SelectedLine == Database.CSVcode.Count - 1)
+            IsEditing = false;
+            if (SelectedLine == Database.CSVcode.Count - 1)
             {
                 Database.CSVcodeAdd("      ", "VECTOR_____", "SIDE_______", "DROP_POINTS", "ADDTILES___", "VERSUS_____", "RANDOMX_PX_", "RANDOMY_PX_", "___________");
                 Database.enabled(groupBox4, false);
@@ -111,6 +117,7 @@ namespace MyBot.Supporter.Main
 
         private void button3_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             string side = "";
             switch (comboBox1.SelectedIndex)
             {
@@ -148,7 +155,6 @@ namespace MyBot.Supporter.Main
                         MessageBox.Show("进攻方向未设置！");
                     }
                     return;
-                    break;
             }
             string versus = "";
             switch (comboBox2.SelectedIndex)
@@ -172,7 +178,6 @@ namespace MyBot.Supporter.Main
                         MessageBox.Show("下兵方向未设置！");
                     }
                     return;
-                    break;
             }
             string build = "";
             switch (comboBox3.SelectedIndex)
@@ -209,14 +214,24 @@ namespace MyBot.Supporter.Main
             else
             {
                 string[] temp = Database.CSVcode[SelectedLine].Split('|');
-                Database.alp = temp[1].ToCharArray()[0];
-                Database.CSVcodeReplace(SelectedLine,"MAKE", Database.alp.ToString(), side, numericUpDown1.Value.ToString(), numericUpDown2.Value.ToString(), versus, numericUpDown3.Value.ToString(), numericUpDown4.Value.ToString(), build);
+                if(temp.Length > 5)
+                {
+                    Database.alp = temp[1].ToCharArray()[0];
+                    Database.CSVcodeReplace(SelectedLine + 1, "MAKE", Database.alp.ToString(), side, numericUpDown1.Value.ToString(), numericUpDown2.Value.ToString(), versus, numericUpDown3.Value.ToString(), numericUpDown4.Value.ToString(), build);
+                }
+                else
+                {
+                    Database.CSVcodeReplace(SelectedLine + 1, "MAKE", Database.alp.ToString(), side, numericUpDown1.Value.ToString(), numericUpDown2.Value.ToString(), versus, numericUpDown3.Value.ToString(), numericUpDown4.Value.ToString(), build);
+                    Database.alplist.Add(Database.alp.ToString());
+                    Database.alp++;
+                }
             }
             textBox2.Text = Database.alp.ToString();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             if (Database.alp > 'A')
             {
                 Database.CSVcodeAdd("      ", "VECTOR_____", "INDEX______", "QTY_X_VECT_", "TROOPNAME__", "DELAY_DROP_", "DELAYCHANGE", "SLEEPAFTER_", "SLEEPBEFORE");
@@ -243,6 +258,7 @@ namespace MyBot.Supporter.Main
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             if (textBox5.Text != "" && textBox6.Text != "" && textBox7.Text != "" && textBox8.Text != "" && comboBox5.SelectedItem != null)
             {
                 string troops = "";
@@ -357,7 +373,6 @@ namespace MyBot.Supporter.Main
                             MessageBox.Show("下兵位置未设置！");
                         }
                         return;
-                        break;
                 }
                 if (SelectedLine == Database.CSVcode.Count - 1)
                 {
@@ -366,7 +381,7 @@ namespace MyBot.Supporter.Main
                 }
                 else
                 {
-                    Database.CSVcodeReplace(SelectedLine, "DROP ", comboBox5.SelectedItem.ToString(), textBox4.Text, textBox5.Text, troops, textBox6.Text, textBox7.Text, textBox8.Text, "    ");
+                    Database.CSVcodeReplace(SelectedLine+1, "DROP ", comboBox5.SelectedItem.ToString(), textBox4.Text, textBox5.Text, troops, textBox6.Text, textBox7.Text, textBox8.Text, "    ");
                 }
             }
             else
@@ -384,49 +399,67 @@ namespace MyBot.Supporter.Main
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if(Database.CSVcode.Count - 1 == SelectedLine)
+            IsEditing = false;
+            if (Database.CSVcode.Count - 1 == SelectedLine)
             {
                 Database.CSVcodeAdd("RECALC", "", "", "", "", "", "", "", "");
                 SelectedLine++;
             }
             else
             {
-                Database.CSVcodeReplace(SelectedLine,"RECALC", "", "", "", "", "", "", "", "");
+                Database.CSVcodeReplace(SelectedLine+1,"RECALC", "", "", "", "", "", "", "", "");
             }
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             Database.WriteAllCode(textBox1.Text);
             Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            richTextBox1.Lines = Database.CSVcode.ToArray();
-            if (SelectedLine > -1 && Database.CSVcode.Count > 0 && SelectedLine < Database.CSVcode.Count)
+            if (IsEditing)
             {
-                textBox3.Text = Database.CSVcode[SelectedLine];
+                Database.CSVcode = richTextBox1.Lines.ToList();
+                SelectedLine = richTextBox1.GetLineFromCharIndex(richTextBox1.Text.IndexOf(richTextBox1.SelectedText));
+            }
+            else
+            {
+                richTextBox1.Lines = Database.CSVcode.ToArray();
+                if (SelectedLine > -1 && Database.CSVcode.Count > 0 && SelectedLine < Database.CSVcode.Count)
+                {
+                    textBox3.Text = Database.CSVcode[SelectedLine];
+                }
             }
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if(SelectedLine == Database.CSVcode.Count - 1)
+            IsEditing = false;
+            if (SelectedLine == Database.CSVcode.Count - 1)
             {
                 Database.CSVcodeAdd("      ", "EXTR. GOLD", "EXTR.ELIXIR", "EXTR. DARK", "DEPO. GOLD", "DEPO.ELIXIR", "DEPO. DARK", "TOWNHALL", "         ");
                 Database.enabled(groupBox5, false);
                 Database.enabled(groupBox3, true);
                 SelectedLine++;
             }
-
+            else
+            {
+                Database.CSVcodeReplace(SelectedLine, "      ", "EXTR. GOLD", "EXTR.ELIXIR", "EXTR. DARK", "DEPO. GOLD", "DEPO.ELIXIR", "DEPO. DARK", "TOWNHALL", "         ");
+                Database.enabled(groupBox5, false);
+                Database.enabled(groupBox3, true);
+                SelectedLine++;
+            }
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             if (textBox9.Text.Length > 0)
             {
-                if (SelectedLine > Database.CSVcode.Count - 1)
+                if (SelectedLine == Database.CSVcode.Count - 1)
                 {
                     Database.CSVcode.Add("NOTE |" + textBox9.Text);
                     SelectedLine++;
@@ -803,6 +836,7 @@ namespace MyBot.Supporter.Main
 
         private void label18_MouseHover(object sender, EventArgs e)
         {
+            IsEditing = false;
             string shows = "";
             if (Database.Language == "English")
             {
@@ -818,73 +852,82 @@ namespace MyBot.Supporter.Main
         }
         private void button13_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             if (Database.CSVcode.Count > 0)
             {
-                if(SelectedLine == Database.CSVcode.Count-1)
+                try
                 {
-                    if (Database.CSVcode[Database.CSVcode.Count - 1].Split('|').Contains("INDEX______"))
+                    if (SelectedLine == Database.CSVcode.Count - 1)
                     {
-                        groupBox1.Enabled = true;
-                        groupBox2.Enabled = false;
-                    }
-                    else if (Database.CSVcode[Database.CSVcode.Count - 1].Split('|').Contains("SIDE_______"))
-                    {
-                        Database.alp = 'A';
-                        Database.alplist.Clear();
-                        textBox2.Text = Database.alp.ToString();
-                        foreach (var i in comboBox5.Items)
+                        if (Database.CSVcode[Database.CSVcode.Count - 1].Split('|').Contains("INDEX______"))
                         {
-                            if (i != null)
-                            {
-                                comboBox5.Items.Remove(i);
-                            }
+                            groupBox1.Enabled = true;
+                            groupBox2.Enabled = false;
                         }
-                        groupBox1.Enabled = false;
-                        groupBox3.Enabled = true;
+                        else if (Database.CSVcode[Database.CSVcode.Count - 1].Split('|').Contains("SIDE_______"))
+                        {
+                            Database.alp = 'A';
+                            Database.alplist.Clear();
+                            textBox2.Text = Database.alp.ToString();
+                            foreach (var i in comboBox5.Items)
+                            {
+                                if (i != null)
+                                {
+                                    comboBox5.Items.Remove(i);
+                                }
+                            }
+                            groupBox1.Enabled = false;
+                            groupBox3.Enabled = true;
+                        }
+                        else if (Database.CSVcode[Database.CSVcode.Count - 1].Split('|').Contains("EXTR.ELIXIR"))
+                        {
+                            groupBox3.Enabled = false;
+                            groupBox5.Enabled = true;
+                        }
+                        Database.CSVcode.RemoveAt(Database.CSVcode.Count - 1);
+                        SelectedLine--;
                     }
-                    else if (Database.CSVcode[Database.CSVcode.Count - 1].Split('|').Contains("EXTR.ELIXIR"))
+                    else
                     {
-                        groupBox3.Enabled = false;
-                        groupBox5.Enabled = true;
+                        if (Database.CSVcode[SelectedLine].Split('|').Contains("INDEX______"))
+                        {
+                            groupBox1.Enabled = true;
+                            groupBox2.Enabled = false;
+                        }
+                        else if (Database.CSVcode[SelectedLine].Split('|').Contains("SIDE_______"))
+                        {
+                            Database.alp = 'A';
+                            Database.alplist.Clear();
+                            textBox2.Text = Database.alp.ToString();
+                            foreach (var i in comboBox5.Items)
+                            {
+                                if (i != null)
+                                {
+                                    comboBox5.Items.Remove(i);
+                                }
+                            }
+                            groupBox1.Enabled = false;
+                            groupBox3.Enabled = true;
+                        }
+                        else if (Database.CSVcode[SelectedLine].Split('|').Contains("EXTR.ELIXIR"))
+                        {
+                            groupBox3.Enabled = false;
+                            groupBox5.Enabled = true;
+                        }
+                        Database.CSVcode.RemoveAt(SelectedLine + 1);
                     }
-                    Database.CSVcode.RemoveAt(Database.CSVcode.Count - 1);
-                    SelectedLine--;
                 }
-                else
+                catch (Exception ex)
                 {
-                    if (Database.CSVcode[SelectedLine].Split('|').Contains("INDEX______"))
-                    {
-                        groupBox1.Enabled = true;
-                        groupBox2.Enabled = false;
-                    }
-                    else if (Database.CSVcode[SelectedLine].Split('|').Contains("SIDE_______"))
-                    {
-                        Database.alp = 'A';
-                        Database.alplist.Clear();
-                        textBox2.Text = Database.alp.ToString();
-                        foreach (var i in comboBox5.Items)
-                        {
-                            if (i != null)
-                            {
-                                comboBox5.Items.Remove(i);
-                            }
-                        }
-                        groupBox1.Enabled = false;
-                        groupBox3.Enabled = true;
-                    }
-                    else if (Database.CSVcode[SelectedLine].Split('|').Contains("EXTR.ELIXIR"))
-                    {
-                        groupBox3.Enabled = false;
-                        groupBox5.Enabled = true;
-                    }
-                    Database.CSVcode.RemoveAt(SelectedLine + 1);
+                    File.WriteAllText(ex.ToString(), "error.log");
                 }
             }
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedIndex != null)
+            IsEditing = false;
+            if (comboBox3.SelectedText != null)
             {
                 comboBox2.SelectedIndex = 2;
             }
@@ -898,31 +941,37 @@ namespace MyBot.Supporter.Main
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
+            IsEditing = false;
             Database.OnlyNum(e,toolTip1,textBox4);
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
+            IsEditing = false;
             Database.OnlyNum(e, toolTip1, textBox5);
         }
 
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
+            IsEditing = false;
             Database.OnlyNum(e, toolTip1, textBox6);
         }
 
         private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
         {
+            IsEditing = false;
             Database.OnlyNum(e, toolTip1, textBox7);
         }
 
         private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
         {
+            IsEditing = false;
             Database.OnlyNum(e, toolTip1, textBox8);
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
+            IsEditing = false;
             if (Database.CSVcode.Count > 0)
             {
                 if (Database.CSVcode[SelectedLine].Split('|').Contains("INDEX______"))
@@ -958,7 +1007,7 @@ namespace MyBot.Supporter.Main
 
         private void button15_Click(object sender, EventArgs e)
         {
-
+            IsEditing = false;
             if (SelectedLine < Database.CSVcode.Count)
             {
                 SelectedLine++;
@@ -988,6 +1037,112 @@ namespace MyBot.Supporter.Main
                     groupBox5.Enabled = false;
                 }
             }
+        }
+
+        private void numericUpDown11_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button5_Click(sender, e);
+            }
+        }
+
+        private void numericUpDown13_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button6_Click(sender, e);
+            }
+        }
+
+        private void comboBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button3_Click(sender, e);
+            }
+        }
+
+        private void textBox9_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button12_Click(sender, e);
+            }
+        }
+
+        private void textBox8_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
+        }
+
+        private void richTextBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            IsEditing = true;
+            if (Database.CSVcode.Count > 0 && SelectedLine < Database.CSVcode.Count)
+            {
+                textBox3.Text = Database.CSVcode[SelectedLine];
+            }
+        }
+
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            IsEditing = true;
+            if(e.KeyCode == Keys.Enter)
+            {
+                SelectedLine++;
+            }
+        }
+
+        private void label5_MouseHover(object sender, EventArgs e)
+        {
+            string shows = "";
+            if (Database.Language == "English")
+            {
+                shows = "Distance From Redlines";
+            }
+            else
+            {
+                shows = "距离红线";
+            }
+            toolTip1.Show(shows, label5);
+            Task.Delay(5000);
+            toolTip1.Hide(label5);
+        }
+
+        private void label4_MouseHover(object sender, EventArgs e)
+        {
+            string shows = "";
+            if (Database.Language == "English")
+            {
+                shows = "Distance between troops, more smaller the troop will drop between further";
+            }
+            else
+            {
+                shows = "兵与兵之间的距离，数字越小兵分开越远";
+            }
+            toolTip1.Show(shows, label4);
+            Task.Delay(5000);
+            toolTip1.Hide(label4);
+        }
+
+        private void label3_MouseHover(object sender, EventArgs e)
+        {
+            string shows = "";
+            if (Database.Language == "English")
+            {
+                shows = "The side that is used after calculated which side is the main attack side. Such as the main side's right side, the main side's left side and so on!";
+            }
+            else
+            {
+                shows = "兵的进攻方向，经过主攻位置判断后，兵要从主攻位置的前左方，前右方，还是其他别的地方开始打";
+            }
+            toolTip1.Show(shows, label3);
+            Task.Delay(5000);
+            toolTip1.Hide(label3);
         }
     }
 }

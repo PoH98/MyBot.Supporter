@@ -258,6 +258,10 @@ namespace MyBot.Supporter.Main
                         code[x] = c + Environment.NewLine + "Global $g_abChkExtendedAttackBar[2] = [True, True]" + Environment.NewLine + "Global $g_iTotalAttackSlot = 10, $g_bDraggedAttackBar = False";
                         break;
                     }
+                    else if (c.Contains("Global $g_avAttackTroops[12][2]"))
+                    {
+                        code[x] = "Global $g_avAttackTroops[22][2]";
+                    }
                     x++;
                 }
                 File.WriteAllLines(Environment.CurrentDirectory + "\\COCBot\\MBR Global Variables.au3", code);
@@ -324,6 +328,10 @@ namespace MyBot.Supporter.Main
                     {
                         code[x] = c + Environment.NewLine + "$g_iTotalAttackSlot = 10"+ Environment.NewLine +"$g_bDraggedAttackBar = False";
                     }
+                    else if (c.Contains("Local $result = AttackBarCheck($Remaining)"))
+                    {
+                        code[x] = "Local $result = AttackBarCheck($Remaining, $pMatchMode)";
+                    }
                     else if (c.Contains("If $result <> \"\" Then"))
                     {
                         code[x] = "If $pMatchMode <= $LB Then" + Environment.NewLine + "If $g_abChkExtendedAttackBar[$pMatchMode] Then" + Environment.NewLine + "ReDim $aTemp[22][3]" + Environment.NewLine + "ReDim $g_avAttackTroops[22][2]" + Environment.NewLine + "EndIf" + Environment.NewLine + "EndIf" + Environment.NewLine + c;
@@ -389,17 +397,16 @@ namespace MyBot.Supporter.Main
                 code = File.ReadAllLines(Environment.CurrentDirectory + "\\COCBot\\functions\\Image Search\\imglocAttackBar.au3");
                 foreach (var c in code)
                 {
-                    if (c.Contains("$g_iLSpellLevel = 1"))
+                    if (c.Contains("$g_iLSpellLevel = 1") && x > 37 && x < 42)
                     {
                         code[x] = "If $g_bDraggedAttackBar Then DragAttackBar($g_iTotalAttackSlot, True)" + Environment.NewLine + c;
-                        break;
+                        
                     }
-                    x++;
-                }
-                x = 0;
-                foreach(var c in code)
-                {
-                    if (c.Contains("$strinToReturn &= \"|\" & TroopIndexLookup($aResult[$i][0]) & \"#\" & $aResult[$i][4] & \"#\" & $aResult[$i][3]"))
+                    else if (c.Contains("Func AttackBarCheck($Remaining = False)") && x > 25 && x < 30)
+                    {
+                        code[x] = "Func AttackBarCheck($Remaining = False, $pMatchMode = $DB)";
+                    }
+                    else if (c.Contains("$strinToReturn &= \"|\" & TroopIndexLookup($aResult[$i][0]) & \"#\" & $aResult[$i][4] & \"#\" & $aResult[$i][3]"))
                     {
                         code[x] = "If $aResult[$i][4] <= 10 Then" + Environment.NewLine + "$strinToReturn &= \"|\" & TroopIndexLookup($aResult[$i][0]) & \"#\" & $aResult[$i][4] & \"#\" & $aResult[$i][3]" + Environment.NewLine + "EndIf";
                     }
