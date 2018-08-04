@@ -34,7 +34,7 @@ namespace MyBot.Supporter.Main
         }
         private static void DownloadUpdate2()//Gitee
         {
-            string UpdateLink = "https://gitee.com/PoH98/MyBot..Supporter.Main/raw/master/MyBot.Supporter.Main.exe";
+            string UpdateLink = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/MyBot.Supporter.Main.exe";
             using (var client = new WebClient())
             {
                 client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
@@ -73,7 +73,7 @@ namespace MyBot.Supporter.Main
         private static void DownloadMyBotUpdate2()//Gitee
         {
 
-            string UpdateLink = "https://gitee.com/PoH98/MyBot.Supporter/blob/master/MyBot-MBR.zip";
+            string UpdateLink = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/MyBot-MBR.zip";
             using (var client = new WebClient())
             {
                 client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
@@ -97,6 +97,14 @@ namespace MyBot.Supporter.Main
 
         private void MyBotUpdator_Load(object sender, EventArgs e)
         {
+            if (File.Exists(Database.Location + "MyBot.Supporter.Main.exe"))
+            {
+                File.Delete(Database.Location + "MyBot.Supporter.Main.exe");
+            }
+            if (File.Exists(Database.Location + "MyBot.Run.zip"))
+            {
+                File.Delete(Database.Location + "MyBot.Run.zip");
+            }
             if (Database.SupporterUpdate)
             {
                 switch (Database.Language)
