@@ -35,13 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl4 = new System.Windows.Forms.TabControl();
@@ -225,14 +218,12 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.checkBox22 = new System.Windows.Forms.CheckBox();
             this.checkBox20 = new System.Windows.Forms.CheckBox();
             this.label80 = new System.Windows.Forms.Label();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.checkBox21 = new System.Windows.Forms.CheckBox();
             this.checkBox19 = new System.Windows.Forms.CheckBox();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
@@ -248,8 +239,6 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl3.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabControl4.SuspendLayout();
@@ -432,118 +421,12 @@
             // 
             // tabControl3
             // 
-            this.tabControl3.Controls.Add(this.tabPage7);
             this.tabControl3.Controls.Add(this.tabPage8);
             this.tabControl3.Location = new System.Drawing.Point(206, 6);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
             this.tabControl3.Size = new System.Drawing.Size(480, 402);
             this.tabControl3.TabIndex = 5;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.groupBox2);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(472, 376);
-            this.tabPage7.TabIndex = 0;
-            this.tabPage7.Text = "部落城堡";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Controls.Add(this.checkedListBox2);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.checkedListBox1);
-            this.groupBox2.Location = new System.Drawing.Point(3, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(476, 364);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "注射MyBot捐兵设置";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(98, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "注射捐赠兵种";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // checkedListBox2
-            // 
-            this.checkedListBox2.Enabled = false;
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
-            "闪电",
-            "治疗",
-            "狂暴",
-            "弹跳",
-            "冰冻",
-            "毒药",
-            "地震",
-            "极速",
-            "骷髅"});
-            this.checkedListBox2.Location = new System.Drawing.Point(239, 55);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(228, 304);
-            this.checkedListBox2.TabIndex = 3;
-            this.checkedListBox2.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox2_ItemCheck);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(236, 39);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(67, 13);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "捐赠药水：";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 39);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(67, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "捐赠兵种：";
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.Enabled = false;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "野蛮人",
-            "弓箭手",
-            "哥布林",
-            "炸弹人",
-            "巨人",
-            "气球",
-            "法师",
-            "天使",
-            "龙",
-            "皮卡超人",
-            "龙宝",
-            "矿工",
-            "亡灵",
-            "野猪骑士",
-            "武神",
-            "石头人",
-            "女巫",
-            "熔岩烈犬",
-            "投石",
-            "雷电飞龙"});
-            this.checkedListBox1.Location = new System.Drawing.Point(5, 55);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(228, 304);
-            this.checkedListBox1.TabIndex = 0;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
             // tabPage8
             // 
@@ -2733,7 +2616,7 @@
             // 
             // numericUpDown73
             // 
-            this.numericUpDown73.Location = new System.Drawing.Point(82, 148);
+            this.numericUpDown73.Location = new System.Drawing.Point(152, 148);
             this.numericUpDown73.Maximum = new decimal(new int[] {
             12,
             0,
@@ -2745,7 +2628,7 @@
             0,
             0});
             this.numericUpDown73.Name = "numericUpDown73";
-            this.numericUpDown73.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown73.Size = new System.Drawing.Size(70, 20);
             this.numericUpDown73.TabIndex = 8;
             this.numericUpDown73.Value = new decimal(new int[] {
             6,
@@ -2858,7 +2741,6 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.checkBox22);
             this.groupBox9.Controls.Add(this.checkBox20);
             this.groupBox9.Controls.Add(this.label80);
             this.groupBox9.Controls.Add(this.checkBox18);
@@ -2870,18 +2752,6 @@
             this.groupBox9.TabIndex = 3;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "恢复";
-            // 
-            // checkBox22
-            // 
-            this.checkBox22.AutoSize = true;
-            this.checkBox22.Enabled = false;
-            this.checkBox22.Location = new System.Drawing.Point(6, 111);
-            this.checkBox22.Name = "checkBox22";
-            this.checkBox22.Size = new System.Drawing.Size(181, 17);
-            this.checkBox22.TabIndex = 8;
-            this.checkBox22.Text = "移除Demen 11+兵种下兵 MOD";
-            this.checkBox22.UseVisualStyleBackColor = true;
-            this.checkBox22.Visible = false;
             // 
             // checkBox20
             // 
@@ -2938,7 +2808,6 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.checkBox21);
             this.groupBox8.Controls.Add(this.checkBox19);
             this.groupBox8.Controls.Add(this.checkBox17);
             this.groupBox8.Controls.Add(this.checkBox15);
@@ -2949,17 +2818,6 @@
             this.groupBox8.TabIndex = 2;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "MOD";
-            // 
-            // checkBox21
-            // 
-            this.checkBox21.AutoSize = true;
-            this.checkBox21.Location = new System.Drawing.Point(6, 111);
-            this.checkBox21.Name = "checkBox21";
-            this.checkBox21.Size = new System.Drawing.Size(157, 17);
-            this.checkBox21.TabIndex = 6;
-            this.checkBox21.Text = "Demen 11+兵种下兵 MOD";
-            this.checkBox21.UseVisualStyleBackColor = true;
-            this.checkBox21.Visible = false;
             // 
             // checkBox19
             // 
@@ -3109,9 +2967,6 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl3.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -3233,13 +3088,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox Profile;
         private System.Windows.Forms.TabControl tabControl3;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TabControl tabControl4;
@@ -3441,7 +3289,5 @@
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.CheckBox checkBox20;
         private System.Windows.Forms.CheckBox checkBox19;
-        private System.Windows.Forms.CheckBox checkBox22;
-        private System.Windows.Forms.CheckBox checkBox21;
     }
 }

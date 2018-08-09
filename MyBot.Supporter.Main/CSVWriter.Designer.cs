@@ -459,6 +459,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(92, 20);
             this.textBox6.TabIndex = 19;
+            this.textBox6.Text = "50-70";
             this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
             // 
             // textBox8
@@ -467,6 +468,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(72, 20);
             this.textBox8.TabIndex = 18;
+            this.textBox8.Text = "50-70";
             this.textBox8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox8_KeyDown);
             this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox8_KeyPress);
             // 
@@ -476,6 +478,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(81, 20);
             this.textBox7.TabIndex = 17;
+            this.textBox7.Text = "50-70";
             this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox7_KeyPress);
             // 
             // textBox5
@@ -484,6 +487,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(73, 20);
             this.textBox5.TabIndex = 15;
+            this.textBox5.Text = "1-2";
             this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
             // textBox4
@@ -492,6 +496,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(73, 20);
             this.textBox4.TabIndex = 14;
+            this.textBox4.Text = "0-10";
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // comboBox4
@@ -510,6 +515,7 @@
             "Pekka",
             "BabyDragon",
             "Miner",
+            "Electric Dragon",
             "Minion",
             "Hog Rider",
             "Valkyrie",
@@ -521,6 +527,8 @@
             "Archer Queen",
             "Grand Warden",
             "Clan Castle",
+            "Wall Wrecker",
+            "Battle Blimp",
             "Lightning Spell",
             "Heal Spell",
             "Rage Spell",
@@ -1003,8 +1011,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(561, 569);
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "Waiting for input";
-            this.richTextBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.richTextBox1_MouseClick);
-            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
             // groupBox5
             // 

@@ -55,33 +55,59 @@ namespace MyBot.Supporter.Main
                 MessageBox.Show("Please select a valid language!");
                 return;
             }
-            if (Directory.Exists(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles"))
-            {
-                string[] Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
-                Array.Resize(ref Database.Bot, 44);
-                int x = 0;
-                foreach (var profile in Profiles)
-                {
-                    try
-                    {
-                        var name = profile.Remove(0, profile.LastIndexOf('\\') + 1);
-                        Database.Bot[x] = name;
-                        x++;
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                }
-                GenerateProfile f = new GenerateProfile();
-                f.Show();
-                f.FormClosing += F_FormClosing;
-            }
-            panel1.Visible = false;
             if (!File.Exists("MyBot.Run.exe"))
             {
                 panel2.Visible = true;
             }
+            else
+            {
+                if (Directory.Exists(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles"))
+                {
+                    string[] Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
+                    Array.Resize(ref Database.Bot, 44);
+                    int x = 0;
+                    foreach (var profile in Profiles)
+                    {
+                        try
+                        {
+                            var name = profile.Remove(0, profile.LastIndexOf('\\') + 1);
+                            Database.Bot[x] = name;
+                            x++;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+                    GenerateProfile f = new GenerateProfile();
+                    f.Show();
+                    f.FormClosing += F_FormClosing;
+                }
+                else
+                {
+                    Directory.CreateDirectory(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles" + Path.DirectorySeparatorChar + "MyVillage");
+                    string[] Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
+                    Array.Resize(ref Database.Bot, 44);
+                    int x = 0;
+                    foreach (var profile in Profiles)
+                    {
+                        try
+                        {
+                            var name = profile.Remove(0, profile.LastIndexOf('\\') + 1);
+                            Database.Bot[x] = name;
+                            x++;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+                    GenerateProfile f = new GenerateProfile();
+                    f.Show();
+                    f.FormClosing += F_FormClosing;
+                }
+            }
+            panel1.Visible = false;
         }
 
         private void F_FormClosing(object sender, FormClosingEventArgs e)
@@ -150,6 +176,11 @@ namespace MyBot.Supporter.Main
                     if (!File.Exists(newPath + "MyBot.Supporter.Main.exe"))
                     {
                         File.Copy(AppDomain.CurrentDomain.FriendlyName, newPath + "MyBot.Supporter.Main.exe");
+                        ProcessStartInfo proc = new ProcessStartInfo();
+                        proc.FileName = newPath + "MyBot.Supporter.Main.exe";
+                        proc.WorkingDirectory = newPath;
+                        Process.Start(proc);
+                        Application.Exit();
                     }
                     else
                     {

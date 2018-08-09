@@ -79,6 +79,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Distance From Redlines 的本地化字符串。
+        /// </summary>
+        internal static string AddTiles_Tips {
+            get {
+                return ResourceManager.GetString("AddTiles_Tips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 AdsBlock 的本地化字符串。
         /// </summary>
         internal static string AdsBlock_CheckBox {
@@ -115,6 +124,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Attack Plan 的本地化字符串。
+        /// </summary>
+        internal static string AttackPlan {
+            get {
+                return ResourceManager.GetString("AttackPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 AutoRun 的本地化字符串。
         /// </summary>
         internal static string Autorun_CheckBox {
@@ -142,29 +160,11 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似 Black 的本地化字符串。
-        /// </summary>
-        internal static string BlackColor {
-            get {
-                return ResourceManager.GetString("BlackColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Please input the name of the bot! 的本地化字符串。
         /// </summary>
         internal static string BotNameNeeded {
             get {
                 return ResourceManager.GetString("BotNameNeeded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Bowlers {
-            get {
-                return ResourceManager.GetString("Bowlers", resourceCulture);
             }
         }
         
@@ -183,15 +183,6 @@ namespace MyBot.Supporter.Main {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string ClanGame {
-            get {
-                return ResourceManager.GetString("ClanGame", resourceCulture);
             }
         }
         
@@ -295,6 +286,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 CSV Not Found!! 的本地化字符串。
+        /// </summary>
+        internal static string CSV_NotFound {
+            get {
+                return ResourceManager.GetString("CSV_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 CSV Writer 的本地化字符串。
         /// </summary>
         internal static string CSV_Writer_Button {
@@ -304,11 +304,29 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 CSV&apos;s name is not completed! 的本地化字符串。
         /// </summary>
         internal static string CSVNameNeeded {
             get {
                 return ResourceManager.GetString("CSVNameNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Current running bot count:  的本地化字符串。
+        /// </summary>
+        internal static string CurrentBotCount {
+            get {
+                return ResourceManager.GetString("CurrentBotCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Getting current running bot failed! 的本地化字符串。
+        /// </summary>
+        internal static string CurrentBotCountFailed {
+            get {
+                return ResourceManager.GetString("CurrentBotCountFailed", resourceCulture);
             }
         }
         
@@ -340,47 +358,11 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string DarckElixirChallenge {
-            get {
-                return ResourceManager.GetString("DarckElixirChallenge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 DarkElixir:  的本地化字符串。
         /// </summary>
         internal static string DarkElixir {
             get {
                 return ResourceManager.GetString("DarkElixir", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string DarkElixirHeist {
-            get {
-                return ResourceManager.GetString("DarkElixirHeist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string DestroyAirDefenses {
-            get {
-                return ResourceManager.GetString("DestroyAirDefenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string DestroyAirSweepers {
-            get {
-                return ResourceManager.GetString("DestroyAirSweepers", resourceCulture);
             }
         }
         
@@ -394,7 +376,7 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Destruction Challenges 的本地化字符串。
         /// </summary>
         internal static string DestructionChallenge {
             get {
@@ -405,14 +387,14 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找类似 Dock Bot 的本地化字符串。
         /// </summary>
-        internal static string DockBot_Botton {
+        internal static string DockBot_Button {
             get {
-                return ResourceManager.GetString("DockBot_Botton", resourceCulture);
+                return ResourceManager.GetString("DockBot_Button", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Donate Speells 的本地化字符串。
         /// </summary>
         internal static string DonateSpells {
             get {
@@ -421,7 +403,7 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Donate troops 的本地化字符串。
         /// </summary>
         internal static string DonateTroops {
             get {
@@ -444,6 +426,15 @@ namespace MyBot.Supporter.Main {
         internal static string Dragons {
             get {
                 return ResourceManager.GetString("Dragons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Distance between troops, more smaller the troop will drop between further 的本地化字符串。
+        /// </summary>
+        internal static string DropPoints_Tips {
+            get {
+                return ResourceManager.GetString("DropPoints_Tips", resourceCulture);
             }
         }
         
@@ -909,9 +900,9 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找类似 PC Environment Settings 的本地化字符串。
         /// </summary>
-        internal static string F1Tabpage7 {
+        internal static string F1TabPage7 {
             get {
-                return ResourceManager.GetString("F1Tabpage7", resourceCulture);
+                return ResourceManager.GetString("F1TabPage7", resourceCulture);
             }
         }
         
@@ -948,6 +939,15 @@ namespace MyBot.Supporter.Main {
         internal static string Form1 {
             get {
                 return ResourceManager.GetString("Form1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MyBot Injector 的本地化字符串。
+        /// </summary>
+        internal static string Form2 {
+            get {
+                return ResourceManager.GetString("Form2", resourceCulture);
             }
         }
         
@@ -1235,6 +1235,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Invalid Telegram Bot Token! 的本地化字符串。
+        /// </summary>
+        internal static string InvalidToken {
+            get {
+                return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string Jump {
@@ -1282,9 +1291,9 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找类似 Power Saving Mode 的本地化字符串。
         /// </summary>
-        internal static string LowPerformaceMode_Button {
+        internal static string LowPerformanceMode_Button {
             get {
-                return ResourceManager.GetString("LowPerformaceMode_Button", resourceCulture);
+                return ResourceManager.GetString("LowPerformanceMode_Button", resourceCulture);
             }
         }
         
@@ -1408,9 +1417,9 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找类似 Select Profile 的本地化字符串。
         /// </summary>
-        internal static string NoneSelected {
+        internal static string NoneProfileSelected {
             get {
-                return ResourceManager.GetString("NoneSelected", resourceCulture);
+                return ResourceManager.GetString("NoneProfileSelected", resourceCulture);
             }
         }
         
@@ -1465,6 +1474,15 @@ namespace MyBot.Supporter.Main {
         internal static string NumbersOnly {
             get {
                 return ResourceManager.GetString("NumbersOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 OCR read text failed! 的本地化字符串。
+        /// </summary>
+        internal static string OCR_Failed {
+            get {
+                return ResourceManager.GetString("OCR_Failed", resourceCulture);
             }
         }
         
@@ -1568,6 +1586,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Select the profile you want to inject 的本地化字符串。
+        /// </summary>
+        internal static string Profile_ForInject {
+            get {
+                return ResourceManager.GetString("Profile_ForInject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 The profile  的本地化字符串。
         /// </summary>
         internal static string ProfileNotFound1 {
@@ -1667,6 +1694,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 You cannot copy a original Profile to itself! 的本地化字符串。
+        /// </summary>
+        internal static string SameProfileSelected {
+            get {
+                return ResourceManager.GetString("SameProfileSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Schedule Shutdown 的本地化字符串。
         /// </summary>
         internal static string ScheduledShutdown_CheckBox {
@@ -1685,11 +1721,11 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Please select an emulator! 的本地化字符串。
         /// </summary>
-        internal static string SelectedProfile {
+        internal static string SelectEmulator {
             get {
-                return ResourceManager.GetString("SelectedProfile", resourceCulture);
+                return ResourceManager.GetString("SelectEmulator", resourceCulture);
             }
         }
         
@@ -1762,6 +1798,15 @@ namespace MyBot.Supporter.Main {
         internal static string ShutdownWhenNoNetwork_CheckBox {
             get {
                 return ResourceManager.GetString("ShutdownWhenNoNetwork_CheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 The side that is used after calculated which side is the main attack side. Such as the main side&apos;s right side, the main side&apos;s left side and so on! 的本地化字符串。
+        /// </summary>
+        internal static string Side_Tips {
+            get {
+                return ResourceManager.GetString("Side_Tips", resourceCulture);
             }
         }
         
@@ -1856,11 +1901,38 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Supporter is starting 的本地化字符串。
+        /// </summary>
+        internal static string SupporterStarting {
+            get {
+                return ResourceManager.GetString("SupporterStarting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 MyBot Closing 的本地化字符串。
         /// </summary>
         internal static string Telegram_BotClose_CheckBox {
             get {
                 return ResourceManager.GetString("Telegram_BotClose_CheckBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Closing MyBot 的本地化字符串。
+        /// </summary>
+        internal static string Telegram_BotNotInTime1 {
+            get {
+                return ResourceManager.GetString("Telegram_BotNotInTime1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 because of not in running time! 的本地化字符串。
+        /// </summary>
+        internal static string Telegram_BotNotInTime2 {
+            get {
+                return ResourceManager.GetString("Telegram_BotNotInTime2", resourceCulture);
             }
         }
         
@@ -1955,6 +2027,36 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Welcome using MyBot.Supporter.Main!
+        ///Command Help: 
+        ////s is for starting and stopping bots 
+        ////en is changing language to Database.English
+        ////cn is changing language to chinese
+        ////cpu is for sending CPU informations
+        ////list is to shows the bot list and their starting &amp; ending time
+        ////h is hide all emulators and bots
+        ////sh shows all hidden MyBot and emulators
+        ////capt is capturing screenshots
+        ////sd is shutdown PC
+        ////re is restart PC
+        ////p to pause/resume all running MyBots 的本地化字符串。
+        /// </summary>
+        internal static string TelegramHelpMessage {
+            get {
+                return ResourceManager.GetString("TelegramHelpMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Supporter is closing 的本地化字符串。
+        /// </summary>
+        internal static string TelegramSupporterClose {
+            get {
+                return ResourceManager.GetString("TelegramSupporterClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Supporter was Stopped Botting 的本地化字符串。
         /// </summary>
         internal static string TelegramSupporterStop {
@@ -2009,29 +2111,11 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Valkryines {
-            get {
-                return ResourceManager.GetString("Valkryines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
+        ///   查找类似 Village 的本地化字符串。
         /// </summary>
         internal static string Village {
             get {
                 return ResourceManager.GetString("Village", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string WallBreakers {
-            get {
-                return ResourceManager.GetString("WallBreakers", resourceCulture);
             }
         }
         

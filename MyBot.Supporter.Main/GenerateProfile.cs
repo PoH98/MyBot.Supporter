@@ -18,7 +18,7 @@ namespace MyBot.Supporter.Main
         {
             InitializeComponent();
             string[] Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
-            int x = 0;
+            x = 0;
             foreach (var profile in Profiles)
             {
                 try
@@ -32,6 +32,14 @@ namespace MyBot.Supporter.Main
                     continue;
                 }
             }
+            for (int y = 0; y < Database.Bot.Length; y++)
+            {
+                if(Database.Bot[y] == "#   ")
+                {
+                    Database.Bot[y] = "";
+                }
+            }
+            x = 0;
             Language();
             timer1.Start();
         }
@@ -76,7 +84,8 @@ namespace MyBot.Supporter.Main
                         case "Chinese":
                             MessageBox.Show("请选择模拟器！");
                             break;
-                    }  
+                    }
+                    return;
                 }
                 else
                 {

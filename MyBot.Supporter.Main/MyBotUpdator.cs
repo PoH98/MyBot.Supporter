@@ -12,18 +12,19 @@ namespace MyBot.Supporter.Main
     {
         private static int Time = 5;
         public static bool IsDownloading = false, Github = false;
+        public static string NewestVersion = "";
         public MyBotUpdator()
         {
+            Database.loadingprocess = 100;
             InitializeComponent();
         }
         private static void DownloadUpdate()//Github
         {
-            string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/raw/master/MyBot.Supporter.Main.exe";
-            using (var client = new WebClient())
+            string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/releases/download/"+NewestVersion+ "/MyBot.Supporter.Main.exe";
+            using (var client = new WebClientOverride())
             {
                 client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
                 client.DownloadFile(UpdateLink, Database.Location + "Update");
-
             }
             File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
             File.Delete(Database.Location + "Update");
@@ -32,13 +33,14 @@ namespace MyBot.Supporter.Main
             Process.Start("Update.bat");
             Application.Exit();
         }
+
         private static void DownloadUpdate2()//Gitee
         {
-            string UpdateLink = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/MyBot.Supporter.Main.exe";
-            using (var client = new WebClient())
+            using (var client = new WebClientOverride())
             {
+                string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Updatelink.txt");
                 client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
-                client.DownloadFile(UpdateLink, Database.Location + "Update");
+                client.DownloadFile(temp, Database.Location + "Update");
             }
             File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
             File.Delete(Database.Location + "Update");
@@ -47,10 +49,11 @@ namespace MyBot.Supporter.Main
             Process.Start("Update.bat");
             Application.Exit();
         }
+
         public static void DownloadMyBotUpdate()//Github
         {
-            string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/raw/master/MyBot-MBR.zip";
-            using (var client = new WebClient())
+            string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot-MBR.zip";
+            using (var client = new WebClientOverride())
             {
                 client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
                 client.DownloadFile(UpdateLink, Database.Location + "Update");
@@ -70,14 +73,14 @@ namespace MyBot.Supporter.Main
                     file.ExtractToFile(completeFileName, true);
             }
         }
+
         private static void DownloadMyBotUpdate2()//Gitee
         {
-
-            string UpdateLink = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/MyBot-MBR.zip";
-            using (var client = new WebClient())
+            using (var client = new WebClientOverride())
             {
+                string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBotUpdateLink.txt");
                 client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
-                client.DownloadFile(UpdateLink, Database.Location + "Update");
+                client.DownloadFile(temp, Database.Location + "Update");
             }
             File.Copy(Database.Location + "Update", Database.Location + "MyBot.Run.zip");
             File.Delete(Database.Location + "Update");

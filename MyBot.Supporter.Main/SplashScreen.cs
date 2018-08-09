@@ -33,7 +33,6 @@ namespace MyBot.Supporter.Main
             }
             if (loadtime > 600)
             {
-                Close();
                 Application.Exit();
                 Environment.Exit(0);
             }

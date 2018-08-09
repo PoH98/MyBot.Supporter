@@ -196,6 +196,9 @@
       <DependentUpon>SelectImage.cs</DependentUpon>
     </Compile>
     <Compile Include="TelegramBot.cs" />
+    <Compile Include="WebClientOverride.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Characters.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Characters.Designer.cs</LastGenOutput>

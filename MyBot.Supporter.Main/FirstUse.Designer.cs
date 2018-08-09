@@ -46,6 +46,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -250,11 +250,30 @@
             this.panel2.Controls.Add(this.textBox2);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.button3);
-            this.panel2.Location = new System.Drawing.Point(9, 122);
+            this.panel2.Location = new System.Drawing.Point(9, 119);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(751, 216);
             this.panel2.TabIndex = 16;
             this.panel2.Visible = false;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(9, 85);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(121, 39);
+            this.button5.TabIndex = 16;
+            this.button5.Text = "Github";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 62);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(318, 13);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Have no MyBot downloaded yet?  Select the server for download!";
             // 
             // button4
             // 
@@ -315,25 +334,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 62);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(318, 13);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Have no MyBot downloaded yet?  Select the server for download!";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(9, 85);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(121, 39);
-            this.button5.TabIndex = 16;
-            this.button5.Text = "Github";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // FirstUse
             // 

@@ -301,66 +301,75 @@ namespace MyBot.Supporter.Main
                         troops = "Mine";
                         break;
                     case 12:
-                        troops = "Mini";
+                        troops = "Edrag";
                         break;
                     case 13:
-                        troops = "Hog";
+                        troops = "Mini";
                         break;
                     case 14:
-                        troops = "Valk";
+                        troops = "Hog";
                         break;
                     case 15:
-                        troops = "Gole";
+                        troops = "Valk";
                         break;
                     case 16:
-                        troops = "Witc";
+                        troops = "Gole";
                         break;
                     case 17:
-                        troops = "Lava";
+                        troops = "Witc";
                         break;
                     case 18:
-                        troops = "Bowl";
+                        troops = "Lava";
                         break;
                     case 19:
-                        troops = "King";
+                        troops = "Bowl";
                         break;
                     case 20:
-                        troops = "Queen";
+                        troops = "King";
                         break;
                     case 21:
-                        troops = "Warden";
+                        troops = "Queen";
                         break;
                     case 22:
-                        troops = "Castle";
+                        troops = "Warden";
                         break;
                     case 23:
-                        troops = "LSpell";
+                        troops = "Castle";
                         break;
                     case 24:
-                        troops = "HSpell";
+                        troops = "Wallw";
                         break;
                     case 25:
-                        troops = "RSpell";
+                        troops = "BattleB";
                         break;
                     case 26:
-                        troops = "JSpell";
+                        troops = "LSpell";
                         break;
                     case 27:
-                        troops = "FSpell";
+                        troops = "HSpell";
                         break;
                     case 28:
-                        troops = "PSpell";
+                        troops = "RSpell";
                         break;
                     case 29:
-                        troops = "ESpell";
+                        troops = "JSpell";
                         break;
                     case 30:
-                        troops = "HaSpell";
+                        troops = "FSpell";
                         break;
                     case 31:
-                        troops = "CSpell";
+                        troops = "PSpell";
                         break;
                     case 32:
+                        troops = "ESpell";
+                        break;
+                    case 33:
+                        troops = "HaSpell";
+                        break;
+                    case 34:
+                        troops = "CSpell";
+                        break;
+                    case 35:
                         troops = "SkSpell";
                         break;
                     default:
@@ -618,6 +627,7 @@ namespace MyBot.Supporter.Main
                 comboBox4.Items.Add("皮卡超人");
                 comboBox4.Items.Add("飞龙宝宝");
                 comboBox4.Items.Add("矿工");
+                comboBox4.Items.Add("雷电飞龙");
                 comboBox4.Items.Add("亡灵");
                 comboBox4.Items.Add("野猪骑士");
                 comboBox4.Items.Add("武神");
@@ -629,6 +639,8 @@ namespace MyBot.Supporter.Main
                 comboBox4.Items.Add("女王（或开技能）");
                 comboBox4.Items.Add("守护（或开技能）");
                 comboBox4.Items.Add("部落城堡援军");
+                comboBox4.Items.Add("战车");
+                comboBox4.Items.Add("飞艇");
                 comboBox4.Items.Add("闪电法术");
                 comboBox4.Items.Add("治疗法术");
                 comboBox4.Items.Add("狂暴法术");
@@ -1079,23 +1091,6 @@ namespace MyBot.Supporter.Main
             }
         }
 
-        private void richTextBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            IsEditing = true;
-            if (Database.CSVcode.Count > 0 && SelectedLine < Database.CSVcode.Count)
-            {
-                textBox3.Text = Database.CSVcode[SelectedLine];
-            }
-        }
-
-        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            IsEditing = true;
-            if(e.KeyCode == Keys.Enter)
-            {
-                SelectedLine++;
-            }
-        }
 
         private void label5_MouseHover(object sender, EventArgs e)
         {

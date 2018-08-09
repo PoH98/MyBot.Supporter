@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Reflection;
+using System.Net.Http;
 
 namespace MyBot.Supporter.Main
 {
@@ -38,6 +39,8 @@ namespace MyBot.Supporter.Main
         private static double CPUTM, CPUFM, CPUF, CPUV, CPUT;
         private static int CPUL, RAM, RefreshTreeNodes, AutoIT, NoNet;
         private static string SelectedCPUV, SelectedCPUF, SelectedCPUT, SelectedRAML, SelectedCPUL;
+        private static WebProxy myProxy = new WebProxy();
+
         public MainScreen()
         {
             InitializeComponent();
@@ -1577,18 +1580,11 @@ namespace MyBot.Supporter.Main
             {
                 AutoIt_Error();
             }
-            if (send.ThreadState != System.Threading.ThreadState.Running)
-            {
-                send = new Thread(ReportError);
-                send.Start();
-            }
             Database.Net_Error -= 1; //Check the program had been started for 10 sec over
         }
 
         private static void ReportError()
         {
-            while (Run)
-            {
                 if (File.Exists("error.log"))
                 {
                     FileInfo file = new FileInfo("error.log");
@@ -1609,7 +1605,7 @@ namespace MyBot.Supporter.Main
                         }
                         catch (IOException)
                         {
-                            Thread.Sleep(1000);
+
                         }
                         finally
                         {
@@ -1627,8 +1623,6 @@ namespace MyBot.Supporter.Main
                         File.Move("error.log", Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error\\" + filename);
                     }
                 }
-                Thread.Sleep(1000);
-            }
         }
         private void startBottingToolStripMenuItem_Click(object sender, EventArgs e)//Notification icon function
         {
@@ -1650,6 +1644,14 @@ namespace MyBot.Supporter.Main
                     File.Delete(l);
                 }
             }
+            if (!File.Exists("MyBot.run.exe"))
+            {
+                FirstUse f = new FirstUse();
+                f.ShowDialog();
+                Database.loadingprocess = 100;
+            }
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Supporter = false;
             Database.WriteLog("-----------------------------------------------");
             Database.WriteLog("MyBot.Supporter running on " + Environment.OSVersion);
@@ -1678,14 +1680,6 @@ namespace MyBot.Supporter.Main
             {
                 File.Delete(Database.Location + "NTU_4");
             }
-            Database.WriteLog("Checking MyBot.run.exe Called");
-            if (!File.Exists(Environment.CurrentDirectory + "\\MyBot.run.exe"))
-            {
-                Database.WriteLog("No MyBot.run.exe found in current Directory");
-                FirstUse f = new FirstUse();
-                f.ShowDialog();
-                Hide();
-            }
             Database.loadingprocess = 15;
             Supporter = true;
             Database.WriteLog("Drawing UI");
@@ -1694,8 +1688,8 @@ namespace MyBot.Supporter.Main
             Database.DisableMouseWheels(tabPage4);
             Run = false;
             Supporter = true;
-            Database.WriteLog("Checking Registry .Net Version");
-            Win32.GetVersionFromRegistry();
+            //Database.WriteLog("Checking Registry .Net Version");
+            //Win32.GetVersionFromRegistry();
             Database.WriteLog("Checking Settings");
             try
             {
@@ -1703,6 +1697,23 @@ namespace MyBot.Supporter.Main
                 {
                     Database.WriteLog("Creating botsave");
                     Array.Resize(ref Database.Bot, 44);
+                    string[] profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
+                    int y = 0;
+                    foreach (var profile in profiles)
+                    {
+                        try
+                        {
+                            var name = profile.Remove(0, profile.LastIndexOf('\\') + 1);
+                            Database.Bot[y] = name;
+                            y++;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+                    GenerateProfile g = new GenerateProfile();
+                    g.ShowDialog();
                     File.WriteAllLines(Database.Location + "botsave", Database.Bot);
                 }
                 Array.Resize(ref Database.Bot, 44);
@@ -1769,12 +1780,17 @@ namespace MyBot.Supporter.Main
             Array.Resize(ref Database.hWnd, 21);
             Array.Resize(ref TBot.PauseMessageSended, 21);
             int x = 0;
+            string temp = Database.Bot[0];
+            bool Equal = true;
             foreach (var Bot in Database.Bot)
             {
                 if (Bot == null)
                 {
                     Database.Bot[x] = "";
-
+                }
+                if(x < 15 && Bot != temp)
+                {
+                    Equal = false;
                 }
                 x++;
             }
@@ -1814,6 +1830,27 @@ namespace MyBot.Supporter.Main
                 x++;
             }
             TBot.API_Key = Database.Bot[21];
+            if (Equal)
+            {
+                string[] profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
+                x = 0;
+                foreach (var profile in profiles)
+                {
+                    try
+                    {
+                        var name = profile.Remove(0, profile.LastIndexOf('\\') + 1);
+                        Database.Bot[x] = name;
+                        x++;
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+                GenerateProfile g = new GenerateProfile();
+                g.ShowDialog();
+                Database.loadingprocess = 100;
+            }
             if (TBot.API_Key.Length > 0)
             {
                 telegram.Start();
@@ -2075,7 +2112,7 @@ namespace MyBot.Supporter.Main
                     RestartImm.Text = en_Lang.RestartBot_CheckBox;
                     EmulatorHide.Text = en_Lang.HideEmulator_CheckBox;
                     MyBotHide.Text = en_Lang.HideBot_CheckBox;
-                    checkBox31.Text = en_Lang.DockBot_Botton;
+                    checkBox31.Text = en_Lang.DockBot_Button;
                     NoBotOnBattery.Text = en_Lang.StopBotOnBattery_CheckBox;
                     Taskbar.Text = en_Lang.HideFromTaskBar_CheckBox;
                     HourSetting.Text = en_Lang.HouSetting_CheckBox;
@@ -2098,7 +2135,7 @@ namespace MyBot.Supporter.Main
                     button27.Text = en_Lang.CSV_Writer_Button;
                     button25.Text = en_Lang.Injector_Button;
                     button20.Text = en_Lang.AddNewProfile_Button;
-                    button38.Text = en_Lang.LowPerformaceMode_Button;
+                    button38.Text = en_Lang.LowPerformanceMode_Button;
                     button39.Text = en_Lang.HighPerformanceMode_Button;
                     button37.Text = en_Lang.NormalPerformanceMode_Button;
                     button36.Text = en_Lang.DestroyingPerformanceMode_Button;
@@ -2144,7 +2181,7 @@ namespace MyBot.Supporter.Main
                     groupbox4Text.Text = en_Lang.F1GroupBox2;
                     tabPage3.Text = en_Lang.F1TabPage5;
                     tabPage4.Text = en_Lang.F1TabPage1;
-                    tabPage7.Text = en_Lang.F1Tabpage7;
+                    tabPage7.Text = en_Lang.F1Tabpage2;
                     tabPage8.Text = en_Lang.F1TabPage11;
                     tabPage10.Text = en_Lang.F1TabPage11;
                     tabPage12.Text = en_Lang.F1TabPage10;
@@ -2485,7 +2522,10 @@ namespace MyBot.Supporter.Main
             {
                 button1_Click(sender, e);
             }
-            Hide();
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                this.Hide();
+            });
             ProcessStartInfo cmd = new ProcessStartInfo();
             cmd.FileName = "cmd.exe";
             cmd.Arguments = "netsh winsock reset";
@@ -2698,7 +2738,7 @@ namespace MyBot.Supporter.Main
                 return;
             }
             string[] Profiles = { };
-            Array.Resize(ref Profiles, comboBox17.Items.Count);
+            Array.Resize(ref Profiles, comboBox17.Items.Count + 1);
             if (comboBox17.SelectedItem == null)
             {
                 Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
@@ -4772,6 +4812,7 @@ namespace MyBot.Supporter.Main
                     Win32.ProcessorIsMaximum = true;
                 }
             }
+            ReportError();
         }
 
         public static bool Pause = false;
@@ -4789,14 +4830,12 @@ namespace MyBot.Supporter.Main
                     {
                         Assembly assembly = Assembly.GetExecutingAssembly();
                         FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-                        File.WriteAllText(Database.Location + "CurrentVersion.check", myFileVersionInfo.FileVersion);
-                        ServicePointManager.Expect100Continue = true;
-                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                        string version = File.ReadAllText(Database.Location + "CurrentVersion.check");
-                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Version.txt";
-                        WebClient wc = new WebClient();
-                        wc.DownloadFile(new Uri(versionfile), Database.Location + "Version.check");
-                        if (version != File.ReadAllText(Database.Location + "Version.check"))
+                        string version = myFileVersionInfo.FileVersion;
+                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
+                        WebClient wc = new WebClientOverride();
+                        wc.Proxy = myProxy;
+                        MyBotUpdator.NewestVersion = wc.DownloadString(new Uri(versionfile));
+                        if (version != MyBotUpdator.NewestVersion)
                         {
                             if (Run)
                             {
@@ -4831,14 +4870,12 @@ namespace MyBot.Supporter.Main
                     {
                         Assembly assembly = Assembly.GetExecutingAssembly();
                         FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-                        File.WriteAllText(Database.Location + "CurrentVersion.check", myFileVersionInfo.FileVersion);
-                        ServicePointManager.Expect100Continue = true;
-                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                        string version = File.ReadAllText(Database.Location + "CurrentVersion.check");
-                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Version.txt";
-                        WebClient wc = new WebClient();
-                        wc.DownloadFile(new Uri(versionfile), Database.Location + "Version.check");
-                        if (version != File.ReadAllText(Database.Location + "Version.check"))
+                        string version = myFileVersionInfo.FileVersion;
+                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
+                        WebClient wc = new WebClientOverride();
+                        wc.Proxy = myProxy;
+                        MyBotUpdator.NewestVersion = wc.DownloadString(new Uri(versionfile));
+                        if (version != MyBotUpdator.NewestVersion)
                         {
                             if (Run)
                             {
@@ -4886,7 +4923,6 @@ namespace MyBot.Supporter.Main
             }
         }
 
-
         private void UpdateMyBot()
         {
             Database.WriteLog("Checking Update for MyBot.Run");
@@ -4904,12 +4940,12 @@ namespace MyBot.Supporter.Main
                         {
                             version = File.ReadAllText("MyBot.Run.version.au3");
                         }
-                        ServicePointManager.Expect100Continue = true;
-                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;                       
-                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/MyBot.run.version.au3";
-                        WebClient wc = new WebClient();
-                        wc.DownloadFile(new Uri(versionfile), Database.Location + "MyBotVersion.check");
-                        if (version != File.ReadAllText(Database.Location + "MyBotVersion.check"))
+             
+                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot.run.version.au3";
+                        WebClient wc = new WebClientOverride();
+                        wc.Proxy = myProxy;
+                        string s = wc.DownloadString(new Uri(versionfile));
+                        if (version != s)
                         {
                             MyBotUpdator.Github = true;
                             this.Invoke((MethodInvoker)delegate ()
@@ -4969,13 +5005,12 @@ namespace MyBot.Supporter.Main
                         {
                             version = File.ReadAllText("MyBot.Run.version.au3");
                         }
-                        ServicePointManager.Expect100Continue = true;
-                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/MyBot.run.version.au3";
-                        WebClient wc = new WebClient();
-                        wc.DownloadFile(new Uri(versionfile), Database.Location + "MyBotVersion.check");
-                        if (version != File.ReadAllText(Database.Location + "MyBotVersion.check"))
+                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot.run.version.au3";
+                        WebClient wc = new WebClientOverride();
+                        wc.Proxy = myProxy;
+                        string s = wc.DownloadString(new Uri(versionfile));
+                        //task.Wait(TimeSpan.FromSeconds(5));
+                        if (version != s)
                         {
                             this.Invoke((MethodInvoker)delegate ()
                             {
@@ -5022,9 +5057,7 @@ namespace MyBot.Supporter.Main
                     {
                         File.WriteAllText("error.log", ex.ToString());
                     }
-                }
-                
-                
+                }              
             }
             catch
             {

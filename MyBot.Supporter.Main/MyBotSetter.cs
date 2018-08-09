@@ -11,6 +11,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO.Compression;
+using System.Net;
+using System.Net.NetworkInformation;
 
 namespace MyBot.Supporter.Main
 {
@@ -21,7 +23,6 @@ namespace MyBot.Supporter.Main
         private string[] Modded_Settings;
         private string[] CSV;
         private static bool Modifying;
-        private List<string> DonationList = new List<string>();
         private List<string> ClanGame = new List<string>();
         int x = 0;
         public MyBotSetter()
@@ -127,7 +128,7 @@ namespace MyBot.Supporter.Main
                         if (!File.Exists(profile + Path.DirectorySeparatorChar + "ClanGames_config.ini"))
                         {
                             File.WriteAllBytes("Temp.zip", Characters.ClanGames_config);
-                            ZipFile.ExtractToDirectory("Temp.zip", Environment.CurrentDirectory + "\\Profiles\\" + Profile.SelectedItem + Path.DirectorySeparatorChar);
+                            ZipFile.ExtractToDirectory("Temp.zip", Environment.CurrentDirectory + "\\Profiles\\" + profile + Path.DirectorySeparatorChar);
                             File.Delete("Temp.zip");
                         }
                         textBox6.AppendText("Injecting " + profile + "'s ClanGames_Config");
@@ -156,80 +157,78 @@ namespace MyBot.Supporter.Main
                         }
                     }
                 }
-                if (checkBox12.Checked || checkBox14.Checked || checkBox15.Checked || checkBox16.Checked || checkBox17.Checked || checkBox18.Checked ||checkBox20.Checked || checkBox21.Checked || checkBox22.Checked)
+                if (checkBox12.Checked || checkBox14.Checked || checkBox15.Checked || checkBox16.Checked || checkBox17.Checked || checkBox18.Checked ||checkBox20.Checked)
                 {
                     // MODED MyBot
-                    File.WriteAllBytes(Environment.CurrentDirectory + "\\AutoIT.zip", Characters.Resources);
-                    textBox6.AppendText("Creating AutoIT Compiler");
-                    ZipFile.ExtractToDirectory(Environment.CurrentDirectory + "\\AutoIT.zip", Environment.CurrentDirectory);
-                    File.Delete("AutoIT.zip");
-                    if (checkBox12.Checked)
+                    bool IsExist = false;
+                    if (!File.Exists(Database.Location + "AutoIT.zip"))
                     {
-                        textBox6.AppendText("Injecting DelayTimes.au3");
-                        MyBotMOD.FasterDelay(false);
-                        textBox6.AppendText("Completed Injecting DelayTimes.au3");
+                        IsExist = Download_Resources();
                     }
-                    else if (checkBox14.Checked)
+                    if (IsExist)
                     {
-                        textBox6.AppendText("Injecting DelayTimes.au3");
-                        MyBotMOD.FasterDelay(true);
-                        textBox6.AppendText("Completed Injecting DelayTimes.au3");
+                        ZipFile.ExtractToDirectory(Database.Location + "AutoIT.zip", Environment.CurrentDirectory);
+                        if (checkBox12.Checked)
+                        {
+                            textBox6.AppendText("Injecting DelayTimes.au3");
+                            MyBotMOD.FasterDelay(false);
+                            textBox6.AppendText("Completed Injecting DelayTimes.au3");
+                        }
+                        else if (checkBox14.Checked)
+                        {
+                            textBox6.AppendText("Injecting DelayTimes.au3");
+                            MyBotMOD.FasterDelay(true);
+                            textBox6.AppendText("Completed Injecting DelayTimes.au3");
+                        }
+                        if (checkBox15.Checked)
+                        {
+                            textBox6.AppendText("Injecting MBR Global Variables.au3");
+                            textBox6.AppendText("Injecting Android.au3");
+                            MyBotMOD.DirectX(false);
+                            textBox6.AppendText("Completed Injecting MBR Global Variables.au3");
+                            textBox6.AppendText("Completed Injecting Android.au3");
+                        }
+                        else if (checkBox16.Checked)
+                        {
+                            textBox6.AppendText("Injecting MBR Global Variables.au3");
+                            textBox6.AppendText("Injecting Android.au3");
+                            MyBotMOD.DirectX(true);
+                            textBox6.AppendText("Completed Injecting MBR Global Variables.au3");
+                            textBox6.AppendText("Completed Injecting Android.au3");
+                        }
+                        if (checkBox17.Checked)
+                        {
+                            textBox6.AppendText("Injecting *.au3");
+                            MyBotMOD.AdsLocator(false);
+                            textBox6.AppendText("Completed Injecting *.au3");
+                        }
+                        else if (checkBox18.Checked)
+                        {
+                            textBox6.AppendText("Injecting *.au3");
+                            MyBotMOD.AdsLocator(true);
+                            textBox6.AppendText("Completed Injecting *.au3");
+                        }
+                        if (checkBox20.Checked)
+                        {
+                            textBox6.AppendText("Undoing Logo Patch");
+                            File.Delete(Environment.CurrentDirectory + "\\images\\Logo.png");
+                            File.Move(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch", Environment.CurrentDirectory + "\\images\\Logo.png");
+                        }
+                        textBox6.AppendText("Compiling MyBot.run.exe");
+                        ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe");
+                        compiler.Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\"";
+                        Process com = Process.Start(compiler);
+                        while (!com.HasExited)
+                        {
+                            await Task.Delay(100);
+                        }
+                        File.Delete(Environment.CurrentDirectory + "Compiler.exe");
                     }
-                    if (checkBox15.Checked)
+                    else
                     {
-                        textBox6.AppendText("Injecting MBR Global Variables.au3");
-                        textBox6.AppendText("Injecting Android.au3");
-                        MyBotMOD.DirectX(false);
-                        textBox6.AppendText("Completed Injecting MBR Global Variables.au3");
-                        textBox6.AppendText("Completed Injecting Android.au3");
+                        MessageBox.Show(en_Lang.Error);
+                        Close();
                     }
-                    else if (checkBox16.Checked)
-                    {
-                        textBox6.AppendText("Injecting MBR Global Variables.au3");
-                        textBox6.AppendText("Injecting Android.au3");
-                        MyBotMOD.DirectX(true);
-                        textBox6.AppendText("Completed Injecting MBR Global Variables.au3");
-                        textBox6.AppendText("Completed Injecting Android.au3");
-                    }
-                    if (checkBox17.Checked)
-                    {
-                        textBox6.AppendText("Injecting *.au3");
-                        MyBotMOD.AdsLocator(false);
-                        textBox6.AppendText("Completed Injecting *.au3");
-                    }
-                    else if (checkBox18.Checked)
-                    {
-                        textBox6.AppendText("Injecting *.au3");
-                        MyBotMOD.AdsLocator(true);
-                        textBox6.AppendText("Completed Injecting *.au3");
-                    }
-                    if (checkBox20.Checked)
-                    {
-                        textBox6.AppendText("Undoing Logo Patch");
-                        File.Delete(Environment.CurrentDirectory + "\\images\\Logo.png");
-                        File.Move(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch", Environment.CurrentDirectory + "\\images\\Logo.png");
-                    }
-                    if (checkBox21.Checked)
-                    {
-                        textBox6.AppendText("Injecting *.au3");
-                        MyBotMOD.ExtendBar(false);
-                        textBox6.AppendText("Completed Injecting *.au3");
-                    }
-                    else if (checkBox22.Checked)
-                    {
-                        textBox6.AppendText("Injecting *.au3");
-                        MyBotMOD.ExtendBar(true);
-                        textBox6.AppendText("Completed Injecting *.au3");
-                    }
-                    textBox6.AppendText("Compiling MyBot.run.exe");
-                    ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe");
-                    compiler.Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\"";
-                    Process com = Process.Start(compiler);
-                    while (!com.HasExited)
-                    {
-                        await Task.Delay(100);
-                    }
-                    File.Delete(Environment.CurrentDirectory + "Compiler.exe");
                 }
                 Database.loadingprocess = 100;
                 Close();
@@ -1127,335 +1126,6 @@ namespace MyBot.Supporter.Main
 
                     }
                 }
-                if (checkBox1.Checked)
-                {
-                    if (temp.Contains("chkDonateArchers"))
-                    {
-                        if (DonationList.Contains("弓箭手") || DonationList.Contains("Archers"))
-                        {
-                            Modded_Settings[x] = "chkDonateArchers=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateArchers=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateBabyDragons"))
-                    {
-                        if (DonationList.Contains("龙宝") || DonationList.Contains("Baby Dragons"))
-                        {
-                            Modded_Settings[x] = "chkDonateBabyDragons=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateBabyDragons=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateBalloons"))
-                    {
-                        if (DonationList.Contains("气球") || DonationList.Contains("Balloons"))
-                        {
-                            Modded_Settings[x] = "chkDonateBalloons=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateBalloons=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateBarbarians"))
-                    {
-                        if (DonationList.Contains("野蛮人") || DonationList.Contains("Babarians"))
-                        {
-                            Modded_Settings[x] = "chkDonateBarbarians=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateBarbarians=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateBowlers"))
-                    {
-                        if (DonationList.Contains("投石") || DonationList.Contains("Bowlers"))
-                        {
-                            Modded_Settings[x] = "chkDonateBowlers=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateBowlers=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateDragons"))
-                    {
-                        if (DonationList.Contains("龙") || DonationList.Contains("Dragons"))
-                        {
-                            Modded_Settings[x] = "chkDonateDragons=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateDragons=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateEarthquakeSpells"))
-                    {
-                        if (DonationList.Contains("地震") || DonationList.Contains("Earthquake"))
-                        {
-                            Modded_Settings[x] = "chkDonateEarthquakeSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateEarthquakeSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateFreezeSpells"))
-                    {
-                        if (DonationList.Contains("冰冻") || DonationList.Contains("Freeze"))
-                        {
-                            Modded_Settings[x] = "chkDonateFreezeSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateFreezeSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateGiants"))
-                    {
-                        if (DonationList.Contains("巨人") || DonationList.Contains("Giants"))
-                        {
-                            Modded_Settings[x] = "chkDonateGiants=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateGiants=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateGoblins"))
-                    {
-                        if (DonationList.Contains("哥布林") || DonationList.Contains("Goblins"))
-                        {
-                            Modded_Settings[x] = "chkDonateGoblins=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateGoblins=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateGolems"))
-                    {
-                        if (DonationList.Contains("石头人") || DonationList.Contains("Golems"))
-                        {
-                            Modded_Settings[x] = "chkDonateGolems=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateGolems=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateHasteSpells"))
-                    {
-                        if (DonationList.Contains("极速") || DonationList.Contains("Hastle"))
-                        {
-                            Modded_Settings[x] = "chkDonateHasteSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateHasteSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateHealers"))
-                    {
-                        if (DonationList.Contains("天使") || DonationList.Contains("Healers"))
-                        {
-                            Modded_Settings[x] = "chkDonateHealers=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateHealers=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateHealSpells"))
-                    {
-                        if (DonationList.Contains("治疗") || DonationList.Contains("Heal"))
-                        {
-                            Modded_Settings[x] = "chkDonateHealSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateHealSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateHogRiders"))
-                    {
-                        if (DonationList.Contains("野猪骑士") || DonationList.Contains("Hog Riders"))
-                        {
-                            Modded_Settings[x] = "chkDonateHogRiders=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateHogRiders=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateJumpSpells"))
-                    {
-                        if (DonationList.Contains("弹跳") || DonationList.Contains("Jump"))
-                        {
-                            Modded_Settings[x] = "chkDonateJumpSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateJumpSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateLavaHounds"))
-                    {
-                        if (DonationList.Contains("熔岩烈犬") || DonationList.Contains("Lava Hounds"))
-                        {
-                            Modded_Settings[x] = "chkDonateLavaHounds=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateLavaHounds=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateLightningSpells"))
-                    {
-                        if (DonationList.Contains("闪电") || DonationList.Contains("Lighting"))
-                        {
-                            Modded_Settings[x] = "chkDonateLightningSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateLightningSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateDatabase.Miners"))
-                    {
-                        if (DonationList.Contains("矿工") || DonationList.Contains("Database.Miners"))
-                        {
-                            Modded_Settings[x] = "chkDonateDatabase.Miners=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateDatabase.Miners=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateDatabase.Minions"))
-                    {
-                        if (DonationList.Contains("亡灵") || DonationList.Contains("Database.Minions"))
-                        {
-                            Modded_Settings[x] = "chkDonateDatabase.Minions=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateDatabase.Minions=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonatePekkas"))
-                    {
-                        if (DonationList.Contains("皮卡超人") || DonationList.Contains("Pekkas"))
-                        {
-                            Modded_Settings[x] = "chkDonatePekkas=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonatePekkas=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonatePoisonSpells"))
-                    {
-                        if (DonationList.Contains("毒药") || DonationList.Contains("Poison"))
-                        {
-                            Modded_Settings[x] = "chkDonatePoisonSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonatePoisonSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateRageSpells"))
-                    {
-                        if (DonationList.Contains("狂暴") || DonationList.Contains("Rage"))
-                        {
-                            Modded_Settings[x] = "chkDonateRageSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateRageSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateSkeletonSpells"))
-                    {
-                        if (DonationList.Contains("骷髅") || DonationList.Contains("Skeleton"))
-                        {
-                            Modded_Settings[x] = "chkDonateSkeletonSpells=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateSkeletonSpells=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateValkyries"))
-                    {
-                        if (DonationList.Contains("武神") || DonationList.Contains("Valkyrines"))
-                        {
-                            Modded_Settings[x] = "chkDonateValkyries=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateValkyries=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateWallBreakers"))
-                    {
-                        if (DonationList.Contains("炸弹人") || DonationList.Contains("Wallbreakers"))
-                        {
-                            Modded_Settings[x] = "chkDonateWallBreakers=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateWallBreakers=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateWitches"))
-                    {
-                        if (DonationList.Contains("女巫") || DonationList.Contains("Witches"))
-                        {
-                            Modded_Settings[x] = "chkDonateWitches=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateWitches=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateWizards"))
-                    {
-                        if (DonationList.Contains("法师") || DonationList.Contains("Wizards"))
-                        {
-                            Modded_Settings[x] = "chkDonateWizards=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateWizards=0";
-                        }
-                    }
-                    else if (temp.Contains("chkDonateElectroDragons"))
-                    {
-                        if (DonationList.Contains("雷电飞龙")||DonationList.Contains("Electro Dragon"))
-                        {
-                            Modded_Settings[x] = "chkDonateElectroDragons=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "chkDonateElectroDragons=0";
-                        }
-                    }
-                    if (Database.Language == "Chinese")
-                    {
-                        if (temp.Contains("chkExtraChinese"))
-                        {
-                            Modded_Settings[x] = "chkExtraChinese=1";
-                        }
-                    }
-                }
                 if (checkBox2.Checked)
                 {
                     if (x > 700)
@@ -1721,15 +1391,11 @@ namespace MyBot.Supporter.Main
                 {
                     checkBox17.Enabled = false;
                     checkBox18.Enabled = true;
-                    checkBox21.Enabled = false;
-                    checkBox22.Enabled = false;
                 }
                 if(File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\MBR Functions.au3") && File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\DropTroopFromINI.au3"))
                 {
                     checkBox17.Enabled = false;
                     checkBox18.Enabled = false;
-                    checkBox21.Enabled = false;
-                    checkBox22.Enabled = true;
                 }
                 if (File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch"))
                 {
@@ -1771,49 +1437,6 @@ namespace MyBot.Supporter.Main
                 }
             }
             Database.loadingprocess = 100;
-        }
-        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            string item = checkedListBox1.SelectedItem.ToString();
-            if (e.NewValue == CheckState.Checked)
-            {
-                if (DonationList.Contains(item))
-                {
-                    DonationList.Remove(item);
-                }
-                else
-                {
-                    DonationList.Add(item);
-                }
-            }
-        }
-        private void checkedListBox2_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            string item = checkedListBox2.SelectedItem.ToString();
-            if (e.NewValue == CheckState.Checked)
-            {
-                if (DonationList.Contains(item))
-                {
-                    DonationList.Remove(item);
-                }
-                else
-                {
-                    DonationList.Add(item);
-                }
-            }
-        }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked == true)
-            {
-                checkedListBox1.Enabled = true;
-                checkedListBox2.Enabled = true;
-            }
-            else
-            {
-                checkedListBox1.Enabled = false;
-                checkedListBox2.Enabled = false;
-            }
         }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
@@ -1965,43 +1588,9 @@ namespace MyBot.Supporter.Main
                 label4.Text = "Profile to Inject:";
                 checkBox13.Visible = false;
                 checkBox13.Checked = false;
-                label12.Text = "Donate troops";
-                label13.Text = "Donate Spells";
-                checkedListBox1.Items.Clear();
-                checkedListBox1.Items.Add("Babarians");
-                checkedListBox1.Items.Add("Archers");
-                checkedListBox1.Items.Add("Goblins");
-                checkedListBox1.Items.Add("Wallbreakers");
-                checkedListBox1.Items.Add("Giants");
-                checkedListBox1.Items.Add("Balloons");
-                checkedListBox1.Items.Add("Wizards");
-                checkedListBox1.Items.Add("Healer");
-                checkedListBox1.Items.Add("Dragons");
-                checkedListBox1.Items.Add("Pekkas");
-                checkedListBox1.Items.Add("Baby Dragons");
-                checkedListBox1.Items.Add("Miners");
-                checkedListBox1.Items.Add("Minions");
-                checkedListBox1.Items.Add("Hog Riders");
-                checkedListBox1.Items.Add("Valkyrines");
-                checkedListBox1.Items.Add("Golems");
-                checkedListBox1.Items.Add("Witches");
-                checkedListBox1.Items.Add("Lava Hounds");
-                checkedListBox1.Items.Add("Bowlers");
-                checkedListBox2.Items.Clear();
-                checkedListBox2.Items.Add("Lighting");
-                checkedListBox2.Items.Add("Heal");
-                checkedListBox2.Items.Add("Rage");
-                checkedListBox2.Items.Add("Jump");
-                checkedListBox2.Items.Add("Freeze");
-                checkedListBox2.Items.Add("Poison");
-                checkedListBox2.Items.Add("Earthquake");
-                checkedListBox1.Items.Add("Hastle");
-                checkedListBox1.Items.Add("Skeleton");
+                label36.Text = "Townhall Level";
                 Profile.Text = "All";
                 comboBox1.Text = "All";
-                tabPage7.Text = "Clan Castle";
-                groupBox2.Text = "Donation Inject";
-                checkBox1.Text = "Inject Donation";
                 tabPage8.Text = "Clan Game";
                 groupBox3.Text = "Clan Game Inject";
                 checkBox3.Text = "Inject Clan Game";
@@ -2077,8 +1666,6 @@ namespace MyBot.Supporter.Main
                 checkBox2.Text = "Inject training";
                 checkBox19.Text = "MyBot Banner Changer";
                 checkBox20.Text = "MyBot Original Banner";
-                checkBox21.Text = "Demen 11+ Slots MOD";
-                checkBox22.Text = "Remove Demen MOD";
                 groupBox1.Text = "Inject training";
                 checkBox5.Text = "Inject DeadBase Settings";
                 checkBox6.Text = "Inject LiveBase settings";
@@ -2097,8 +1684,8 @@ namespace MyBot.Supporter.Main
                 label9.Text = "Dragons";
                 label10.Text = "Pekkas";
                 label15.Text = "Baby Dragons";
-                label16.Text = "Database.Miner";
-                label28.Text = "Database.Minions";
+                label16.Text = "Miner";
+                label28.Text = "Minions";
                 label27.Text = "Hog Riders";
                 label26.Text = "Valkyrines";
                 label25.Text = "Golems";
@@ -2112,10 +1699,11 @@ namespace MyBot.Supporter.Main
                 label21.Text = "Freeze";
                 label17.Text = "Clone";
                 label18.Text = "Poison";
-                label25.Text = "Earthquake";
+                label35.Text = "Earthquake";
                 label34.Text = "Hastle";
                 label33.Text = "Skeleton";
-                label3.Text = "coc Version";
+                label82.Text = "Electro Dragon";
+                label3.Text = "Clash of clans Version";
                 checkBox7.Text = "Change MyBot Language";
                 tabPage5.Text = "MyBot MOD";
                 tabPage3.Text = "Complete!";
@@ -2460,7 +2048,53 @@ namespace MyBot.Supporter.Main
                 File.Delete("Config.au3");
             }
         }
+        private static bool Download_Resources()
+        {
+            try
+            {
+                Ping github = new Ping();
+                var respond = github.Send("www.github.com").Status;
+                if (respond == IPStatus.Success) //Github is usable
+                {
+                    using (WebClient wc = new WebClient())
+                    {
+                        string link = wc.DownloadString("https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/resourcelink.txt");
+                        byte[] b = wc.DownloadData(link);
+                        if (b.Length > 0)
+                        {
+                            File.WriteAllBytes(Database.Location + "AutoIT.zip", b);
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    using (WebClient wc = new WebClient())
+                    {
+                        string link = wc.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/resourcelink.txt");
+                        byte[] b = wc.DownloadData(link);
+                        if (b.Length > 0)
+                        {
+                            File.WriteAllBytes(Database.Location + "AutoIT.zip", b);
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
 
+        }
         private async void checkBox19_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox19.Checked)

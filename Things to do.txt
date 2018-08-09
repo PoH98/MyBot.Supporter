@@ -1,0 +1,34 @@
+* Enable Language.cs and load language to overwrite EN_Lang.cs if language.ini found in Roaming folder. 
+* Download AutoIT from cloud and save it at Roaming folder if user uses injector the first time. Unzip Zip file to local MyBot folder if injecting starts and remove it when injecting end (Ask user that want to save the AutoIT compiler in local PC or download it everytime and can be deleted if user want to delete)
+* Reduce Supporter's size back to 1MB below
+* Remove Quota Usage, 12-Hour Clock, Advance CPU info in PC Environment Settings and Other Program AutoRun Settings, Time, Calender, CPU usage
+* Make Supporter can be used as Plug-in or MODs (User can add as many dll as they like for supporter to load and use the code) types
+
+-------------------------------------------------------------
+Code Example that might suitable:
+// Use the file name to load the assembly into the current
+// application domain.
+Assembly a = Assembly.Load("example");
+// Get the type to use.
+Type myType = a.GetType("Example");
+// Get the method to call.
+MethodInfo myMethod = myType.GetMethod("MethodA");
+// Create an instance.
+object obj = Activator.CreateInstance(myType);
+// Execute the method.
+myMethod.Invoke(obj, null);
+---------------------------------------------------------------
+
+* CSV Writer can used to edit CSV files
+
+---------------------------------------------------------------
+Load CSV and shows it in the richtextbox
+See user's selected line and find keyword such as DROP, MAKE and etc to enable and disable controls (Same as make new CSV)
+Add the system that ask user to add or replace the line when editing
+Fix bugs in CSV writer
+---------------------------------------------------------------
+
+* Clean all TreeView in MyBot Status if exception occur to fix MyBot status unable to refresh again after exception found
+* Read PC is enabled Intel Hardware Visualize ???? (VT-D) is available and is enable or not (Shows it in the UI with a textbox, teach user how to enable it by loading HTMLs and only shows the tutorial about this.)
+* Remove all Custom MOD injector and only left Ads Locator MOD (Can be combined with other pages)
+* Place update to Ver 4.1.0.0

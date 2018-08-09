@@ -150,7 +150,7 @@
   <data name="DestroyingPerformanceMode_Button" xml:space="preserve">
     <value>Destroy Mode</value>
   </data>
-  <data name="DockBot_Botton" xml:space="preserve">
+  <data name="DockBot_Button" xml:space="preserve">
     <value>Dock Bot</value>
   </data>
   <data name="DownloadAutoIT_Button" xml:space="preserve">
@@ -216,6 +216,9 @@
   <data name="F1Label17" xml:space="preserve">
     <value>Upload Speed</value>
   </data>
+  <data name="OCR_Failed" xml:space="preserve">
+    <value>OCR read text failed!</value>
+  </data>
   <data name="CPUName" xml:space="preserve">
     <value>Processor Number: </value>
   </data>
@@ -233,6 +236,15 @@
   </data>
   <data name="CPUMaxTemp" xml:space="preserve">
     <value>CPU Max Temp: </value>
+  </data>
+  <data name="SelectEmulator" xml:space="preserve">
+    <value>Please select an emulator!</value>
+  </data>
+  <data name="CurrentBotCount" xml:space="preserve">
+    <value>Current running bot count: </value>
+  </data>
+  <data name="CurrentBotCountFailed" xml:space="preserve">
+    <value>Getting current running bot failed!</value>
   </data>
   <data name="F1Label24" xml:space="preserve">
     <value>Frequency of Fixed Time notification</value>
@@ -267,7 +279,7 @@
   <data name="F1Tabpage6" xml:space="preserve">
     <value>Other Setings</value>
   </data>
-  <data name="F1Tabpage7" xml:space="preserve">
+  <data name="F1TabPage7" xml:space="preserve">
     <value>PC Environment Settings</value>
   </data>
   <data name="F1TabPage8" xml:space="preserve">
@@ -346,7 +358,7 @@ Quick Help:
   <data name="Injector_Button" xml:space="preserve">
     <value>MyBot Injector</value>
   </data>
-  <data name="LowPerformaceMode_Button" xml:space="preserve">
+  <data name="LowPerformanceMode_Button" xml:space="preserve">
     <value>Power Saving Mode</value>
   </data>
   <data name="Minute" xml:space="preserve">
@@ -355,7 +367,7 @@ Quick Help:
   <data name="MyBotTutorial_Button" xml:space="preserve">
     <value>MyBot.run tutorial</value>
   </data>
-  <data name="NoneSelected" xml:space="preserve">
+  <data name="NoneProfileSelected" xml:space="preserve">
     <value>Select Profile</value>
   </data>
   <data name="NormalPerformanceMode_Button" xml:space="preserve">
@@ -496,8 +508,8 @@ Quick Help:
   <data name="MyBotUpdateFound" xml:space="preserve">
     <value>MyBot had updated! Do you want to downlod the latest version?</value>
   </data>
-  <data name="Bowlers" xml:space="preserve">
-    <value />
+  <data name="Telegram_BotNotInTime1" xml:space="preserve">
+    <value>Closing MyBot</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -505,20 +517,20 @@ Quick Help:
   <data name="CustomizeMODFoundTitle" xml:space="preserve">
     <value>Customize MOD by Injector found!</value>
   </data>
-  <data name="ClanGame" xml:space="preserve">
-    <value />
+  <data name="Telegram_BotNotInTime2" xml:space="preserve">
+    <value>because of not in running time!</value>
   </data>
   <data name="CurrentSelectedProfile" xml:space="preserve">
     <value>Current selected profile will switch to...</value>
   </data>
   <data name="DestructionChallenge" xml:space="preserve">
-    <value />
+    <value>Destruction Challenges</value>
   </data>
   <data name="DonateSpells" xml:space="preserve">
-    <value />
+    <value>Donate Speells</value>
   </data>
   <data name="DonateTroops" xml:space="preserve">
-    <value />
+    <value>Donate troops</value>
   </data>
   <data name="Dragons" xml:space="preserve">
     <value />
@@ -613,8 +625,8 @@ Quick Help:
   <data name="Rage" xml:space="preserve">
     <value />
   </data>
-  <data name="SelectedProfile" xml:space="preserve">
-    <value />
+  <data name="SameProfileSelected" xml:space="preserve">
+    <value>You cannot copy a original Profile to itself!</value>
   </data>
   <data name="SelectEmulatorUsedByProfile" xml:space="preserve">
     <value />
@@ -625,14 +637,26 @@ Quick Help:
   <data name="Skip" xml:space="preserve">
     <value />
   </data>
-  <data name="Valkryines" xml:space="preserve">
-    <value />
+  <data name="TelegramSupporterClose" xml:space="preserve">
+    <value>Supporter is closing</value>
   </data>
-  <data name="Village" xml:space="preserve">
-    <value />
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Invalid Telegram Bot Token!</value>
   </data>
-  <data name="WallBreakers" xml:space="preserve">
-    <value />
+  <data name="TelegramHelpMessage" xml:space="preserve">
+    <value>Welcome using MyBot.Supporter.Main!
+Command Help: 
+/s is for starting and stopping bots 
+/en is changing language to Database.English
+/cn is changing language to chinese
+/cpu is for sending CPU informations
+/list is to shows the bot list and their starting &amp; ending time
+/h is hide all emulators and bots
+/sh shows all hidden MyBot and emulators
+/capt is capturing screenshots
+/sd is shutdown PC
+/re is restart PC
+/p to pause/resume all running MyBots</value>
   </data>
   <data name="Witches" xml:space="preserve">
     <value />
@@ -649,17 +673,17 @@ Quick Help:
   <data name="CustomizeMODFound" xml:space="preserve">
     <value>Detected customize MODs by injector, do you want to apply the MODs on the newer version of MyBot? (Warning! The newer version MyBot might not support the MOD and causing it to crush! You can reverse it using injector again if any bad things happen!)</value>
   </data>
-  <data name="DarckElixirChallenge" xml:space="preserve">
-    <value />
+  <data name="DropPoints_Tips" xml:space="preserve">
+    <value>Distance between troops, more smaller the troop will drop between further</value>
   </data>
-  <data name="DarkElixirHeist" xml:space="preserve">
-    <value />
+  <data name="AddTiles_Tips" xml:space="preserve">
+    <value>Distance From Redlines</value>
   </data>
-  <data name="DestroyAirDefenses" xml:space="preserve">
-    <value />
+  <data name="SupporterStarting" xml:space="preserve">
+    <value>Supporter is starting</value>
   </data>
-  <data name="DestroyAirSweepers" xml:space="preserve">
-    <value />
+  <data name="CSV_NotFound" xml:space="preserve">
+    <value>CSV Not Found!!</value>
   </data>
   <data name="ElixirChallenge" xml:space="preserve">
     <value />
@@ -716,7 +740,7 @@ Quick Help:
     <value>There is another Supporter already running, are you want to close it?</value>
   </data>
   <data name="CSVNameNeeded" xml:space="preserve">
-    <value />
+    <value>CSV's name is not completed!</value>
   </data>
   <data name="EditMyBot" xml:space="preserve">
     <value>Please close MyBot and restart it using Supporter after setup your MyBot</value>
@@ -793,8 +817,8 @@ Quick Help:
   <data name="HadClosed" xml:space="preserve">
     <value>Had Closed / Out of Supporter control</value>
   </data>
-  <data name="BlackColor" xml:space="preserve">
-    <value>Black</value>
+  <data name="Side_Tips" xml:space="preserve">
+    <value>The side that is used after calculated which side is the main attack side. Such as the main side's right side, the main side's left side and so on!</value>
   </data>
   <data name="Color" xml:space="preserve">
     <value>Theme Color</value>
@@ -816,5 +840,17 @@ Quick Help:
   </data>
   <data name="EarnedGoldPH" xml:space="preserve">
     <value>Gold gain per hour:</value>
+  </data>
+  <data name="AttackPlan" xml:space="preserve">
+    <value>Attack Plan</value>
+  </data>
+  <data name="Form2" xml:space="preserve">
+    <value>MyBot Injector</value>
+  </data>
+  <data name="Profile_ForInject" xml:space="preserve">
+    <value>Select the profile you want to inject</value>
+  </data>
+  <data name="Village" xml:space="preserve">
+    <value>Village</value>
   </data>
 </root>
