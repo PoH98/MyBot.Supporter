@@ -408,7 +408,7 @@ namespace MyBot.Supporter.Main
                         }
                         if (Database.hideEmulator == true && Database.hide == true)
                         {
-                            if (MyBot_Child.Count < 6)
+                            if (MyBot_Child.Count < 7)
                             {
                                 IntPtr Dock = Child[8];
                                 if (Dock != IntPtr.Zero)
@@ -422,7 +422,7 @@ namespace MyBot.Supporter.Main
                         }
                         else if (Database.dock == true && Database.hide == true)
                         {
-                            if (MyBot_Child.Count < 6)
+                            if (MyBot_Child.Count < 7)
                             {
                                 IntPtr Dock = Child[8];
                                 if (Dock != IntPtr.Zero)
@@ -446,7 +446,7 @@ namespace MyBot.Supporter.Main
                             }
                             if (Database.dock == true)
                             {
-                                if (MyBot_Child.Count < 6)
+                                if (MyBot_Child.Count < 7)
                                 {
                                     IntPtr Dock = Child[8];
                                     if (Dock != IntPtr.Zero)
@@ -459,7 +459,7 @@ namespace MyBot.Supporter.Main
                             }
                             else
                             {
-                                if (MyBot_Child.Count > 5)
+                                if (MyBot_Child.Count > 6)
                                 {
                                     IntPtr Dock = Child[8];
                                     if (Dock != IntPtr.Zero)

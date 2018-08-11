@@ -163,7 +163,12 @@ namespace MyBot.Supporter.Main
                     bool IsExist = false;
                     if (!File.Exists(Database.Location + "AutoIT.zip"))
                     {
+                        richTextBox1.AppendText("Downloading resources");
                         IsExist = Download_Resources();
+                    }
+                    else
+                    {
+                        IsExist = true;
                     }
                     if (IsExist)
                     {
@@ -2058,7 +2063,7 @@ namespace MyBot.Supporter.Main
                 {
                     using (WebClient wc = new WebClient())
                     {
-                        string link = wc.DownloadString("https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/resourcelink.txt");
+                        string link = wc.DownloadString("https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/ResourcesLink.txt");
                         byte[] b = wc.DownloadData(link);
                         if (b.Length > 0)
                         {
@@ -2075,7 +2080,7 @@ namespace MyBot.Supporter.Main
                 {
                     using (WebClient wc = new WebClient())
                     {
-                        string link = wc.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/resourcelink.txt");
+                        string link = wc.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/ResourcesLink.txt");
                         byte[] b = wc.DownloadData(link);
                         if (b.Length > 0)
                         {

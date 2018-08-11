@@ -2565,46 +2565,7 @@ namespace MyBot.Supporter.Main
         private void button21_Click(object sender, EventArgs e)//Stop all MyBots and Emulators including adb.exe button
         {
             Database.WriteLog("StopAll_Click Called");
-            foreach (var process in Process.GetProcesses())
-            {
-                switch (process.ProcessName)
-                {
-                    case "MyBot.run":
-                    case "adb":
-                    case "MEmuHeadless":
-                    case "MyBot.run.Watchdog":
-                    case "MyBot.run.MiniGui":
-                        try
-                        {
-                            process.Kill();
-                        }
-                        catch
-                        {
-                            continue;
-                        }
-                        break;
-                }
-            }
-            foreach (var Android in Database.Emulator)
-            {
-                if(Android!=null)
-                {
-                    if(Android.Length > 0)
-                    {
-                        foreach (var Emulator in Process.GetProcessesByName(Android))
-                        {
-                            try
-                            {
-                                Emulator.Kill();
-                            }
-                            catch
-                            {
-                                continue;
-                            }
-                        }
-                    }
-                }
-            }
+            KillMyBot();
         }
 
         private static void NetworkChange_NetworkAvailabilityChanged(object sender, NetworkAvailabilityEventArgs e)//Things to do while network connection changed, used to refresh connected network
@@ -3955,27 +3916,7 @@ namespace MyBot.Supporter.Main
                             Database.ID[x] = 0;
                             x++;
                         }
-                        foreach (var process in Process.GetProcesses())
-                        {
-                            switch (process.ProcessName)
-                            {
-                                case "MyBot.run":
-                                case "adb":
-                                case "MEmuHeadless":
-                                case "MyBot.run.Watchdog":
-                                case "MyBot.run.MiniGui":
-                                    try
-                                    {
-                                        Botting.KillProcessAndChildren(process.Id);
-                                    }
-                                    catch
-                                    {
-                                        continue;
-                                    }
-                                    break;
-                            }
-                            Thread.Sleep(10);
-                        }
+                        KillMyBot();
                     }
                 }
                 else //No internet connection is found
@@ -3989,27 +3930,7 @@ namespace MyBot.Supporter.Main
                         Database.ID[x] = 0;
                         x++;
                     }
-                    foreach (var process in Process.GetProcesses())
-                    {
-                        switch (process.ProcessName)
-                        {
-                            case "MyBot.run":
-                            case "adb":
-                            case "MEmuHeadless":
-                            case "MyBot.run.Watchdog":
-                            case "MyBot.run.MiniGui":
-                                try
-                                {
-                                    Botting.KillProcessAndChildren(process.Id);
-                                }
-                                catch
-                                {
-                                    continue;
-                                }
-                                break;
-                        }
-                        Thread.Sleep(10);
-                    }
+                    KillMyBot();
                     if (Database.Shutdown == 1) //If Shutdown when no Internet is avabile is on
                     {
                         if (Database.Net_Error > 0) //if Program just start for 10 seconds
@@ -4954,39 +4875,6 @@ namespace MyBot.Supporter.Main
                                 update.FormClosing += Update_FormClosing;
                                 update.ShowDialog();
                             });
-                            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
-                            {
-                                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
-                                if (MOD.Length > 0)
-                                {
-                                    foreach (var f in MOD)
-                                    {
-                                        File.Delete(f);
-                                    }
-                                    string text = "";
-                                    string caption = "";
-                                    switch (Database.Language)
-                                    {
-                                        case "Chinese":
-                                            text = cn_Lang.CustomizeMODFound;
-                                            caption = cn_Lang.CustomizeMODFoundTitle;
-                                            break;
-                                        case "English":
-                                            text = en_Lang.CustomizeMODFound;
-                                            caption = en_Lang.CustomizeMODFoundTitle;
-                                            break;
-                                    }
-                                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
-                                    if (result == DialogResult.Yes)
-                                    {
-                                        this.Invoke((MethodInvoker)delegate ()
-                                        {
-                                            MyBotSetter set = new MyBotSetter();
-                                            set.ShowDialog();
-                                        });
-                                    }
-                                }
-                            }
                         }
 
                     }
@@ -5018,39 +4906,7 @@ namespace MyBot.Supporter.Main
                                 update.FormClosing += Update_FormClosing;
                                 update.ShowDialog();
                             });
-                            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
-                            {
-                                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
-                                if (MOD.Length > 0)
-                                {
-                                    foreach (var f in MOD)
-                                    {
-                                        File.Delete(f);
-                                    }
-                                    string text = "";
-                                    string caption = "";
-                                    switch (Database.Language)
-                                    {
-                                        case "Chinese":
-                                            text = cn_Lang.CustomizeMODFound;
-                                            caption = cn_Lang.CustomizeMODFoundTitle;
-                                            break;
-                                        case "English":
-                                            text = en_Lang.CustomizeMODFound;
-                                            caption = en_Lang.CustomizeMODFoundTitle;
-                                            break;
-                                    }
-                                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
-                                    if (result == DialogResult.Yes)
-                                    {
-                                        this.Invoke((MethodInvoker)delegate ()
-                                        {
-                                            MyBotSetter set = new MyBotSetter();
-                                            set.ShowDialog();
-                                        });
-                                    }
-                                }
-                            }
+                            
                         }
                     }
                     catch (Exception ex)
@@ -5062,6 +4918,31 @@ namespace MyBot.Supporter.Main
             catch
             {
 
+            }
+        }
+
+        private static void KillMyBot()
+        {
+            foreach (var process in Process.GetProcesses())
+            {
+                switch (process.ProcessName)
+                {
+                    case "MyBot.run":
+                    case "adb":
+                    case "nox_adb":
+                    case "MEmuHeadless":
+                    case "MyBot.run.Watchdog":
+                    case "MyBot.run.MiniGui":
+                        try
+                        {
+                            Botting.KillProcessAndChildren(process.Id);
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                        break;
+                }
             }
         }
         //Open file and let user choose an exe file to set into Other program AutoRun system

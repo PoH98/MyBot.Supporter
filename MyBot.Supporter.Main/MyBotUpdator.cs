@@ -72,6 +72,36 @@ namespace MyBot.Supporter.Main
                 if (file.Name != "")
                     file.ExtractToFile(completeFileName, true);
             }
+            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
+            {
+                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
+                if (MOD.Length > 0)
+                {
+                    foreach (var f in MOD)
+                    {
+                        File.Delete(f);
+                    }
+                    string text = "";
+                    string caption = "";
+                    switch (Database.Language)
+                    {
+                        case "Chinese":
+                            text = cn_Lang.CustomizeMODFound;
+                            caption = cn_Lang.CustomizeMODFoundTitle;
+                            break;
+                        case "English":
+                            text = en_Lang.CustomizeMODFound;
+                            caption = en_Lang.CustomizeMODFoundTitle;
+                            break;
+                    }
+                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        MyBotSetter set = new MyBotSetter();
+                        set.ShowDialog();
+                    }
+                }
+            }
         }
 
         private static void DownloadMyBotUpdate2()//Gitee
@@ -86,6 +116,7 @@ namespace MyBot.Supporter.Main
             File.Delete(Database.Location + "Update");
             Stream zipstream = new FileStream(Database.Location + "MyBot.Run.zip", FileMode.Open);
             ZipArchive archive = new ZipArchive(zipstream);
+
             foreach (ZipArchiveEntry file in archive.Entries)
             {
                 string completeFileName = Path.Combine(Environment.CurrentDirectory, file.FullName);
@@ -95,6 +126,36 @@ namespace MyBot.Supporter.Main
 
                 if (file.Name != "")
                     file.ExtractToFile(completeFileName, true);
+            }
+            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
+            {
+                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
+                if (MOD.Length > 0)
+                {
+                    foreach (var f in MOD)
+                    {
+                        File.Delete(f);
+                    }
+                    string text = "";
+                    string caption = "";
+                    switch (Database.Language)
+                    {
+                        case "Chinese":
+                            text = cn_Lang.CustomizeMODFound;
+                            caption = cn_Lang.CustomizeMODFoundTitle;
+                            break;
+                        case "English":
+                            text = en_Lang.CustomizeMODFound;
+                            caption = en_Lang.CustomizeMODFoundTitle;
+                            break;
+                    }
+                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        MyBotSetter set = new MyBotSetter();
+                        set.ShowDialog();
+                    }
+                }
             }
         }
 
