@@ -28,229 +28,26 @@ namespace MyBot.Supporter.Main
         public MyBotSetter()
         {
             InitializeComponent();
-            tabControl4.TabPages.Remove(tabPage10);
-            tabControl4.TabPages.Remove(tabPage11);
-            tabControl4.TabPages.Remove(tabPage12);
-            tabControl4.TabPages.Remove(tabPage15);
         }
         private async void button2_Click(object sender, EventArgs e)
         {
             textBox6.Text = "Inject started";
             button2.Enabled = false;
             button3.Enabled = false;
-            try
-            {
-                if (Profile.SelectedItem != null)
-                {
-                    try
-                    {
-                        Original_Settings = File.ReadAllLines(Environment.CurrentDirectory + "\\Profiles\\" + Profile.SelectedItem + Path.DirectorySeparatorChar + "config.ini", UnicodeEncoding.Unicode);
-                    }
-                    catch (FileNotFoundException)
-                    {
-                        switch (Database.Language)
-                        {
-                            case "English":
-                            MessageBox.Show("Profile have no config.ini! Please start MyBot for the first time!");
-                                break;
-                        }
-                        ProcessStartInfo start = new ProcessStartInfo("MyBot.run.exe");
-                        start.Arguments = Profile.SelectedItem + " " + "-a" + " " + "-nwd" + " " + "-nbs";
-                        Process.Start(start);
-                        return;
-                    }
-                    textBox6.AppendText("Injecting config.ini");
-                    Modifying = true;
-                    ModifyConfig(comboBox3);
-                    textBox6.AppendText("Inject completed");
-                    using (StreamWriter w = new StreamWriter(Environment.CurrentDirectory + "\\Profiles\\" + Profile.SelectedItem + Path.DirectorySeparatorChar + "config.ini", false, Encoding.Unicode))
-                    {
-                        foreach (var l in Modded_Settings)
-                        {
-                            w.WriteLine(l);
-                        }
-                    }
-                    try
-                    {
-                        Original_Settings = File.ReadAllLines(Environment.CurrentDirectory + "\\Profiles\\" + Profile.SelectedItem + Path.DirectorySeparatorChar + "ClanGames_config.ini", UnicodeEncoding.Unicode);
-                    }
-                    catch (FileNotFoundException)
-                    {
-                        File.WriteAllBytes("Temp.zip", Characters.ClanGames_config);
-                        ZipFile.ExtractToDirectory("Temp.zip",Environment.CurrentDirectory + "\\Profiles\\" + Profile.SelectedItem + Path.DirectorySeparatorChar);
-                        File.Delete("Temp.zip");
-                        Original_Settings = File.ReadAllLines(Environment.CurrentDirectory + "\\Profiles\\" + Profile.SelectedItem + Path.DirectorySeparatorChar + "ClanGames_config.ini", UnicodeEncoding.Unicode);
-                    }
-                    textBox6.AppendText("Injecting ClanGames_Config");
-                    Modifying = true;
-                    Thread CG = new Thread(ModifyClanGames_Config);
-                    CG.Start();
-                    while (Modifying == true)
-                    {
-                        await Task.Delay(500);
-                    }
-                    Database.loadingprocess = 80;
-                    textBox6.AppendText("Inject Completed");
-                    using (StreamWriter w = new StreamWriter(Environment.CurrentDirectory + "\\Profiles\\" + Profile.SelectedItem + Path.DirectorySeparatorChar + "ClanGames_config.ini", false, Encoding.Unicode))
-                    {
-                        foreach (var l in Modded_Settings)
-                        {
-                            w.WriteLine(l);
-                        }
-                    }
-                }
-                else
-                {
-                    Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
-                    foreach (var profile in Profiles)
-                    {
-                        try
-                        {
-                            Original_Settings = File.ReadAllLines(profile + Path.DirectorySeparatorChar + "config.ini", UnicodeEncoding.Unicode);
-                            Modifying = true;
-                            textBox6.AppendText("Injecting " + profile + "'s config");
-                            ModifyConfig(comboBox3);
-                            textBox6.AppendText("Inject completed");
-                            using (StreamWriter w = new StreamWriter(profile + Path.DirectorySeparatorChar + "config.ini", false, Encoding.Unicode))
-                            {
-                                foreach (var l in Modded_Settings)
-                                {
-                                    w.WriteLine(l);
-                                }
-                            }
-                        }
-
-                        catch (FileNotFoundException)
-                        {
-                            continue;
-                        }
-
-                        if (!File.Exists(profile + Path.DirectorySeparatorChar + "ClanGames_config.ini"))
-                        {
-                            File.WriteAllBytes("Temp.zip", Characters.ClanGames_config);
-                            ZipFile.ExtractToDirectory("Temp.zip", Environment.CurrentDirectory + "\\Profiles\\" + profile + Path.DirectorySeparatorChar);
-                            File.Delete("Temp.zip");
-                        }
-                        textBox6.AppendText("Injecting " + profile + "'s ClanGames_Config");
-                        Modifying = true;
-                        Original_Settings = File.ReadAllLines(profile + Path.DirectorySeparatorChar + "ClanGames_config.ini");
-                        Thread CG = new Thread(ModifyClanGames_Config);
-                        CG.Start();
-                        while (Modifying == true)
-                        {
-                            await Task.Delay(1000);
-                        }
-                        textBox6.AppendText("Inject Completed");
-                        try
-                        {
-                            using (StreamWriter w = new StreamWriter(profile + Path.DirectorySeparatorChar + "ClanGames_config.ini", false, Encoding.Unicode))
-                            {
-                                foreach (var l in Modded_Settings)
-                                {
-                                    w.WriteLine(l);
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            continue;
-                        }
-                    }
-                }
-                if (checkBox12.Checked || checkBox14.Checked || checkBox15.Checked || checkBox16.Checked || checkBox17.Checked || checkBox18.Checked ||checkBox20.Checked)
-                {
-                    // MODED MyBot
-                    bool IsExist = false;
-                    if (!File.Exists(Database.Location + "AutoIT.zip"))
-                    {
-                        richTextBox1.AppendText("Downloading resources");
-                        IsExist = Download_Resources();
-                    }
-                    else
-                    {
-                        IsExist = true;
-                    }
-                    if (IsExist)
-                    {
-                        ZipFile.ExtractToDirectory(Database.Location + "AutoIT.zip", Environment.CurrentDirectory);
-                        if (checkBox12.Checked)
-                        {
-                            textBox6.AppendText("Injecting DelayTimes.au3");
-                            MyBotMOD.FasterDelay(false);
-                            textBox6.AppendText("Completed Injecting DelayTimes.au3");
-                        }
-                        else if (checkBox14.Checked)
-                        {
-                            textBox6.AppendText("Injecting DelayTimes.au3");
-                            MyBotMOD.FasterDelay(true);
-                            textBox6.AppendText("Completed Injecting DelayTimes.au3");
-                        }
-                        if (checkBox15.Checked)
-                        {
-                            textBox6.AppendText("Injecting MBR Global Variables.au3");
-                            textBox6.AppendText("Injecting Android.au3");
-                            MyBotMOD.DirectX(false);
-                            textBox6.AppendText("Completed Injecting MBR Global Variables.au3");
-                            textBox6.AppendText("Completed Injecting Android.au3");
-                        }
-                        else if (checkBox16.Checked)
-                        {
-                            textBox6.AppendText("Injecting MBR Global Variables.au3");
-                            textBox6.AppendText("Injecting Android.au3");
-                            MyBotMOD.DirectX(true);
-                            textBox6.AppendText("Completed Injecting MBR Global Variables.au3");
-                            textBox6.AppendText("Completed Injecting Android.au3");
-                        }
-                        if (checkBox17.Checked)
-                        {
-                            textBox6.AppendText("Injecting *.au3");
-                            MyBotMOD.AdsLocator(false);
-                            textBox6.AppendText("Completed Injecting *.au3");
-                        }
-                        else if (checkBox18.Checked)
-                        {
-                            textBox6.AppendText("Injecting *.au3");
-                            MyBotMOD.AdsLocator(true);
-                            textBox6.AppendText("Completed Injecting *.au3");
-                        }
-                        if (checkBox20.Checked)
-                        {
-                            textBox6.AppendText("Undoing Logo Patch");
-                            File.Delete(Environment.CurrentDirectory + "\\images\\Logo.png");
-                            File.Move(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch", Environment.CurrentDirectory + "\\images\\Logo.png");
-                        }
-                        textBox6.AppendText("Compiling MyBot.run.exe");
-                        ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe");
-                        compiler.Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\"";
-                        Process com = Process.Start(compiler);
-                        while (!com.HasExited)
-                        {
-                            await Task.Delay(100);
-                        }
-                        File.Delete(Environment.CurrentDirectory + "Compiler.exe");
-                    }
-                    else
-                    {
-                        MessageBox.Show(en_Lang.Error);
-                        Close();
-                    }
-                }
-                Database.loadingprocess = 100;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Inject Failed! Reason:" + ex);
-                textBox6.AppendText("Inject Failed!");
-                File.WriteAllText("error.log", ex.ToString());
-            }
+            Thread modify = new Thread(ModifyStart);
+            modify.Start();
         }
 
-        private void ModifyClanGames_Config()
+        /*private void ModifyClanGames_Config()
         {
             Modifying = true;
             x = 0;
             Modded_Settings = Original_Settings;
+            foreach(var m in Modded_Settings)
+            {
+                Debug.WriteLine(m);
+            }
+
             foreach (var line in Original_Settings)
             {
                 string[] temp = line.Split('=');
@@ -453,19 +250,20 @@ namespace MyBot.Supporter.Main
                 x++;
             }
             Modifying = false;
-        }
-        private void ModifyConfig(ComboBox box)
+        }*/ //MyBot removed this
+        private void ModifyConfig(string coc)
         {
             x = 0;
             Modifying = true;
             Modded_Settings = Original_Settings;
             foreach (var line in Original_Settings)
             {
-                GC.Collect();
-                string[] temp = line.Split('=');
-                if (box.SelectedItem != null)
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    GC.Collect();
+                    string[] temp = line.Split('=');
+                    if (coc.Length > 0)
                     {
-                        string coc = box.SelectedItem.ToString();
                         switch (coc)
                         {
                             case "Google":
@@ -649,725 +447,750 @@ namespace MyBot.Supporter.Main
                             default:
                                 break;
                         }
-                    }      
-                if (checkBox5.Checked)
-                {
-                    if (temp.Contains("ScriptDB"))
+                    }
+                    if (checkBox5.Checked)
                     {
-                        if (comboBox2.SelectedItem != null)
+                        if (temp.Contains("ScriptDB"))
                         {
-                            Modded_Settings[x] = "ScriptDB=" + comboBox2.SelectedItem.ToString();
+                            if (comboBox2.SelectedItem != null)
+                            {
+                                Modded_Settings[x] = "ScriptDB=" + comboBox2.SelectedItem.ToString();
+                            }
                         }
-                    }
-                    else if (temp.Contains("DBDropCC"))
-                    {
-                        if (checkBox8.Checked == true)
+                        else if (temp.Contains("DBDropCC"))
                         {
-                            Modded_Settings[x] = "DBDropCC=1";
+                            if (checkBox8.Checked == true)
+                            {
+                                Modded_Settings[x] = "DBDropCC=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "DBDropCC=0";
+                            }
                         }
-                        else
+                        else if (temp.Contains("DBCloneSpell"))
                         {
-                            Modded_Settings[x] = "DBDropCC=0";
+                            Modded_Settings[x] = "DBCloneSpell=1";
                         }
-                    }
-                    else if (temp.Contains("DBCloneSpell"))
-                    {
-                        Modded_Settings[x] = "DBCloneSpell=1";
-                    }
-                    else if (temp.Contains("DBEarthquakeSpell"))
-                    {
-                        Modded_Settings[x] = "DBEarthquakeSpell=1";
-                    }
-                    else if (temp.Contains("DBFreezeSpell"))
-                    {
-                        Modded_Settings[x] = "DBFreezeSpell=1";
-                    }
-                    else if (temp.Contains("DBHasteSpell"))
-                    {
-                        Modded_Settings[x] = "DBHasteSpell=1";
-                    }
-                    else if (temp.Contains("DBHealSpell"))
-                    {
-                        Modded_Settings[x] = "DBHealSpell=1";
-                    }
-                    else if (temp.Contains("DBJumpSpell"))
-                    {
-                        Modded_Settings[x] = "DBJumpSpell=1";
-                    }
-                    else if (temp.Contains("DBKingAtk"))
-                    {
-                        Modded_Settings[x] = "DBKingAtk=1";
-                    }
-                    else if (temp.Contains("DBQueenAtk"))
-                    {
-                        Modded_Settings[x] = "DBQueenAtk=2";
-                    }
-                    else if (temp.Contains("DBNotWaitHeroes"))
-                    {
-                        Modded_Settings[x] = "DBNotWaitHeroes=1";
-                    }
-                    else if (temp.Contains("DBLightSpell"))
-                    {
-                        Modded_Settings[x] = "DBLightSpell=1";
-                    }
-                    else if (temp.Contains("DBPoisonSpell"))
-                    {
-                        Modded_Settings[x] = "DBPoisonSpell=1";
-                    }
-                    else if (temp.Contains("DBRageSpell"))
-                    {
-                        Modded_Settings[x] = "DBRageSpell=1";
-                    }
-                    else if (temp.Contains("DBSkeletonSpell"))
-                    {
-                        Modded_Settings[x] = "DBSkeletonSpell=1";
-                    }
-                    else if (temp.Contains("DBWardenAtk"))
-                    {
-                        Modded_Settings[x] = "DBWardenAtk=4";
-                    }
-                    else if (temp.Contains("DBKingWait"))
-                    {
-                        if (checkBox10.Checked == true && numericUpDown73.Value >= 7)
+                        else if (temp.Contains("DBEarthquakeSpell"))
                         {
-                            Modded_Settings[x] = "DBKingWait=1";
+                            Modded_Settings[x] = "DBEarthquakeSpell=1";
                         }
-                        else
+                        else if (temp.Contains("DBFreezeSpell"))
                         {
-                            Modded_Settings[x] = "DBKingWait=0";
+                            Modded_Settings[x] = "DBFreezeSpell=1";
                         }
-                    }
-                    else if (temp.Contains("DBQueenWait"))
-                    {
-                        if (checkBox10.Checked == true && numericUpDown73.Value >= 9)
+                        else if (temp.Contains("DBHasteSpell"))
                         {
-                            Modded_Settings[x] = "DBQueenWait=1";
+                            Modded_Settings[x] = "DBHasteSpell=1";
                         }
-                        else
+                        else if (temp.Contains("DBHealSpell"))
                         {
-                            Modded_Settings[x] = "DBQueenWait=0";
+                            Modded_Settings[x] = "DBHealSpell=1";
                         }
-                    }
-                    else if (temp.Contains("DBWardenWait"))
-                    {
-                        if (checkBox10.Checked == true && numericUpDown73.Value >= 11)
+                        else if (temp.Contains("DBJumpSpell"))
                         {
-                            Modded_Settings[x] = "DBWardenWait=1";
+                            Modded_Settings[x] = "DBJumpSpell=1";
                         }
-                        else
+                        else if (temp.Contains("DBKingAtk"))
                         {
-                            Modded_Settings[x] = "DBWardenWait=0";
+                            Modded_Settings[x] = "DBKingAtk=1";
                         }
-                    }
+                        else if (temp.Contains("DBQueenAtk"))
+                        {
+                            Modded_Settings[x] = "DBQueenAtk=2";
+                        }
+                        else if (temp.Contains("DBNotWaitHeroes"))
+                        {
+                            Modded_Settings[x] = "DBNotWaitHeroes=1";
+                        }
+                        else if (temp.Contains("DBLightSpell"))
+                        {
+                            Modded_Settings[x] = "DBLightSpell=1";
+                        }
+                        else if (temp.Contains("DBPoisonSpell"))
+                        {
+                            Modded_Settings[x] = "DBPoisonSpell=1";
+                        }
+                        else if (temp.Contains("DBRageSpell"))
+                        {
+                            Modded_Settings[x] = "DBRageSpell=1";
+                        }
+                        else if (temp.Contains("DBSkeletonSpell"))
+                        {
+                            Modded_Settings[x] = "DBSkeletonSpell=1";
+                        }
+                        else if (temp.Contains("DBWardenAtk"))
+                        {
+                            Modded_Settings[x] = "DBWardenAtk=4";
+                        }
+                        else if (temp.Contains("DBKingWait"))
+                        {
 
-                }
-                if (checkBox6.Checked)
-                {
-                    if (temp.Contains("ScriptAB"))
-                    {
-                        if (comboBox2.SelectedItem != null)
+                            if (checkBox10.Checked == true && numericUpDown73.Value >= 7)
+                            {
+                                Modded_Settings[x] = "DBKingWait=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "DBKingWait=0";
+                            }
+
+                        }
+                        else if (temp.Contains("DBQueenWait"))
                         {
-                            Modded_Settings[x] = "ScriptAB=" + comboBox2.SelectedItem.ToString();
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                if (checkBox10.Checked == true && numericUpDown73.Value >= 9)
+                                {
+                                    Modded_Settings[x] = "DBQueenWait=1";
+                                }
+                                else
+                                {
+                                    Modded_Settings[x] = "DBQueenWait=0";
+                                }
+                            });
+                        }
+                        else if (temp.Contains("DBWardenWait"))
+                        {
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                if (checkBox10.Checked == true && numericUpDown73.Value >= 11)
+                                {
+                                    Modded_Settings[x] = "DBWardenWait=1";
+                                }
+                                else
+                                {
+                                    Modded_Settings[x] = "DBWardenWait=0";
+                                }
+
+                            });
                         }
                     }
-                    else if (temp.Contains("ABDropCC"))
+                    if (checkBox6.Checked)
                     {
-                        if (checkBox2.Checked == true)
+                        this.Invoke((MethodInvoker)delegate ()
                         {
-                            Modded_Settings[x] = "ABDropCC=1";
+                            if (temp.Contains("ScriptAB"))
+                            {
+                                if (comboBox2.SelectedItem != null)
+                                {
+                                    Modded_Settings[x] = "ScriptAB=" + comboBox2.SelectedItem.ToString();
+                                }
+                            }
+                            else if (temp.Contains("ABDropCC"))
+                            {
+                                if (checkBox2.Checked == true)
+                                {
+                                    Modded_Settings[x] = "ABDropCC=1";
+                                }
+                                else
+                                {
+                                    Modded_Settings[x] = "ABDropCC=0";
+                                }
+                            }
+                            else if (temp.Contains("ABCloneSpell"))
+                            {
+                                Modded_Settings[x] = "ABCloneSpell=1";
+                            }
+                            else if (temp.Contains("ABEarthquakeSpell"))
+                            {
+                                Modded_Settings[x] = "ABEarthquakeSpell=1";
+                            }
+                            else if (temp.Contains("ABFreezeSpell"))
+                            {
+                                Modded_Settings[x] = "ABFreezeSpell=1";
+                            }
+                            else if (temp.Contains("ABHasteSpell"))
+                            {
+                                Modded_Settings[x] = "ABHasteSpell=1";
+                            }
+                            else if (temp.Contains("ABHealSpell"))
+                            {
+                                Modded_Settings[x] = "ABHealSpell=1";
+                            }
+                            else if (temp.Contains("ABJumpSpell"))
+                            {
+                                Modded_Settings[x] = "ABJumpSpell=1";
+                            }
+                            else if (temp.Contains("ABKingAtk"))
+                            {
+                                Modded_Settings[x] = "ABKingAtk=1";
+                            }
+                            else if (temp.Contains("ABQueenAtk"))
+                            {
+                                Modded_Settings[x] = "ABQueenAtk=2";
+                            }
+                            else if (temp.Contains("ABNotWaitHeroes"))
+                            {
+                                Modded_Settings[x] = "ABNotWaitHeroes=1";
+                            }
+                            else if (temp.Contains("ABLightSpell"))
+                            {
+                                Modded_Settings[x] = "ABLightSpell=1";
+                            }
+                            else if (temp.Contains("ABPoisonSpell"))
+                            {
+                                Modded_Settings[x] = "ABPoisonSpell=1";
+                            }
+                            else if (temp.Contains("ABRageSpell"))
+                            {
+                                Modded_Settings[x] = "ABRageSpell=1";
+                            }
+                            else if (temp.Contains("ABSkeletonSpell"))
+                            {
+                                Modded_Settings[x] = "ABSkeletonSpell=1";
+                            }
+                            else if (temp.Contains("ABWardenAtk"))
+                            {
+                                Modded_Settings[x] = "ABWardenAtk=4";
+                            }
+                            else if (temp.Contains("ABKingWait"))
+                            {
+                                if (checkBox10.Checked == true && numericUpDown73.Value >= 7)
+                                {
+                                    Modded_Settings[x] = "ABKingWait=1";
+                                }
+                                else
+                                {
+                                    Modded_Settings[x] = "ABKingWait=0";
+                                }
+                            }
+                            else if (temp.Contains("ABQueenWait"))
+                            {
+                                if (checkBox10.Checked == true && numericUpDown73.Value >= 9)
+                                {
+                                    Modded_Settings[x] = "ABQueenWait=1";
+                                }
+                                else
+                                {
+                                    Modded_Settings[x] = "ABQueenWait=0";
+                                }
+                            }
+                            else if (temp.Contains("ABWardenWait"))
+                            {
+                                if (checkBox10.Checked == true && numericUpDown73.Value >= 11)
+                                {
+                                    Modded_Settings[x] = "ABWardenWait=1";
+                                }
+                                else
+                                {
+                                    Modded_Settings[x] = "ABWardenWait=0";
+                                }
+                            }
+                        });
+                    }
+                    if (checkBox13.Checked)
+                    {
+                        if (temp.Contains("txtBlacklist"))
+                        {
+                            Modded_Settings[x] = "txtBlacklist=部落战|不|自|勿";
                         }
-                        else
+                        else if (temp.Contains("txtDonateArchers"))
                         {
-                            Modded_Settings[x] = "ABDropCC=0";
+                            Modded_Settings[x] = "txtDonateArchers=need|弓|随|兵|增|守";
                         }
-                    }
-                    else if (temp.Contains("ABCloneSpell"))
-                    {
-                        Modded_Settings[x] = "ABCloneSpell=1";
-                    }
-                    else if (temp.Contains("ABEarthquakeSpell"))
-                    {
-                        Modded_Settings[x] = "ABEarthquakeSpell=1";
-                    }
-                    else if (temp.Contains("ABFreezeSpell"))
-                    {
-                        Modded_Settings[x] = "ABFreezeSpell=1";
-                    }
-                    else if (temp.Contains("ABHasteSpell"))
-                    {
-                        Modded_Settings[x] = "ABHasteSpell=1";
-                    }
-                    else if (temp.Contains("ABHealSpell"))
-                    {
-                        Modded_Settings[x] = "ABHealSpell=1";
-                    }
-                    else if (temp.Contains("ABJumpSpell"))
-                    {
-                        Modded_Settings[x] = "ABJumpSpell=1";
-                    }
-                    else if (temp.Contains("ABKingAtk"))
-                    {
-                        Modded_Settings[x] = "ABKingAtk=1";
-                    }
-                    else if (temp.Contains("ABQueenAtk"))
-                    {
-                        Modded_Settings[x] = "ABQueenAtk=2";
-                    }
-                    else if (temp.Contains("ABNotWaitHeroes"))
-                    {
-                        Modded_Settings[x] = "ABNotWaitHeroes=1";
-                    }
-                    else if (temp.Contains("ABLightSpell"))
-                    {
-                        Modded_Settings[x] = "ABLightSpell=1";
-                    }
-                    else if (temp.Contains("ABPoisonSpell"))
-                    {
-                        Modded_Settings[x] = "ABPoisonSpell=1";
-                    }
-                    else if (temp.Contains("ABRageSpell"))
-                    {
-                        Modded_Settings[x] = "ABRageSpell=1";
-                    }
-                    else if (temp.Contains("ABSkeletonSpell"))
-                    {
-                        Modded_Settings[x] = "ABSkeletonSpell=1";
-                    }
-                    else if (temp.Contains("ABWardenAtk"))
-                    {
-                        Modded_Settings[x] = "ABWardenAtk=4";
-                    }
-                    else if (temp.Contains("ABKingWait"))
-                    {
-                        if (checkBox10.Checked == true && numericUpDown73.Value >= 7)
+                        else if (temp.Contains("txtDonateBabyDragons"))
                         {
-                            Modded_Settings[x] = "ABKingWait=1";
+                            Modded_Settings[x] = "txtDonateBabyDragons=龙宝|小龙";
                         }
-                        else
+                        else if (temp.Contains("txtDonateBalloons"))
                         {
-                            Modded_Settings[x] = "ABKingWait=0";
+                            Modded_Settings[x] = "txtDonateBalloons=球|空";
                         }
-                    }
-                    else if (temp.Contains("ABQueenWait"))
-                    {
-                        if (checkBox10.Checked == true && numericUpDown73.Value >= 9)
+                        else if (temp.Contains("txtDonateBarbarians"))
                         {
-                            Modded_Settings[x] = "ABQueenWait=1";
+                            Modded_Settings[x] = "txtDonateBarbarians=野";
                         }
-                        else
+                        else if (temp.Contains("txtDonateBowlers"))
                         {
-                            Modded_Settings[x] = "ABQueenWait=0";
+                            Modded_Settings[x] = "txtDonateBowlers=蓝|投";
                         }
-                    }
-                    else if (temp.Contains("ABWardenWait"))
-                    {
-                        if (checkBox10.Checked == true && numericUpDown73.Value >= 11)
+                        else if (temp.Contains("txtDonateDragons"))
                         {
-                            Modded_Settings[x] = "ABWardenWait=1";
+                            Modded_Settings[x] = "txtDonateDragons=龙|空";
                         }
-                        else
+                        else if (temp.Contains("txtDonateEarthquakeSpells"))
                         {
-                            Modded_Settings[x] = "ABWardenWait=0";
+                            Modded_Settings[x] = "txtDonateEarthquakeSpells=震";
                         }
-                    }
-                }
-                if (checkBox13.Checked)
-                {
-                    if (temp.Contains("txtBlacklist"))
-                    {
-                        Modded_Settings[x] = "txtBlacklist=部落战|不|自|勿";
-                    }
-                    else if (temp.Contains("txtDonateArchers"))
-                    {
-                        Modded_Settings[x] = "txtDonateArchers=need|弓|随|兵|增|守";
-                    }
-                    else if (temp.Contains("txtDonateBabyDragons"))
-                    {
-                        Modded_Settings[x] = "txtDonateBabyDragons=龙宝|小龙";
-                    }
-                    else if (temp.Contains("txtDonateBalloons"))
-                    {
-                        Modded_Settings[x] = "txtDonateBalloons=球|空";
-                    }
-                    else if (temp.Contains("txtDonateBarbarians"))
-                    {
-                        Modded_Settings[x] = "txtDonateBarbarians=野";
-                    }
-                    else if (temp.Contains("txtDonateBowlers"))
-                    {
-                        Modded_Settings[x] = "txtDonateBowlers=蓝|投";
-                    }
-                    else if (temp.Contains("txtDonateDragons"))
-                    {
-                        Modded_Settings[x] = "txtDonateDragons=龙|空";
-                    }
-                    else if (temp.Contains("txtDonateEarthquakeSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateEarthquakeSpells=震";
-                    }
-                    else if (temp.Contains("txtDonateFreezeSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateFreezeSpells=冻";
-                    }
-                    else if (temp.Contains("txtDonateGiants"))
-                    {
-                        Modded_Settings[x] = "txtDonateGiants=胖|巨";
-                    }
-                    else if (temp.Contains("txtDonateGoblins"))
-                    {
-                        Modded_Settings[x] = "txtDonateGoblins=哥布|偷";
-                    }
-                    else if (temp.Contains("txtDonateGolems"))
-                    {
-                        Modded_Settings[x] = "txtDonateGolems=石";
-                    }
-                    else if (temp.Contains("txtDonateHasteSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateHasteSpells=速";
-                    }
-                    else if (temp.Contains("txtDonateHealers"))
-                    {
-                        Modded_Settings[x] = "txtDonateHealers=天使";
-                    }
-                    else if (temp.Contains("txtDonateHealSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateHealSpells=治";
-                    }
-                    else if (temp.Contains("txtDonateHogRiders"))
-                    {
-                        Modded_Settings[x] = "txtDonateHogRiders=猪";
-                    }
-                    else if (temp.Contains("txtDonateJumpSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateJumpSpells=弹|跳";
-                    }
-                    else if (temp.Contains("txtDonateLavaHounds"))
-                    {
-                        Modded_Settings[x] = "txtDonateLavaHounds=狗|犬";
-                    }
-                    else if (temp.Contains("txtDonateLightningSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateLightningSpells=闪";
-                    }
-                    else if (temp.Contains("txtDonateDatabase.Miners"))
-                    {
-                        Modded_Settings[x] = "txtDonateDatabase.Miners=矿|遁|挖";
-                    }
-                    else if (temp.Contains("txtDonateDatabase.Minions"))
-                    {
-                        Modded_Settings[x] = "txtDonateDatabase.Minions=亡|蝇";
-                    }
-                    else if (temp.Contains("txtDonatePekkas"))
-                    {
-                        Modded_Settings[x] = "txtDonatePekkas=皮";
-                    }
-                    else if (temp.Contains("txtDonatePoisonSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonatePoisonSpells=毒";
-                    }
-                    else if (temp.Contains("txtDonateRageSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateRageSpells=狂";
-                    }
-                    else if (temp.Contains("txtDonateSkeletonSpells"))
-                    {
-                        Modded_Settings[x] = "txtDonateSkeletonSpells=骷|髅";
-                    }
-                    else if (temp.Contains("txtDonateValkyries"))
-                    {
-                        Modded_Settings[x] = "txtDonateValkyries=武";
-                    }
-                    else if (temp.Contains("txtDonateWallBreakers"))
-                    {
-                        Modded_Settings[x] = "txtDonateWallBreakers=炸";
-                    }
-                    else if (temp.Contains("txtDonateWitches"))
-                    {
-                        Modded_Settings[x] = "txtDonateWitches=巫";
-                    }
-                    else if (temp.Contains("txtDonateWizards"))
-                    {
-                        Modded_Settings[x] = "txtDonateWizards=法";
-                    }
-                }
-                if (checkBox4.Checked)
-                {
-                    if (x < 550)
-                    {
-                        if (temp.Contains("CSpell"))
+                        else if (temp.Contains("txtDonateFreezeSpells"))
                         {
-                            Modded_Settings[x] = "CSpell=1";
+                            Modded_Settings[x] = "txtDonateFreezeSpells=冻";
                         }
-                        else if (temp.Contains("ESpell"))
+                        else if (temp.Contains("txtDonateGiants"))
                         {
-                            Modded_Settings[x] = "ESpell=1";
+                            Modded_Settings[x] = "txtDonateGiants=胖|巨";
                         }
-                        else if (temp.Contains("FSpell"))
+                        else if (temp.Contains("txtDonateGoblins"))
                         {
-                            Modded_Settings[x] = "FSpell=1";
+                            Modded_Settings[x] = "txtDonateGoblins=哥布|偷";
                         }
-                        else if (temp.Contains("HaSpell"))
+                        else if (temp.Contains("txtDonateGolems"))
                         {
-                            Modded_Settings[x] = "HaSpell=1";
+                            Modded_Settings[x] = "txtDonateGolems=石";
                         }
-                        else if (temp.Contains("HSpell"))
+                        else if (temp.Contains("txtDonateHasteSpells"))
                         {
-                            Modded_Settings[x] = "HSpell=1";
+                            Modded_Settings[x] = "txtDonateHasteSpells=速";
                         }
-                        else if (temp.Contains("JSpell"))
+                        else if (temp.Contains("txtDonateHealers"))
                         {
-                            Modded_Settings[x] = "JSpell=1";
+                            Modded_Settings[x] = "txtDonateHealers=天使";
                         }
-                        else if (temp.Contains("LSpell"))
+                        else if (temp.Contains("txtDonateHealSpells"))
                         {
-                            Modded_Settings[x] = "LSpell=1";
+                            Modded_Settings[x] = "txtDonateHealSpells=治";
                         }
-                        else if (temp.Contains("PSpell"))
+                        else if (temp.Contains("txtDonateHogRiders"))
                         {
-                            Modded_Settings[x] = "PSpell=1";
+                            Modded_Settings[x] = "txtDonateHogRiders=猪";
                         }
-                        else if (temp.Contains("RSpell"))
+                        else if (temp.Contains("txtDonateJumpSpells"))
                         {
-                            Modded_Settings[x] = "RSpell=1";
+                            Modded_Settings[x] = "txtDonateJumpSpells=弹|跳";
                         }
-                        else if (temp.Contains("SkSpell"))
+                        else if (temp.Contains("txtDonateLavaHounds"))
                         {
-                            Modded_Settings[x] = "SkSpell=1";
+                            Modded_Settings[x] = "txtDonateLavaHounds=狗|犬";
                         }
-                        else if (temp.Contains("Arch"))
+                        else if (temp.Contains("txtDonateLightningSpells"))
                         {
-                            Modded_Settings[x] = "Arch=1";
+                            Modded_Settings[x] = "txtDonateLightningSpells=闪";
                         }
-                        else if (temp.Contains("BabyD"))
+                        else if (temp.Contains("txtDonateDatabase.Miners"))
                         {
-                            Modded_Settings[x] = "BabyD=1";
+                            Modded_Settings[x] = "txtDonateDatabase.Miners=矿|遁|挖";
                         }
-                        else if (temp.Contains("Ball"))
+                        else if (temp.Contains("txtDonateDatabase.Minions"))
                         {
-                            Modded_Settings[x] = "Ball=1";
+                            Modded_Settings[x] = "txtDonateDatabase.Minions=亡|蝇";
                         }
-                        else if (temp.Contains("Barb"))
+                        else if (temp.Contains("txtDonatePekkas"))
                         {
-                            Modded_Settings[x] = "Barb=1";
+                            Modded_Settings[x] = "txtDonatePekkas=皮";
                         }
-                        else if (temp.Contains("Bowl"))
+                        else if (temp.Contains("txtDonatePoisonSpells"))
                         {
-                            Modded_Settings[x] = "Bowl=1";
+                            Modded_Settings[x] = "txtDonatePoisonSpells=毒";
                         }
-                        else if (temp.Contains("Drag"))
+                        else if (temp.Contains("txtDonateRageSpells"))
                         {
-                            Modded_Settings[x] = "Drag=1";
+                            Modded_Settings[x] = "txtDonateRageSpells=狂";
                         }
-                        else if (temp.Contains("Giant"))
+                        else if (temp.Contains("txtDonateSkeletonSpells"))
                         {
-                            Modded_Settings[x] = "Giant=1";
+                            Modded_Settings[x] = "txtDonateSkeletonSpells=骷|髅";
                         }
-                        else if (temp.Contains("Gobl"))
+                        else if (temp.Contains("txtDonateValkyries"))
                         {
-                            Modded_Settings[x] = "Gobl=1";
+                            Modded_Settings[x] = "txtDonateValkyries=武";
                         }
-                        else if (temp.Contains("Gole"))
+                        else if (temp.Contains("txtDonateWallBreakers"))
                         {
-                            Modded_Settings[x] = "Gole=1";
+                            Modded_Settings[x] = "txtDonateWallBreakers=炸";
                         }
-                        else if (temp.Contains("Heal"))
+                        else if (temp.Contains("txtDonateWitches"))
                         {
-                            Modded_Settings[x] = "Heal=1";
+                            Modded_Settings[x] = "txtDonateWitches=巫";
                         }
-                        else if (temp.Contains("Hogs"))
+                        else if (temp.Contains("txtDonateWizards"))
                         {
-                            Modded_Settings[x] = "Hogs=1";
-                        }
-                        else if (temp.Contains("Lava"))
-                        {
-                            Modded_Settings[x] = "Lava=1";
-                        }
-                        else if (temp.Contains("Mine"))
-                        {
-                            Modded_Settings[x] = "Mine=1";
-                        }
-                        else if (temp.Contains("Mini"))
-                        {
-                            Modded_Settings[x] = "Mini=1";
-                        }
-                        else if (temp.Contains("Pekk"))
-                        {
-                            Modded_Settings[x] = "Pekk=1";
-                        }
-                        else if (temp.Contains("Valk"))
-                        {
-                            Modded_Settings[x] = "Valk=1";
-                        }
-                        else if (temp.Contains("Wall"))
-                        {
-                            Modded_Settings[x] = "Wall=1";
-                        }
-                        else if (temp.Contains("Witc"))
-                        {
-                            Modded_Settings[x] = "Witc=1";
-                        }
-                        else if (temp.Contains("Wiza"))
-                        {
-                            Modded_Settings[x] = "Wiza=1";
-                        }
-                        else if (temp.Contains("EDrag"))
-                        {
-                            Modded_Settings[x] = "EDrag=1";
+                            Modded_Settings[x] = "txtDonateWizards=法";
                         }
                     }
-                }
-                if (checkBox7.Checked)
-                {
-                    if (temp.Contains("language"))
+                    if (checkBox4.Checked)
                     {
-                        if (comboBox5.SelectedIndex == 0)
+                        if (x < 550)
                         {
-                            Modded_Settings[x] = "language=English";
+                            if (temp.Contains("CSpell"))
+                            {
+                                Modded_Settings[x] = "CSpell=1";
+                            }
+                            else if (temp.Contains("ESpell"))
+                            {
+                                Modded_Settings[x] = "ESpell=1";
+                            }
+                            else if (temp.Contains("FSpell"))
+                            {
+                                Modded_Settings[x] = "FSpell=1";
+                            }
+                            else if (temp.Contains("HaSpell"))
+                            {
+                                Modded_Settings[x] = "HaSpell=1";
+                            }
+                            else if (temp.Contains("HSpell"))
+                            {
+                                Modded_Settings[x] = "HSpell=1";
+                            }
+                            else if (temp.Contains("JSpell"))
+                            {
+                                Modded_Settings[x] = "JSpell=1";
+                            }
+                            else if (temp.Contains("LSpell"))
+                            {
+                                Modded_Settings[x] = "LSpell=1";
+                            }
+                            else if (temp.Contains("PSpell"))
+                            {
+                                Modded_Settings[x] = "PSpell=1";
+                            }
+                            else if (temp.Contains("RSpell"))
+                            {
+                                Modded_Settings[x] = "RSpell=1";
+                            }
+                            else if (temp.Contains("SkSpell"))
+                            {
+                                Modded_Settings[x] = "SkSpell=1";
+                            }
+                            else if (temp.Contains("Arch"))
+                            {
+                                Modded_Settings[x] = "Arch=1";
+                            }
+                            else if (temp.Contains("BabyD"))
+                            {
+                                Modded_Settings[x] = "BabyD=1";
+                            }
+                            else if (temp.Contains("Ball"))
+                            {
+                                Modded_Settings[x] = "Ball=1";
+                            }
+                            else if (temp.Contains("Barb"))
+                            {
+                                Modded_Settings[x] = "Barb=1";
+                            }
+                            else if (temp.Contains("Bowl"))
+                            {
+                                Modded_Settings[x] = "Bowl=1";
+                            }
+                            else if (temp.Contains("Drag"))
+                            {
+                                Modded_Settings[x] = "Drag=1";
+                            }
+                            else if (temp.Contains("Giant"))
+                            {
+                                Modded_Settings[x] = "Giant=1";
+                            }
+                            else if (temp.Contains("Gobl"))
+                            {
+                                Modded_Settings[x] = "Gobl=1";
+                            }
+                            else if (temp.Contains("Gole"))
+                            {
+                                Modded_Settings[x] = "Gole=1";
+                            }
+                            else if (temp.Contains("Heal"))
+                            {
+                                Modded_Settings[x] = "Heal=1";
+                            }
+                            else if (temp.Contains("Hogs"))
+                            {
+                                Modded_Settings[x] = "Hogs=1";
+                            }
+                            else if (temp.Contains("Lava"))
+                            {
+                                Modded_Settings[x] = "Lava=1";
+                            }
+                            else if (temp.Contains("Mine"))
+                            {
+                                Modded_Settings[x] = "Mine=1";
+                            }
+                            else if (temp.Contains("Mini"))
+                            {
+                                Modded_Settings[x] = "Mini=1";
+                            }
+                            else if (temp.Contains("Pekk"))
+                            {
+                                Modded_Settings[x] = "Pekk=1";
+                            }
+                            else if (temp.Contains("Valk"))
+                            {
+                                Modded_Settings[x] = "Valk=1";
+                            }
+                            else if (temp.Contains("Wall"))
+                            {
+                                Modded_Settings[x] = "Wall=1";
+                            }
+                            else if (temp.Contains("Witc"))
+                            {
+                                Modded_Settings[x] = "Witc=1";
+                            }
+                            else if (temp.Contains("Wiza"))
+                            {
+                                Modded_Settings[x] = "Wiza=1";
+                            }
+                            else if (temp.Contains("EDrag"))
+                            {
+                                Modded_Settings[x] = "EDrag=1";
+                            }
                         }
-                        else if (comboBox5.SelectedIndex == 1)
+                    }
+                    if (checkBox7.Checked)
+                    {
+                        if (temp.Contains("language"))
                         {
-                            Modded_Settings[x] = "language=Chinese_S";
+                            if (comboBox5.SelectedIndex == 0)
+                            {
+                                Modded_Settings[x] = "language=English";
+                            }
+                            else if (comboBox5.SelectedIndex == 1)
+                            {
+                                Modded_Settings[x] = "language=Chinese_S";
+                            }
+
+                        }
+                    }
+                    if (checkBox2.Checked)
+                    {
+                        if (x > 700)
+                        {
+                            if (temp.Contains("CSpell") && numericUpDown73.Value >= 11)
+                            {
+                                Modded_Settings[x] = "CSpell=" + numericUpDown21.Value;
+                            }
+                            else if (temp.Contains("ESpell") && numericUpDown73.Value >= 8)
+                            {
+                                Modded_Settings[x] = "ESpell=" + numericUpDown29.Value;
+                            }
+                            else if (temp.Contains("FSpell") && numericUpDown73.Value >= 9)
+                            {
+                                Modded_Settings[x] = "FSpell=" + numericUpDown22.Value;
+                            }
+                            else if (temp.Contains("HaSpell") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "HaSpell=" + numericUpDown28.Value;
+                            }
+                            else if (temp.Contains("HSpell") && numericUpDown73.Value >= 9)
+                            {
+                                Modded_Settings[x] = "HSpell=" + numericUpDown25.Value;
+                            }
+                            else if (temp.Contains("JSpell") && numericUpDown73.Value >= 9)
+                            {
+                                Modded_Settings[x] = "JSpell=" + numericUpDown23.Value;
+                            }
+                            else if (temp.Contains("LSpell") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "LSpell=" + numericUpDown26.Value;
+                            }
+                            else if (temp.Contains("PSpell") && numericUpDown73.Value >= 8)
+                            {
+                                Modded_Settings[x] = "PSpell=" + numericUpDown20.Value;
+                            }
+                            else if (temp.Contains("RSpell") && numericUpDown73.Value >= 7)
+                            {
+                                Modded_Settings[x] = "RSpell=" + numericUpDown24.Value;
+                            }
+                            else if (temp.Contains("SkSpell") && numericUpDown73.Value >= 10)
+                            {
+                                Modded_Settings[x] = "SkSpell=" + numericUpDown27.Value;
+                            }
+                            else if (temp.Contains("Arch") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Arch=" + numericUpDown2.Value;
+                            }
+                            else if (temp.Contains("BabyD") && numericUpDown73.Value >= 9)
+                            {
+                                Modded_Settings[x] = "BabyD=" + numericUpDown11.Value;
+                            }
+                            else if (temp.Contains("Ball") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Ball=" + numericUpDown6.Value;
+                            }
+                            else if (temp.Contains("Barb") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Barb=" + numericUpDown1.Value;
+                            }
+                            else if (temp.Contains("Bowl") && numericUpDown73.Value >= 10)
+                            {
+                                Modded_Settings[x] = "Bowl=" + numericUpDown13.Value;
+                            }
+                            else if (temp.Contains("Drag") && numericUpDown73.Value >= 7)
+                            {
+                                Modded_Settings[x] = "Drag=" + numericUpDown9.Value;
+                            }
+                            else if (temp.Contains("Giant") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Giant=" + numericUpDown5.Value;
+                            }
+                            else if (temp.Contains("Gobl") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Gobl=" + numericUpDown3.Value;
+                            }
+                            else if (temp.Contains("Gole") && numericUpDown73.Value >= 8)
+                            {
+                                Modded_Settings[x] = "Gole=" + numericUpDown16.Value;
+                            }
+                            else if (temp.Contains("Heal") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Heal=" + numericUpDown8.Value;
+                            }
+                            else if (temp.Contains("Hogs") && numericUpDown73.Value >= 7)
+                            {
+                                Modded_Settings[x] = "Hogs=" + numericUpDown18.Value;
+                            }
+                            else if (temp.Contains("Lava") && numericUpDown73.Value >= 9)
+                            {
+                                Modded_Settings[x] = "Lava=" + numericUpDown14.Value;
+                            }
+                            else if (temp.Contains("Mine") && numericUpDown73.Value >= 10)
+                            {
+                                Modded_Settings[x] = "Mine=" + numericUpDown12.Value;
+                            }
+                            else if (temp.Contains("Mini") && numericUpDown73.Value >= 7)
+                            {
+                                Modded_Settings[x] = "Mini=" + numericUpDown19.Value;
+                            }
+                            else if (temp.Contains("Pekk") && numericUpDown73.Value >= 8)
+                            {
+                                Modded_Settings[x] = "Pekk=" + numericUpDown10.Value;
+                            }
+                            else if (temp.Contains("Valk") && numericUpDown73.Value >= 8)
+                            {
+                                Modded_Settings[x] = "Valk=" + numericUpDown17.Value;
+                            }
+                            else if (temp.Contains("Wall") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Wall=" + numericUpDown4.Value;
+                            }
+                            else if (temp.Contains("Witc") && numericUpDown73.Value >= 9)
+                            {
+                                Modded_Settings[x] = "Witc=" + numericUpDown15.Value;
+                            }
+                            else if (temp.Contains("Wiza") && numericUpDown73.Value >= 6)
+                            {
+                                Modded_Settings[x] = "Wiza=" + numericUpDown7.Value;
+                            }
+                            else if (temp.Contains("EDrag") && numericUpDown73.Value >= 11)
+                            {
+                                Modded_Settings[x] = "EDrag=" + numericUpDown74.Value;
+                            }
+                        }
+                    }
+                    if (checkBox3.Checked)
+                    {
+                        if (temp.Contains("ChkClanGamesAirTroop"))
+                        {
+                            if (ClanGame.Contains("空军挑战") || ClanGame.Contains("Air Troops Challenges"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesAirTroop=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesAirTroop=0";
+                            }
+                        }
+                        else if (temp.Contains("ChkClanGamesAir"))
+                        {
+                            if (ClanGame.Contains("空军挑战") || ClanGame.Contains("Air Troops Challenges"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesAir=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesAir=0";
+                            }
+                        }
+                        else if (temp.Contains("ChkClanGamesBattle"))
+                        {
+                            if (ClanGame.Contains("战斗挑战") || ClanGame.Contains("Battle Challenges"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesBattle=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesBattle=0";
+                            }
+                        }
+                        else if (temp.Contains("ChkClanGamesDestruction"))
+                        {
+                            if (ClanGame.Contains("摧毁建筑挑战") || ClanGame.Contains("Destruction Challenges"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesDestruction=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesDestruction=0";
+                            }
+                        }
+                        else if (temp.Contains("ChkClanGamesEnabled"))
+                        {
+                            Modded_Settings[x] = "ChkClanGamesEnabled=1";
+                        }
+                        else if (temp.Contains("ChkClanGamesGroundTroop"))
+                        {
+                            if (ClanGame.Contains("陆军挑战") || ClanGame.Contains("Ground Troops Challenges"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesGroundTroop=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesGroundTroop=0";
+                            }
                         }
 
+                        else if (temp.Contains("ChkClanGamesLoot"))
+                        {
+                            if (ClanGame.Contains("战利品挑战") || ClanGame.Contains("Loot Challenges"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesLoot=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesLoot=0";
+                            }
+                        }
+                        else if (temp.Contains("ChkClanGamesMiscellaneous"))
+                        {
+                            if (ClanGame.Contains("其他挑战") || ClanGame.Contains("Miscellaneous Challenges"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesMiscellaneous=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesMiscellaneous=0";
+                            }
+                        }
+                        else if (temp.Contains("ChkClanGamesPurge"))
+                        {
+                            if (ClanGame.Contains("清理任务") || ClanGame.Contains("Purge Versus Battle"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesPurge=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesPurge=0";
+                            }
+                        }
+                        else if (temp.Contains("ChkClanGamesStopBeforeReachAndPurge"))
+                        {
+                            if (ClanGame.Contains("满分前停止继续任务切换清除任务模式") || ClanGame.Contains("Stop before completing your limit and purge"))
+                            {
+                                Modded_Settings[x] = "ChkClanGamesStopBeforeReachAndPurge=1";
+                            }
+                            else
+                            {
+                                Modded_Settings[x] = "ChkClanGamesStopBeforeReachAndPurge=0";
+                            }
+                        }
                     }
-                }
-                if (checkBox2.Checked)
-                {
-                    if (x > 700)
+                    if (temp.Contains("chkCollect"))
                     {
-                        if (temp.Contains("CSpell") && numericUpDown73.Value >= 11)
-                        {
-                            Modded_Settings[x] = "CSpell=" + numericUpDown21.Value;
-                        }
-                        else if (temp.Contains("ESpell") && numericUpDown73.Value >= 8)
-                        {
-                            Modded_Settings[x] = "ESpell=" + numericUpDown29.Value;
-                        }
-                        else if (temp.Contains("FSpell") && numericUpDown73.Value >= 9)
-                        {
-                            Modded_Settings[x] = "FSpell=" + numericUpDown22.Value;
-                        }
-                        else if (temp.Contains("HaSpell") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "HaSpell=" + numericUpDown28.Value;
-                        }
-                        else if (temp.Contains("HSpell") && numericUpDown73.Value >= 9)
-                        {
-                            Modded_Settings[x] = "HSpell=" + numericUpDown25.Value;
-                        }
-                        else if (temp.Contains("JSpell") && numericUpDown73.Value >= 9)
-                        {
-                            Modded_Settings[x] = "JSpell=" + numericUpDown23.Value;
-                        }
-                        else if (temp.Contains("LSpell") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "LSpell=" + numericUpDown26.Value;
-                        }
-                        else if (temp.Contains("PSpell") && numericUpDown73.Value >= 8)
-                        {
-                            Modded_Settings[x] = "PSpell=" + numericUpDown20.Value;
-                        }
-                        else if (temp.Contains("RSpell") && numericUpDown73.Value >= 7)
-                        {
-                            Modded_Settings[x] = "RSpell=" + numericUpDown24.Value;
-                        }
-                        else if (temp.Contains("SkSpell") && numericUpDown73.Value >= 10)
-                        {
-                            Modded_Settings[x] = "SkSpell=" + numericUpDown27.Value;
-                        }
-                        else if (temp.Contains("Arch") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Arch=" + numericUpDown2.Value;
-                        }
-                        else if (temp.Contains("BabyD") && numericUpDown73.Value >= 9)
-                        {
-                            Modded_Settings[x] = "BabyD=" + numericUpDown11.Value;
-                        }
-                        else if (temp.Contains("Ball") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Ball=" + numericUpDown6.Value;
-                        }
-                        else if (temp.Contains("Barb") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Barb=" + numericUpDown1.Value;
-                        }
-                        else if (temp.Contains("Bowl") && numericUpDown73.Value >= 10)
-                        {
-                            Modded_Settings[x] = "Bowl=" + numericUpDown13.Value;
-                        }
-                        else if (temp.Contains("Drag") && numericUpDown73.Value >= 7)
-                        {
-                            Modded_Settings[x] = "Drag=" + numericUpDown9.Value;
-                        }
-                        else if (temp.Contains("Giant") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Giant=" + numericUpDown5.Value;
-                        }
-                        else if (temp.Contains("Gobl") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Gobl=" + numericUpDown3.Value;
-                        }
-                        else if (temp.Contains("Gole") && numericUpDown73.Value >= 8)
-                        {
-                            Modded_Settings[x] = "Gole=" + numericUpDown16.Value;
-                        }
-                        else if (temp.Contains("Heal") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Heal=" + numericUpDown8.Value;
-                        }
-                        else if (temp.Contains("Hogs") && numericUpDown73.Value >= 7)
-                        {
-                            Modded_Settings[x] = "Hogs=" + numericUpDown18.Value;
-                        }
-                        else if (temp.Contains("Lava") && numericUpDown73.Value >= 9)
-                        {
-                            Modded_Settings[x] = "Lava=" + numericUpDown14.Value;
-                        }
-                        else if (temp.Contains("Mine") && numericUpDown73.Value >= 10)
-                        {
-                            Modded_Settings[x] = "Mine=" + numericUpDown12.Value;
-                        }
-                        else if (temp.Contains("Mini") && numericUpDown73.Value >= 7)
-                        {
-                            Modded_Settings[x] = "Mini=" + numericUpDown19.Value;
-                        }
-                        else if (temp.Contains("Pekk") && numericUpDown73.Value >= 8)
-                        {
-                            Modded_Settings[x] = "Pekk=" + numericUpDown10.Value;
-                        }
-                        else if (temp.Contains("Valk") && numericUpDown73.Value >= 8)
-                        {
-                            Modded_Settings[x] = "Valk=" + numericUpDown17.Value;
-                        }
-                        else if (temp.Contains("Wall") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Wall=" + numericUpDown4.Value;
-                        }
-                        else if (temp.Contains("Witc") && numericUpDown73.Value >= 9)
-                        {
-                            Modded_Settings[x] = "Witc=" + numericUpDown15.Value;
-                        }
-                        else if (temp.Contains("Wiza") && numericUpDown73.Value >= 6)
-                        {
-                            Modded_Settings[x] = "Wiza=" + numericUpDown7.Value;
-                        }
-                        else if (temp.Contains("EDrag") && numericUpDown73.Value >= 11)
-                        {
-                            Modded_Settings[x] = "EDrag=" + numericUpDown74.Value;
-                        }
+                        Modded_Settings[x] = "chkCollect=1";
                     }
-                }
-                if (checkBox3.Checked)
-                {
-                    if (temp.Contains("ChkClanGamesAirTroop"))
+                    else if (temp.Contains("ChkCollectBuildersBase"))
                     {
-                        if (ClanGame.Contains("空军挑战"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesAirTroop=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesAirTroop=0";
-                        }
+                        Modded_Settings[x] = "ChkCollectBuildersBase=1";
                     }
-                    else if (temp.Contains("ChkClanGamesBattle"))
+                    else if (temp.Contains("ChkCollectFreeMagicItems"))
                     {
-                        if (ClanGame.Contains("战斗挑战"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesBattle=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesBattle=0";
-                        }
+                        Modded_Settings[x] = "ChkCollectFreeMagicItems=1";
                     }
-                    else if (temp.Contains("ChkClanGamesDestruction"))
-                    {
-                        if (ClanGame.Contains("摧毁建筑挑战"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesDestruction=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesDestruction=0";
-                        }
-                    }
-                    else if (temp.Contains("ChkClanGamesEnabled"))
-                    {
-                        Modded_Settings[x] = "ChkClanGamesEnabled=1";
-                    }
-                    else if (temp.Contains("ChkClanGamesGroundTroop"))
-                    {
-                        if (ClanGame.Contains("陆军挑战"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesGroundTroop=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesGroundTroop=0";
-                        }
-                    }
-
-                    else if (temp.Contains("ChkClanGamesLoot"))
-                    {
-                        if (ClanGame.Contains("战利品挑战"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesLoot=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesLoot=0";
-                        }
-                    }
-                    else if (temp.Contains("ChkClanGamesMiscellaneous"))
-                    {
-                        if (ClanGame.Contains("其他挑战"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesMiscellaneous=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesMiscellaneous=0";
-                        }
-                    }
-                    else if (temp.Contains("ChkClanGamesPurge"))
-                    {
-                        if (ClanGame.Contains("清理任务"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesPurge=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesPurge=0";
-                        }
-                    }
-                    else if (temp.Contains("ChkClanGamesStopBeforeReachAndPurge"))
-                    {
-                        if (ClanGame.Contains("满分前停止继续任务切换清除任务模式"))
-                        {
-                            Modded_Settings[x] = "ChkClanGamesStopBeforeReachAndPurge=1";
-                        }
-                        else
-                        {
-                            Modded_Settings[x] = "ChkClanGamesStopBeforeReachAndPurge=0";
-                        }
-                    }
-                }
-                if (temp.Contains("chkCollect"))
-                {
-                    Modded_Settings[x] = "chkCollect=1";
-                }
-                else if (temp.Contains("ChkCollectBuildersBase"))
-                {
-                    Modded_Settings[x] = "ChkCollectBuildersBase=1";
-                }
-                else if (temp.Contains("ChkCollectFreeMagicItems"))
-                {
-                    Modded_Settings[x] = "ChkCollectFreeMagicItems=1";
-                }
-                x++;
+                    x++;
+                });
             }
+
             Modifying = false;
+
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -1513,25 +1336,6 @@ namespace MyBot.Supporter.Main
                 {
                     ClanGame.Add(item);
                 }
-                switch (item)
-                {
-                    case "战利品挑战":
-                    case "Loot Challenges":
-                        tabControl4.TabPages.Add(tabPage10);
-                        break;
-                    case "战斗挑战":
-                    case "Battle Challenges":
-                        tabControl4.TabPages.Add(tabPage11);
-                        break;
-                    case "摧毁建筑挑战":
-                    case "Destruction Challenges":
-                        tabControl4.TabPages.Add(tabPage12);
-                        break;
-                    case "其他任务":
-                    case "Miscellaneous Challenges":
-                        tabControl4.TabPages.Add(tabPage15);
-                        break;
-                }
             }
             else
             {
@@ -1539,25 +1343,7 @@ namespace MyBot.Supporter.Main
                 {
                     ClanGame.Remove(item);
                 }
-                switch (item)
-                {
-                    case "战利品挑战":
-                    case "Loot Challenges":
-                        tabControl4.TabPages.Remove(tabPage10);
-                        break;
-                    case "战斗挑战":
-                    case "Battle Challenges":
-                        tabControl4.TabPages.Remove(tabPage11);
-                        break;
-                    case "摧毁建筑挑战":
-                    case "Destruction Challenges":
-                        tabControl4.TabPages.Remove(tabPage12);
-                        break;
-                    case "其他任务":
-                    case "Miscellaneous Challenges":
-                        tabControl4.TabPages.Remove(tabPage15);
-                        break;
-                }
+                
             }
         }
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
@@ -1591,6 +1377,7 @@ namespace MyBot.Supporter.Main
                 tabPage2.Text = "Attack Plan";
                 label31.Text = "Profile to Inject:";
                 label4.Text = "Profile to Inject:";
+                checkBox1.Text = "Adb Enable switch (Inject this if\nyou met some errors while botting.\n Not confirm will fix!)" ;
                 checkBox13.Visible = false;
                 checkBox13.Checked = false;
                 label36.Text = "Townhall Level";
@@ -1599,7 +1386,6 @@ namespace MyBot.Supporter.Main
                 tabPage8.Text = "Clan Game";
                 groupBox3.Text = "Clan Game Inject";
                 checkBox3.Text = "Inject Clan Game";
-                tabPage9.Text = "Clan Game";
                 checkedListBox3.Items.Clear();
                 checkedListBox3.Items.Add("Loot Challenges");
                 checkedListBox3.Items.Add("Battle Challenges");
@@ -1609,61 +1395,6 @@ namespace MyBot.Supporter.Main
                 checkedListBox3.Items.Add("Miscellaneous Challenges");
                 checkedListBox3.Items.Add("Purge Versus Battle");
                 checkedListBox3.Items.Add("Stop before completing your limit and purge");
-                tabPage10.Text = "Loot Challenges";
-                tabPage11.Text = "Battle Challenges";
-                tabPage12.Text = "Destruction Challenges";
-                tabPage15.Text = "Miscellaneous Challenges";
-                label40.Text = "Gold Challenge";
-                label41.Text = "Elixir Challenge";
-                label42.Text = "Dark Elixir Challenge";
-                label37.Text = "Gold Grab";
-                label38.Text = "Elixir Embezzlement";
-                label39.Text = "Dark Elixir Heist";
-                label48.Text = "Star Collector";
-                label47.Text = "Lord of Destruction";
-                label46.Text = "Pile Of Victories";
-                label45.Text = "Hunt for Three Stars";
-                label44.Text = "Winning Streak";
-                label43.Text = "Slaying The Titans";
-                label54.Text = "No Heroics Allowed";
-                label53.Text = "No-Magic Zone";
-                label52.Text = "Attack Up";
-                label60.Text = "Cannon Carnage";
-                label59.Text = "Archer Tower Assault";
-                label58.Text = "Mortar Mauling";
-                label57.Text = "Destroy Air Defenses";
-                label56.Text = "Wizard Tower Warfare";
-                label55.Text = "Destroy Air Sweepers";
-                //
-                label51.Text = "Destroy Tesla Towers";
-                label50.Text = "Destroy Bomb Towers";
-                label49.Text = "Destroy X-Bows";
-                label65.Text = "Destroy Inferno Towers";
-                label64.Text = "Eagle Artillery EliDatabase.Mination";
-                label63.Text = "Clan Castle Charge";
-                label62.Text = "Gold Storage Raid";
-                label61.Text = "Elixir Storage Raid";
-                label70.Text = "Dark Elixir Storage Raid";
-                label69.Text = "Gold Database.Mine Mayhem";
-                label68.Text = "Elixir Pump EliDatabase.Mination";
-                label67.Text = "Dark Elixir Plumbers";
-                label66.Text = "Laboratory Strike";
-                label75.Text = "Spell Factory Sabotage";
-                label74.Text = "Dark Spell Factory Sabotage";
-                label73.Text = "Barbarian King Altars + Level Hunter";
-                label72.Text = "Archer Queen Altars + Level Hunter";
-                label71.Text = "Grand Warden Altars + Level Hunter";
-                label76.Text = "Hero Level Hunter";
-                label79.Text = "Gardening Exercise";
-                label78.Text = "Helping Hand";
-                label77.Text = "Donate Spells";
-                textBox2.Text = "Help" + Environment.NewLine + Environment.NewLine +
-                    "* Set the event priority here, 1 is the higest priority and so on to 5." + Environment.NewLine + Environment.NewLine +
-                    "* Set the event priority to 0 if you need to disable accepting the event." + Environment.NewLine + Environment.NewLine +
-                    "* Injector will not confirm that injection will always success for MyBot loading. Please check ClanGames_conig.ini to make sure no error happens";
-                textBox3.Text = textBox2.Text;
-                textBox4.Text = textBox2.Text;
-                textBox5.Text = textBox2.Text;
                 groupBox7.Text = "Deadbase";
                 label32.Text = "CSV Attack";
                 checkBox8.Text = "Use clan troops";
@@ -2021,11 +1752,6 @@ namespace MyBot.Supporter.Main
                 Array.Clear(CSVDECODER.Vector, 0, CSVDECODER.Vector.Length);
             }
         }
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-            textBox6.ScrollToCaret();
-            textBox6.AppendText(Environment.NewLine);
-        }
         private void MyBotSetter_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Directory.Exists(Environment.CurrentDirectory + "\\Include"))
@@ -2117,6 +1843,314 @@ namespace MyBot.Supporter.Main
                 }
                 textBox6.AppendText("Fetch Completed");
                 textBox6.AppendText("Applying Changes");
+            }
+        }
+        private void ModifyStart()
+        {
+            try
+            {
+                string item = "";
+                string coc = "";
+                bool DirectX = false,DirectXRestore = false, Ads = false,AdsRestore = false, Delay = false,DelayRestore = false,LogoRestore = false;
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    if(Profile.SelectedItem != null)
+                        item = Profile.Text;
+                    if (comboBox1.SelectedItem != null)
+                        item = comboBox1.Text;
+                    if (comboBox3.SelectedItem != null)
+                        coc = comboBox3.SelectedText;
+                    if (checkBox15.Checked)
+                        DirectX = true;
+                    if (checkBox16.Checked)
+                        DirectXRestore = true;
+                    if (checkBox17.Checked)
+                        Ads = true;
+                    if (checkBox18.Checked)
+                        AdsRestore = true;
+                    if (checkBox12.Checked)
+                        Delay = true;
+                    if (checkBox14.Checked)
+                        DelayRestore = true;
+                    if (checkBox20.Checked)
+                        LogoRestore = true;
+                });
+                if (item.Length > 0)
+                {
+                    try
+                    {
+                        Original_Settings = File.ReadAllLines(Environment.CurrentDirectory + "\\Profiles\\" + item + Path.DirectorySeparatorChar + "config.ini", UnicodeEncoding.Unicode);
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        switch (Database.Language)
+                        {
+                            case "English":
+                                MessageBox.Show("Profile have no config.ini! Please start MyBot for the first time!");
+                                break;
+                        }
+                        ProcessStartInfo start = new ProcessStartInfo("MyBot.run.exe");
+                        start.Arguments = item + " " + "-a" + " " + "-nwd" + " " + "-nbs";
+                        Process.Start(start);
+                        return;
+                    }
+                    showlog("Injecting config.ini");
+                    Modifying = true;
+                    ModifyConfig(coc);
+                    while (Modifying)
+                    {
+                        Thread.Sleep(100);
+                    }
+                    showlog("Inject completed");
+                    using (StreamWriter w = new StreamWriter(Environment.CurrentDirectory + "\\Profiles\\" + item + Path.DirectorySeparatorChar + "config.ini", false, Encoding.Unicode))
+                    {
+                        foreach (var l in Modded_Settings)
+                        {
+                            w.WriteLine(l);
+                        }
+                    }
+                }
+                else
+                {
+                    Profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
+                    foreach (var profile in Profiles)
+                    {
+                        try
+                        {
+                            Original_Settings = File.ReadAllLines(profile + Path.DirectorySeparatorChar + "config.ini", UnicodeEncoding.Unicode);
+                            Modifying = true;
+                            showlog("Injecting " + profile + "'s config");
+                            ModifyConfig(coc);
+                            while (Modifying)
+                            {
+                                Thread.Sleep(100);
+                            }
+                            showlog("Inject completed");
+                            using (StreamWriter w = new StreamWriter(profile + Path.DirectorySeparatorChar + "config.ini", false, Encoding.Unicode))
+                            {
+                                foreach (var l in Modded_Settings)
+                                {
+                                    w.WriteLine(l);
+                                }
+                            }
+                        }
+
+                        catch (FileNotFoundException)
+                        {
+                            continue;
+                        }
+                    }
+                }
+                if (DirectX || DirectXRestore|| Ads||AdsRestore||Delay||DelayRestore||LogoRestore)
+                {
+                    // MODED MyBot
+                    bool IsExist = false;
+                    if (!File.Exists(Database.Location + "AutoIT.zip"))
+                    {
+                       showlog("Downloading resources");
+                        IsExist = Download_Resources();
+                        if (IsExist)
+                        {
+                            showlog("Download completed");
+                        }
+                    }
+                    else
+                    {
+                        IsExist = true;
+                    }
+                    if (IsExist)
+                    {
+                        ZipFile.ExtractToDirectory(Database.Location + "AutoIT.zip", Environment.CurrentDirectory);
+                        if (Delay)
+                        {
+                            showlog("Injecting DelayTimes.au3");
+                            MyBotMOD.FasterDelay(false);
+                            showlog("Completed Injecting DelayTimes.au3");
+                        }
+                        else if (DelayRestore)
+                        {
+                            showlog("Injecting DelayTimes.au3");
+                            MyBotMOD.FasterDelay(true);
+                            showlog("Completed Injecting DelayTimes.au3");
+                        }
+                        if (DirectX)
+                        {
+                            showlog("Injecting MBR Global Variables.au3");
+                            showlog("Injecting Android.au3");
+                            MyBotMOD.DirectX(false);
+                            showlog("Completed Injecting MBR Global Variables.au3");
+                            showlog("Completed Injecting Android.au3");
+                        }
+                        else if (DirectXRestore)
+                        {
+                            showlog("Injecting MBR Global Variables.au3");
+                            showlog("Injecting Android.au3");
+                            MyBotMOD.DirectX(true);
+                            showlog("Completed Injecting MBR Global Variables.au3");
+                            showlog("Completed Injecting Android.au3");
+                        }
+                        if (Ads)
+                        {
+                            showlog("Injecting *.au3");
+                            MyBotMOD.AdsLocator(false);
+                            showlog("Completed Injecting *.au3");
+                        }
+                        else if (AdsRestore)
+                        {
+                            showlog("Injecting *.au3");
+                            MyBotMOD.AdsLocator(true);
+                            showlog("Completed Injecting *.au3");
+                        }
+                        if (LogoRestore)
+                        {
+                            showlog("Undoing Logo Patch");
+                            File.Delete(Environment.CurrentDirectory + "\\images\\Logo.png");
+                            File.Move(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch", Environment.CurrentDirectory + "\\images\\Logo.png");
+                        }
+                        showlog("Compiling MyBot.run.exe");
+                        ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe");
+                        compiler.Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\"";
+                        Process com = Process.Start(compiler);
+                        while (!com.HasExited)
+                        {
+                            Thread.Sleep(100);
+                        }
+                        File.Delete(Environment.CurrentDirectory + "Compiler.exe");
+                    }
+                    else
+                    {
+                        MessageBox.Show(en_Lang.Error);
+                        this.Invoke(new Action(() => this.Close()));
+                    }
+                }
+                Database.loadingprocess = 100;
+                this.Invoke(new Action(() => this.Close()));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Inject Failed! Reason:" + ex);
+                showlog("Inject Failed!");
+                File.WriteAllText("error.log", ex.ToString());
+                this.Invoke(new Action(() => button2.Enabled = true));
+                this.Invoke(new Action(() => button3.Enabled = true));
+            }
+        }
+        private void showlog(string log)
+        {
+            try
+            {
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    textBox6.AppendText("\n" + log);
+                    textBox6.ScrollToCaret();
+                    richTextBox2.AppendText("\n" + log);
+                    richTextBox2.ScrollToCaret();
+                });
+            }
+            catch
+            {
+
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool DirectX = false, DirectXRestore = false, Ads = false, AdsRestore = false, Delay = false, DelayRestore = false, LogoRestore = false, IsExist = false;
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                if (checkBox15.Checked)
+                    DirectX = true;
+                if (checkBox16.Checked)
+                    DirectXRestore = true;
+                if (checkBox17.Checked)
+                    Ads = true;
+                if (checkBox18.Checked)
+                    AdsRestore = true;
+                if (checkBox12.Checked)
+                    Delay = true;
+                if (checkBox14.Checked)
+                    DelayRestore = true;
+                if (checkBox20.Checked)
+                    LogoRestore = true;
+            });
+            if (!File.Exists(Database.Location + "AutoIT.zip"))
+            {
+                showlog("Downloading resources");
+                IsExist = Download_Resources();
+                if (IsExist)
+                {
+                    showlog("Download completed");
+                }
+            }
+            else
+            {
+                IsExist = true;
+            }
+            if (IsExist)
+            {
+                ZipFile.ExtractToDirectory(Database.Location + "AutoIT.zip", Environment.CurrentDirectory);
+                if (Delay)
+                {
+                    showlog("Injecting DelayTimes.au3");
+                    MyBotMOD.FasterDelay(false);
+                    showlog("Completed Injecting DelayTimes.au3");
+                }
+                else if (DelayRestore)
+                {
+                    showlog("Injecting DelayTimes.au3");
+                    MyBotMOD.FasterDelay(true);
+                    showlog("Completed Injecting DelayTimes.au3");
+                }
+                if (DirectX)
+                {
+                    showlog("Injecting MBR Global Variables.au3");
+                    showlog("Injecting Android.au3");
+                    MyBotMOD.DirectX(false);
+                    showlog("Completed Injecting MBR Global Variables.au3");
+                    showlog("Completed Injecting Android.au3");
+                }
+                else if (DirectXRestore)
+                {
+                    showlog("Injecting MBR Global Variables.au3");
+                    showlog("Injecting Android.au3");
+                    MyBotMOD.DirectX(true);
+                    showlog("Completed Injecting MBR Global Variables.au3");
+                    showlog("Completed Injecting Android.au3");
+                }
+                if (Ads)
+                {
+                    showlog("Injecting *.au3");
+                    MyBotMOD.AdsLocator(false);
+                    showlog("Completed Injecting *.au3");
+                }
+                else if (AdsRestore)
+                {
+                    showlog("Injecting *.au3");
+                    MyBotMOD.AdsLocator(true);
+                    showlog("Completed Injecting *.au3");
+                }
+                if (LogoRestore)
+                {
+                    showlog("Undoing Logo Patch");
+                    File.Delete(Environment.CurrentDirectory + "\\images\\Logo.png");
+                    File.Move(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch", Environment.CurrentDirectory + "\\images\\Logo.png");
+                }
+                showlog("Compiling MyBot.run.exe");
+                ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe");
+                compiler.Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\"";
+                Process com = Process.Start(compiler);
+                while (!com.HasExited)
+                {
+                    Thread.Sleep(100);
+                }
+                showlog("Compile Completed");
+                File.Delete(Environment.CurrentDirectory + "Compiler.exe");
+                groupBox8.Enabled = false;
+                groupBox9.Enabled = false;
+            }
+            else
+            {
+                showlog("Unable to compile. AutoIT fetch returned 404!");
             }
         }
     }

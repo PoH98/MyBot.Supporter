@@ -637,24 +637,6 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似 When CPU usage over 70%, set CPU maximum 的本地化字符串。
-        /// </summary>
-        internal static string F1Label01 {
-            get {
-                return ResourceManager.GetString("F1Label01", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 When CPU usage is normal, set CPU maximum 的本地化字符串。
-        /// </summary>
-        internal static string F1Label02 {
-            get {
-                return ResourceManager.GetString("F1Label02", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Program Path 的本地化字符串。
         /// </summary>
         internal static string F1Label03 {
@@ -1244,6 +1226,33 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 is normal, set CPU maximum 的本地化字符串。
+        /// </summary>
+        internal static string IsNormal_Set_Maximum {
+            get {
+                return ResourceManager.GetString("IsNormal_Set_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 is over 60 °C, set CPU maximum 的本地化字符串。
+        /// </summary>
+        internal static string IsOver60C_Set_Maximum {
+            get {
+                return ResourceManager.GetString("IsOver60C_Set_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 is over 70%, set CPU maximum 的本地化字符串。
+        /// </summary>
+        internal static string IsOver70_Set_Maximum {
+            get {
+                return ResourceManager.GetString("IsOver70_Set_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string Jump {
@@ -1379,15 +1388,6 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似 需要网络才能打开教学！ 的本地化字符串。
-        /// </summary>
-        internal static string NetworkNeededForTutorial {
-            get {
-                return ResourceManager.GetString("NetworkNeededForTutorial", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string No_MagicZone {
@@ -1447,15 +1447,6 @@ namespace MyBot.Supporter.Main {
         internal static string NormalPerformanceMode_Button {
             get {
                 return ResourceManager.GetString("NormalPerformanceMode_Button", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 禁止任何形式的刷屏！ 的本地化字符串。
-        /// </summary>
-        internal static string NoSpammers {
-            get {
-                return ResourceManager.GetString("NoSpammers", resourceCulture);
             }
         }
         
@@ -2075,6 +2066,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Temp 的本地化字符串。
+        /// </summary>
+        internal static string Temperature {
+            get {
+                return ResourceManager.GetString("Temperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似  times 的本地化字符串。
         /// </summary>
         internal static string Times {
@@ -2111,11 +2111,29 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Usage 的本地化字符串。
+        /// </summary>
+        internal static string Usage {
+            get {
+                return ResourceManager.GetString("Usage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Village 的本地化字符串。
         /// </summary>
         internal static string Village {
             get {
                 return ResourceManager.GetString("Village", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 When CPU 的本地化字符串。
+        /// </summary>
+        internal static string When_CPU {
+            get {
+                return ResourceManager.GetString("When_CPU", resourceCulture);
             }
         }
         

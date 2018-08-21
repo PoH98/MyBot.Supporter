@@ -165,11 +165,11 @@
   <data name="F1GroupBox2" xml:space="preserve">
     <value>定时通知</value>
   </data>
-  <data name="F1Label01" xml:space="preserve">
-    <value>当CPU运行超过70%，设置CPU频率最高</value>
+  <data name="When_CPU" xml:space="preserve">
+    <value>当CPU</value>
   </data>
-  <data name="F1Label02" xml:space="preserve">
-    <value>当CPU运行恢复正常，设置CPU频率最高</value>
+  <data name="IsOver70_Set_Maximum" xml:space="preserve">
+    <value>超过70%，设置CPU最高</value>
   </data>
   <data name="F1Label03" xml:space="preserve">
     <value>程序</value>
@@ -890,5 +890,14 @@
   </data>
   <data name="Times" xml:space="preserve">
     <value> 次</value>
+  </data>
+  <data name="IsOver60C_Set_Maximum" xml:space="preserve">
+    <value>超过60 °C，设置CPU最高</value>
+  </data>
+  <data name="Temperature" xml:space="preserve">
+    <value>温度</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>使用</value>
   </data>
 </root>

@@ -156,51 +156,10 @@ namespace MyBot.Supporter.Main
             t.Start();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.Filter = "MyBot.Run | MyBot.Run.exe";
-            openFileDialog1.ShowDialog();
-            if (openFileDialog1.FileName != string.Empty)
-            {
-                textBox2.Text = openFileDialog1.FileName;
-            }
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text != null)
-            {
-                if (File.Exists(textBox2.Text))
-                {
-                    string newPath = openFileDialog1.FileName.Remove(openFileDialog1.FileName.LastIndexOf('\\') + 1); 
-                    if (!File.Exists(newPath + "MyBot.Supporter.Main.exe"))
-                    {
-                        File.Copy(AppDomain.CurrentDomain.FriendlyName, newPath + "MyBot.Supporter.Main.exe");
-                        ProcessStartInfo proc = new ProcessStartInfo();
-                        proc.FileName = newPath + "MyBot.Supporter.Main.exe";
-                        proc.WorkingDirectory = newPath;
-                        Process.Start(proc);
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        ProcessStartInfo proc = new ProcessStartInfo();
-                        proc.FileName = newPath +"MyBot.Supporter.Main.exe";
-                        proc.WorkingDirectory = newPath;
-                        Process.Start(proc);
-                        Application.Exit();
-                    }
-                    panel2.Visible = false;
-                }
-                else
-                {
-                    return;
-                }
-            }
-            else
-            {
-                return;
-            }
+            Application.Exit();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -225,7 +184,8 @@ namespace MyBot.Supporter.Main
 
         private void button5_Click(object sender, EventArgs e)
         {
-            MyBotUpdator.DownloadMyBotUpdate();
+            MyBotUpdator up = new MyBotUpdator();
+            up.ShowDialog();
         }
 
         private void Languages()
@@ -240,8 +200,7 @@ namespace MyBot.Supporter.Main
                     label4.Text = "当处理器使用超过70%，自动设置电脑最高性能至";
                     label5.Text = "当处理器使用低于70%，自动设置电脑最高性能至";
                     label6.Text = "电报通知机器人Token（如果不需要用到则留空）";
-                    label10.Text = "请选择MyBot.Run.exe的位置";
-                    label11.Text = "还没下载任何MyBot? 请选择以下的按钮下载后再选择MyBot位置！";
+                    label10.Text = "请把管理器放进MyBot文件夹内继续使用管理器！";
                     break;
                 case 1:
                     label1.Text = "Welcome!";
@@ -251,8 +210,7 @@ namespace MyBot.Supporter.Main
                     label4.Text = "CPU Max Performace when usage above 70%: ";
                     label5.Text = "CPU Max Performance when usage is below 70%: ";
                     label6.Text = "Telegram Bot Token (Leave Blank if you don't use it!)";
-                    label10.Text = "Please select the location of MyBot.Run.exe";
-                    label11.Text = "Haven't own a MyBot? Download it using the buttons below for selecting the server and select the location again!";
+                    label10.Text = "Please put the program inside the MyBot's folder to continue...";
                     break;
             }
         }

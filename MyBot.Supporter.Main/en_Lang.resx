@@ -165,11 +165,11 @@
   <data name="F1GroupBox2" xml:space="preserve">
     <value>Fixed time notification</value>
   </data>
-  <data name="F1Label01" xml:space="preserve">
-    <value>When CPU usage over 70%, set CPU maximum</value>
+  <data name="IsNormal_Set_Maximum" xml:space="preserve">
+    <value>is normal, set CPU maximum</value>
   </data>
-  <data name="F1Label02" xml:space="preserve">
-    <value>When CPU usage is normal, set CPU maximum</value>
+  <data name="When_CPU" xml:space="preserve">
+    <value>When CPU</value>
   </data>
   <data name="F1Label03" xml:space="preserve">
     <value>Program Path</value>
@@ -601,8 +601,8 @@ Quick Help:
   <data name="MiscellaneousChallenges" xml:space="preserve">
     <value />
   </data>
-  <data name="NoSpammers" xml:space="preserve">
-    <value>禁止任何形式的刷屏！</value>
+  <data name="Temperature" xml:space="preserve">
+    <value>Temp</value>
   </data>
   <data name="Pekkas" xml:space="preserve">
     <value />
@@ -727,8 +727,8 @@ Command Help:
   <data name="WizardTowerWarfare" xml:space="preserve">
     <value />
   </data>
-  <data name="NetworkNeededForTutorial" xml:space="preserve">
-    <value>需要网络才能打开教学！</value>
+  <data name="Usage" xml:space="preserve">
+    <value>Usage</value>
   </data>
   <data name="NumbersOnly" xml:space="preserve">
     <value>您只能在这里输入数字与'-'号！</value>
@@ -852,5 +852,11 @@ Command Help:
   </data>
   <data name="Village" xml:space="preserve">
     <value>Village</value>
+  </data>
+  <data name="IsOver60C_Set_Maximum" xml:space="preserve">
+    <value>is over 60 °C, set CPU maximum</value>
+  </data>
+  <data name="IsOver70_Set_Maximum" xml:space="preserve">
+    <value>is over 70%, set CPU maximum</value>
   </data>
 </root>

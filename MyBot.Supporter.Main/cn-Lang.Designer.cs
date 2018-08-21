@@ -682,24 +682,6 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似 当CPU运行超过70%，设置CPU频率最高 的本地化字符串。
-        /// </summary>
-        internal static string F1Label01 {
-            get {
-                return ResourceManager.GetString("F1Label01", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 当CPU运行恢复正常，设置CPU频率最高 的本地化字符串。
-        /// </summary>
-        internal static string F1Label02 {
-            get {
-                return ResourceManager.GetString("F1Label02", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 程序 的本地化字符串。
         /// </summary>
         internal static string F1Label03 {
@@ -1282,6 +1264,24 @@ namespace MyBot.Supporter.Main {
         internal static string InvalidToken {
             get {
                 return ResourceManager.GetString("InvalidToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 超过60 °C，设置CPU最高 的本地化字符串。
+        /// </summary>
+        internal static string IsOver60C_Set_Maximum {
+            get {
+                return ResourceManager.GetString("IsOver60C_Set_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 超过70%，设置CPU最高 的本地化字符串。
+        /// </summary>
+        internal static string IsOver70_Set_Maximum {
+            get {
+                return ResourceManager.GetString("IsOver70_Set_Maximum", resourceCulture);
             }
         }
         
@@ -2146,6 +2146,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 温度 的本地化字符串。
+        /// </summary>
+        internal static string Temperature {
+            get {
+                return ResourceManager.GetString("Temperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似  次 的本地化字符串。
         /// </summary>
         internal static string Times {
@@ -2191,6 +2200,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 使用 的本地化字符串。
+        /// </summary>
+        internal static string Usage {
+            get {
+                return ResourceManager.GetString("Usage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似  的本地化字符串。
         /// </summary>
         internal static string Valkryines {
@@ -2214,6 +2232,15 @@ namespace MyBot.Supporter.Main {
         internal static string WallBreakers {
             get {
                 return ResourceManager.GetString("WallBreakers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 当CPU 的本地化字符串。
+        /// </summary>
+        internal static string When_CPU {
+            get {
+                return ResourceManager.GetString("When_CPU", resourceCulture);
             }
         }
         

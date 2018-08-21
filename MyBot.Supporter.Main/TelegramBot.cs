@@ -198,7 +198,14 @@ namespace MyBot.Supporter.Main
             {
                 if (Bot.IsReceiving)
                 {
-                    Bot.StopReceiving();
+                    try
+                    {
+                        Bot.StopReceiving();
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
             if (MainScreen.Supporter == false)

@@ -343,6 +343,8 @@
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label103 = new System.Windows.Forms.Label();
+            this.comboBox18 = new System.Windows.Forms.ComboBox();
             this.button36 = new System.Windows.Forms.Button();
             this.button37 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
@@ -446,8 +448,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.语言ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.中文ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -456,6 +456,9 @@
             this.stopBottingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.language语言ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.中文ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBar2)).BeginInit();
@@ -4376,7 +4379,7 @@
             // checkBox17
             // 
             this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(7, 350);
+            this.checkBox17.Location = new System.Drawing.Point(7, 358);
             this.checkBox17.Name = "checkBox17";
             this.checkBox17.Size = new System.Drawing.Size(86, 17);
             this.checkBox17.TabIndex = 268;
@@ -4385,6 +4388,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label103);
+            this.panel1.Controls.Add(this.comboBox18);
             this.panel1.Controls.Add(this.button36);
             this.panel1.Controls.Add(this.button37);
             this.panel1.Controls.Add(this.button38);
@@ -4411,8 +4416,29 @@
             this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(7, 8);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(598, 221);
+            this.panel1.Size = new System.Drawing.Size(598, 227);
             this.panel1.TabIndex = 267;
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(160, 184);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(129, 13);
+            this.label103.TabIndex = 271;
+            this.label103.Text = "超过 %s，设置CPU最高";
+            // 
+            // comboBox18
+            // 
+            this.comboBox18.FormattingEnabled = true;
+            this.comboBox18.Items.AddRange(new object[] {
+            "使用",
+            "温度"});
+            this.comboBox18.Location = new System.Drawing.Point(77, 180);
+            this.comboBox18.Name = "comboBox18";
+            this.comboBox18.Size = new System.Drawing.Size(76, 21);
+            this.comboBox18.TabIndex = 269;
+            this.comboBox18.SelectedIndexChanged += new System.EventHandler(this.comboBox18_SelectedIndexChanged);
             // 
             // button36
             // 
@@ -4499,7 +4525,7 @@
             // CPU_Normal
             // 
             this.CPU_Normal.ForeColor = System.Drawing.Color.Black;
-            this.CPU_Normal.Location = new System.Drawing.Point(226, 200);
+            this.CPU_Normal.Location = new System.Drawing.Point(341, 204);
             this.CPU_Normal.Minimum = new decimal(new int[] {
             50,
             0,
@@ -4517,7 +4543,7 @@
             // CPU_over
             // 
             this.CPU_over.ForeColor = System.Drawing.Color.Black;
-            this.CPU_over.Location = new System.Drawing.Point(226, 178);
+            this.CPU_over.Location = new System.Drawing.Point(341, 182);
             this.CPU_over.Minimum = new decimal(new int[] {
             50,
             0,
@@ -4537,22 +4563,22 @@
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.Transparent;
             this.label32.ForeColor = System.Drawing.Color.Black;
-            this.label32.Location = new System.Drawing.Point(-1, 201);
+            this.label32.Location = new System.Drawing.Point(2, 208);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(222, 13);
+            this.label32.Size = new System.Drawing.Size(171, 13);
             this.label32.TabIndex = 212;
-            this.label32.Text = "当CPU运行恢复正常，设置CPU频率最高:";
+            this.label32.Text = "当CPU恢复正常，设置CPU最高";
             // 
             // label44
             // 
             this.label44.AutoSize = true;
             this.label44.BackColor = System.Drawing.Color.Transparent;
             this.label44.ForeColor = System.Drawing.Color.Black;
-            this.label44.Location = new System.Drawing.Point(-1, 181);
+            this.label44.Location = new System.Drawing.Point(-1, 184);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(221, 13);
+            this.label44.Size = new System.Drawing.Size(41, 13);
             this.label44.TabIndex = 209;
-            this.label44.Text = "当CPU运行超过70%，设置CPU频率最高: ";
+            this.label44.Text = "当CPU";
             // 
             // RestartImm
             // 
@@ -4600,7 +4626,7 @@
             this.label51.AutoSize = true;
             this.label51.BackColor = System.Drawing.Color.Transparent;
             this.label51.ForeColor = System.Drawing.Color.Black;
-            this.label51.Location = new System.Drawing.Point(274, 181);
+            this.label51.Location = new System.Drawing.Point(389, 185);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(15, 13);
             this.label51.TabIndex = 211;
@@ -4701,7 +4727,7 @@
             this.label63.AutoSize = true;
             this.label63.BackColor = System.Drawing.Color.Transparent;
             this.label63.ForeColor = System.Drawing.Color.Black;
-            this.label63.Location = new System.Drawing.Point(274, 202);
+            this.label63.Location = new System.Drawing.Point(389, 206);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(15, 13);
             this.label63.TabIndex = 214;
@@ -4710,7 +4736,7 @@
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(7, 304);
+            this.checkBox16.Location = new System.Drawing.Point(7, 312);
             this.checkBox16.Name = "checkBox16";
             this.checkBox16.Size = new System.Drawing.Size(170, 17);
             this.checkBox16.TabIndex = 266;
@@ -4722,7 +4748,7 @@
             this.HourSetting.AutoSize = true;
             this.HourSetting.BackColor = System.Drawing.Color.Transparent;
             this.HourSetting.ForeColor = System.Drawing.Color.Black;
-            this.HourSetting.Location = new System.Drawing.Point(7, 327);
+            this.HourSetting.Location = new System.Drawing.Point(7, 335);
             this.HourSetting.Name = "HourSetting";
             this.HourSetting.Size = new System.Drawing.Size(86, 17);
             this.HourSetting.TabIndex = 265;
@@ -4733,7 +4759,7 @@
             // 
             this.Taskbar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Taskbar.ForeColor = System.Drawing.Color.Black;
-            this.Taskbar.Location = new System.Drawing.Point(7, 279);
+            this.Taskbar.Location = new System.Drawing.Point(7, 287);
             this.Taskbar.Name = "Taskbar";
             this.Taskbar.Size = new System.Drawing.Size(220, 17);
             this.Taskbar.TabIndex = 263;
@@ -4747,7 +4773,7 @@
             this.NoBotOnBattery.CheckState = System.Windows.Forms.CheckState.Checked;
             this.NoBotOnBattery.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NoBotOnBattery.ForeColor = System.Drawing.Color.Black;
-            this.NoBotOnBattery.Location = new System.Drawing.Point(7, 233);
+            this.NoBotOnBattery.Location = new System.Drawing.Point(7, 241);
             this.NoBotOnBattery.Name = "NoBotOnBattery";
             this.NoBotOnBattery.Size = new System.Drawing.Size(176, 17);
             this.NoBotOnBattery.TabIndex = 264;
@@ -4759,7 +4785,7 @@
             this.CloseLID.BackColor = System.Drawing.Color.Transparent;
             this.CloseLID.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CloseLID.ForeColor = System.Drawing.Color.Black;
-            this.CloseLID.Location = new System.Drawing.Point(7, 256);
+            this.CloseLID.Location = new System.Drawing.Point(7, 264);
             this.CloseLID.Name = "CloseLID";
             this.CloseLID.Size = new System.Drawing.Size(122, 17);
             this.CloseLID.TabIndex = 262;
@@ -5595,36 +5621,12 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.语言ToolStripMenuItem});
+            this.language语言ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1135, 24);
             this.menuStrip1.TabIndex = 530;
             this.menuStrip1.Text = "menuStrip2";
-            // 
-            // 语言ToolStripMenuItem
-            // 
-            this.语言ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.中文ToolStripMenuItem,
-            this.englishToolStripMenuItem});
-            this.语言ToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.语言ToolStripMenuItem.Name = "语言ToolStripMenuItem";
-            this.语言ToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
-            this.语言ToolStripMenuItem.Text = "语言 / Language";
-            // 
-            // 中文ToolStripMenuItem
-            // 
-            this.中文ToolStripMenuItem.Name = "中文ToolStripMenuItem";
-            this.中文ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.中文ToolStripMenuItem.Text = "中文";
-            this.中文ToolStripMenuItem.Click += new System.EventHandler(this.中文ToolStripMenuItem_Click);
-            // 
-            // englishToolStripMenuItem
-            // 
-            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
-            this.englishToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.englishToolStripMenuItem.Text = "English";
-            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // timer2
             // 
@@ -5682,6 +5684,29 @@
             // 
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // language语言ToolStripMenuItem
+            // 
+            this.language语言ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem1,
+            this.中文ToolStripMenuItem1});
+            this.language语言ToolStripMenuItem.Name = "language语言ToolStripMenuItem";
+            this.language语言ToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
+            this.language语言ToolStripMenuItem.Text = "Language/语言";
+            // 
+            // englishToolStripMenuItem1
+            // 
+            this.englishToolStripMenuItem1.Name = "englishToolStripMenuItem1";
+            this.englishToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.englishToolStripMenuItem1.Text = "English";
+            this.englishToolStripMenuItem1.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // 中文ToolStripMenuItem1
+            // 
+            this.中文ToolStripMenuItem1.Name = "中文ToolStripMenuItem1";
+            this.中文ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.中文ToolStripMenuItem1.Text = "中文";
+            this.中文ToolStripMenuItem1.Click += new System.EventHandler(this.中文ToolStripMenuItem_Click);
             // 
             // MainScreen
             // 
@@ -6271,8 +6296,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 语言ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 中文ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox checkBox31;
         private System.Windows.Forms.CheckBox MyBotHide;
@@ -6306,5 +6329,10 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Timer timer3;
         public System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox18;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.ToolStripMenuItem language语言ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 中文ToolStripMenuItem1;
     }
 }

@@ -308,7 +308,20 @@ namespace MyBot.Supporter.Main
         {
             ((HandledMouseEventArgs)e).Handled = true;
         }
-       
+        public static string getBetween(string strSource, string strStart, string strEnd)
+        {
+            int Start, End;
+            if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+            {
+                Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+                End = strSource.IndexOf(strEnd, Start);
+                return strSource.Substring(Start, End - Start);
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
     class Win32 //Win32 controllers, included power management, search for emulators, Get .NET versions and also taskbar hider
     {
@@ -324,11 +337,19 @@ namespace MyBot.Supporter.Main
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern bool SendMessage(IntPtr hWnd, int msg, int wParam, string lParam);
         [DllImport("user32.dll")]
-        private static extern IntPtr FindWindow(string className, string WindowText);
+        public static extern IntPtr FindWindow(string className, string WindowText);
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr GetStdHandle(int nStdHandle);
         [DllImport("user32.dll")]
         public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct STRINGBUFFER
+        {
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            public string szText;
+        }
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetWindowText(IntPtr hWnd, out STRINGBUFFER ClassName, int nMaxCount);
         [DllImport("User32.dll")]
         public static extern int SetForegroundWindow(IntPtr point);
         [DllImport("user32.dll")]

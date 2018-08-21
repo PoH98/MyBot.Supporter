@@ -9,6 +9,7 @@ namespace MyBot.Supporter.Main
     public class Languages
     {
         #region Form1
+        Dictionary<string, string> Form1 = new Dictionary<string, string>();
         public static string _NET4_5Needed;
         public static string AddNewProfile_Button;
         public static string AdsBlock_CheckBox;
@@ -256,31 +257,13 @@ namespace MyBot.Supporter.Main
             if (File.Exists(Database.Location + "Text.lang"))
             {
                 string[] temp = File.ReadAllLines(Database.Location + "Text.lang");
-                string[] Title = { }, Value = { };
-                Array.Resize(ref Title, temp.Length);
-                Array.Resize(ref Value, temp.Length);
-                int x = 0;
                 foreach(var t in temp)
                 {
                     string[] te = t.Split('=');
                     if (te.Length == 2)
                     {
-                        Title[x] = te[0];
-                        Value[x] = te[1];
-                        x++;
+                        Form1.Add(Title,Value);
                     }
-                }
-                x = 0;
-                foreach(var t in Title)
-                {
-                    switch (t)
-                    {
-                        case "_NET4_5Needed":
-                            _NET4_5Needed = Value[x];
-                            break;
-
-                    }
-                    x++;
                 }
             }
         }

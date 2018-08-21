@@ -25,20 +25,19 @@ namespace MyBot.Supporter.Main
         static List<string> ExceptionProcessName = new List<string>();
         static NetworkInterface nics;
         static PerformanceCounter CPU = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-        //static String[] instancename;
-        [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
-        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+        private delegate bool EnumThreadProc(IntPtr hwnd, IntPtr lParam);
         static Thread telegram = new Thread(TBot.BotMessageThreadStart);
         static Computer computer = new Computer();
         static Thread send = new Thread(ReportError);
         private int size;
         static List<string> TreeNode = new List<string>();
-        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, Advance, ResetUI;
+        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, Advance, ResetUI,ChangeUsingTemp, Update, UpdateMB;
         private static string CPUN;
         private static string[] AdvanceCPU = { };
         private static double CPUTM, CPUFM, CPUF, CPUV, CPUT;
         private static int CPUL, RAM, RefreshTreeNodes, AutoIT, NoNet;
         private static string SelectedCPUV, SelectedCPUF, SelectedCPUT, SelectedRAML, SelectedCPUL;
+        protected static string version;
         private static WebProxy myProxy = new WebProxy();
 
         public MainScreen()
@@ -655,6 +654,7 @@ namespace MyBot.Supporter.Main
                 Database.ProTime[y] = other.ToString();
                 y++;
             }
+            Database.Time[79] = comboBox18.SelectedIndex.ToString();
             if (checkBox17.Checked)
             {
                 Database.Time[80] = "1";
@@ -1170,11 +1170,6 @@ namespace MyBot.Supporter.Main
                     x++;
                 }
             }
-            if (ResetUI)
-            {
-                ResetUI = false;
-                Language();
-            }
             if (!checkBox32.Checked && !checkBox33.Checked && !checkBox34.Checked && !checkBox35.Checked)
             {
                 TBot.Schedule_Respond = false;
@@ -1357,10 +1352,6 @@ namespace MyBot.Supporter.Main
             {
                 Time.Text = DateTime.Now.ToString("HH:mm:ss");
             }
-
-             Task.Delay(10);
-            if (Win32.IsRunable)
-            {
                 if (!Database.Network)
                 {
                     if (Received.BackColor != Color.LightYellow)
@@ -1416,7 +1407,6 @@ namespace MyBot.Supporter.Main
                     UpSpeed.Text = Database.shows.ToString("0.00 ") + Database.ssize;
                     DownSpeed.Text = Database.showr.ToString("0.00 ") + Database.rsize;
                 }
-            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)//Timer that runs after botting started, used to set PC environment system and watchdog of MB
@@ -1424,7 +1414,8 @@ namespace MyBot.Supporter.Main
             if (RefreshTreeNodes == 0)
             {
                 Database.WriteLog("Entering Tree Nodes");
-                TreeViewHandler();
+                Thread node = new Thread(TreeViewHandler);
+                node.Start();
                 RefreshTreeNodes = 24;
             }
             else
@@ -1490,6 +1481,7 @@ namespace MyBot.Supporter.Main
                 if (checkBox31.Enabled)
                 {
                     checkBox31.Enabled = false;
+                    checkBox31.Checked = false;
                 }
             }
             else
@@ -1497,6 +1489,7 @@ namespace MyBot.Supporter.Main
                 if (!checkBox31.Enabled)
                 {
                     checkBox31.Enabled = true;
+                    checkBox31.Checked = false;
                 }
             }
             if (checkBox31.Checked)
@@ -1504,6 +1497,7 @@ namespace MyBot.Supporter.Main
                 if (EmulatorHide.Enabled)
                 {
                     EmulatorHide.Enabled = false;
+                    EmulatorHide.Checked = false;
                 }
             }
             else
@@ -1511,6 +1505,7 @@ namespace MyBot.Supporter.Main
                 if (!EmulatorHide.Enabled)
                 {
                     EmulatorHide.Enabled = true;
+                    EmulatorHide.Checked = false;
                 }
             }
             Database.WriteLog("Quota Checking");
@@ -1521,34 +1516,7 @@ namespace MyBot.Supporter.Main
                 UpSpeed.BackColor = Color.LightYellow;
                 DownSpeed.BackColor = Color.LightYellow;
                 NetworkName.BackColor = Color.LightYellow;
-                foreach (var m in Process.GetProcessesByName("MyBot.run.exe"))
-                {
-                    m.Kill();
-                }
-                foreach (var Watchdog in Process.GetProcessesByName("MyBot.run.Watchdog"))
-                {
-                    Watchdog.Kill();
-                }
-                foreach (var Android in Database.Emulator)
-                {
-                    foreach (var Emulator in Process.GetProcessesByName(Android))
-                    {
-                        try
-                        {
-                            Emulator.CloseMainWindow();
-                            Emulator.Close();
-                            Emulator.Kill();
-                        }
-                        catch
-                        {
-                            continue;
-                        }
-                    }
-                }
-                foreach (var MEmuHeadless in Process.GetProcessesByName("MEmuHeadless"))
-                {
-                    MEmuHeadless.Kill();
-                }
+                KillMyBot();
                 Run = false;
                 button1_Click(sender, e);
                 if (Database.ShutdownWhenLimitReached == 66)
@@ -1566,21 +1534,14 @@ namespace MyBot.Supporter.Main
                     }
                 }
             }
-            else
-            {
-                Received.BackColor = Color.LightGreen;
-            }
             if (Database.Hour == Database.Bot_Timer[91] && Database.Min == Database.Bot_Timer[92])
             {
                 Process.Start("shutdown.exe", "/s /t 00");
             }
-            string dialogBoxText = "AutoIT Error";
-            IntPtr hwnd = FindWindow("#32770", dialogBoxText);
-            if (hwnd != IntPtr.Zero)
+            if (Database.Net_Error > 0)
             {
-                AutoIt_Error();
+                Database.Net_Error -= 1; //Check the program had been started for 10 sec over
             }
-            Database.Net_Error -= 1; //Check the program had been started for 10 sec over
         }
 
         private static void ReportError()
@@ -1650,6 +1611,9 @@ namespace MyBot.Supporter.Main
                 f.ShowDialog();
                 Database.loadingprocess = 100;
             }
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            version = myFileVersionInfo.FileVersion;
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Supporter = false;
@@ -2003,7 +1967,30 @@ namespace MyBot.Supporter.Main
             Database.WriteLog("CPU Monitor Start");
             computer.CPUEnabled = true;
             computer.RAMEnabled = true;
-            computer.Open();
+            try
+            {
+                computer.Open();
+            }
+            catch
+            {
+
+            }
+            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    if (nic.Name != "Loopback Pseudo-Interface 1")
+                    {
+                        Database.Network = true;
+                        Database.Receive = nic.GetIPStatistics().BytesReceived; //Get Received nework data volume
+                        Database.Send = nic.GetIPStatistics().BytesSent; //Get Sended network data volume
+                        Database.NetName = nic.Name;
+                        nics = nic;
+                        break;
+                    }
+                }
+                x++;
+            }
             double highestV = 0;
             double highestT = 0;
             double highestC = 0;
@@ -2091,7 +2078,16 @@ namespace MyBot.Supporter.Main
             switch (Database.Language)
             {
                 case "English":
-                    this.Text = en_Lang.Form1;
+                    this.Text = en_Lang.Form1 + " " + version;
+                    if (Update)
+                    {
+                        Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion;
+                    }
+                    if (UpdateMB)
+                    {
+                        Text = Text + " / MyBot Update Available: " + MyBotUpdator.MBNewestVersion;
+                    }
+
                     if (Run)
                     {
                         button1.Text = en_Lang.Stop_Button;
@@ -2102,6 +2098,7 @@ namespace MyBot.Supporter.Main
                         button1.Text = en_Lang.Start_Button;
                         button1.BackColor = Color.Lime;
                     }
+                    englishToolStripMenuItem1.Visible = false;
                     Priority.Text = en_Lang.Priority_CheckBox;
                     CloseLID.Text = en_Lang.Close_LID_CheckBox;
                     Shutdown.Text = en_Lang.ShutdownWhenNoNetwork_CheckBox;
@@ -2159,8 +2156,18 @@ namespace MyBot.Supporter.Main
                     label36.Text = en_Lang.F1Label06;
                     label33.Text = en_Lang.F1Label09;
                     label67.Text = en_Lang.F1Label08;
-                    label44.Text = en_Lang.F1Label01;
-                    label32.Text = en_Lang.F1Label02;
+                    label44.Text = en_Lang.When_CPU;
+                    label32.Text = en_Lang.When_CPU + en_Lang.IsNormal_Set_Maximum;
+                    if(comboBox1.SelectedIndex == 0)
+                    {
+                        label103.Text = en_Lang.IsOver70_Set_Maximum;
+                    }
+                    else
+                    {
+                        label103.Text = en_Lang.IsOver60C_Set_Maximum;
+                    }
+                    comboBox18.Items[0] = en_Lang.Usage;
+                    comboBox18.Items[1] = en_Lang.Temperature;
                     label52.Text = en_Lang.Battery;
                     label59.Text = en_Lang.Battery;
                     label53.Text = en_Lang.OnPower;
@@ -2181,7 +2188,7 @@ namespace MyBot.Supporter.Main
                     groupbox4Text.Text = en_Lang.F1GroupBox2;
                     tabPage3.Text = en_Lang.F1TabPage5;
                     tabPage4.Text = en_Lang.F1TabPage1;
-                    tabPage7.Text = en_Lang.F1Tabpage2;
+                    tabPage7.Text = en_Lang.F1TabPage7;
                     tabPage8.Text = en_Lang.F1TabPage11;
                     tabPage10.Text = en_Lang.F1TabPage11;
                     tabPage12.Text = en_Lang.F1TabPage10;
@@ -2205,7 +2212,15 @@ namespace MyBot.Supporter.Main
                     SleepOnBatterySize.Items[2] = en_Lang.Hour;
                     break;
                 case "Chinese":
-                    this.Text = cn_Lang.Form1;
+                    this.Text = cn_Lang.Form1 + " " + version;
+                    if (Update)
+                    {
+                        Text = Text + " / 可用升级: " + MyBotUpdator.NewestVersion;
+                    }
+                    if (UpdateMB)
+                    {
+                        Text = Text + " / MyBot可用升级: " + MyBotUpdator.MBNewestVersion;
+                    }
                     if (Run)
                     {
                         button1.Text = cn_Lang.Stop_Button;
@@ -2216,6 +2231,7 @@ namespace MyBot.Supporter.Main
                         button1.Text = cn_Lang.Start_Button;
                         button1.BackColor = Color.Lime;
                     }
+                    中文ToolStripMenuItem1.Visible = false;
                     Priority.Text = cn_Lang.Priority_CheckBox;
                     CloseLID.Text = cn_Lang.Close_LID_CheckBox;
                     Shutdown.Text = cn_Lang.ShutdownWhenNoNetwork_CheckBox;
@@ -2273,8 +2289,18 @@ namespace MyBot.Supporter.Main
                     label36.Text = cn_Lang.F1Label06;
                     label33.Text = cn_Lang.F1Label09;
                     label67.Text = cn_Lang.F1Label08;
-                    label44.Text = cn_Lang.F1Label01;
-                    label32.Text = cn_Lang.F1Label02;
+                    label44.Text = cn_Lang.When_CPU;
+                    label32.Text = cn_Lang.When_CPU + en_Lang.IsNormal_Set_Maximum;
+                    if (comboBox1.SelectedIndex == 0)
+                    {
+                        label103.Text = cn_Lang.IsOver70_Set_Maximum;
+                    }
+                    else
+                    {
+                        label103.Text = cn_Lang.IsOver60C_Set_Maximum;
+                    }
+                    comboBox18.Items[0] = cn_Lang.Usage;
+                    comboBox18.Items[1] = cn_Lang.Temperature;
                     label52.Text = cn_Lang.Battery;
                     label59.Text = cn_Lang.Battery;
                     label53.Text = cn_Lang.OnPower;
@@ -2318,30 +2344,6 @@ namespace MyBot.Supporter.Main
                     SleepOnBatterySize.Items[1] = cn_Lang.Minute;
                     SleepOnBatterySize.Items[2] = cn_Lang.Hour;
                     break;
-            }
-        }
-        private static void AutoIt_Error()//When MyBot appear AutoIT error, handle it
-        {
-            Database.WriteLog("AutoIt Error Handler Called. Error found!");
-            string dialogBoxText = "AutoIT Error";
-            IntPtr hwnd = FindWindow("#32770", dialogBoxText);
-            int x = 0;
-            Array.Resize(ref Botting.Error, 21);
-            try
-            {
-                while (hwnd != IntPtr.Zero)
-                {
-                    Thread.Sleep(100);
-                    hwnd = FindWindow("#32770", dialogBoxText);
-                    Win32.SendMessage(hwnd, 0x10, 0, null);
-                    Botting.Error[x] = true;
-                    x++;
-                    AutoIT++;
-                }
-            }
-            catch
-            {
-
             }
         }
 
@@ -3249,6 +3251,16 @@ namespace MyBot.Supporter.Main
                 Database.WriteLog("Loading CPU Settings");
                 CPU_over.Text = Database.Time[95];
                 CPU_Normal.Text = Database.Time[96];
+                if(Database.Time[79] == "1")
+                {
+                    comboBox18.SelectedIndex = 1;
+                    ChangeUsingTemp = true;
+                }
+                else
+                {
+                    comboBox18.SelectedIndex = 0;
+                    ChangeUsingTemp = false;
+                }
                 if (Database.Time[80] == "1")
                 {
                     checkBox17.Checked = true;
@@ -3283,14 +3295,14 @@ namespace MyBot.Supporter.Main
                 if (Convert.ToInt32(Database.Time[87]) == 1)
                 {
                     Database.Language = "English";
-                    englishToolStripMenuItem.Visible = false;
-                    中文ToolStripMenuItem.Visible = true;
+                    englishToolStripMenuItem1.Visible = false;
+                    中文ToolStripMenuItem1.Visible = true;
                 }
                 else
                 {
                     Database.Language = "Chinese";
-                    中文ToolStripMenuItem.Visible = false;
-                    englishToolStripMenuItem.Visible = true;
+                    中文ToolStripMenuItem1.Visible = false;
+                    englishToolStripMenuItem1.Visible = true;
                 }
                 if (Convert.ToInt32(Database.Time[93]) > 0)
                 {
@@ -3630,8 +3642,8 @@ namespace MyBot.Supporter.Main
         private void 中文ToolStripMenuItem_Click(object sender, EventArgs e)//Change language to CN
         {
             //Languages.TranslateLanguage("CN");
-            中文ToolStripMenuItem.Visible = false;
-            englishToolStripMenuItem.Visible = true;
+            中文ToolStripMenuItem1.Visible = false;
+            englishToolStripMenuItem1.Visible = true;
             Database.Language = "Chinese";
             Language();
         }
@@ -3639,8 +3651,8 @@ namespace MyBot.Supporter.Main
         {
 
             //Languages.TranslateLanguage("EN");
-            中文ToolStripMenuItem.Visible = true;
-            englishToolStripMenuItem.Visible = false;
+            中文ToolStripMenuItem1.Visible = true;
+            englishToolStripMenuItem1.Visible = false;
             Database.Language = "English";
             Language();
         }
@@ -3967,6 +3979,39 @@ namespace MyBot.Supporter.Main
                     }
                 }
                 Botting.Other();
+                try
+                {
+                    Database.WriteLog("Checking AutoIT Error");
+                    IntPtr AutoITError = Win32.FindWindow("#32770", null);
+
+                    if (!AutoITError.Equals(IntPtr.Zero))
+                    {
+                        Win32.STRINGBUFFER sLimitedLengthWindowTitle;
+                        Win32.GetWindowText(AutoITError, out sLimitedLengthWindowTitle, 256);
+                        String sWindowTitle = sLimitedLengthWindowTitle.szText;
+                        if (sWindowTitle.Length > 0)
+                        {
+                            if (sWindowTitle.StartsWith("AutoIT Error"))
+                            {
+                                Database.WriteLog("AutoIT Error Found");
+                                Win32.SendMessage(AutoITError, 0x0112, 0xF060, null);
+                                Botting.Error[0] = true;
+                                AutoIT++;
+                            }
+                            else if (sWindowTitle.StartsWith(".NET-BroadcastEventWindow"))
+                            {
+                                Database.WriteLog(".NET-BroadcastEventWindow Error Found");
+                                Win32.SendMessage(AutoITError, 0x0010, 0, null);
+                                Botting.Error[0] = true;
+                                AutoIT++;
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
             }
         }
         private void ExtraParameters_Setup() //Load all settings from saved datain roaming folder
@@ -4408,6 +4453,7 @@ namespace MyBot.Supporter.Main
                 {
                     EmulatorHide.Checked = true;
                     MyBotHide.Checked = true;
+                    checkBox31.Checked = false;
                 }
             }
             if (e.KeyCode == Keys.S)
@@ -4416,6 +4462,7 @@ namespace MyBot.Supporter.Main
                 {
                     EmulatorHide.Checked = false;
                     MyBotHide.Checked = false;
+                    checkBox31.Checked = false;
                 }
             }
             if (e.Control && e.KeyCode == Keys.D)
@@ -4478,7 +4525,10 @@ namespace MyBot.Supporter.Main
                                 TreeNode node = new TreeNode();
                                 node.Name = botname[0];
                                 node.Text = botname[0];
-                                treeView1.Nodes.Add(node);
+                                treeView1.Invoke((MethodInvoker)delegate ()
+                                {
+                                    treeView1.Nodes.Add(node);
+                                });
                                 TreeNode.Add(botname[0]);
                                 int y = TreeNode.IndexOf(botname[0]);
                                 string gold = Botting.Gold[x].ToString("## ### ##0");
@@ -4509,34 +4559,40 @@ namespace MyBot.Supporter.Main
                                 switch (Database.Language)
                                 {
                                     case "Chinese":
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.Gold + gold);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.Elixir + elixir);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.DarkElixir + dark);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.Trophy + trophy);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.Builders + builders);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedGold + earng);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedElixir + earne);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedDarkElixir + earnd);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedTrophy + earnt);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedGoldPH + GoldPH);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedElixirPH + ElixirPH);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedDarkElixirPH + DarkElixirPH);
-                                        treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedTrophyPH + TrophyPH);
+                                        treeView1.Invoke((MethodInvoker)delegate ()
+                                        {
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.Gold + gold);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.Elixir + elixir);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.DarkElixir + dark);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.Trophy + trophy);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.Builders + builders);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedGold + earng);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedElixir + earne);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedDarkElixir + earnd);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedTrophy + earnt);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedGoldPH + GoldPH);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedElixirPH + ElixirPH);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedDarkElixirPH + DarkElixirPH);
+                                            treeView1.Nodes[y].Nodes.Add(cn_Lang.EarnedTrophyPH + TrophyPH);
+                                        });
                                         break;
                                     case "English":
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.Gold + gold);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.Elixir + elixir);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.DarkElixir + dark);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.Trophy + trophy);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.Builders + builders);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedGold + earng);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedElixir + earne);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedDarkElixir + earnd);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedTrophy + earnt);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedGoldPH + GoldPH);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedElixirPH + ElixirPH);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedDarkElixirPH + DarkElixirPH);
-                                        treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedTrophyPH + TrophyPH);
+                                        treeView1.Invoke((MethodInvoker)delegate ()
+                                        {
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.Gold + gold);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.Elixir + elixir);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.DarkElixir + dark);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.Trophy + trophy);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.Builders + builders);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedGold + earng);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedElixir + earne);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedDarkElixir + earnd);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedTrophy + earnt);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedGoldPH + GoldPH);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedElixirPH + ElixirPH);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedDarkElixirPH + DarkElixirPH);
+                                            treeView1.Nodes[y].Nodes.Add(en_Lang.EarnedTrophyPH + TrophyPH);
+                                        });
                                         break;
                                 }
                             }
@@ -4559,35 +4615,40 @@ namespace MyBot.Supporter.Main
                                 switch (Database.Language)
                                 {
                                     case "Chinese":
-                                        treeView1.Nodes[y].Nodes[0].Text = cn_Lang.Gold + gold;
-                                        treeView1.Nodes[y].Nodes[1].Text = cn_Lang.Elixir + elixir;
-                                        treeView1.Nodes[y].Nodes[2].Text = cn_Lang.DarkElixir + dark;
-                                        treeView1.Nodes[y].Nodes[3].Text = cn_Lang.Trophy + trophy;
-                                        treeView1.Nodes[y].Nodes[4].Text = cn_Lang.Builders + builders;
-                                        treeView1.Nodes[y].Nodes[5].Text = cn_Lang.EarnedGold + earng;
-                                        treeView1.Nodes[y].Nodes[6].Text = cn_Lang.EarnedElixir + earne;
-                                        treeView1.Nodes[y].Nodes[7].Text = cn_Lang.EarnedDarkElixir + earnd;
-                                        treeView1.Nodes[y].Nodes[8].Text = cn_Lang.EarnedTrophy + earnt;
-                                        treeView1.Nodes[y].Nodes[9].Text = cn_Lang.EarnedGoldPH + GoldPH;
-                                        treeView1.Nodes[y].Nodes[10].Text = cn_Lang.EarnedElixirPH + ElixirPH;
-                                        treeView1.Nodes[y].Nodes[11].Text = cn_Lang.EarnedDarkElixirPH + DarkElixirPH;
-                                        treeView1.Nodes[y].Nodes[12].Text = cn_Lang.EarnedTrophyPH + TrophyPH;
-
+                                        treeView1.Invoke((MethodInvoker)delegate ()
+                                        {
+                                            treeView1.Nodes[y].Nodes[0].Text = cn_Lang.Gold + gold;
+                                            treeView1.Nodes[y].Nodes[1].Text = cn_Lang.Elixir + elixir;
+                                            treeView1.Nodes[y].Nodes[2].Text = cn_Lang.DarkElixir + dark;
+                                            treeView1.Nodes[y].Nodes[3].Text = cn_Lang.Trophy + trophy;
+                                            treeView1.Nodes[y].Nodes[4].Text = cn_Lang.Builders + builders;
+                                            treeView1.Nodes[y].Nodes[5].Text = cn_Lang.EarnedGold + earng;
+                                            treeView1.Nodes[y].Nodes[6].Text = cn_Lang.EarnedElixir + earne;
+                                            treeView1.Nodes[y].Nodes[7].Text = cn_Lang.EarnedDarkElixir + earnd;
+                                            treeView1.Nodes[y].Nodes[8].Text = cn_Lang.EarnedTrophy + earnt;
+                                            treeView1.Nodes[y].Nodes[9].Text = cn_Lang.EarnedGoldPH + GoldPH;
+                                            treeView1.Nodes[y].Nodes[10].Text = cn_Lang.EarnedElixirPH + ElixirPH;
+                                            treeView1.Nodes[y].Nodes[11].Text = cn_Lang.EarnedDarkElixirPH + DarkElixirPH;
+                                            treeView1.Nodes[y].Nodes[12].Text = cn_Lang.EarnedTrophyPH + TrophyPH;
+                                        });
                                         break;
                                     case "English":
-                                        treeView1.Nodes[y].Nodes[0].Text = en_Lang.Gold + gold;
-                                        treeView1.Nodes[y].Nodes[1].Text = en_Lang.Elixir + elixir;
-                                        treeView1.Nodes[y].Nodes[2].Text = en_Lang.DarkElixir + dark;
-                                        treeView1.Nodes[y].Nodes[3].Text = en_Lang.Trophy + trophy;
-                                        treeView1.Nodes[y].Nodes[4].Text = en_Lang.Builders + builders;
-                                        treeView1.Nodes[y].Nodes[5].Text = en_Lang.EarnedGold + earng;
-                                        treeView1.Nodes[y].Nodes[6].Text = en_Lang.EarnedElixir + earne;
-                                        treeView1.Nodes[y].Nodes[7].Text = en_Lang.EarnedDarkElixir + earnd;
-                                        treeView1.Nodes[y].Nodes[8].Text = en_Lang.EarnedTrophy + earnt;
-                                        treeView1.Nodes[y].Nodes[9].Text = en_Lang.EarnedGoldPH + GoldPH;
-                                        treeView1.Nodes[y].Nodes[10].Text = en_Lang.EarnedElixirPH + ElixirPH;
-                                        treeView1.Nodes[y].Nodes[11].Text = en_Lang.EarnedDarkElixirPH + DarkElixirPH;
-                                        treeView1.Nodes[y].Nodes[12].Text = en_Lang.EarnedTrophyPH + TrophyPH;
+                                        treeView1.Invoke((MethodInvoker)delegate ()
+                                        {
+                                            treeView1.Nodes[y].Nodes[0].Text = en_Lang.Gold + gold;
+                                            treeView1.Nodes[y].Nodes[1].Text = en_Lang.Elixir + elixir;
+                                            treeView1.Nodes[y].Nodes[2].Text = en_Lang.DarkElixir + dark;
+                                            treeView1.Nodes[y].Nodes[3].Text = en_Lang.Trophy + trophy;
+                                            treeView1.Nodes[y].Nodes[4].Text = en_Lang.Builders + builders;
+                                            treeView1.Nodes[y].Nodes[5].Text = en_Lang.EarnedGold + earng;
+                                            treeView1.Nodes[y].Nodes[6].Text = en_Lang.EarnedElixir + earne;
+                                            treeView1.Nodes[y].Nodes[7].Text = en_Lang.EarnedDarkElixir + earnd;
+                                            treeView1.Nodes[y].Nodes[8].Text = en_Lang.EarnedTrophy + earnt;
+                                            treeView1.Nodes[y].Nodes[9].Text = en_Lang.EarnedGoldPH + GoldPH;
+                                            treeView1.Nodes[y].Nodes[10].Text = en_Lang.EarnedElixirPH + ElixirPH;
+                                            treeView1.Nodes[y].Nodes[11].Text = en_Lang.EarnedDarkElixirPH + DarkElixirPH;
+                                            treeView1.Nodes[y].Nodes[12].Text = en_Lang.EarnedTrophyPH + TrophyPH;
+                                        });
                                         break;
                                 }
                             }
@@ -4596,21 +4657,26 @@ namespace MyBot.Supporter.Main
                         {
                             if (TreeNode.Contains(botname[0]))
                             {
-                                int y = TreeNode.IndexOf(botname[0]);
-                                treeView1.Nodes[y].Remove();
+                                treeView1.Invoke((MethodInvoker)delegate ()
+                                {
+                                    int y = TreeNode.IndexOf(botname[0]);
+                                    treeView1.Nodes[y].Remove();
+                                });
                             }
                         }
                     }
                 }
                 catch
                 {
-
+                    continue;
                 }
                 x++;
             }
-            treeView1.ExpandAll();
+            treeView1.Invoke((MethodInvoker)delegate ()
+            {
+                treeView1.ExpandAll();
+            });
         }
-
         private void Sizes_SelectedIndexChanged(object sender, EventArgs e)//Set the size
         {
             switch (Sizes.SelectedIndex)
@@ -4696,7 +4762,7 @@ namespace MyBot.Supporter.Main
 
             }
             CPUL = Convert.ToInt16(CPU.NextValue());
-            if (Win32.IsRunable && Database.Network)
+            if (Database.Network)
             {
                 try
                 {
@@ -4715,28 +4781,84 @@ namespace MyBot.Supporter.Main
 
                 }
             }
-            if (CPUL >= 70)
+            if (!ChangeUsingTemp)
             {
-                if (Win32.ProcessorIsMaximum)
+                if (CPUL >= 70)
                 {
-                    Thread set = new Thread(Win32.Power_Minimum);
-                    set.Start();
-                    Win32.ProcessorIsMaximum = false;
+                    if (Win32.ProcessorIsMaximum)
+                    {
+                        Thread set = new Thread(Win32.Power_Minimum);
+                        set.Start();
+                        Win32.ProcessorIsMaximum = false;
+                    }
+                }
+                else
+                {
+                    if (!Win32.ProcessorIsMaximum)
+                    {
+                        Thread set = new Thread(Win32.Power_Maximum);
+                        set.Start();
+                        Win32.ProcessorIsMaximum = true;
+                    }
                 }
             }
             else
             {
-                if (!Win32.ProcessorIsMaximum)
+                if (CPUT >= 60)
                 {
-                    Thread set = new Thread(Win32.Power_Maximum);
-                    set.Start();
-                    Win32.ProcessorIsMaximum = true;
+                    if (Win32.ProcessorIsMaximum)
+                    {
+                        Thread set = new Thread(Win32.Power_Minimum);
+                        set.Start();
+                        Win32.ProcessorIsMaximum = false;
+                    }
+                }
+                else
+                {
+                    if (!Win32.ProcessorIsMaximum)
+                    {
+                        Thread set = new Thread(Win32.Power_Maximum);
+                        set.Start();
+                        Win32.ProcessorIsMaximum = true;
+                    }
                 }
             }
             ReportError();
         }
 
         public static bool Pause = false;
+
+        private void comboBox18_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox18.SelectedIndex == 1)
+            {
+                ChangeUsingTemp = true;
+                switch (Database.Language)
+                {
+                    case "English":
+                        label103.Text = en_Lang.IsOver60C_Set_Maximum;
+                        break;
+                    case "Chinese":
+                        label103.Text = cn_Lang.IsOver60C_Set_Maximum;
+                        break;
+                }
+            }
+            else
+            {
+                ChangeUsingTemp = false;
+                switch (Database.Language)
+                {
+                    case "English":
+                        label103.Text = en_Lang.IsOver70_Set_Maximum;
+                        break;
+                    case "Chinese":
+                        label103.Text = cn_Lang.IsOver70_Set_Maximum;
+                        break;
+                }
+            }
+            
+        }
+
         private void Updator()
         {
             Database.WriteLog("Fetching Updates of MyBot.Supporter");
@@ -4749,9 +4871,6 @@ namespace MyBot.Supporter.Main
                     Database.WriteLog("Use Github for checking");
                     try
                     {
-                        Assembly assembly = Assembly.GetExecutingAssembly();
-                        FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-                        string version = myFileVersionInfo.FileVersion;
                         string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
                         WebClient wc = new WebClientOverride();
                         wc.Proxy = myProxy;
@@ -4766,6 +4885,8 @@ namespace MyBot.Supporter.Main
                                 Run = false;
                                 Pause = true;
                             }
+                            Update = true;
+                            this.Invoke(new Action(() =>Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion));
                             button1.Invoke(new Action(() => button1.Enabled = false));
                             button1.Invoke(new Action(() => button1.Text = "Updating"));
                             button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
@@ -4779,9 +4900,9 @@ namespace MyBot.Supporter.Main
                             });
                         }
                     }
-                    catch (Exception ex)
+                    catch 
                     {
-                        File.WriteAllText("error.log", ex.ToString());
+
                     }
                 }
                 else //try using Gitee
@@ -4806,6 +4927,8 @@ namespace MyBot.Supporter.Main
                                 Run = false;
                                 Pause = true;
                             }
+                            Update = true;
+                            this.Invoke(new Action(() => Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion));
                             button1.Invoke(new Action(() => button1.Enabled = false));
                             button1.Invoke(new Action(() => button1.Text = "Updating"));
                             button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
@@ -4818,9 +4941,9 @@ namespace MyBot.Supporter.Main
                             });
                         }
                     }
-                    catch (Exception ex)
+                    catch 
                     {
-                        File.WriteAllText("error.log", ex.ToString());
+
                     }
                 }
             }
@@ -4835,7 +4958,19 @@ namespace MyBot.Supporter.Main
             button1.Invoke(new Action(() => button1.Enabled = true));
             Database.SupporterUpdate = false;
             MyBotUpdator.Github = false;
-            MainScreen.ResetUI = true;
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                if (Run)
+                {
+                    button1.Text = en_Lang.Stop_Button;
+                    button1.BackColor = Color.Red;
+                }
+                else
+                {
+                    button1.Text = en_Lang.Start_Button;
+                    button1.BackColor = Color.Lime;
+                }
+            });
             if (Pause)
             {
                 object s = new object();
@@ -4846,6 +4981,7 @@ namespace MyBot.Supporter.Main
 
         private void UpdateMyBot()
         {
+            ServicePointManager.DefaultConnectionLimit = ServicePointManager.DefaultConnectionLimit;
             Database.WriteLog("Checking Update for MyBot.Run");
             try
             {
@@ -4866,8 +5002,12 @@ namespace MyBot.Supporter.Main
                         WebClient wc = new WebClientOverride();
                         wc.Proxy = myProxy;
                         string s = wc.DownloadString(new Uri(versionfile));
-                        if (version != s)
+                        string compare1 = Database.getBetween(version, "$g_sBotVersion = \"","\"");
+                        MyBotUpdator.MBNewestVersion = Database.getBetween(s, "$g_sBotVersion = \"", "\"");
+                        if (compare1 != MyBotUpdator.MBNewestVersion)
                         {
+                            UpdateMB = true;
+                            this.Invoke(new Action(() => Text = Text + " / MyBot Update Available: " + MyBotUpdator.MBNewestVersion));
                             MyBotUpdator.Github = true;
                             this.Invoke((MethodInvoker)delegate ()
                             {
@@ -4878,9 +5018,9 @@ namespace MyBot.Supporter.Main
                         }
 
                     }
-                    catch (Exception ex)
+                    catch 
                     {
-                        File.WriteAllText("error.log", ex.ToString());
+
                     }
                 }
                 else //try using Gitee
@@ -4897,9 +5037,12 @@ namespace MyBot.Supporter.Main
                         WebClient wc = new WebClientOverride();
                         wc.Proxy = myProxy;
                         string s = wc.DownloadString(new Uri(versionfile));
-                        //task.Wait(TimeSpan.FromSeconds(5));
-                        if (version != s)
+                        string compare1 = Database.getBetween(version, "$g_sBotVersion = \"", "\"");
+                        MyBotUpdator.MBNewestVersion = Database.getBetween(s, "$g_sBotVersion = \"", "\"");
+                        if (compare1 != MyBotUpdator.MBNewestVersion)
                         {
+                            UpdateMB = true;
+                            this.Invoke(new Action(() => Text = Text + " / MyBot Update Available: " + MyBotUpdator.MBNewestVersion));
                             this.Invoke((MethodInvoker)delegate ()
                             {
                                 MyBotUpdator update = new MyBotUpdator();
@@ -4909,9 +5052,9 @@ namespace MyBot.Supporter.Main
                             
                         }
                     }
-                    catch (Exception ex)
+                    catch 
                     {
-                        File.WriteAllText("error.log", ex.ToString());
+
                     }
                 }              
             }
@@ -5008,7 +5151,6 @@ namespace MyBot.Supporter.Main
             OpenApplication(textBox119);
         }
         #endregion
-
     }
     class Emulator
     {

@@ -12,7 +12,7 @@ namespace MyBot.Supporter.Main
     {
         private static int Time = 5;
         public static bool IsDownloading = false, Github = false;
-        public static string NewestVersion = "";
+        public static string NewestVersion = "", MBNewestVersion;
         public MyBotUpdator()
         {
             Database.loadingprocess = 100;
@@ -23,7 +23,6 @@ namespace MyBot.Supporter.Main
             string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/releases/download/"+NewestVersion+ "/MyBot.Supporter.Main.exe";
             using (var client = new WebClientOverride())
             {
-                client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
                 client.DownloadFile(UpdateLink, Database.Location + "Update");
             }
             File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
@@ -39,7 +38,6 @@ namespace MyBot.Supporter.Main
             using (var client = new WebClientOverride())
             {
                 string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Updatelink.txt");
-                client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
                 client.DownloadFile(temp, Database.Location + "Update");
             }
             File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
@@ -50,12 +48,11 @@ namespace MyBot.Supporter.Main
             Application.Exit();
         }
 
-        public static void DownloadMyBotUpdate()//Github
+        public void DownloadMyBotUpdate()//Github
         {
             string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot-MBR.zip";
             using (var client = new WebClientOverride())
             {
-                client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
                 client.DownloadFile(UpdateLink, Database.Location + "Update");
             }
             File.Copy(Database.Location + "Update", Database.Location + "MyBot.Run.zip");
@@ -102,14 +99,18 @@ namespace MyBot.Supporter.Main
                     }
                 }
             }
+            this.Invoke((MethodInvoker)delegate
+            {
+                MessageBox.Show("Completed", "Update Completed", MessageBoxButtons.OK);
+                Close();
+            });
         }
 
-        private static void DownloadMyBotUpdate2()//Gitee
+        private void DownloadMyBotUpdate2()//Gitee
         {
             using (var client = new WebClientOverride())
             {
                 string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBotUpdateLink.txt");
-                client.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
                 client.DownloadFile(temp, Database.Location + "Update");
             }
             File.Copy(Database.Location + "Update", Database.Location + "MyBot.Run.zip");
@@ -157,6 +158,11 @@ namespace MyBot.Supporter.Main
                     }
                 }
             }
+            this.Invoke((MethodInvoker)delegate
+            {
+                MessageBox.Show("Completed","Update Completed",MessageBoxButtons.OK);
+                Close();
+            });
         }
 
         private void MyBotUpdator_Load(object sender, EventArgs e)
@@ -218,8 +224,15 @@ namespace MyBot.Supporter.Main
             this.Focus();
             if (IsDownloading)
             {
-                long bytes = new FileInfo(Database.Location + "Update").Length;
-                label2.Text = bytes + " bytes";
+                if(File.Exists(Database.Location + "Update"))
+                {
+                    long bytes = new FileInfo(Database.Location + "Update").Length;
+                    label2.Text = bytes + " bytes";
+                }
+                else
+                {
+                    label2.Text = "Extracting...";
+                }
             }
             else
             {
@@ -242,6 +255,7 @@ namespace MyBot.Supporter.Main
 
         private void button1_Click(object sender, EventArgs e) 
         {
+            button1.Enabled = false;
             IsDownloading = true;
             button2.Enabled = false;
             if (Database.SupporterUpdate)

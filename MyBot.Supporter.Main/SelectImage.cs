@@ -29,6 +29,7 @@ namespace MyBot.Supporter.Main
                     pictureBox3.Load("https://404store.com/2018/07/18/a2a23b2f9063c44f1f2c7dff53a7525d.jpg");
                     pictureBox4.Load("https://404store.com/2018/07/18/d8569ea54af3ad5d6b64f66b1f5c4964.jpg");
                     pictureBox5.Load("https://404store.com/2018/07/18/2aba4a200a6ba2d523b2ca1021d90f48.jpg");
+                    pictureBox6.Load("https://404store.com/2018/08/21/02721b5191359297c51c16628c2e5803.png");
                 }
                 catch (WebException w)
                 {
@@ -123,6 +124,20 @@ namespace MyBot.Supporter.Main
                 File.Move(Environment.CurrentDirectory + "\\images\\Logo.png", Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch");
             }
             pictureBox5.Image.Save(Environment.CurrentDirectory + "\\images\\Logo.png", ImageFormat.Png);
+            Close();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch"))
+            {
+                File.Delete(Environment.CurrentDirectory + "\\images\\Logo.png");
+            }
+            else
+            {
+                File.Move(Environment.CurrentDirectory + "\\images\\Logo.png", Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\Logo.patch");
+            }
+            pictureBox6.Image.Save(Environment.CurrentDirectory + "\\images\\Logo.png", ImageFormat.Png);
             Close();
         }
     }

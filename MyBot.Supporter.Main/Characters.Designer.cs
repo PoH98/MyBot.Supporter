@@ -73,16 +73,6 @@ namespace MyBot.Supporter.Main {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] ClanGames_config {
-            get {
-                object obj = ResourceManager.GetObject("ClanGames_config", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
         public static byte[] DLL {
             get {
                 object obj = ResourceManager.GetObject("DLL", resourceCulture);

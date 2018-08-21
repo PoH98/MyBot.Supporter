@@ -90,7 +90,6 @@ namespace MyBot.Supporter.Main
             }
             assembly = Assembly.LoadFrom(path);
             return assembly;
-
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

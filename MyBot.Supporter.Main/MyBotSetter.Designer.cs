@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,103 +38,7 @@
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tabControl4 = new System.Windows.Forms.TabControl();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.numericUpDown35 = new System.Windows.Forms.NumericUpDown();
-            this.label42 = new System.Windows.Forms.Label();
-            this.numericUpDown34 = new System.Windows.Forms.NumericUpDown();
-            this.label41 = new System.Windows.Forms.Label();
-            this.numericUpDown33 = new System.Windows.Forms.NumericUpDown();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.numericUpDown32 = new System.Windows.Forms.NumericUpDown();
-            this.label39 = new System.Windows.Forms.Label();
-            this.numericUpDown31 = new System.Windows.Forms.NumericUpDown();
-            this.label38 = new System.Windows.Forms.Label();
-            this.numericUpDown30 = new System.Windows.Forms.NumericUpDown();
-            this.label37 = new System.Windows.Forms.Label();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.numericUpDown45 = new System.Windows.Forms.NumericUpDown();
-            this.label52 = new System.Windows.Forms.Label();
-            this.numericUpDown46 = new System.Windows.Forms.NumericUpDown();
-            this.label53 = new System.Windows.Forms.Label();
-            this.numericUpDown47 = new System.Windows.Forms.NumericUpDown();
-            this.label54 = new System.Windows.Forms.Label();
-            this.numericUpDown36 = new System.Windows.Forms.NumericUpDown();
-            this.label43 = new System.Windows.Forms.Label();
-            this.numericUpDown37 = new System.Windows.Forms.NumericUpDown();
-            this.label44 = new System.Windows.Forms.Label();
-            this.numericUpDown38 = new System.Windows.Forms.NumericUpDown();
-            this.label45 = new System.Windows.Forms.Label();
-            this.numericUpDown39 = new System.Windows.Forms.NumericUpDown();
-            this.label46 = new System.Windows.Forms.Label();
-            this.numericUpDown40 = new System.Windows.Forms.NumericUpDown();
-            this.label47 = new System.Windows.Forms.Label();
-            this.numericUpDown41 = new System.Windows.Forms.NumericUpDown();
-            this.label48 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.numericUpDown69 = new System.Windows.Forms.NumericUpDown();
-            this.label76 = new System.Windows.Forms.Label();
-            this.numericUpDown64 = new System.Windows.Forms.NumericUpDown();
-            this.label71 = new System.Windows.Forms.Label();
-            this.numericUpDown65 = new System.Windows.Forms.NumericUpDown();
-            this.label72 = new System.Windows.Forms.Label();
-            this.numericUpDown66 = new System.Windows.Forms.NumericUpDown();
-            this.label73 = new System.Windows.Forms.Label();
-            this.numericUpDown67 = new System.Windows.Forms.NumericUpDown();
-            this.label74 = new System.Windows.Forms.Label();
-            this.numericUpDown68 = new System.Windows.Forms.NumericUpDown();
-            this.label75 = new System.Windows.Forms.Label();
-            this.numericUpDown59 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown54 = new System.Windows.Forms.NumericUpDown();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.numericUpDown55 = new System.Windows.Forms.NumericUpDown();
-            this.label62 = new System.Windows.Forms.Label();
-            this.numericUpDown60 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown56 = new System.Windows.Forms.NumericUpDown();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.numericUpDown57 = new System.Windows.Forms.NumericUpDown();
-            this.label64 = new System.Windows.Forms.Label();
-            this.numericUpDown61 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown58 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown63 = new System.Windows.Forms.NumericUpDown();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label70 = new System.Windows.Forms.Label();
-            this.numericUpDown42 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown62 = new System.Windows.Forms.NumericUpDown();
-            this.label49 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.numericUpDown43 = new System.Windows.Forms.NumericUpDown();
-            this.label50 = new System.Windows.Forms.Label();
-            this.numericUpDown44 = new System.Windows.Forms.NumericUpDown();
-            this.label51 = new System.Windows.Forms.Label();
-            this.numericUpDown48 = new System.Windows.Forms.NumericUpDown();
-            this.label55 = new System.Windows.Forms.Label();
-            this.numericUpDown49 = new System.Windows.Forms.NumericUpDown();
-            this.label56 = new System.Windows.Forms.Label();
-            this.numericUpDown50 = new System.Windows.Forms.NumericUpDown();
-            this.label57 = new System.Windows.Forms.Label();
-            this.numericUpDown51 = new System.Windows.Forms.NumericUpDown();
-            this.label58 = new System.Windows.Forms.Label();
-            this.numericUpDown52 = new System.Windows.Forms.NumericUpDown();
-            this.label59 = new System.Windows.Forms.Label();
-            this.numericUpDown53 = new System.Windows.Forms.NumericUpDown();
-            this.label60 = new System.Windows.Forms.Label();
-            this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.numericUpDown70 = new System.Windows.Forms.NumericUpDown();
-            this.label77 = new System.Windows.Forms.Label();
-            this.numericUpDown71 = new System.Windows.Forms.NumericUpDown();
-            this.label78 = new System.Windows.Forms.Label();
-            this.numericUpDown72 = new System.Windows.Forms.NumericUpDown();
-            this.label79 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.Profile = new System.Windows.Forms.ComboBox();
@@ -217,9 +122,10 @@
             this.label32 = new System.Windows.Forms.Label();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.checkBox20 = new System.Windows.Forms.CheckBox();
-            this.label80 = new System.Windows.Forms.Label();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
@@ -241,55 +147,6 @@
             this.tabControl3.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabControl4.SuspendLayout();
-            this.tabPage9.SuspendLayout();
-            this.tabPage10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).BeginInit();
-            this.tabPage11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown45)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown46)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown47)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown36)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown37)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).BeginInit();
-            this.tabPage12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown69)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown64)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown65)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown66)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown68)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown59)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown54)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown55)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown60)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown56)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown57)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown61)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown58)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown63)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown42)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown62)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown43)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown44)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown48)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown49)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown50)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown51)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown52)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown53)).BeginInit();
-            this.tabPage15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown70)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown71)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown72)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -350,6 +207,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.comboBox5);
             this.tabPage1.Controls.Add(this.checkBox7);
             this.tabPage1.Controls.Add(this.label3);
@@ -365,6 +223,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "村庄";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(8, 175);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(194, 30);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "调整Adb使用 （如果遇\r\n见少数问题可尝试打勾此选项）";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             // 
             // comboBox5
             // 
@@ -441,7 +310,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.tabControl4);
+            this.groupBox3.Controls.Add(this.checkedListBox3);
             this.groupBox3.Controls.Add(this.checkBox3);
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
@@ -449,30 +318,6 @@
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "注射部落竞赛";
-            // 
-            // tabControl4
-            // 
-            this.tabControl4.Controls.Add(this.tabPage9);
-            this.tabControl4.Controls.Add(this.tabPage10);
-            this.tabControl4.Controls.Add(this.tabPage11);
-            this.tabControl4.Controls.Add(this.tabPage12);
-            this.tabControl4.Controls.Add(this.tabPage15);
-            this.tabControl4.Location = new System.Drawing.Point(6, 43);
-            this.tabControl4.Name = "tabControl4";
-            this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(448, 304);
-            this.tabControl4.TabIndex = 1;
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Controls.Add(this.checkedListBox3);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(440, 278);
-            this.tabPage9.TabIndex = 0;
-            this.tabPage9.Text = "部落竞赛";
-            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // checkedListBox3
             // 
@@ -487,1309 +332,11 @@
             "其他挑战",
             "清除任务",
             "满分前停止继续任务切换清除任务模式"});
-            this.checkedListBox3.Location = new System.Drawing.Point(6, 6);
+            this.checkedListBox3.Location = new System.Drawing.Point(6, 43);
             this.checkedListBox3.Name = "checkedListBox3";
-            this.checkedListBox3.Size = new System.Drawing.Size(428, 274);
+            this.checkedListBox3.Size = new System.Drawing.Size(448, 289);
             this.checkedListBox3.TabIndex = 2;
             this.checkedListBox3.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox3_ItemCheck);
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.numericUpDown35);
-            this.tabPage10.Controls.Add(this.label42);
-            this.tabPage10.Controls.Add(this.numericUpDown34);
-            this.tabPage10.Controls.Add(this.label41);
-            this.tabPage10.Controls.Add(this.numericUpDown33);
-            this.tabPage10.Controls.Add(this.label40);
-            this.tabPage10.Controls.Add(this.textBox2);
-            this.tabPage10.Controls.Add(this.numericUpDown32);
-            this.tabPage10.Controls.Add(this.label39);
-            this.tabPage10.Controls.Add(this.numericUpDown31);
-            this.tabPage10.Controls.Add(this.label38);
-            this.tabPage10.Controls.Add(this.numericUpDown30);
-            this.tabPage10.Controls.Add(this.label37);
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(440, 278);
-            this.tabPage10.TabIndex = 1;
-            this.tabPage10.Text = "战利品挑战";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown35
-            // 
-            this.numericUpDown35.Location = new System.Drawing.Point(185, 136);
-            this.numericUpDown35.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown35.Name = "numericUpDown35";
-            this.numericUpDown35.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown35.TabIndex = 12;
-            this.numericUpDown35.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 61);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(175, 13);
-            this.label42.TabIndex = 11;
-            this.label42.Text = "进攻一个村庄获取黑油数量挑战";
-            // 
-            // numericUpDown34
-            // 
-            this.numericUpDown34.Location = new System.Drawing.Point(185, 110);
-            this.numericUpDown34.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown34.Name = "numericUpDown34";
-            this.numericUpDown34.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown34.TabIndex = 10;
-            this.numericUpDown34.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 35);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(175, 13);
-            this.label41.TabIndex = 9;
-            this.label41.Text = "进攻一个村庄获取圣水数量挑战";
-            // 
-            // numericUpDown33
-            // 
-            this.numericUpDown33.Location = new System.Drawing.Point(185, 84);
-            this.numericUpDown33.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown33.Name = "numericUpDown33";
-            this.numericUpDown33.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown33.TabIndex = 8;
-            this.numericUpDown33.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(6, 9);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(175, 13);
-            this.label40.TabIndex = 7;
-            this.label40.Text = "进攻一个村庄获取金币数量挑战";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(260, 6);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(174, 266);
-            this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "帮助：\r\n\r\n* 请在任务旁边的数值框里面输入接受的任务优先权\r\n\r\n* 0代表不接受任务\r\n\r\n* 1-5则是接受任务的优先权\r\n\r\n* 这里的设置将会直接影响" +
-    "到ClanGame_config.ini的设置";
-            // 
-            // numericUpDown32
-            // 
-            this.numericUpDown32.Location = new System.Drawing.Point(185, 58);
-            this.numericUpDown32.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown32.Name = "numericUpDown32";
-            this.numericUpDown32.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown32.TabIndex = 5;
-            this.numericUpDown32.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(6, 138);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(151, 13);
-            this.label39.TabIndex = 4;
-            this.label39.Text = "进攻获取总共黑油数量挑战";
-            // 
-            // numericUpDown31
-            // 
-            this.numericUpDown31.Location = new System.Drawing.Point(185, 32);
-            this.numericUpDown31.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown31.Name = "numericUpDown31";
-            this.numericUpDown31.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown31.TabIndex = 3;
-            this.numericUpDown31.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(6, 112);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(151, 13);
-            this.label38.TabIndex = 2;
-            this.label38.Text = "进攻获取总共圣水数量挑战";
-            // 
-            // numericUpDown30
-            // 
-            this.numericUpDown30.Location = new System.Drawing.Point(185, 6);
-            this.numericUpDown30.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown30.Name = "numericUpDown30";
-            this.numericUpDown30.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown30.TabIndex = 1;
-            this.numericUpDown30.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(6, 86);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(151, 13);
-            this.label37.TabIndex = 0;
-            this.label37.Text = "进攻获取总共金币数量挑战";
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.AutoScroll = true;
-            this.tabPage11.Controls.Add(this.numericUpDown45);
-            this.tabPage11.Controls.Add(this.label52);
-            this.tabPage11.Controls.Add(this.numericUpDown46);
-            this.tabPage11.Controls.Add(this.label53);
-            this.tabPage11.Controls.Add(this.numericUpDown47);
-            this.tabPage11.Controls.Add(this.label54);
-            this.tabPage11.Controls.Add(this.numericUpDown36);
-            this.tabPage11.Controls.Add(this.label43);
-            this.tabPage11.Controls.Add(this.numericUpDown37);
-            this.tabPage11.Controls.Add(this.label44);
-            this.tabPage11.Controls.Add(this.numericUpDown38);
-            this.tabPage11.Controls.Add(this.label45);
-            this.tabPage11.Controls.Add(this.numericUpDown39);
-            this.tabPage11.Controls.Add(this.label46);
-            this.tabPage11.Controls.Add(this.numericUpDown40);
-            this.tabPage11.Controls.Add(this.label47);
-            this.tabPage11.Controls.Add(this.numericUpDown41);
-            this.tabPage11.Controls.Add(this.label48);
-            this.tabPage11.Controls.Add(this.textBox3);
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(440, 278);
-            this.tabPage11.TabIndex = 2;
-            this.tabPage11.Text = "战斗挑战";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown45
-            // 
-            this.numericUpDown45.Location = new System.Drawing.Point(187, 214);
-            this.numericUpDown45.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown45.Name = "numericUpDown45";
-            this.numericUpDown45.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown45.TabIndex = 30;
-            this.numericUpDown45.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(6, 216);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(127, 13);
-            this.label52.TabIndex = 29;
-            this.label52.Text = "挑战大本营更高级任务";
-            // 
-            // numericUpDown46
-            // 
-            this.numericUpDown46.Location = new System.Drawing.Point(187, 188);
-            this.numericUpDown46.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown46.Name = "numericUpDown46";
-            this.numericUpDown46.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown46.TabIndex = 28;
-            this.numericUpDown46.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(6, 190);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(67, 13);
-            this.label53.TabIndex = 27;
-            this.label53.Text = "无药水任务";
-            // 
-            // numericUpDown47
-            // 
-            this.numericUpDown47.Location = new System.Drawing.Point(187, 162);
-            this.numericUpDown47.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown47.Name = "numericUpDown47";
-            this.numericUpDown47.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown47.TabIndex = 26;
-            this.numericUpDown47.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(6, 164);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(55, 13);
-            this.label54.TabIndex = 25;
-            this.label54.Text = "无王任务";
-            // 
-            // numericUpDown36
-            // 
-            this.numericUpDown36.Location = new System.Drawing.Point(187, 136);
-            this.numericUpDown36.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown36.Name = "numericUpDown36";
-            this.numericUpDown36.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown36.TabIndex = 24;
-            this.numericUpDown36.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(6, 138);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(55, 13);
-            this.label43.TabIndex = 23;
-            this.label43.Text = "泰坦任务";
-            // 
-            // numericUpDown37
-            // 
-            this.numericUpDown37.Location = new System.Drawing.Point(187, 110);
-            this.numericUpDown37.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown37.Name = "numericUpDown37";
-            this.numericUpDown37.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown37.TabIndex = 22;
-            this.numericUpDown37.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 112);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(55, 13);
-            this.label44.TabIndex = 21;
-            this.label44.Text = "连胜任务";
-            // 
-            // numericUpDown38
-            // 
-            this.numericUpDown38.Location = new System.Drawing.Point(187, 84);
-            this.numericUpDown38.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown38.Name = "numericUpDown38";
-            this.numericUpDown38.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown38.TabIndex = 20;
-            this.numericUpDown38.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(6, 86);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(55, 13);
-            this.label45.TabIndex = 19;
-            this.label45.Text = "三星任务";
-            // 
-            // numericUpDown39
-            // 
-            this.numericUpDown39.Location = new System.Drawing.Point(187, 58);
-            this.numericUpDown39.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown39.Name = "numericUpDown39";
-            this.numericUpDown39.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown39.TabIndex = 18;
-            this.numericUpDown39.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(6, 60);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(103, 13);
-            this.label46.TabIndex = 17;
-            this.label46.Text = "进攻获胜次数任务";
-            // 
-            // numericUpDown40
-            // 
-            this.numericUpDown40.Location = new System.Drawing.Point(187, 32);
-            this.numericUpDown40.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown40.Name = "numericUpDown40";
-            this.numericUpDown40.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown40.TabIndex = 16;
-            this.numericUpDown40.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(6, 34);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(91, 13);
-            this.label47.TabIndex = 15;
-            this.label47.Text = "进攻百分比任务";
-            // 
-            // numericUpDown41
-            // 
-            this.numericUpDown41.Location = new System.Drawing.Point(187, 6);
-            this.numericUpDown41.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown41.Name = "numericUpDown41";
-            this.numericUpDown41.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown41.TabIndex = 14;
-            this.numericUpDown41.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(6, 8);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(79, 13);
-            this.label48.TabIndex = 13;
-            this.label48.Text = "胜利之星任务";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(259, 6);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(175, 266);
-            this.textBox3.TabIndex = 7;
-            this.textBox3.Text = "帮助：\r\n\r\n* 请在任务旁边的数值框里面输入接受的任务优先权\r\n\r\n* 0代表不接受任务\r\n\r\n* 1-5则是接受任务的优先权\r\n\r\n* 这里的设置将会直接影响" +
-    "到ClanGame_config.ini的设置";
-            // 
-            // tabPage12
-            // 
-            this.tabPage12.AutoScroll = true;
-            this.tabPage12.Controls.Add(this.textBox4);
-            this.tabPage12.Controls.Add(this.numericUpDown69);
-            this.tabPage12.Controls.Add(this.label76);
-            this.tabPage12.Controls.Add(this.numericUpDown64);
-            this.tabPage12.Controls.Add(this.label71);
-            this.tabPage12.Controls.Add(this.numericUpDown65);
-            this.tabPage12.Controls.Add(this.label72);
-            this.tabPage12.Controls.Add(this.numericUpDown66);
-            this.tabPage12.Controls.Add(this.label73);
-            this.tabPage12.Controls.Add(this.numericUpDown67);
-            this.tabPage12.Controls.Add(this.label74);
-            this.tabPage12.Controls.Add(this.numericUpDown68);
-            this.tabPage12.Controls.Add(this.label75);
-            this.tabPage12.Controls.Add(this.numericUpDown59);
-            this.tabPage12.Controls.Add(this.numericUpDown54);
-            this.tabPage12.Controls.Add(this.label61);
-            this.tabPage12.Controls.Add(this.label66);
-            this.tabPage12.Controls.Add(this.numericUpDown55);
-            this.tabPage12.Controls.Add(this.label62);
-            this.tabPage12.Controls.Add(this.numericUpDown60);
-            this.tabPage12.Controls.Add(this.numericUpDown56);
-            this.tabPage12.Controls.Add(this.label63);
-            this.tabPage12.Controls.Add(this.label67);
-            this.tabPage12.Controls.Add(this.numericUpDown57);
-            this.tabPage12.Controls.Add(this.label64);
-            this.tabPage12.Controls.Add(this.numericUpDown61);
-            this.tabPage12.Controls.Add(this.numericUpDown58);
-            this.tabPage12.Controls.Add(this.numericUpDown63);
-            this.tabPage12.Controls.Add(this.label68);
-            this.tabPage12.Controls.Add(this.label65);
-            this.tabPage12.Controls.Add(this.label70);
-            this.tabPage12.Controls.Add(this.numericUpDown42);
-            this.tabPage12.Controls.Add(this.numericUpDown62);
-            this.tabPage12.Controls.Add(this.label49);
-            this.tabPage12.Controls.Add(this.label69);
-            this.tabPage12.Controls.Add(this.numericUpDown43);
-            this.tabPage12.Controls.Add(this.label50);
-            this.tabPage12.Controls.Add(this.numericUpDown44);
-            this.tabPage12.Controls.Add(this.label51);
-            this.tabPage12.Controls.Add(this.numericUpDown48);
-            this.tabPage12.Controls.Add(this.label55);
-            this.tabPage12.Controls.Add(this.numericUpDown49);
-            this.tabPage12.Controls.Add(this.label56);
-            this.tabPage12.Controls.Add(this.numericUpDown50);
-            this.tabPage12.Controls.Add(this.label57);
-            this.tabPage12.Controls.Add(this.numericUpDown51);
-            this.tabPage12.Controls.Add(this.label58);
-            this.tabPage12.Controls.Add(this.numericUpDown52);
-            this.tabPage12.Controls.Add(this.label59);
-            this.tabPage12.Controls.Add(this.numericUpDown53);
-            this.tabPage12.Controls.Add(this.label60);
-            this.tabPage12.Location = new System.Drawing.Point(4, 22);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(440, 278);
-            this.tabPage12.TabIndex = 3;
-            this.tabPage12.Text = "摧毁建筑挑战";
-            this.tabPage12.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(260, 6);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(157, 639);
-            this.textBox4.TabIndex = 81;
-            this.textBox4.Text = "帮助：\r\n\r\n* 请在任务旁边的数值框里面输入接受的任务优先权\r\n\r\n* 0代表不接受任务\r\n\r\n* 1-5则是接受任务的优先权\r\n\r\n* 这里的设置将会直接影响" +
-    "到ClanGame_config.ini的设置";
-            // 
-            // numericUpDown69
-            // 
-            this.numericUpDown69.Location = new System.Drawing.Point(188, 630);
-            this.numericUpDown69.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown69.Name = "numericUpDown69";
-            this.numericUpDown69.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown69.TabIndex = 80;
-            this.numericUpDown69.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label76
-            // 
-            this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(7, 632);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(55, 13);
-            this.label76.TabIndex = 79;
-            this.label76.Text = "三王任务";
-            // 
-            // numericUpDown64
-            // 
-            this.numericUpDown64.Location = new System.Drawing.Point(188, 604);
-            this.numericUpDown64.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown64.Name = "numericUpDown64";
-            this.numericUpDown64.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown64.TabIndex = 78;
-            this.numericUpDown64.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(7, 606);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(79, 13);
-            this.label71.TabIndex = 77;
-            this.label71.Text = "大守护者任务";
-            // 
-            // numericUpDown65
-            // 
-            this.numericUpDown65.Location = new System.Drawing.Point(188, 578);
-            this.numericUpDown65.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown65.Name = "numericUpDown65";
-            this.numericUpDown65.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown65.TabIndex = 76;
-            this.numericUpDown65.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(7, 580);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(55, 13);
-            this.label72.TabIndex = 75;
-            this.label72.Text = "女王任务";
-            // 
-            // numericUpDown66
-            // 
-            this.numericUpDown66.Location = new System.Drawing.Point(188, 552);
-            this.numericUpDown66.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown66.Name = "numericUpDown66";
-            this.numericUpDown66.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown66.TabIndex = 74;
-            this.numericUpDown66.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(7, 554);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(55, 13);
-            this.label73.TabIndex = 73;
-            this.label73.Text = "蛮王任务";
-            // 
-            // numericUpDown67
-            // 
-            this.numericUpDown67.Location = new System.Drawing.Point(188, 526);
-            this.numericUpDown67.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown67.Name = "numericUpDown67";
-            this.numericUpDown67.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown67.TabIndex = 72;
-            this.numericUpDown67.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(7, 528);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(103, 13);
-            this.label74.TabIndex = 71;
-            this.label74.Text = "暗黑药水工厂任务";
-            // 
-            // numericUpDown68
-            // 
-            this.numericUpDown68.Location = new System.Drawing.Point(188, 500);
-            this.numericUpDown68.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown68.Name = "numericUpDown68";
-            this.numericUpDown68.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown68.TabIndex = 70;
-            this.numericUpDown68.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(7, 502);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(79, 13);
-            this.label75.TabIndex = 69;
-            this.label75.Text = "药水工厂任务";
-            // 
-            // numericUpDown59
-            // 
-            this.numericUpDown59.Location = new System.Drawing.Point(188, 474);
-            this.numericUpDown59.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown59.Name = "numericUpDown59";
-            this.numericUpDown59.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown59.TabIndex = 68;
-            this.numericUpDown59.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown54
-            // 
-            this.numericUpDown54.Location = new System.Drawing.Point(188, 344);
-            this.numericUpDown54.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown54.Name = "numericUpDown54";
-            this.numericUpDown54.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown54.TabIndex = 58;
-            this.numericUpDown54.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(7, 346);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(67, 13);
-            this.label61.TabIndex = 57;
-            this.label61.Text = "圣水罐任务";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(7, 476);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(67, 13);
-            this.label66.TabIndex = 67;
-            this.label66.Text = "实验室任务";
-            // 
-            // numericUpDown55
-            // 
-            this.numericUpDown55.Location = new System.Drawing.Point(188, 318);
-            this.numericUpDown55.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown55.Name = "numericUpDown55";
-            this.numericUpDown55.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown55.TabIndex = 56;
-            this.numericUpDown55.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(7, 320);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(55, 13);
-            this.label62.TabIndex = 55;
-            this.label62.Text = "金库任务";
-            // 
-            // numericUpDown60
-            // 
-            this.numericUpDown60.Location = new System.Drawing.Point(188, 448);
-            this.numericUpDown60.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown60.Name = "numericUpDown60";
-            this.numericUpDown60.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown60.TabIndex = 66;
-            this.numericUpDown60.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown56
-            // 
-            this.numericUpDown56.Location = new System.Drawing.Point(188, 292);
-            this.numericUpDown56.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown56.Name = "numericUpDown56";
-            this.numericUpDown56.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown56.TabIndex = 54;
-            this.numericUpDown56.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(7, 294);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(79, 13);
-            this.label63.TabIndex = 53;
-            this.label63.Text = "部落城堡任务";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(7, 450);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(67, 13);
-            this.label67.TabIndex = 65;
-            this.label67.Text = "黑油井任务";
-            // 
-            // numericUpDown57
-            // 
-            this.numericUpDown57.Location = new System.Drawing.Point(188, 266);
-            this.numericUpDown57.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown57.Name = "numericUpDown57";
-            this.numericUpDown57.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown57.TabIndex = 52;
-            this.numericUpDown57.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(7, 268);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(55, 13);
-            this.label64.TabIndex = 51;
-            this.label64.Text = "天鹰任务";
-            // 
-            // numericUpDown61
-            // 
-            this.numericUpDown61.Location = new System.Drawing.Point(188, 422);
-            this.numericUpDown61.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown61.Name = "numericUpDown61";
-            this.numericUpDown61.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown61.TabIndex = 64;
-            this.numericUpDown61.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown58
-            // 
-            this.numericUpDown58.Location = new System.Drawing.Point(188, 240);
-            this.numericUpDown58.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown58.Name = "numericUpDown58";
-            this.numericUpDown58.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown58.TabIndex = 50;
-            this.numericUpDown58.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown63
-            // 
-            this.numericUpDown63.Location = new System.Drawing.Point(188, 370);
-            this.numericUpDown63.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown63.Name = "numericUpDown63";
-            this.numericUpDown63.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown63.TabIndex = 60;
-            this.numericUpDown63.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(7, 424);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(91, 13);
-            this.label68.TabIndex = 63;
-            this.label68.Text = "圣水采集器任务";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(7, 242);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(67, 13);
-            this.label65.TabIndex = 49;
-            this.label65.Text = "地狱塔任务";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(7, 372);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(67, 13);
-            this.label70.TabIndex = 59;
-            this.label70.Text = "黑油罐任务";
-            // 
-            // numericUpDown42
-            // 
-            this.numericUpDown42.Location = new System.Drawing.Point(188, 214);
-            this.numericUpDown42.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown42.Name = "numericUpDown42";
-            this.numericUpDown42.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown42.TabIndex = 48;
-            this.numericUpDown42.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown62
-            // 
-            this.numericUpDown62.Location = new System.Drawing.Point(188, 396);
-            this.numericUpDown62.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown62.Name = "numericUpDown62";
-            this.numericUpDown62.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown62.TabIndex = 62;
-            this.numericUpDown62.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(7, 216);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(48, 13);
-            this.label49.TabIndex = 47;
-            this.label49.Text = "x弩任务";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(7, 398);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(55, 13);
-            this.label69.TabIndex = 61;
-            this.label69.Text = "金矿任务";
-            // 
-            // numericUpDown43
-            // 
-            this.numericUpDown43.Location = new System.Drawing.Point(188, 188);
-            this.numericUpDown43.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown43.Name = "numericUpDown43";
-            this.numericUpDown43.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown43.TabIndex = 46;
-            this.numericUpDown43.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(7, 190);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(67, 13);
-            this.label50.TabIndex = 45;
-            this.label50.Text = "炸弹塔任务";
-            // 
-            // numericUpDown44
-            // 
-            this.numericUpDown44.Location = new System.Drawing.Point(188, 162);
-            this.numericUpDown44.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown44.Name = "numericUpDown44";
-            this.numericUpDown44.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown44.TabIndex = 44;
-            this.numericUpDown44.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(7, 164);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(67, 13);
-            this.label51.TabIndex = 43;
-            this.label51.Text = "特斯拉任务";
-            // 
-            // numericUpDown48
-            // 
-            this.numericUpDown48.Location = new System.Drawing.Point(188, 136);
-            this.numericUpDown48.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown48.Name = "numericUpDown48";
-            this.numericUpDown48.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown48.TabIndex = 42;
-            this.numericUpDown48.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(7, 138);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(67, 13);
-            this.label55.TabIndex = 41;
-            this.label55.Text = "空气炮任务";
-            // 
-            // numericUpDown49
-            // 
-            this.numericUpDown49.Location = new System.Drawing.Point(188, 110);
-            this.numericUpDown49.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown49.Name = "numericUpDown49";
-            this.numericUpDown49.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown49.TabIndex = 40;
-            this.numericUpDown49.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(7, 112);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(67, 13);
-            this.label56.TabIndex = 39;
-            this.label56.Text = "法师塔任务";
-            // 
-            // numericUpDown50
-            // 
-            this.numericUpDown50.Location = new System.Drawing.Point(188, 84);
-            this.numericUpDown50.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown50.Name = "numericUpDown50";
-            this.numericUpDown50.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown50.TabIndex = 38;
-            this.numericUpDown50.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(7, 86);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(55, 13);
-            this.label57.TabIndex = 37;
-            this.label57.Text = "防空任务";
-            // 
-            // numericUpDown51
-            // 
-            this.numericUpDown51.Location = new System.Drawing.Point(188, 58);
-            this.numericUpDown51.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown51.Name = "numericUpDown51";
-            this.numericUpDown51.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown51.TabIndex = 36;
-            this.numericUpDown51.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(7, 60);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(67, 13);
-            this.label58.TabIndex = 35;
-            this.label58.Text = "迫击炮任务";
-            // 
-            // numericUpDown52
-            // 
-            this.numericUpDown52.Location = new System.Drawing.Point(188, 32);
-            this.numericUpDown52.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown52.Name = "numericUpDown52";
-            this.numericUpDown52.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown52.TabIndex = 34;
-            this.numericUpDown52.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(7, 34);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(55, 13);
-            this.label59.TabIndex = 33;
-            this.label59.Text = "箭塔任务";
-            // 
-            // numericUpDown53
-            // 
-            this.numericUpDown53.Location = new System.Drawing.Point(188, 6);
-            this.numericUpDown53.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown53.Name = "numericUpDown53";
-            this.numericUpDown53.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown53.TabIndex = 32;
-            this.numericUpDown53.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(7, 8);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(67, 13);
-            this.label60.TabIndex = 31;
-            this.label60.Text = "加农炮任务";
-            // 
-            // tabPage15
-            // 
-            this.tabPage15.Controls.Add(this.textBox5);
-            this.tabPage15.Controls.Add(this.numericUpDown70);
-            this.tabPage15.Controls.Add(this.label77);
-            this.tabPage15.Controls.Add(this.numericUpDown71);
-            this.tabPage15.Controls.Add(this.label78);
-            this.tabPage15.Controls.Add(this.numericUpDown72);
-            this.tabPage15.Controls.Add(this.label79);
-            this.tabPage15.Location = new System.Drawing.Point(4, 22);
-            this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage15.Size = new System.Drawing.Size(440, 278);
-            this.tabPage15.TabIndex = 6;
-            this.tabPage15.Text = "其他挑战";
-            this.tabPage15.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(260, 8);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(174, 264);
-            this.textBox5.TabIndex = 82;
-            this.textBox5.Text = "帮助：\r\n\r\n* 请在任务旁边的数值框里面输入接受的任务优先权\r\n\r\n* 0代表不接受任务\r\n\r\n* 1-5则是接受任务的优先权\r\n\r\n* 这里的设置将会直接影响" +
-    "到ClanGame_config.ini的设置";
-            // 
-            // numericUpDown70
-            // 
-            this.numericUpDown70.Location = new System.Drawing.Point(188, 58);
-            this.numericUpDown70.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown70.Name = "numericUpDown70";
-            this.numericUpDown70.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown70.TabIndex = 42;
-            this.numericUpDown70.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Location = new System.Drawing.Point(7, 60);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(67, 13);
-            this.label77.TabIndex = 41;
-            this.label77.Text = "捐药水任务";
-            // 
-            // numericUpDown71
-            // 
-            this.numericUpDown71.Location = new System.Drawing.Point(188, 32);
-            this.numericUpDown71.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown71.Name = "numericUpDown71";
-            this.numericUpDown71.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown71.TabIndex = 40;
-            this.numericUpDown71.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(7, 34);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(55, 13);
-            this.label78.TabIndex = 39;
-            this.label78.Text = "捐兵任务";
-            // 
-            // numericUpDown72
-            // 
-            this.numericUpDown72.Location = new System.Drawing.Point(188, 6);
-            this.numericUpDown72.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown72.Name = "numericUpDown72";
-            this.numericUpDown72.Size = new System.Drawing.Size(66, 20);
-            this.numericUpDown72.TabIndex = 38;
-            this.numericUpDown72.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label79
-            // 
-            this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(7, 8);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(91, 13);
-            this.label79.TabIndex = 37;
-            this.label79.Text = "去除障碍物任务";
             // 
             // checkBox3
             // 
@@ -1825,7 +372,7 @@
             // checkBox13
             // 
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(11, 50);
+            this.checkBox13.Location = new System.Drawing.Point(8, 50);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(194, 17);
             this.checkBox13.TabIndex = 3;
@@ -2729,6 +1276,8 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.richTextBox2);
+            this.tabPage5.Controls.Add(this.button1);
             this.tabPage5.Controls.Add(this.groupBox9);
             this.tabPage5.Controls.Add(this.groupBox8);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
@@ -2739,16 +1288,36 @@
             this.tabPage5.Text = "MyBot MOD";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.BackColor = System.Drawing.Color.Black;
+            this.richTextBox2.ForeColor = System.Drawing.Color.Lime;
+            this.richTextBox2.Location = new System.Drawing.Point(8, 149);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
+            this.richTextBox2.Size = new System.Drawing.Size(675, 206);
+            this.richTextBox2.TabIndex = 26;
+            this.richTextBox2.Text = "Waiting for input...";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(11, 361);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(675, 47);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Compile MyBot";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.checkBox20);
-            this.groupBox9.Controls.Add(this.label80);
             this.groupBox9.Controls.Add(this.checkBox18);
             this.groupBox9.Controls.Add(this.checkBox16);
             this.groupBox9.Controls.Add(this.checkBox14);
             this.groupBox9.Location = new System.Drawing.Point(341, 6);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(345, 402);
+            this.groupBox9.Size = new System.Drawing.Size(345, 126);
             this.groupBox9.TabIndex = 3;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "恢复";
@@ -2763,15 +1332,6 @@
             this.checkBox20.TabIndex = 7;
             this.checkBox20.Text = "恢复MyBot图片";
             this.checkBox20.UseVisualStyleBackColor = true;
-            // 
-            // label80
-            // 
-            this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(259, 377);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(80, 13);
-            this.label80.TabIndex = 5;
-            this.label80.Text = "执著等待MOD";
             // 
             // checkBox18
             // 
@@ -2814,7 +1374,7 @@
             this.groupBox8.Controls.Add(this.checkBox12);
             this.groupBox8.Location = new System.Drawing.Point(8, 6);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(327, 402);
+            this.groupBox8.Size = new System.Drawing.Size(327, 126);
             this.groupBox8.TabIndex = 2;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "MOD";
@@ -2887,7 +1447,6 @@
             this.textBox6.Size = new System.Drawing.Size(675, 86);
             this.textBox6.TabIndex = 25;
             this.textBox6.Text = "Waiting for input...";
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // comboBox1
             // 
@@ -2931,9 +1490,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(11, 347);
+            this.button3.Location = new System.Drawing.Point(11, 346);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(338, 62);
+            this.button3.Size = new System.Drawing.Size(337, 62);
             this.button3.TabIndex = 20;
             this.button3.Text = "取消";
             this.button3.UseVisualStyleBackColor = true;
@@ -2941,9 +1500,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(351, 347);
+            this.button2.Location = new System.Drawing.Point(354, 347);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(338, 62);
+            this.button2.Size = new System.Drawing.Size(335, 62);
             this.button2.TabIndex = 19;
             this.button2.Text = "注射MyBot";
             this.button2.UseVisualStyleBackColor = true;
@@ -2970,59 +1529,6 @@
             this.tabPage8.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabControl4.ResumeLayout(false);
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown30)).EndInit();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown45)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown46)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown47)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown36)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown37)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown38)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown39)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown40)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown41)).EndInit();
-            this.tabPage12.ResumeLayout(false);
-            this.tabPage12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown69)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown64)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown65)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown66)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown67)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown68)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown59)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown54)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown55)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown60)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown56)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown57)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown61)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown58)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown63)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown42)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown62)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown43)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown44)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown48)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown49)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown50)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown51)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown52)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown53)).EndInit();
-            this.tabPage15.ResumeLayout(false);
-            this.tabPage15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown70)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown71)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown72)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -3090,104 +1596,8 @@
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TabControl tabControl4;
-        private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.CheckedListBox checkedListBox3;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.TabPage tabPage12;
-        private System.Windows.Forms.TabPage tabPage15;
         private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown32;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.NumericUpDown numericUpDown31;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.NumericUpDown numericUpDown30;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.NumericUpDown numericUpDown35;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.NumericUpDown numericUpDown34;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.NumericUpDown numericUpDown33;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.NumericUpDown numericUpDown36;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.NumericUpDown numericUpDown37;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.NumericUpDown numericUpDown38;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.NumericUpDown numericUpDown39;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.NumericUpDown numericUpDown40;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.NumericUpDown numericUpDown41;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.NumericUpDown numericUpDown45;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.NumericUpDown numericUpDown46;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.NumericUpDown numericUpDown47;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.NumericUpDown numericUpDown69;
-        private System.Windows.Forms.Label label76;
-        private System.Windows.Forms.NumericUpDown numericUpDown64;
-        private System.Windows.Forms.Label label71;
-        private System.Windows.Forms.NumericUpDown numericUpDown65;
-        private System.Windows.Forms.Label label72;
-        private System.Windows.Forms.NumericUpDown numericUpDown66;
-        private System.Windows.Forms.Label label73;
-        private System.Windows.Forms.NumericUpDown numericUpDown67;
-        private System.Windows.Forms.Label label74;
-        private System.Windows.Forms.NumericUpDown numericUpDown68;
-        private System.Windows.Forms.Label label75;
-        private System.Windows.Forms.NumericUpDown numericUpDown59;
-        private System.Windows.Forms.NumericUpDown numericUpDown54;
-        private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.Label label66;
-        private System.Windows.Forms.NumericUpDown numericUpDown55;
-        private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.NumericUpDown numericUpDown60;
-        private System.Windows.Forms.NumericUpDown numericUpDown56;
-        private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.NumericUpDown numericUpDown57;
-        private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.NumericUpDown numericUpDown61;
-        private System.Windows.Forms.NumericUpDown numericUpDown58;
-        private System.Windows.Forms.NumericUpDown numericUpDown63;
-        private System.Windows.Forms.Label label68;
-        private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.NumericUpDown numericUpDown42;
-        private System.Windows.Forms.NumericUpDown numericUpDown62;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.Label label69;
-        private System.Windows.Forms.NumericUpDown numericUpDown43;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.NumericUpDown numericUpDown44;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.NumericUpDown numericUpDown48;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.NumericUpDown numericUpDown49;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.NumericUpDown numericUpDown50;
-        private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.NumericUpDown numericUpDown51;
-        private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.NumericUpDown numericUpDown52;
-        private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.NumericUpDown numericUpDown53;
-        private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.NumericUpDown numericUpDown70;
-        private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.NumericUpDown numericUpDown71;
-        private System.Windows.Forms.Label label78;
-        private System.Windows.Forms.NumericUpDown numericUpDown72;
-        private System.Windows.Forms.Label label79;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.Label label3;
@@ -3284,10 +1694,12 @@
         private System.Windows.Forms.CheckBox checkBox15;
         private System.Windows.Forms.CheckBox checkBox18;
         private System.Windows.Forms.CheckBox checkBox17;
-        private System.Windows.Forms.Label label80;
         private System.Windows.Forms.NumericUpDown numericUpDown74;
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.CheckBox checkBox20;
         private System.Windows.Forms.CheckBox checkBox19;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }

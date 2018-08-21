@@ -46,15 +46,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -244,10 +240,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.textBox2);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Location = new System.Drawing.Point(9, 119);
@@ -255,51 +247,6 @@
             this.panel2.Size = new System.Drawing.Size(751, 216);
             this.panel2.TabIndex = 16;
             this.panel2.Visible = false;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(9, 85);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(121, 39);
-            this.button5.TabIndex = 16;
-            this.button5.Text = "Github";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 62);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(318, 13);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Have no MyBot downloaded yet?  Select the server for download!";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(698, 28);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(46, 23);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "...";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(9, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(683, 20);
-            this.textBox2.TabIndex = 13;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 9);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(200, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Please select the path to MyBot.Run.exe";
             // 
             // button3
             // 
@@ -334,6 +281,15 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(298, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Please put the program inside the MyBot\'s folder to continue...";
             // 
             // FirstUse
             // 
@@ -386,12 +342,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
