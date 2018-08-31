@@ -2101,7 +2101,22 @@ namespace MyBot.Supporter.Main
             up.Start();
             Database.loadingprocess = 90;
             UpdateMyBot();
-            Database.WriteLog("Setting Language");
+            Database.WriteLog("Loading Plugins");
+            if (!Directory.Exists(Environment.CurrentDirectory + "\\Plugins"))
+                Directory.CreateDirectory(Environment.CurrentDirectory + "\\Plugins");
+            foreach (var file in Directory.GetFiles(Environment.CurrentDirectory + "\\Plugins", "*.dll"))
+            {
+                var ass = Assembly.LoadFrom(file);
+                foreach (var a in ass.GetTypes())
+                {
+                    if (a.GetInterfaces().Contains(typeof(plugin)))
+                    {
+                        var type = Activator.CreateInstance(a) as plugin;
+                        richTextBox4.AppendText(Environment.NewLine + "Loaded Custom Plugins from " + file);
+                        extrafunctions.Add(type);
+                    }
+                }
+            }
             GC.Collect();
             Database.loadingprocess = 100;
             Database.WriteLog("Loading Complete");
@@ -3676,21 +3691,7 @@ namespace MyBot.Supporter.Main
                             Database.Time[x] = "11";
                         }
                     }
-                    if (!Directory.Exists(Environment.CurrentDirectory + "\\Plugins"))
-                        Directory.CreateDirectory(Environment.CurrentDirectory + "\\Plugins");
-                    foreach (var file in Directory.GetFiles(Environment.CurrentDirectory + "\\Plugins", "*.dll"))
-                    {
-                        var assembly = Assembly.LoadFrom(file);
-                        foreach (var a in assembly.GetTypes())
-                        {
-                            if (a.GetInterfaces().Contains(typeof(plugin)))
-                            {
-                                var type = Activator.CreateInstance(a) as plugin;
-                                richTextBox4.AppendText(Environment.NewLine + "Loaded Custom Plugins from " + file);
-                                extrafunctions.Add(type);
-                            }
-                        }
-                    }
+                   
                 }
                 catch (Exception ex)
                 {
