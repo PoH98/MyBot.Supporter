@@ -341,6 +341,9 @@
             this.label31 = new System.Windows.Forms.Label();
             this.textBox108 = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label103 = new System.Windows.Forms.Label();
@@ -404,6 +407,8 @@
             this.label75 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -447,6 +452,9 @@
             this.button21 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.language语言ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.中文ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.语言ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -456,9 +464,6 @@
             this.stopBottingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.language语言ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.englishToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.中文ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBar2)).BeginInit();
@@ -579,6 +584,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox130)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textBox131)).BeginInit();
             this.tabPage7.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Limit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ShutdownTimeHour)).BeginInit();
@@ -594,6 +600,7 @@
             this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.tabPage11.SuspendLayout();
+            this.tabPage13.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -998,6 +1005,7 @@
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
             this.tabControl2.Controls.Add(this.tabPage11);
+            this.tabControl2.Controls.Add(this.tabPage13);
             this.tabControl2.Location = new System.Drawing.Point(484, 37);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -1363,7 +1371,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(20, 0);
+            this.label13.Location = new System.Drawing.Point(34, -1);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 401;
@@ -4361,6 +4369,7 @@
             // tabPage7
             // 
             this.tabPage7.AutoScroll = true;
+            this.tabPage7.Controls.Add(this.groupBox5);
             this.tabPage7.Controls.Add(this.checkBox17);
             this.tabPage7.Controls.Add(this.panel1);
             this.tabPage7.Controls.Add(this.checkBox16);
@@ -4375,6 +4384,37 @@
             this.tabPage7.TabIndex = 2;
             this.tabPage7.Text = "电脑环境设置";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.button4);
+            this.groupBox5.Controls.Add(this.button3);
+            this.groupBox5.Location = new System.Drawing.Point(332, 241);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(269, 128);
+            this.groupBox5.TabIndex = 269;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Update";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 69);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(257, 42);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(6, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(257, 43);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // checkBox17
             // 
@@ -4563,7 +4603,7 @@
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.Transparent;
             this.label32.ForeColor = System.Drawing.Color.Black;
-            this.label32.Location = new System.Drawing.Point(2, 208);
+            this.label32.Location = new System.Drawing.Point(-1, 206);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(171, 13);
             this.label32.TabIndex = 212;
@@ -4620,6 +4660,7 @@
             this.DisableMoney.TabIndex = 159;
             this.DisableMoney.Text = "启动阻止一切网页挖矿脚本线程";
             this.DisableMoney.UseVisualStyleBackColor = false;
+            this.DisableMoney.CheckedChanged += new System.EventHandler(this.DisableMoney_CheckedChanged);
             // 
             // label51
             // 
@@ -5114,6 +5155,27 @@
             this.treeView1.Size = new System.Drawing.Size(626, 349);
             this.treeView1.TabIndex = 0;
             // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.richTextBox4);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(632, 355);
+            this.tabPage13.TabIndex = 5;
+            this.tabPage13.Text = "CustomCode";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox4
+            // 
+            this.richTextBox4.BackColor = System.Drawing.Color.Black;
+            this.richTextBox4.ForeColor = System.Drawing.Color.Lime;
+            this.richTextBox4.Location = new System.Drawing.Point(6, 6);
+            this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.Size = new System.Drawing.Size(620, 343);
+            this.richTextBox4.TabIndex = 4;
+            this.richTextBox4.Text = "Finding Plugins...";
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Lime;
@@ -5184,10 +5246,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::MyBot.Supporter.Main.Properties.Resources.ezgif1;
-            this.pictureBox1.Location = new System.Drawing.Point(765, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(784, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(66, 112);
+            this.pictureBox1.Size = new System.Drawing.Size(57, 112);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 302;
             this.pictureBox1.TabStop = false;
@@ -5628,6 +5689,34 @@
             this.menuStrip1.TabIndex = 530;
             this.menuStrip1.Text = "menuStrip2";
             // 
+            // language语言ToolStripMenuItem
+            // 
+            this.language语言ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem1,
+            this.中文ToolStripMenuItem1});
+            this.language语言ToolStripMenuItem.Name = "language语言ToolStripMenuItem";
+            this.language语言ToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
+            this.language语言ToolStripMenuItem.Text = "Language/语言";
+            // 
+            // englishToolStripMenuItem1
+            // 
+            this.englishToolStripMenuItem1.Name = "englishToolStripMenuItem1";
+            this.englishToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.englishToolStripMenuItem1.Text = "English";
+            this.englishToolStripMenuItem1.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // 中文ToolStripMenuItem1
+            // 
+            this.中文ToolStripMenuItem1.Name = "中文ToolStripMenuItem1";
+            this.中文ToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.中文ToolStripMenuItem1.Text = "中文";
+            this.中文ToolStripMenuItem1.Click += new System.EventHandler(this.中文ToolStripMenuItem_Click);
+            // 
+            // 语言ToolStripMenuItem
+            // 
+            this.语言ToolStripMenuItem.Name = "语言ToolStripMenuItem";
+            this.语言ToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
             // timer2
             // 
             this.timer2.Interval = 5000;
@@ -5649,6 +5738,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // showToolStripMenuItem
             // 
@@ -5676,7 +5766,6 @@
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "MyBot_Supporter";
             this.notifyIcon1.Visible = true;
             // 
@@ -5685,33 +5774,11 @@
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // language语言ToolStripMenuItem
-            // 
-            this.language语言ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.englishToolStripMenuItem1,
-            this.中文ToolStripMenuItem1});
-            this.language语言ToolStripMenuItem.Name = "language语言ToolStripMenuItem";
-            this.language语言ToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
-            this.language语言ToolStripMenuItem.Text = "Language/语言";
-            // 
-            // englishToolStripMenuItem1
-            // 
-            this.englishToolStripMenuItem1.Name = "englishToolStripMenuItem1";
-            this.englishToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.englishToolStripMenuItem1.Text = "English";
-            this.englishToolStripMenuItem1.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
-            // 
-            // 中文ToolStripMenuItem1
-            // 
-            this.中文ToolStripMenuItem1.Name = "中文ToolStripMenuItem1";
-            this.中文ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.中文ToolStripMenuItem1.Text = "中文";
-            this.中文ToolStripMenuItem1.Click += new System.EventHandler(this.中文ToolStripMenuItem_Click);
-            // 
             // MainScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AcceptButton = this.button1;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(1135, 569);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
@@ -5723,7 +5790,9 @@
             this.Controls.Add(this.Time);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.button20);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainScreen";
             this.Text = "MainScreen";
@@ -5858,6 +5927,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textBox131)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Limit)).EndInit();
@@ -5878,6 +5948,7 @@
             this.tabPage12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.tabPage11.ResumeLayout(false);
+            this.tabPage13.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -6334,5 +6405,10 @@
         private System.Windows.Forms.ToolStripMenuItem language语言ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 中文ToolStripMenuItem1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.RichTextBox richTextBox4;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MyBot.Supporter.Main
@@ -108,7 +109,7 @@ namespace MyBot.Supporter.Main
             {
                 if(Database.Bot[x] != null)
                 {
-                    if (Database.Bot[x].Length > 0)
+                    if (!Database.Bot[x].Contains("   "))
                     {
                         label1.Text = Database.Bot[x];
                     }
@@ -122,7 +123,10 @@ namespace MyBot.Supporter.Main
                     this.Close();
                 }
             }
-
+            else
+            {
+                this.Close();
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -142,7 +146,7 @@ namespace MyBot.Supporter.Main
             {
                 label5.Text = "Selected Profile";
                 label2.Text = "Please select the emulator used by the bot";
-                label3.Text = "Emulator's instance number";
+                label3.Text = "Emulator's instance number (Keep Zero if the instance is the first created)";
                 //label4.Text = "The first emulator insance left it empty";
                 button1.Text = "Add to Supporter's Profile";
                 button2.Text = "Skip";
@@ -151,7 +155,7 @@ namespace MyBot.Supporter.Main
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Database.Bot[x] = "";
+            Database.Bot[x] = "#     ";
             x++;
         }
 
@@ -162,6 +166,19 @@ namespace MyBot.Supporter.Main
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void GenerateProfile_Load(object sender, EventArgs e)
+        {
+            Database.loadingprocess = 100;
+            TopMost = true;
+        }
+
+        private void GenerateProfile_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Database.loadingprocess = 0;
+            Thread loading = new Thread(Database.Load_);
+            loading.Start();
         }
     }
 }

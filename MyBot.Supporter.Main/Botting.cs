@@ -182,7 +182,12 @@ namespace MyBot.Supporter.Main
                 End[botnum] = new TimeSpan(endhour, endminute, 59);
                 Now = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 Database.WriteLog("MyBot " + Database.Bot[botnum] + " Starting Time is: " + starthour + ":" + startminute + " End Time is: " + endhour + ":" + endminute);
-                if (Start[botnum] < End[botnum]) // If Start time is smaller than End
+                if (starthour == endhour && startminute == endminute)
+                {
+                    Database.WriteLog("The time is not setted, starting MyBot " + Database.Bot[botnum]);
+                    running = InTime(botnum);
+                }
+                else if (Start[botnum] < End[botnum]) // If Start time is smaller than End
                 {
                     Database.WriteLog("MyBot " + Database.Bot[botnum] + " starting time is smaller than ending time.");
                     try
@@ -313,39 +318,13 @@ namespace MyBot.Supporter.Main
                 try
                 {
                     Process M = Process.GetProcessById(Main.Database.ID[botnum]);
-                    if (M.MainWindowHandle != null && M.MainWindowHandle != IntPtr.Zero)
+                    if (M.MainWindowHandle != IntPtr.Zero && Database.hWnd[botnum] == IntPtr.Zero)
                     {
                         Database.hWnd[botnum] = M.MainWindowHandle;
                     }
                     //IntPtr Render = IntPtr.Zero;
                     running = true;
-                    /*foreach (var e in Database.Emulator)
-                    {
-                        if (e == "MEmu")
-                        {
-                            Render = Win32.FindWindowEx(Database.hWnd[botnum], IntPtr.Zero, null, "RenderWindowWindow");
-                        }
-                        else if (e == "Nox")
-                        {
-                            Render = Win32.FindWindowEx(Database.hWnd[botnum], IntPtr.Zero, null, "QWidgetClassWindow");
-                        }
-                        else if (e == "Droid4X")
-                        {
-
-                        }
-                        else if (e == "ITools")
-                        {
-
-                        }
-                        else if (e == "Bluestacks")
-                        {
-                            Render = Win32.FindWindowEx(Database.hWnd[botnum], IntPtr.Zero, null, "_ctl.Window");
-                        }
-                        else if (e == "Leapdroid")
-                        {
-
-                        }
-                    }*/
+                    
                     List<IntPtr> MyBot_Child = GetAllChildrenWindowHandles(Database.hWnd[botnum], 8);
                     if(MyBot_Child.Count > 4)
                     {
@@ -369,11 +348,23 @@ namespace MyBot.Supporter.Main
                             }
                             else
                             {
-                                Database.WriteLog("MyBot had stoped but user is using PC");
+                                Database.WriteLog("MyBot had stopped but user is using PC");
                             }
                         }
-                        else if (BotStopped.Contains("Status : Bot was Paused!"))
+                        else if (BotStopped.Contains("Bot was Paused!"))
                         {
+                            if (Win32.GetIdleTime() > 60000)
+                            {
+                                IntPtr Start = Child[1];
+                                Win32.PostMessage(Start, 0x0201, 1, IntPtr.Zero);
+                                Win32.PostMessage(Start, 0x0202, 0, IntPtr.Zero);
+                                Database.WriteLog("MyBot had paused, restarting it!");
+                                Thread.Sleep(10000);
+                            }
+                            else
+                            {
+                                Database.WriteLog("MyBot had paused but user is using PC");
+                            }
                             if (TBot.cid > 0 && TBot.API_Key.Length > 0)
                             {
                                 if (TBot.Bot != null)
@@ -408,47 +399,12 @@ namespace MyBot.Supporter.Main
                                 TBot.PauseMessageSended[botnum] = false;
                             }
                         }
-                        if(Child.Count > 8)
+                        try
                         {
-                            if (Database.hideEmulator == true && Database.hide == true)
+                            List<IntPtr> ChildWindows = new Win32(Database.hWnd[botnum]).GetAllChildHandles();
+                            if (Child.Count > 8)
                             {
-                                if (MyBot_Child.Count < 7)
-                                {
-                                    IntPtr Dock = Child[8];
-                                    if (Dock != IntPtr.Zero)
-                                    {
-                                        Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
-                                        Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
-                                        Thread.Sleep(1000);
-                                    }
-                                }
-                                Win32.ShowWindow(Database.hWnd[botnum], 0);
-                            }
-                            else if (Database.dock == true && Database.hide == true)
-                            {
-                                if (MyBot_Child.Count < 7)
-                                {
-                                    IntPtr Dock = Child[8];
-                                    if (Dock != IntPtr.Zero)
-                                    {
-                                        Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
-                                        Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
-                                        Thread.Sleep(1000);
-                                    }
-                                }
-                                Win32.ShowWindow(Database.hWnd[botnum], 0);
-                            }
-                            else
-                            {
-                                if (Database.hide == true)
-                                {
-                                    Win32.ShowWindow(Database.hWnd[botnum], 0);
-                                }
-                                else
-                                {
-                                    Win32.ShowWindow(Database.hWnd[botnum], 5);
-                                }
-                                if (Database.dock == true)
+                                if (Database.hideEmulator == true && Database.hide == true)
                                 {
                                     if (MyBot_Child.Count < 7)
                                     {
@@ -457,38 +413,94 @@ namespace MyBot.Supporter.Main
                                         {
                                             Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
                                             Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
-                                            Thread.Sleep(1000);
                                         }
                                     }
+                                    Win32.ShowWindow(Database.hWnd[botnum], 0);
+
                                 }
-                                else
+                                else if (Database.dock == true && Database.hide == true)
                                 {
-                                    if (MyBot_Child.Count > 6)
+                                    if (MyBot_Child.Count < 7)
                                     {
                                         IntPtr Dock = Child[8];
                                         if (Dock != IntPtr.Zero)
                                         {
                                             Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
                                             Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
-                                            Thread.Sleep(1000);
                                         }
                                     }
-                                    if (Database.hideEmulator == true)
+                                    Win32.ShowWindow(Database.hWnd[botnum], 0);
+                                }
+                                else
+                                {
+                                    if (Database.hide == true)
                                     {
-                                        const short SWP_NOZORDER = 0X4;
-                                        const int SWP_SHOWWINDOW = 0x0040;
-                                        const int SWP_NOSIZE = 0x0001;
-                                        foreach (var Android in Database.Emulator)
+                                        Win32.ShowWindow(Database.hWnd[botnum], 0);
+                                    }
+                                    else
+                                    {
+                                        Win32.ShowWindow(Database.hWnd[botnum], 5);
+                                    }
+                                    if (Database.dock == true)
+                                    {
+                                        if (MyBot_Child.Count < 7)
                                         {
-                                            foreach (var Emulator in Process.GetProcessesByName(Android))
+                                            IntPtr Dock = Child[8];
+                                            if (Dock != IntPtr.Zero)
                                             {
-                                                var Handler = Emulator.MainWindowHandle;
-                                                Win32.SetWindowPos(Handler, 0, -32000, -32000, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
+                                                Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
+                                                Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (MyBot_Child.Count > 6)
+                                        {
+                                            IntPtr Dock = Child[8];
+                                            if (Dock != IntPtr.Zero)
+                                            {
+                                                Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
+                                                Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
+                                            }
+                                        }
+                                        if (Database.hideEmulator == true)
+                                        {
+                                            const short SWP_NOZORDER = 0X4;
+                                            const int SWP_SHOWWINDOW = 0x0040;
+                                            const int SWP_NOSIZE = 0x0001;
+                                            foreach (var Android in Database.Emulator)
+                                            {
+                                                foreach (var Emulator in Process.GetProcessesByName(Android))
+                                                {
+                                                    var Handler = Emulator.MainWindowHandle;
+                                                    Win32.SetWindowPos(Handler, 0, -32000, -32000, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
+                                                }
                                             }
                                         }
                                     }
                                 }
+                                Database.WriteLog("Checking Error Alert Box");
+                                foreach (var child in ChildWindows)
+                                {
+                                    Win32.STRINGBUFFER winTitle;
+                                    Win32.GetWindowText(child, out winTitle, 256);
+                                    String title = winTitle.szText;
+                                    if (title.Length > 10)
+                                    {
+                                        if (title.Contains("Fatal Error") || title.Contains("AutoIT Error"))
+                                        {
+                                            KillProcessAndChildren(Database.ID[botnum]);
+                                            MainScreen.AutoIT++;
+                                        }
+                                    }
+
+                                }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            File.WriteAllText("error,log", ex.ToString());
                         }
                         if (Refresh[botnum] == 30)
                         {
@@ -560,6 +572,10 @@ namespace MyBot.Supporter.Main
                             Database.WriteLog("Waiting for refresh");
                             Refresh[botnum]++;
                         }
+                    }
+                    else
+                    {
+                        Database.hWnd[botnum] = IntPtr.Zero;
                     }
                     foreach (var Watchdog in Process.GetProcessesByName("MyBot.run.Watchdog"))
                     {

@@ -44,17 +44,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(106, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(145, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.Size = new System.Drawing.Size(67, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "%Profile";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(14, 158);
+            this.button2.Location = new System.Drawing.Point(14, 186);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(229, 36);
+            this.button2.Size = new System.Drawing.Size(245, 36);
             this.button2.TabIndex = 15;
             this.button2.Text = "跳过";
             this.button2.UseVisualStyleBackColor = true;
@@ -63,17 +64,17 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 74);
+            this.label3.Location = new System.Drawing.Point(12, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.Size = new System.Drawing.Size(241, 13);
             this.label3.TabIndex = 12;
-            this.label3.Text = "模拟器代号";
+            this.label3.Text = "模拟器代号（如果是第一个模拟器则保留0）";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(14, 116);
+            this.button1.Location = new System.Drawing.Point(14, 144);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(229, 36);
+            this.button1.Size = new System.Drawing.Size(245, 36);
             this.button1.TabIndex = 11;
             this.button1.Text = "添加到管理器设置";
             this.button1.UseVisualStyleBackColor = true;
@@ -89,16 +90,16 @@
             "Itools",
             "LeapDroid",
             "Droid4X"});
-            this.comboBox1.Location = new System.Drawing.Point(14, 50);
+            this.comboBox1.Location = new System.Drawing.Point(14, 78);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(229, 21);
+            this.comboBox1.Size = new System.Drawing.Size(245, 21);
             this.comboBox1.TabIndex = 10;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 31);
+            this.label2.Location = new System.Drawing.Point(12, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 13);
             this.label2.TabIndex = 9;
@@ -107,9 +108,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(13, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.Size = new System.Drawing.Size(101, 20);
             this.label5.TabIndex = 16;
             this.label5.Text = "已选中Profile";
             // 
@@ -120,16 +122,16 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(14, 90);
+            this.numericUpDown1.Location = new System.Drawing.Point(14, 118);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(231, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(247, 20);
             this.numericUpDown1.TabIndex = 17;
             // 
-            // Form5
+            // GenerateProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(255, 210);
+            this.ClientSize = new System.Drawing.Size(273, 237);
             this.ControlBox = false;
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label5);
@@ -140,7 +142,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Form5";
+            this.Name = "GenerateProfile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GenerateProfile_FormClosing);
+            this.Load += new System.EventHandler(this.GenerateProfile_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form5_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);

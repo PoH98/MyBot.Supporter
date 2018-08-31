@@ -34,7 +34,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>
     </DefineConstants>
@@ -59,7 +59,7 @@
     <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\123456.ico</ApplicationIcon>
+    <ApplicationIcon>123456.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>MyBot.Supporter.Main.Program</StartupObject>
@@ -106,16 +106,16 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telegram.Bot, Version=14.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telegram.Bot.14.6.0\lib\net45\Telegram.Bot.dll</HintPath>
+    <Reference Include="Telegram.Bot, Version=14.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telegram.Bot.14.9.0\lib\net45\Telegram.Bot.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Botting.cs" />
-    <Compile Include="Characters.Designer.cs">
+    <Compile Include="ImportantResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Characters.resx</DependentUpon>
+      <DependentUpon>ImportantResources.resx</DependentUpon>
     </Compile>
     <Compile Include="cn-Lang.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -146,6 +146,7 @@
     <Compile Include="AddProfile.Designer.cs">
       <DependentUpon>AddProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="PluginCustomizeDll.cs" />
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,9 +200,9 @@
     <Compile Include="WebClientOverride.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="Characters.resx">
+    <EmbeddedResource Include="ImportantResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Characters.Designer.cs</LastGenOutput>
+      <LastGenOutput>ImportantResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="cn-Lang.resx">
@@ -251,12 +252,10 @@
     </None>
     <None Include="Bin\Debug\DLL.zip" />
     <None Include="packages.config" />
-    <None Include="Resources\ClanGames_config.zip" />
     <None Include="Resources\DLL.zip" />
     <None Include="Resources\Host.zip" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\123456.ico" />
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +265,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="123456.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

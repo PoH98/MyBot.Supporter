@@ -46,11 +46,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -248,6 +248,16 @@
             this.panel2.TabIndex = 16;
             this.panel2.Visible = false;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(16, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(445, 20);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Please put the program inside the MyBot\'s folder to continue...";
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(653, 183);
@@ -281,15 +291,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(298, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Please put the program inside the MyBot\'s folder to continue...";
             // 
             // FirstUse
             // 

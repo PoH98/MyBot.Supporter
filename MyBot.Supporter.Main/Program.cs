@@ -59,7 +59,7 @@ namespace MyBot.Supporter.Main
                 {
                     File.Delete(Database.Location + "Telegram.Bot.dll");
                 }
-                File.WriteAllBytes(Database.Location + "dll.zip", Characters.DLL);
+                File.WriteAllBytes(Database.Location + "dll.zip", ImportantResources.DLL);
                 ZipFile.ExtractToDirectory(Database.Location + "dll.zip", Database.Location);
                 File.Delete(Database.Location + "dll.zip");
             }
@@ -72,6 +72,7 @@ namespace MyBot.Supporter.Main
             //Run the form window
             Database.loadingprocess = 10;
             Application.Run(new MainScreen());
+
         }
 
         private static Assembly Domain_AssemblyResolve(object sender, ResolveEventArgs args)

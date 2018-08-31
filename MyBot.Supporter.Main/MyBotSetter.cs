@@ -29,7 +29,7 @@ namespace MyBot.Supporter.Main
         {
             InitializeComponent();
         }
-        private async void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             textBox6.Text = "Inject started";
             button2.Enabled = false;

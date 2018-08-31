@@ -115,6 +115,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Congratuations! You are using the newest version! 的本地化字符串。
+        /// </summary>
+        internal static string AlreadyNewest {
+            get {
+                return ResourceManager.GetString("AlreadyNewest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 There is another Supporter already running, are you want to close it? 的本地化字符串。
         /// </summary>
         internal static string AnotherSupporterIsRunning {
@@ -2102,11 +2111,38 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Update 的本地化字符串。
+        /// </summary>
+        internal static string UpdateBox {
+            get {
+                return ResourceManager.GetString("UpdateBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check MyBot&apos;s Update 的本地化字符串。
+        /// </summary>
+        internal static string UpdateMyBotButton {
+            get {
+                return ResourceManager.GetString("UpdateMyBotButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Update Now! 的本地化字符串。
         /// </summary>
         internal static string UpdateNow {
             get {
                 return ResourceManager.GetString("UpdateNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check Supporter&apos;s Update 的本地化字符串。
+        /// </summary>
+        internal static string UpdateSupporterButton {
+            get {
+                return ResourceManager.GetString("UpdateSupporterButton", resourceCulture);
             }
         }
         
@@ -2143,42 +2179,6 @@ namespace MyBot.Supporter.Main {
         internal static string WhiteColor {
             get {
                 return ResourceManager.GetString("WhiteColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string WinningStreak {
-            get {
-                return ResourceManager.GetString("WinningStreak", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Witches {
-            get {
-                return ResourceManager.GetString("Witches", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Wizards {
-            get {
-                return ResourceManager.GetString("Wizards", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string WizardTowerWarfare {
-            get {
-                return ResourceManager.GetString("WizardTowerWarfare", resourceCulture);
             }
         }
     }

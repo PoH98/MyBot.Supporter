@@ -10,159 +10,220 @@ namespace MyBot.Supporter.Main
 {
     public partial class MyBotUpdator : Form
     {
-        private static int Time = 5;
+        public static int Time = 5;
         public static bool IsDownloading = false, Github = false;
-        public static string NewestVersion = "", MBNewestVersion;
+        public static string NewestVersion = "", MBNewestVersion = "", log = "Connecting...";
         public MyBotUpdator()
         {
             Database.loadingprocess = 100;
             InitializeComponent();
         }
-        private static void DownloadUpdate()//Github
+        private void DownloadUpdate()//Github
         {
-            string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/releases/download/"+NewestVersion+ "/MyBot.Supporter.Main.exe";
-            using (var client = new WebClientOverride())
+            try
             {
-                client.DownloadFile(UpdateLink, Database.Location + "Update");
+                string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/releases/download/" + NewestVersion + "/MyBot.Supporter.Main.exe";
+                using (var client = new WebClientOverride())
+                {
+                    client.DownloadFile(UpdateLink, Database.Location + "Update");
+                }
+                log = "Extracting...";
+                File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
+                File.Delete(Database.Location + "Update");
+                string[] copy = { "Taskkill /IM MyBot.Supporter.Main.exe /F", "xcopy /S /Y \"" + Database.Location + "MyBot.Supporter.Main.exe\" " + "\"" + Environment.CurrentDirectory + "\"", "del \"" + Database.Location + "MyBot.Supporter.Main.exe\"", "start MyBot.Supporter.Main.exe", "del Update.bat" };
+                File.WriteAllLines("Update.bat", copy);
+                log = "Completing...";
+                Process.Start("Update.bat");
+                Application.Exit();
             }
-            File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
-            File.Delete(Database.Location + "Update");
-            string[] copy = { "Taskkill /IM MyBot.Supporter.Main.exe /F", "xcopy /S /Y \"" + Database.Location + "MyBot.Supporter.Main.exe\" " + "\"" + Environment.CurrentDirectory + "\"", "del \"" + Database.Location + "MyBot.Supporter.Main.exe\"", "start MyBot.Supporter.Main.exe", "del Update.bat" };
-            File.WriteAllLines("Update.bat", copy);
-            Process.Start("Update.bat");
-            Application.Exit();
+            catch (WebException)
+            {
+                TBot.debugger.SendTextMessageAsync(288027359,"Update your fxxking Github Release version please!");
+                log = "Unable to connect to server";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
+            
         }
 
-        private static void DownloadUpdate2()//Gitee
+        private void DownloadUpdate2()//Gitee
         {
-            using (var client = new WebClientOverride())
+            try
             {
-                string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Updatelink.txt");
-                client.DownloadFile(temp, Database.Location + "Update");
+                using (var client = new WebClientOverride())
+                {
+                    string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/UpdateLink.txt");
+                    client.DownloadFile(temp, Database.Location + "Update");
+                }
+                log = "Extracting...";
+                File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
+                File.Delete(Database.Location + "Update");
+                string[] copy = { "Taskkill /IM MyBot.Supporter.Main.exe /F", "xcopy /S /Y \"" + Database.Location + "MyBot.Supporter.Main.exe\" " + "\"" + Environment.CurrentDirectory + "\"", "del \"" + Database.Location + "MyBot.Supporter.Main.exe\"", "start MyBot.Supporter.Main.exe", "del Update.bat" };
+                File.WriteAllLines("Update.bat", copy);
+                log = "Completing...";
+                Process.Start("Update.bat");
+                Application.Exit();
             }
-            File.Copy(Database.Location + "Update", Database.Location + "MyBot.Supporter.Main.exe");
-            File.Delete(Database.Location + "Update");
-            string[] copy = { "Taskkill /IM MyBot.Supporter.Main.exe /F", "xcopy /S /Y \"" + Database.Location + "MyBot.Supporter.Main.exe\" " + "\"" + Environment.CurrentDirectory + "\"", "del \"" + Database.Location + "MyBot.Supporter.Main.exe\"", "start MyBot.Supporter.Main.exe", "del Update.bat" };
-            File.WriteAllLines("Update.bat", copy);
-            Process.Start("Update.bat");
-            Application.Exit();
+            catch (WebException)
+            {
+                TBot.debugger.SendTextMessageAsync(288027359, "Update your fxxking gitee Release version please!");
+                log = "Unable to connect to server";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
+           
         }
 
         public void DownloadMyBotUpdate()//Github
         {
-            string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot-MBR.zip";
-            using (var client = new WebClientOverride())
+            try
             {
-                client.DownloadFile(UpdateLink, Database.Location + "Update");
-            }
-            File.Copy(Database.Location + "Update", Database.Location + "MyBot.Run.zip");
-            File.Delete(Database.Location + "Update");
-            Stream zipstream = new FileStream(Database.Location + "MyBot.Run.zip", FileMode.Open);
-            ZipArchive archive = new ZipArchive(zipstream);
-            foreach (ZipArchiveEntry file in archive.Entries)
-            {
-                string completeFileName = Path.Combine(Environment.CurrentDirectory, file.FullName);
-                string directory = Path.GetDirectoryName(completeFileName);
-                if (!Directory.Exists(directory))
-                    Directory.CreateDirectory(directory);
-
-                if (file.Name != "")
-                    file.ExtractToFile(completeFileName, true);
-            }
-            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
-            {
-                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
-                if (MOD.Length > 0)
+                string UpdateLink = "https://codeload.github.com/MyBotRun/MyBot/zip/MBR_" + MBNewestVersion;
+                using (var client = new WebClientOverride())
                 {
-                    foreach (var f in MOD)
+                    client.DownloadFile(UpdateLink, Database.Location + "Update");
+                }
+                log = "Extracting...";
+                File.Copy(Database.Location + "Update", Database.Location + "MyBot.Run.zip");
+                File.Delete(Database.Location + "Update");
+                Stream zipstream = new FileStream(Database.Location + "MyBot.Run.zip", FileMode.Open);
+                ZipArchive archive = new ZipArchive(zipstream);
+                foreach (ZipArchiveEntry file in archive.Entries)
+                {
+                    string completeFileName = Path.Combine(Environment.CurrentDirectory, file.FullName);
+                    string directory = Path.GetDirectoryName(completeFileName);
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
+                    if (file.Name != "")
+                        file.ExtractToFile(completeFileName, true);
+                }
+                log = "Checking Customize MODs...";
+                if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
+                {
+                    string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
+                    if (MOD.Length > 0)
                     {
-                        File.Delete(f);
-                    }
-                    string text = "";
-                    string caption = "";
-                    switch (Database.Language)
-                    {
-                        case "Chinese":
-                            text = cn_Lang.CustomizeMODFound;
-                            caption = cn_Lang.CustomizeMODFoundTitle;
-                            break;
-                        case "English":
-                            text = en_Lang.CustomizeMODFound;
-                            caption = en_Lang.CustomizeMODFoundTitle;
-                            break;
-                    }
-                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        MyBotSetter set = new MyBotSetter();
-                        set.ShowDialog();
+                        foreach (var f in MOD)
+                        {
+                            File.Delete(f);
+                        }
+                        string text = "";
+                        string caption = "";
+                        switch (Database.Language)
+                        {
+                            case "Chinese":
+                                text = cn_Lang.CustomizeMODFound;
+                                caption = cn_Lang.CustomizeMODFoundTitle;
+                                break;
+                            case "English":
+                                text = en_Lang.CustomizeMODFound;
+                                caption = en_Lang.CustomizeMODFoundTitle;
+                                break;
+                        }
+                        DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            MyBotSetter set = new MyBotSetter();
+                            set.ShowDialog();
+                        }
                     }
                 }
+                log = "Completing...";
+                this.Invoke((MethodInvoker)delegate
+                {
+                    MessageBox.Show("Completed", "Update Completed", MessageBoxButtons.OK);
+                    Close();
+                });
             }
-            this.Invoke((MethodInvoker)delegate
+            catch (WebException)
             {
-                MessageBox.Show("Completed", "Update Completed", MessageBoxButtons.OK);
-                Close();
-            });
+                log = "Unable to connect to server";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
         }
 
         private void DownloadMyBotUpdate2()//Gitee
         {
-            using (var client = new WebClientOverride())
+            try
             {
-                string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBotUpdateLink.txt");
-                client.DownloadFile(temp, Database.Location + "Update");
-            }
-            File.Copy(Database.Location + "Update", Database.Location + "MyBot.Run.zip");
-            File.Delete(Database.Location + "Update");
-            Stream zipstream = new FileStream(Database.Location + "MyBot.Run.zip", FileMode.Open);
-            ZipArchive archive = new ZipArchive(zipstream);
-
-            foreach (ZipArchiveEntry file in archive.Entries)
-            {
-                string completeFileName = Path.Combine(Environment.CurrentDirectory, file.FullName);
-                string directory = Path.GetDirectoryName(completeFileName);
-                if (!Directory.Exists(directory))
-                    Directory.CreateDirectory(directory);
-
-                if (file.Name != "")
-                    file.ExtractToFile(completeFileName, true);
-            }
-            if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
-            {
-                string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
-                if (MOD.Length > 0)
+                using (var client = new WebClientOverride())
                 {
-                    foreach (var f in MOD)
+                    string temp = client.DownloadString("https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBotUpdateLink.txt");
+                    client.DownloadFile(temp, Database.Location + "Update");
+                }
+                log = "Extracting...";
+                File.Copy(Database.Location + "Update", Database.Location + "MyBot.Run.zip");
+                File.Delete(Database.Location + "Update");
+                Stream zipstream = new FileStream(Database.Location + "MyBot.Run.zip", FileMode.Open);
+                ZipArchive archive = new ZipArchive(zipstream);
+                foreach (ZipArchiveEntry file in archive.Entries)
+                {
+                    string completeFileName = Path.Combine(Environment.CurrentDirectory, file.FullName);
+                    string directory = Path.GetDirectoryName(completeFileName);
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
+                    if (file.Name != "")
+                        file.ExtractToFile(completeFileName, true);
+                }
+                log = "Checking Customize MODs...";
+                if (Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD"))
+                {
+                    string[] MOD = Directory.GetFiles(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD");
+                    if (MOD.Length > 0)
                     {
-                        File.Delete(f);
-                    }
-                    string text = "";
-                    string caption = "";
-                    switch (Database.Language)
-                    {
-                        case "Chinese":
-                            text = cn_Lang.CustomizeMODFound;
-                            caption = cn_Lang.CustomizeMODFoundTitle;
-                            break;
-                        case "English":
-                            text = en_Lang.CustomizeMODFound;
-                            caption = en_Lang.CustomizeMODFoundTitle;
-                            break;
-                    }
-                    DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        MyBotSetter set = new MyBotSetter();
-                        set.ShowDialog();
+                        foreach (var f in MOD)
+                        {
+                            File.Delete(f);
+                        }
+                        string text = "";
+                        string caption = "";
+                        switch (Database.Language)
+                        {
+                            case "Chinese":
+                                text = cn_Lang.CustomizeMODFound;
+                                caption = cn_Lang.CustomizeMODFoundTitle;
+                                break;
+                            case "English":
+                                text = en_Lang.CustomizeMODFound;
+                                caption = en_Lang.CustomizeMODFoundTitle;
+                                break;
+                        }
+                        DialogResult result = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            MyBotSetter set = new MyBotSetter();
+                            set.ShowDialog();
+                        }
                     }
                 }
+                log = "Completing...";
+                this.Invoke((MethodInvoker)delegate
+                {
+                    MessageBox.Show("Completed", "Update Completed", MessageBoxButtons.OK);
+                    Close();
+                });
             }
-            this.Invoke((MethodInvoker)delegate
+            catch (WebException)
             {
-                MessageBox.Show("Completed","Update Completed",MessageBoxButtons.OK);
-                Close();
-            });
+                log = "Unable to connect to server";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
         }
 
         private void MyBotUpdator_Load(object sender, EventArgs e)
@@ -180,14 +241,14 @@ namespace MyBot.Supporter.Main
                 switch (Database.Language)
                 {
                     case "Chinese":
-                        Text = "发现新版本管理器！";
+                        Text = "发现新版本管理器！版本号："+NewestVersion;
                         label1.Text = cn_Lang.AutoUpdateFound;
                         label2.Text = "";
                         button1.Text = cn_Lang.UpdateNow;
                         button2.Text = cn_Lang.Cancel;
                         break;
                     case "English":
-                        Text = "New version of Supporter found!";
+                        Text = "New version of Supporter found! Version: " + NewestVersion;
                         label1.Text = en_Lang.AutoUpdateFound;
                         label2.Text = "";
                         button1.Text = en_Lang.UpdateNow;
@@ -200,14 +261,14 @@ namespace MyBot.Supporter.Main
                 switch (Database.Language)
                 {
                     case "Chinese":
-                        Text = "发现新版本MyBot.Run！";
+                        Text = "发现新版本MyBot.Run！版本号："+MBNewestVersion;
                         label1.Text = cn_Lang.AutoUpdateFound;
                         label2.Text = "";
                         button1.Text = cn_Lang.UpdateNow;
                         button2.Text = cn_Lang.Cancel;
                         break;
                     case "English":
-                        Text = "New version of MyBot.Run found!";
+                        Text = "New version of MyBot.Run found! Version: " + MBNewestVersion;
                         label1.Text = en_Lang.AutoUpdateFound;
                         label2.Text = "";
                         button1.Text = en_Lang.UpdateNow;
@@ -231,7 +292,7 @@ namespace MyBot.Supporter.Main
                 }
                 else
                 {
-                    label2.Text = "Extracting...";
+                    label2.Text = log;
                 }
             }
             else
@@ -288,7 +349,9 @@ namespace MyBot.Supporter.Main
 
         private void button2_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             Close();
+            Time = 0;
         }
     }
 }

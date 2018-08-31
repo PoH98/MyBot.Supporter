@@ -658,11 +658,11 @@ Command Help:
 /re is restart PC
 /p to pause/resume all running MyBots</value>
   </data>
-  <data name="Witches" xml:space="preserve">
-    <value />
+  <data name="UpdateMyBotButton" xml:space="preserve">
+    <value>Check MyBot's Update</value>
   </data>
-  <data name="Wizards" xml:space="preserve">
-    <value />
+  <data name="UpdateSupporterButton" xml:space="preserve">
+    <value>Check Supporter's Update</value>
   </data>
   <data name="EarnedElixirPH" xml:space="preserve">
     <value>Elixir gain per hour:</value>
@@ -721,11 +721,11 @@ Command Help:
   <data name="StarCollector" xml:space="preserve">
     <value />
   </data>
-  <data name="WinningStreak" xml:space="preserve">
-    <value />
+  <data name="UpdateBox" xml:space="preserve">
+    <value>Update</value>
   </data>
-  <data name="WizardTowerWarfare" xml:space="preserve">
-    <value />
+  <data name="AlreadyNewest" xml:space="preserve">
+    <value>Congratuations! You are using the newest version!</value>
   </data>
   <data name="Usage" xml:space="preserve">
     <value>Usage</value>

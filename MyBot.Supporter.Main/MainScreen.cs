@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Reflection;
 using System.Net.Http;
+using MyBot.Supporter.Plugin;
 
 namespace MyBot.Supporter.Main
 {
@@ -31,15 +32,16 @@ namespace MyBot.Supporter.Main
         static Thread send = new Thread(ReportError);
         private int size;
         static List<string> TreeNode = new List<string>();
-        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, Advance, ResetUI,ChangeUsingTemp, Update, UpdateMB;
+        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, Advance, ResetUI,ChangeUsingTemp, Updates, UpdateMB, IsNewest;
         private static string CPUN;
         private static string[] AdvanceCPU = { };
         private static double CPUTM, CPUFM, CPUF, CPUV, CPUT;
-        private static int CPUL, RAM, RefreshTreeNodes, AutoIT, NoNet;
+        private static int CPUL, RAM, RefreshTreeNodes, NoNet;
+        public static int AutoIT;
         private static string SelectedCPUV, SelectedCPUF, SelectedCPUT, SelectedRAML, SelectedCPUL;
+        private static List<plugin> extrafunctions = new List<plugin>();
         protected static string version;
         private static WebProxy myProxy = new WebProxy();
-
         public MainScreen()
         {
             InitializeComponent();
@@ -150,6 +152,28 @@ namespace MyBot.Supporter.Main
             }
             RunningCheckCompleted = true;
         }
+        private void ScreenSolution()
+        {
+            Database.WriteLog("Fetching Screen Size");
+            this.Invoke((MethodInvoker)delegate
+            {
+                int H = Screen.FromControl(this).Bounds.Height;
+                int W = Screen.FromControl(this).Bounds.Width;
+                Database.WriteLog("Fetch completed. Screen Solution is " + H + "X" + W);
+                if (H < 800 || W < 1400)
+                {
+                    Win32.HideTaskBar(0);
+                    if (Database.Language == "English")
+                    {
+                        MessageBox.Show("Hide TaskBar Enabled for screen that below 1400*800 !!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("屏幕分辨率不足1400*800，自动隐藏任务栏!!");
+                    }
+                }
+            });
+        }
         private void button1_Click(object sender, EventArgs e)//Start bot or stop bot
         {
             if (!Run)
@@ -195,22 +219,8 @@ namespace MyBot.Supporter.Main
                 startBottingToolStripMenuItem.Visible = false;
                 stopBottingToolStripMenuItem.Visible = true;
                 WriteAllSettings();
-                Database.WriteLog("Fetching Screen Size");
-                int H = Screen.FromControl(this).Bounds.Height;
-                int W = Screen.FromControl(this).Bounds.Width;
-                Database.WriteLog("Fetch completed. Screen Solution is " + H + "X" + W);
-                if (H < 800 || W < 1400)
-                {
-                    Win32.HideTaskBar(0);
-                    if (Database.Language == "English")
-                    {
-                        MessageBox.Show("Hide TaskBar Enabled for screen that below 1400*800 !!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("屏幕分辨率不足1400*800，自动隐藏任务栏!!");
-                    }
-                }
+                Thread t = new Thread(ScreenSolution);
+                t.Start();
                 Database.WriteLog("Converting Settings");
                 try
                 {
@@ -219,9 +229,9 @@ namespace MyBot.Supporter.Main
                 catch (FormatException)
                 {
                     int x = 0;
-                    foreach (var t in Database.Time)
+                    foreach (var time in Database.Time)
                     {
-                        if (t == "")
+                        if (time == "")
                         {
                             Database.Time[x] = "0";
                         }
@@ -365,7 +375,6 @@ namespace MyBot.Supporter.Main
                         }
                     }
                 }
-                Database.ResetHost();
                 timer2.Stop();
                 Database.WriteLog("Stopped");
                 Database.loadingprocess = 100;
@@ -385,623 +394,625 @@ namespace MyBot.Supporter.Main
 
         public void WriteAllSettings()//Save all settings into Database temp memory
         {
-
             Array.Resize(ref Database.Time, 138);
             Array.Resize(ref Database.Bot, 44);
             Array.Resize(ref Database.OtherBot, 12);
             Array.Resize(ref Database.ProTime, 62);
-            #region SaveBotIntoAray
-            if (!checkBox1.Checked)
+            this.Invoke((MethodInvoker)delegate
             {
-                Database.Bot[0] = "# " + textBox27.Text + " " + comboBox1.Text + " " + textBox1.Text;
-            }
-            else
-            {
-                Database.Bot[0] = textBox27.Text + " " + comboBox1.Text + " " + textBox1.Text;
-            }
-            if (!checkBox2.Checked)
-            {
-                Database.Bot[1] = "# " + textBox26.Text + " " + comboBox2.Text + " " + textBox2.Text;
-            }
-            else
-            {
-                Database.Bot[1] = textBox26.Text + " " + comboBox2.Text + " " + textBox2.Text;
-            }
-            if (!checkBox3.Checked)
-            {
-                Database.Bot[2] = "# " + textBox25.Text + " " + comboBox3.Text + " " + textBox3.Text;
-            }
-            else
-            {
-                Database.Bot[2] = textBox25.Text + " " + comboBox3.Text + " " + textBox3.Text;
-            }
-            if (!checkBox4.Checked)
-            {
-                Database.Bot[3] = "# " + textBox24.Text + " " + comboBox4.Text + " " + textBox4.Text;
-            }
-            else
-            {
-                Database.Bot[3] = textBox24.Text + " " + comboBox4.Text + " " + textBox4.Text;
-            }
-            if (!checkBox5.Checked)
-            {
-                Database.Bot[4] = "# " + textBox23.Text + " " + comboBox5.Text + " " + textBox5.Text;
-            }
-            else
-            {
-                Database.Bot[4] = textBox23.Text + " " + comboBox5.Text + " " + textBox5.Text;
-            }
-            if (!checkBox6.Checked)
-            {
-                Database.Bot[5] = "# " + textBox22.Text + " " + comboBox6.Text + " " + textBox6.Text;
-            }
-            else
-            {
-                Database.Bot[5] = textBox22.Text + " " + comboBox6.Text + " " + textBox6.Text;
-            }
-            if (!checkBox7.Checked)
-            {
-                Database.Bot[6] = "# " + textBox21.Text + " " + comboBox7.Text + " " + textBox7.Text;
-            }
-            else
-            {
-                Database.Bot[6] = textBox21.Text + " " + comboBox7.Text + " " + textBox7.Text;
-            }
-            if (!checkBox8.Checked)
-            {
-                Database.Bot[7] = "# " + textBox19.Text + " " + comboBox8.Text + " " + textBox8.Text;
-            }
-            else
-            {
-                Database.Bot[7] = textBox19.Text + " " + comboBox8.Text + " " + textBox8.Text;
-            }
-            if (!checkBox9.Checked)
-            {
-                Database.Bot[8] = "# " + textBox18.Text + " " + comboBox9.Text + " " + textBox9.Text;
-            }
-            else
-            {
-                Database.Bot[8] = textBox18.Text + " " + comboBox9.Text + " " + textBox9.Text;
-            }
-            if (!checkBox10.Checked)
-            {
-                Database.Bot[9] = "# " + textBox17.Text + " " + comboBox10.Text + " " + textBox10.Text;
-            }
-            else
-            {
-                Database.Bot[9] = textBox17.Text + " " + comboBox10.Text + " " + textBox10.Text;
-            }
-            if (!checkBox11.Checked)
-            {
-                Database.Bot[10] = "# " + textBox16.Text + " " + comboBox11.Text + " " + textBox11.Text;
-            }
-            else
-            {
-                Database.Bot[10] = textBox16.Text + " " + comboBox11.Text + " " + textBox11.Text;
-            }
-            if (!checkBox12.Checked)
-            {
-                Database.Bot[11] = "# " + textBox12.Text + " " + comboBox12.Text + " " + textBox60.Text;
-            }
-            else
-            {
-                Database.Bot[11] = textBox12.Text + " " + comboBox12.Text + " " + textBox60.Text;
-            }
-            if (!checkBox13.Checked)
-            {
-                Database.Bot[12] = "# " + textBox13.Text + " " + comboBox13.Text + " " + textBox61.Text;
-            }
-            else
-            {
-                Database.Bot[12] = textBox13.Text + " " + comboBox13.Text + " " + textBox61.Text;
-            }
-            if (!checkBox14.Checked)
-            {
-                Database.Bot[13] = "# " + textBox14.Text + " " + comboBox14.Text + " " + textBox62.Text;
-            }
-            else
-            {
-                Database.Bot[13] = textBox14.Text + " " + comboBox14.Text + " " + textBox62.Text;
-            }
-            if (!checkBox15.Checked)
-            {
-                Database.Bot[14] = "# " + textBox15.Text + " " + comboBox15.Text + " " + textBox63.Text;
-            }
-            else
-            {
-                Database.Bot[14] = textBox15.Text + " " + comboBox15.Text + " " + textBox63.Text;
-            }
-            #endregion
-            Database.Time[0] = shour1.Text;
-            Database.Time[1] = shour2.Text;
-            Database.Time[2] = shour3.Text;
-            Database.Time[3] = shour4.Text;
-            Database.Time[4] = shour5.Text;
-            Database.Time[5] = shour6.Text;
-            Database.Time[6] = shour7.Text;
-            Database.Time[7] = shour8.Text;
-            Database.Time[8] = shour9.Text;
-            Database.Time[9] = shour10.Text;
-            Database.Time[10] = shour11.Text;
-            Database.Time[11] = shour12.Text;
-            Database.Time[12] = shour13.Text;
-            Database.Time[13] = shour14.Text;
-            Database.Time[14] = shour15.Text;
-            Database.Time[15] = ehour1.Text;
-            Database.Time[16] = ehour2.Text;
-            Database.Time[17] = ehour3.Text;
-            Database.Time[18] = ehour4.Text;
-            Database.Time[19] = ehour5.Text;
-            Database.Time[20] = ehour6.Text;
-            Database.Time[21] = ehour7.Text;
-            Database.Time[22] = ehour8.Text;
-            Database.Time[23] = ehour9.Text;
-            Database.Time[24] = ehour10.Text;
-            Database.Time[25] = ehour11.Text;
-            Database.Time[26] = ehour12.Text;
-            Database.Time[27] = ehour13.Text;
-            Database.Time[28] = ehour14.Text;
-            Database.Time[29] = ehour15.Text;
-            Database.Time[30] = smin1.Text;
-            Database.Time[31] = smin2.Text;
-            Database.Time[32] = smin3.Text;
-            Database.Time[33] = smin4.Text;
-            Database.Time[34] = smin5.Text;
-            Database.Time[35] = smin6.Text;
-            Database.Time[36] = smin7.Text;
-            Database.Time[37] = smin8.Text;
-            Database.Time[38] = smin9.Text;
-            Database.Time[39] = smin10.Text;
-            Database.Time[40] = smin11.Text;
-            Database.Time[41] = smin12.Text;
-            Database.Time[42] = smin13.Text;
-            Database.Time[43] = smin14.Text;
-            Database.Time[44] = smin15.Text;
-            Database.Time[45] = emin1.Text;
-            Database.Time[46] = emin2.Text;
-            Database.Time[47] = emin3.Text;
-            Database.Time[48] = emin4.Text;
-            Database.Time[49] = emin5.Text;
-            Database.Time[50] = emin6.Text;
-            Database.Time[51] = emin7.Text;
-            Database.Time[52] = emin8.Text;
-            Database.Time[53] = emin9.Text;
-            Database.Time[54] = emin10.Text;
-            Database.Time[55] = emin11.Text;
-            Database.Time[56] = emin12.Text;
-            Database.Time[57] = emin13.Text;
-            Database.Time[58] = emin14.Text;
-            Database.Time[59] = emin15.Text;
-            Database.OtherBot[0] = textBox108.Text;
-            Database.OtherBot[1] = textBox109.Text;
-            Database.OtherBot[2] = textBox110.Text;
-            Database.OtherBot[3] = textBox111.Text;
-            Database.OtherBot[4] = textBox112.Text;
-            Database.OtherBot[5] = textBox113.Text;
-            Database.OtherBot[6] = textBox114.Text;
-            Database.OtherBot[7] = textBox115.Text;
-            Database.OtherBot[8] = textBox116.Text;
-            Database.OtherBot[9] = textBox117.Text;
-            Database.OtherBot[10] = textBox118.Text;
-            Database.OtherBot[11] = textBox119.Text;
-            Database.ProTime[0] = textBox131.Text;
-            Database.ProTime[1] = textBox143.Text;
-            Database.ProTime[2] = textBox130.Text;
-            Database.ProTime[3] = textBox142.Text;
-            Database.ProTime[4] = textBox129.Text;
-            Database.ProTime[5] = textBox141.Text;
-            Database.ProTime[6] = textBox128.Text;
-            Database.ProTime[7] = textBox140.Text;
-            Database.ProTime[8] = textBox127.Text;
-            Database.ProTime[9] = textBox139.Text;
-            Database.ProTime[10] = textBox126.Text;
-            Database.ProTime[11] = textBox138.Text;
-            Database.ProTime[12] = textBox125.Text;
-            Database.ProTime[13] = textBox137.Text;
-            Database.ProTime[14] = textBox124.Text;
-            Database.ProTime[15] = textBox136.Text;
-            Database.ProTime[16] = textBox123.Text;
-            Database.ProTime[17] = textBox135.Text;
-            Database.ProTime[18] = textBox122.Text;
-            Database.ProTime[19] = textBox134.Text;
-            Database.ProTime[20] = textBox121.Text;
-            Database.ProTime[21] = textBox133.Text;
-            Database.ProTime[22] = textBox120.Text;
-            Database.ProTime[23] = textBox132.Text;
-            Database.ProTime[24] = textBox155.Text; //End Time of other Program
-            Database.ProTime[25] = textBox167.Text;
-            Database.ProTime[26] = textBox154.Text;
-            Database.ProTime[27] = textBox166.Text;
-            Database.ProTime[28] = textBox153.Text;
-            Database.ProTime[29] = textBox165.Text;
-            Database.ProTime[30] = textBox152.Text;
-            Database.ProTime[31] = textBox164.Text;
-            Database.ProTime[32] = textBox151.Text;
-            Database.ProTime[33] = textBox163.Text;
-            Database.ProTime[34] = textBox150.Text;
-            Database.ProTime[35] = textBox162.Text;
-            Database.ProTime[36] = textBox149.Text;
-            Database.ProTime[37] = textBox161.Text;
-            Database.ProTime[38] = textBox148.Text;
-            Database.ProTime[39] = textBox160.Text;
-            Database.ProTime[40] = textBox147.Text;
-            Database.ProTime[41] = textBox159.Text;
-            Database.ProTime[42] = textBox146.Text;
-            Database.ProTime[43] = textBox158.Text;
-            Database.ProTime[44] = textBox145.Text;
-            Database.ProTime[45] = textBox157.Text;
-            Database.ProTime[46] = textBox144.Text;
-            Database.ProTime[47] = textBox156.Text;
-            Database.ProTime[48] = textBox143.Text;
-            Database.Bot[21] = textBox172.Text;
-            Database.Bot[22] = textBox173.Text;
-            Array.Resize(ref Database.OtherNet, 12);
-            OtherNET(checkBox19, 0);
-            OtherNET(checkBox20, 1);
-            OtherNET(checkBox22, 2);
-            OtherNET(checkBox21, 3);
-            OtherNET(checkBox24, 4);
-            OtherNET(checkBox23, 5);
-            OtherNET(checkBox26, 6);
-            OtherNET(checkBox25, 7);
-            OtherNET(checkBox28, 8);
-            OtherNET(checkBox27, 9);
-            OtherNET(checkBox30, 10);
-            OtherNET(checkBox29, 11);
-            int y = 49;
-            foreach (var other in Database.OtherNet)
-            {
-                Database.ProTime[y] = other.ToString();
-                y++;
-            }
-            Database.Time[79] = comboBox18.SelectedIndex.ToString();
-            if (checkBox17.Checked)
-            {
-                Database.Time[80] = "1";
-            }
-            else
-            {
-                Database.Time[80] = "0";
-            }
-            if (MyBotHide.Checked)
-            {
-                Database.Time[81] = "1";
-            }
-            else
-            {
-                Database.Time[81] = "0";
-            }
-            if (EmulatorHide.Checked)
-            {
-                Database.Time[82] = "1";
-            }
-            else
-            {
-                Database.Time[82] = "0";
-            }
-            if (checkBox31.Checked)
-            {
-                Database.Time[83] = "1";
-            }
-            else
-            {
-                Database.Time[83] = "0";
-            }
-            if (Shutdown.Checked == true)
-            {
-                Database.Time[84] = "1";
-            }
-            else
-            {
-                Database.Time[84] = "0";
-            }
-            if (QuotaLimit.Checked == true)
-            {
-                var count = Limit.Value * 1024;
-                int value = size * 1024;
-                Database.Time[85] = value.ToString();
-                Database.Time[86] = count.ToString();
-            }
-            else
-            {
-                Database.Time[85] = "134217728";
-                Database.Time[86] = "40";
-            }
-            if (Database.Language == "English")
-            {
-                Database.Time[87] = "1";
-            }
-            else
-            {
-                Database.Time[87] = "0";
-            }
-            if (CloseLID.Checked == true)
-            {
-                Database.Time[88] = "1";
-            }
-            else
-            {
-                Database.Time[88] = "0";
-            }
-            if (ShutdownWhenLimitReached.Checked == true)
-            {
-                Database.Time[89] = "66";
-            }
-            else
-            {
-                Database.Time[89] = "0";
-            }
-            if (DisableMoney.Checked == false)
-            {
-                Database.Time[90] = "444";
-            }
-            else
-            {
-                Database.Time[90] = "888";
-            }
-            if (Scheduledshutdown.Checked == true)
-            {
-                Database.Time[91] = ShutdownTimeHour.Text;
-                Database.Time[92] = ShutdownTimeMinute.Text;
-            }
-            else
-            {
-                Database.Time[91] = "77";
-                Database.Time[92] = "99";
-            }
-            if (Priority.Checked == true)
-            {
-                Database.Time[93] = "918";
-            }
-            else
-            {
-                Database.Time[93] = "0";
-            }
-            if (RestartImm.Checked == true)
-            {
-                Database.Time[94] = "108";
-            }
-            else
-            {
-                Database.Time[94] = "0";
-            }
-            Database.Time[95] = CPU_over.Text;
-            Database.Time[96] = CPU_Normal.Text;
-            try
-            {
-                int SleepOnBattery_ = Convert.ToInt32(SleepOnBattery.Text);
-                int SleepOnPower_ = Convert.ToInt32(SleepOnPower.Text);
-                int ScreenOnBattery_ = Convert.ToInt32(ScreenOnBattery.Text);
-                int ScreenOnPower_ = Convert.ToInt32(ScreenOnPower.Text);
-                switch (SleepOnBatterySize.SelectedIndex)
+                #region SaveBotIntoAray
+                if (!checkBox1.Checked)
                 {
-                    case 1:
-                        SleepOnBattery_ *= 60;
-                        Database.Time[97] = SleepOnBattery_.ToString();
-                        break;
-                    case 2:
-                        SleepOnBattery_ *= 3600;
-                        Database.Time[97] = SleepOnBattery_.ToString();
-                        break;
-                    default:
-                        Database.Time[97] = SleepOnBattery_.ToString();
-                        break;
-                }
-                switch (SleepOnPowerSize.SelectedIndex)
-                {
-                    case 1:
-                        SleepOnPower_ *= 60;
-                        Database.Time[98] = SleepOnPower_.ToString();
-                        break;
-                    case 2:
-                        SleepOnPower_ *= 3600;
-                        Database.Time[98] = SleepOnPower_.ToString();
-                        break;
-                    default:
-                        Database.Time[98] = SleepOnPower_.ToString();
-                        break;
-                }
-                switch (ScreenOnBatterySize.SelectedIndex)
-                {
-                    case 1:
-                        ScreenOnBattery_ *= 60;
-                        Database.Time[99] = ScreenOnBattery_.ToString();
-                        break;
-                    case 2:
-                        ScreenOnBattery_ *= 3600;
-                        Database.Time[99] = ScreenOnBattery_.ToString();
-                        break;
-                    default:
-                        Database.Time[99] = ScreenOnBattery_.ToString();
-                        break;
-                }
-                switch (ScreenOnPowerSize.SelectedIndex)
-                {
-                    case 1:
-                        ScreenOnPower_ *= 60;
-                        Database.Time[100] = ScreenOnPower_.ToString();
-                        break;
-                    case 2:
-                        ScreenOnPower_ *= 3600;
-                        Database.Time[100] = ScreenOnPower_.ToString();
-                        break;
-                    default:
-                        Database.Time[100] = ScreenOnPower_.ToString();
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                Database.Time[97] = SleepOnBattery.Text;
-                Database.Time[98] = SleepOnPower.Text;
-                Database.Time[99] = ScreenOnBattery.Text;
-                Database.Time[100] = ScreenOnPower.Text;
-                File.WriteAllText("error.log", ex.ToString());
-            }
-            if (NoBotOnBattery.Checked == true)
-            {
-                Database.Time[101] = "1";
-            }
-            else
-            {
-                Database.Time[101] = "0";
-            }
-            if (HourSetting.Checked == true)
-            {
-                Database.Time[102] = "1";
-            }
-            else
-            {
-                Database.Time[102] = "0";
-            }
-            Database.Time[103] = shour1.Value.ToString();
-            Database.Time[104] = trackBar3.Value.ToString();
-            if (checkBox32.Checked == true)
-            {
-                Database.Time[105] = "1";
-            }
-            else
-            {
-                Database.Time[105] = "0";
-            }
-            if (checkBox33.Checked == true)
-            {
-                Database.Time[106] = "1";
-            }
-            else
-            {
-                Database.Time[106] = "0";
-            }
-            if (checkBox34.Checked == true)
-            {
-                Database.Time[107] = "1";
-            }
-            else
-            {
-                Database.Time[107] = "0";
-            }
-            if (checkBox35.Checked == true)
-            {
-                Database.Time[108] = "1";
-            }
-            else
-            {
-                Database.Time[108] = "0";
-            }
-            if (checkBox36.Checked)
-            {
-                Database.Time[109] = "1";
-            }
-            else
-            {
-                Database.Time[109] = "0";
-            }
-            if (checkBox37.Checked)
-            {
-                Database.Time[110] = "1";
-            }
-            else
-            {
-                Database.Time[110] = "0";
-            }
-            if (checkBox38.Checked)
-            {
-                Database.Time[111] = "1";
-            }
-            else
-            {
-                Database.Time[111] = "0";
-            }
-            if (checkBox39.Checked)
-            {
-                Database.Time[112] = "1";
-            }
-            else
-            {
-                Database.Time[112] = "0";
-            }
-            if (checkBox40.Checked)
-            {
-                Database.Time[113] = "1";
-            }
-            else
-            {
-                Database.Time[113] = "0";
-            }
-            if (checkBox42.Checked)
-            {
-                Database.Time[114] = "1";
-            }
-            else
-            {
-                Database.Time[114] = "0";
-            }
-            Database.Time[115] = TBot.cid.ToString();
-            if (checkBox1.Checked)
-            {
-                Database.Time[116] = "1";
-            }
-            else
-            {
-                Database.Time[116] = "0";
-            }
-
-            Database.WriteLog("Checking Error");
-            int x = 0;
-            foreach (var Bot in Database.Bot)
-            {
-                if (Bot == null)
-                {
-                    Database.Bot[x] = "";
-                }
-                x++;
-            }
-            x = 0;
-            foreach (var Time in Database.Time)
-            {
-                try
-                {
-                    Convert.ToInt32(Time);
-                }
-                catch
-                {
-                    Database.Time[x] = "0";
-                }
-                x++;
-            }
-            x = 0;
-            foreach (var Other in Database.OtherBot)
-            {
-                if (Other == null)
-                {
-                    Database.OtherBot[x] = "";
-                }
-                x++;
-            }
-            x = 0;
-            foreach (var ProTime in Database.ProTime)
-            {
-                if (ProTime == null)
-                {
-                    Database.ProTime[x] = "0";
-                }
-                else if (ProTime == "")
-                {
-                    Database.ProTime[x] = "0";
+                    Database.Bot[0] = "# " + textBox27.Text + " " + comboBox1.Text + " " + textBox1.Text;
                 }
                 else
                 {
+                    Database.Bot[0] = textBox27.Text + " " + comboBox1.Text + " " + textBox1.Text;
+                }
+                if (!checkBox2.Checked)
+                {
+                    Database.Bot[1] = "# " + textBox26.Text + " " + comboBox2.Text + " " + textBox2.Text;
+                }
+                else
+                {
+                    Database.Bot[1] = textBox26.Text + " " + comboBox2.Text + " " + textBox2.Text;
+                }
+                if (!checkBox3.Checked)
+                {
+                    Database.Bot[2] = "# " + textBox25.Text + " " + comboBox3.Text + " " + textBox3.Text;
+                }
+                else
+                {
+                    Database.Bot[2] = textBox25.Text + " " + comboBox3.Text + " " + textBox3.Text;
+                }
+                if (!checkBox4.Checked)
+                {
+                    Database.Bot[3] = "# " + textBox24.Text + " " + comboBox4.Text + " " + textBox4.Text;
+                }
+                else
+                {
+                    Database.Bot[3] = textBox24.Text + " " + comboBox4.Text + " " + textBox4.Text;
+                }
+                if (!checkBox5.Checked)
+                {
+                    Database.Bot[4] = "# " + textBox23.Text + " " + comboBox5.Text + " " + textBox5.Text;
+                }
+                else
+                {
+                    Database.Bot[4] = textBox23.Text + " " + comboBox5.Text + " " + textBox5.Text;
+                }
+                if (!checkBox6.Checked)
+                {
+                    Database.Bot[5] = "# " + textBox22.Text + " " + comboBox6.Text + " " + textBox6.Text;
+                }
+                else
+                {
+                    Database.Bot[5] = textBox22.Text + " " + comboBox6.Text + " " + textBox6.Text;
+                }
+                if (!checkBox7.Checked)
+                {
+                    Database.Bot[6] = "# " + textBox21.Text + " " + comboBox7.Text + " " + textBox7.Text;
+                }
+                else
+                {
+                    Database.Bot[6] = textBox21.Text + " " + comboBox7.Text + " " + textBox7.Text;
+                }
+                if (!checkBox8.Checked)
+                {
+                    Database.Bot[7] = "# " + textBox19.Text + " " + comboBox8.Text + " " + textBox8.Text;
+                }
+                else
+                {
+                    Database.Bot[7] = textBox19.Text + " " + comboBox8.Text + " " + textBox8.Text;
+                }
+                if (!checkBox9.Checked)
+                {
+                    Database.Bot[8] = "# " + textBox18.Text + " " + comboBox9.Text + " " + textBox9.Text;
+                }
+                else
+                {
+                    Database.Bot[8] = textBox18.Text + " " + comboBox9.Text + " " + textBox9.Text;
+                }
+                if (!checkBox10.Checked)
+                {
+                    Database.Bot[9] = "# " + textBox17.Text + " " + comboBox10.Text + " " + textBox10.Text;
+                }
+                else
+                {
+                    Database.Bot[9] = textBox17.Text + " " + comboBox10.Text + " " + textBox10.Text;
+                }
+                if (!checkBox11.Checked)
+                {
+                    Database.Bot[10] = "# " + textBox16.Text + " " + comboBox11.Text + " " + textBox11.Text;
+                }
+                else
+                {
+                    Database.Bot[10] = textBox16.Text + " " + comboBox11.Text + " " + textBox11.Text;
+                }
+                if (!checkBox12.Checked)
+                {
+                    Database.Bot[11] = "# " + textBox12.Text + " " + comboBox12.Text + " " + textBox60.Text;
+                }
+                else
+                {
+                    Database.Bot[11] = textBox12.Text + " " + comboBox12.Text + " " + textBox60.Text;
+                }
+                if (!checkBox13.Checked)
+                {
+                    Database.Bot[12] = "# " + textBox13.Text + " " + comboBox13.Text + " " + textBox61.Text;
+                }
+                else
+                {
+                    Database.Bot[12] = textBox13.Text + " " + comboBox13.Text + " " + textBox61.Text;
+                }
+                if (!checkBox14.Checked)
+                {
+                    Database.Bot[13] = "# " + textBox14.Text + " " + comboBox14.Text + " " + textBox62.Text;
+                }
+                else
+                {
+                    Database.Bot[13] = textBox14.Text + " " + comboBox14.Text + " " + textBox62.Text;
+                }
+                if (!checkBox15.Checked)
+                {
+                    Database.Bot[14] = "# " + textBox15.Text + " " + comboBox15.Text + " " + textBox63.Text;
+                }
+                else
+                {
+                    Database.Bot[14] = textBox15.Text + " " + comboBox15.Text + " " + textBox63.Text;
+                }
+                #endregion
+                Database.Time[0] = shour1.Text;
+                Database.Time[1] = shour2.Text;
+                Database.Time[2] = shour3.Text;
+                Database.Time[3] = shour4.Text;
+                Database.Time[4] = shour5.Text;
+                Database.Time[5] = shour6.Text;
+                Database.Time[6] = shour7.Text;
+                Database.Time[7] = shour8.Text;
+                Database.Time[8] = shour9.Text;
+                Database.Time[9] = shour10.Text;
+                Database.Time[10] = shour11.Text;
+                Database.Time[11] = shour12.Text;
+                Database.Time[12] = shour13.Text;
+                Database.Time[13] = shour14.Text;
+                Database.Time[14] = shour15.Text;
+                Database.Time[15] = ehour1.Text;
+                Database.Time[16] = ehour2.Text;
+                Database.Time[17] = ehour3.Text;
+                Database.Time[18] = ehour4.Text;
+                Database.Time[19] = ehour5.Text;
+                Database.Time[20] = ehour6.Text;
+                Database.Time[21] = ehour7.Text;
+                Database.Time[22] = ehour8.Text;
+                Database.Time[23] = ehour9.Text;
+                Database.Time[24] = ehour10.Text;
+                Database.Time[25] = ehour11.Text;
+                Database.Time[26] = ehour12.Text;
+                Database.Time[27] = ehour13.Text;
+                Database.Time[28] = ehour14.Text;
+                Database.Time[29] = ehour15.Text;
+                Database.Time[30] = smin1.Text;
+                Database.Time[31] = smin2.Text;
+                Database.Time[32] = smin3.Text;
+                Database.Time[33] = smin4.Text;
+                Database.Time[34] = smin5.Text;
+                Database.Time[35] = smin6.Text;
+                Database.Time[36] = smin7.Text;
+                Database.Time[37] = smin8.Text;
+                Database.Time[38] = smin9.Text;
+                Database.Time[39] = smin10.Text;
+                Database.Time[40] = smin11.Text;
+                Database.Time[41] = smin12.Text;
+                Database.Time[42] = smin13.Text;
+                Database.Time[43] = smin14.Text;
+                Database.Time[44] = smin15.Text;
+                Database.Time[45] = emin1.Text;
+                Database.Time[46] = emin2.Text;
+                Database.Time[47] = emin3.Text;
+                Database.Time[48] = emin4.Text;
+                Database.Time[49] = emin5.Text;
+                Database.Time[50] = emin6.Text;
+                Database.Time[51] = emin7.Text;
+                Database.Time[52] = emin8.Text;
+                Database.Time[53] = emin9.Text;
+                Database.Time[54] = emin10.Text;
+                Database.Time[55] = emin11.Text;
+                Database.Time[56] = emin12.Text;
+                Database.Time[57] = emin13.Text;
+                Database.Time[58] = emin14.Text;
+                Database.Time[59] = emin15.Text;
+                Database.OtherBot[0] = textBox108.Text;
+                Database.OtherBot[1] = textBox109.Text;
+                Database.OtherBot[2] = textBox110.Text;
+                Database.OtherBot[3] = textBox111.Text;
+                Database.OtherBot[4] = textBox112.Text;
+                Database.OtherBot[5] = textBox113.Text;
+                Database.OtherBot[6] = textBox114.Text;
+                Database.OtherBot[7] = textBox115.Text;
+                Database.OtherBot[8] = textBox116.Text;
+                Database.OtherBot[9] = textBox117.Text;
+                Database.OtherBot[10] = textBox118.Text;
+                Database.OtherBot[11] = textBox119.Text;
+                Database.ProTime[0] = textBox131.Text;
+                Database.ProTime[1] = textBox143.Text;
+                Database.ProTime[2] = textBox130.Text;
+                Database.ProTime[3] = textBox142.Text;
+                Database.ProTime[4] = textBox129.Text;
+                Database.ProTime[5] = textBox141.Text;
+                Database.ProTime[6] = textBox128.Text;
+                Database.ProTime[7] = textBox140.Text;
+                Database.ProTime[8] = textBox127.Text;
+                Database.ProTime[9] = textBox139.Text;
+                Database.ProTime[10] = textBox126.Text;
+                Database.ProTime[11] = textBox138.Text;
+                Database.ProTime[12] = textBox125.Text;
+                Database.ProTime[13] = textBox137.Text;
+                Database.ProTime[14] = textBox124.Text;
+                Database.ProTime[15] = textBox136.Text;
+                Database.ProTime[16] = textBox123.Text;
+                Database.ProTime[17] = textBox135.Text;
+                Database.ProTime[18] = textBox122.Text;
+                Database.ProTime[19] = textBox134.Text;
+                Database.ProTime[20] = textBox121.Text;
+                Database.ProTime[21] = textBox133.Text;
+                Database.ProTime[22] = textBox120.Text;
+                Database.ProTime[23] = textBox132.Text;
+                Database.ProTime[24] = textBox155.Text; //End Time of other Program
+                Database.ProTime[25] = textBox167.Text;
+                Database.ProTime[26] = textBox154.Text;
+                Database.ProTime[27] = textBox166.Text;
+                Database.ProTime[28] = textBox153.Text;
+                Database.ProTime[29] = textBox165.Text;
+                Database.ProTime[30] = textBox152.Text;
+                Database.ProTime[31] = textBox164.Text;
+                Database.ProTime[32] = textBox151.Text;
+                Database.ProTime[33] = textBox163.Text;
+                Database.ProTime[34] = textBox150.Text;
+                Database.ProTime[35] = textBox162.Text;
+                Database.ProTime[36] = textBox149.Text;
+                Database.ProTime[37] = textBox161.Text;
+                Database.ProTime[38] = textBox148.Text;
+                Database.ProTime[39] = textBox160.Text;
+                Database.ProTime[40] = textBox147.Text;
+                Database.ProTime[41] = textBox159.Text;
+                Database.ProTime[42] = textBox146.Text;
+                Database.ProTime[43] = textBox158.Text;
+                Database.ProTime[44] = textBox145.Text;
+                Database.ProTime[45] = textBox157.Text;
+                Database.ProTime[46] = textBox144.Text;
+                Database.ProTime[47] = textBox156.Text;
+                Database.ProTime[48] = textBox143.Text;
+                Database.Bot[21] = textBox172.Text;
+                Database.Bot[22] = textBox173.Text;
+                Array.Resize(ref Database.OtherNet, 12);
+                OtherNET(checkBox19, 0);
+                OtherNET(checkBox20, 1);
+                OtherNET(checkBox22, 2);
+                OtherNET(checkBox21, 3);
+                OtherNET(checkBox24, 4);
+                OtherNET(checkBox23, 5);
+                OtherNET(checkBox26, 6);
+                OtherNET(checkBox25, 7);
+                OtherNET(checkBox28, 8);
+                OtherNET(checkBox27, 9);
+                OtherNET(checkBox30, 10);
+                OtherNET(checkBox29, 11);
+                int y = 49;
+                foreach (var other in Database.OtherNet)
+                {
+                    Database.ProTime[y] = other.ToString();
+                    y++;
+                }
+                Database.Time[79] = comboBox18.SelectedIndex.ToString();
+                if (checkBox17.Checked)
+                {
+                    Database.Time[80] = "1";
+                }
+                else
+                {
+                    Database.Time[80] = "0";
+                }
+                if (MyBotHide.Checked)
+                {
+                    Database.Time[81] = "1";
+                }
+                else
+                {
+                    Database.Time[81] = "0";
+                }
+                if (EmulatorHide.Checked)
+                {
+                    Database.Time[82] = "1";
+                }
+                else
+                {
+                    Database.Time[82] = "0";
+                }
+                if (checkBox31.Checked)
+                {
+                    Database.Time[83] = "1";
+                }
+                else
+                {
+                    Database.Time[83] = "0";
+                }
+                if (Shutdown.Checked == true)
+                {
+                    Database.Time[84] = "1";
+                }
+                else
+                {
+                    Database.Time[84] = "0";
+                }
+                if (QuotaLimit.Checked == true)
+                {
+                    var count = Limit.Value * 1024;
+                    int value = size * 1024;
+                    Database.Time[85] = value.ToString();
+                    Database.Time[86] = count.ToString();
+                }
+                else
+                {
+                    Database.Time[85] = "134217728";
+                    Database.Time[86] = "40";
+                }
+                if (Database.Language == "English")
+                {
+                    Database.Time[87] = "1";
+                }
+                else
+                {
+                    Database.Time[87] = "0";
+                }
+                if (CloseLID.Checked == true)
+                {
+                    Database.Time[88] = "1";
+                }
+                else
+                {
+                    Database.Time[88] = "0";
+                }
+                if (ShutdownWhenLimitReached.Checked == true)
+                {
+                    Database.Time[89] = "66";
+                }
+                else
+                {
+                    Database.Time[89] = "0";
+                }
+                if (DisableMoney.Checked == false)
+                {
+                    Database.Time[90] = "444";
+                }
+                else
+                {
+                    Database.Time[90] = "888";
+                }
+                if (Scheduledshutdown.Checked == true)
+                {
+                    Database.Time[91] = ShutdownTimeHour.Text;
+                    Database.Time[92] = ShutdownTimeMinute.Text;
+                }
+                else
+                {
+                    Database.Time[91] = "77";
+                    Database.Time[92] = "99";
+                }
+                if (Priority.Checked == true)
+                {
+                    Database.Time[93] = "918";
+                }
+                else
+                {
+                    Database.Time[93] = "0";
+                }
+                if (RestartImm.Checked == true)
+                {
+                    Database.Time[94] = "108";
+                }
+                else
+                {
+                    Database.Time[94] = "0";
+                }
+                Database.Time[95] = CPU_over.Text;
+                Database.Time[96] = CPU_Normal.Text;
+                try
+                {
+                    int SleepOnBattery_ = Convert.ToInt32(SleepOnBattery.Text);
+                    int SleepOnPower_ = Convert.ToInt32(SleepOnPower.Text);
+                    int ScreenOnBattery_ = Convert.ToInt32(ScreenOnBattery.Text);
+                    int ScreenOnPower_ = Convert.ToInt32(ScreenOnPower.Text);
+                    switch (SleepOnBatterySize.SelectedIndex)
+                    {
+                        case 1:
+                            SleepOnBattery_ *= 60;
+                            Database.Time[97] = SleepOnBattery_.ToString();
+                            break;
+                        case 2:
+                            SleepOnBattery_ *= 3600;
+                            Database.Time[97] = SleepOnBattery_.ToString();
+                            break;
+                        default:
+                            Database.Time[97] = SleepOnBattery_.ToString();
+                            break;
+                    }
+                    switch (SleepOnPowerSize.SelectedIndex)
+                    {
+                        case 1:
+                            SleepOnPower_ *= 60;
+                            Database.Time[98] = SleepOnPower_.ToString();
+                            break;
+                        case 2:
+                            SleepOnPower_ *= 3600;
+                            Database.Time[98] = SleepOnPower_.ToString();
+                            break;
+                        default:
+                            Database.Time[98] = SleepOnPower_.ToString();
+                            break;
+                    }
+                    switch (ScreenOnBatterySize.SelectedIndex)
+                    {
+                        case 1:
+                            ScreenOnBattery_ *= 60;
+                            Database.Time[99] = ScreenOnBattery_.ToString();
+                            break;
+                        case 2:
+                            ScreenOnBattery_ *= 3600;
+                            Database.Time[99] = ScreenOnBattery_.ToString();
+                            break;
+                        default:
+                            Database.Time[99] = ScreenOnBattery_.ToString();
+                            break;
+                    }
+                    switch (ScreenOnPowerSize.SelectedIndex)
+                    {
+                        case 1:
+                            ScreenOnPower_ *= 60;
+                            Database.Time[100] = ScreenOnPower_.ToString();
+                            break;
+                        case 2:
+                            ScreenOnPower_ *= 3600;
+                            Database.Time[100] = ScreenOnPower_.ToString();
+                            break;
+                        default:
+                            Database.Time[100] = ScreenOnPower_.ToString();
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Database.Time[97] = SleepOnBattery.Text;
+                    Database.Time[98] = SleepOnPower.Text;
+                    Database.Time[99] = ScreenOnBattery.Text;
+                    Database.Time[100] = ScreenOnPower.Text;
+                    File.WriteAllText("error.log", ex.ToString());
+                }
+                if (NoBotOnBattery.Checked == true)
+                {
+                    Database.Time[101] = "1";
+                }
+                else
+                {
+                    Database.Time[101] = "0";
+                }
+                if (HourSetting.Checked == true)
+                {
+                    Database.Time[102] = "1";
+                }
+                else
+                {
+                    Database.Time[102] = "0";
+                }
+                Database.Time[103] = shour1.Value.ToString();
+                Database.Time[104] = trackBar3.Value.ToString();
+                if (checkBox32.Checked == true)
+                {
+                    Database.Time[105] = "1";
+                }
+                else
+                {
+                    Database.Time[105] = "0";
+                }
+                if (checkBox33.Checked == true)
+                {
+                    Database.Time[106] = "1";
+                }
+                else
+                {
+                    Database.Time[106] = "0";
+                }
+                if (checkBox34.Checked == true)
+                {
+                    Database.Time[107] = "1";
+                }
+                else
+                {
+                    Database.Time[107] = "0";
+                }
+                if (checkBox35.Checked == true)
+                {
+                    Database.Time[108] = "1";
+                }
+                else
+                {
+                    Database.Time[108] = "0";
+                }
+                if (checkBox36.Checked)
+                {
+                    Database.Time[109] = "1";
+                }
+                else
+                {
+                    Database.Time[109] = "0";
+                }
+                if (checkBox37.Checked)
+                {
+                    Database.Time[110] = "1";
+                }
+                else
+                {
+                    Database.Time[110] = "0";
+                }
+                if (checkBox38.Checked)
+                {
+                    Database.Time[111] = "1";
+                }
+                else
+                {
+                    Database.Time[111] = "0";
+                }
+                if (checkBox39.Checked)
+                {
+                    Database.Time[112] = "1";
+                }
+                else
+                {
+                    Database.Time[112] = "0";
+                }
+                if (checkBox40.Checked)
+                {
+                    Database.Time[113] = "1";
+                }
+                else
+                {
+                    Database.Time[113] = "0";
+                }
+                if (checkBox42.Checked)
+                {
+                    Database.Time[114] = "1";
+                }
+                else
+                {
+                    Database.Time[114] = "0";
+                }
+                Database.Time[115] = TBot.cid.ToString();
+                if (checkBox1.Checked)
+                {
+                    Database.Time[116] = "1";
+                }
+                else
+                {
+                    Database.Time[116] = "0";
+                }
+
+                Database.WriteLog("Checking Error");
+                int x = 0;
+                foreach (var Bot in Database.Bot)
+                {
+                    if (Bot == null)
+                    {
+                        Database.Bot[x] = "";
+                    }
+                    x++;
+                }
+                x = 0;
+                foreach (var Time in Database.Time)
+                {
                     try
                     {
-                        Convert.ToInt32(ProTime);
+                        Convert.ToInt32(Time);
                     }
                     catch
                     {
+                        Database.Time[x] = "0";
+                    }
+                    x++;
+                }
+                x = 0;
+                foreach (var Other in Database.OtherBot)
+                {
+                    if (Other == null)
+                    {
+                        Database.OtherBot[x] = "";
+                    }
+                    x++;
+                }
+                x = 0;
+                foreach (var ProTime in Database.ProTime)
+                {
+                    if (ProTime == null)
+                    {
                         Database.ProTime[x] = "0";
                     }
+                    else if (ProTime == "")
+                    {
+                        Database.ProTime[x] = "0";
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Convert.ToInt32(ProTime);
+                        }
+                        catch
+                        {
+                            Database.ProTime[x] = "0";
+                        }
+                    }
+                    x++;
                 }
-                x++;
-            }
+            });
             SetTextBox();
         }
 
@@ -1509,28 +1520,31 @@ namespace MyBot.Supporter.Main
                 }
             }
             Database.WriteLog("Quota Checking");
-            if (Database.Limit <= Database.Receive + Database.Send) //Close all program that related to MyBot if Quota Limit Reached
+            if(Database.Limit > 524288000)
             {
-                Received.BackColor = Color.LightYellow;
-                Sent.BackColor = Color.LightYellow;
-                UpSpeed.BackColor = Color.LightYellow;
-                DownSpeed.BackColor = Color.LightYellow;
-                NetworkName.BackColor = Color.LightYellow;
-                KillMyBot();
-                Run = false;
-                button1_Click(sender, e);
-                if (Database.ShutdownWhenLimitReached == 66)
+                if (Database.Limit <= Database.Receive + Database.Send) //Close all program that related to MyBot if Quota Limit Reached
                 {
-                    Process.Start("shutdown.exe", "/s /t 00"); //Shutdown when shutdown when limit reached enabled
-                }
-                else
-                {
-                    Database.WriteLog("Disabling Networks");
-                    SelectQuery wmiQuery = new SelectQuery("SELECT * FROM Win32_NetworkAdapter WHERE NetConnectionId != NULL");
-                    ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
-                    foreach (ManagementObject s in searcher.Get())
+                    Received.BackColor = Color.LightYellow;
+                    Sent.BackColor = Color.LightYellow;
+                    UpSpeed.BackColor = Color.LightYellow;
+                    DownSpeed.BackColor = Color.LightYellow;
+                    NetworkName.BackColor = Color.LightYellow;
+                    KillMyBot();
+                    Run = false;
+                    button1_Click(sender, e);
+                    if (Database.ShutdownWhenLimitReached == 66)
                     {
-                        s.InvokeMethod("Disable", null);
+                        Process.Start("shutdown.exe", "/s /t 00"); //Shutdown when shutdown when limit reached enabled
+                    }
+                    else
+                    {
+                        Database.WriteLog("Disabling Networks");
+                        SelectQuery wmiQuery = new SelectQuery("SELECT * FROM Win32_NetworkAdapter WHERE NetConnectionId != NULL");
+                        ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery);
+                        foreach (ManagementObject s in searcher.Get())
+                        {
+                            s.InvokeMethod("Disable", null);
+                        }
                     }
                 }
             }
@@ -1542,6 +1556,29 @@ namespace MyBot.Supporter.Main
             {
                 Database.Net_Error -= 1; //Check the program had been started for 10 sec over
             }
+            if(extrafunctions.Count > 0)
+            {
+                foreach (var func in extrafunctions)
+                {
+                    if (func != null)
+                    {
+                        if (!func.RunOnce())
+                        {
+                            func.function();
+                            if(func.WriteLog().Length > 0)
+                            {
+                                richTextBox4.AppendText(Environment.NewLine + func.WriteLog());
+                            }
+                        }
+                    }
+                }
+            }
+           
+            //if (error.Length > 0)
+            //{
+              //  richTextBox4.AppendText(Environment.NewLine + error);
+              //  error = "";
+            //}
         }
 
         private static void ReportError()
@@ -1551,7 +1588,7 @@ namespace MyBot.Supporter.Main
                     FileInfo file = new FileInfo("error.log");
                     try
                     {
-                        TBot.DebugBot("error.log");
+                        TBot.DebugBot(file.FullName);
                     }
                     catch
                     {
@@ -1611,6 +1648,7 @@ namespace MyBot.Supporter.Main
                 f.ShowDialog();
                 Database.loadingprocess = 100;
             }
+            notifyIcon1.Icon = Icon;
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             version = myFileVersionInfo.FileVersion;
@@ -1619,7 +1657,6 @@ namespace MyBot.Supporter.Main
             Supporter = false;
             Database.WriteLog("-----------------------------------------------");
             Database.WriteLog("MyBot.Supporter running on " + Environment.OSVersion);
-            this.Icon = Characters._123456;
             if (File.Exists(Database.Location + "Bot.dll"))
             {
                 File.Delete(Database.Location + "Bot.dll");
@@ -1655,12 +1692,12 @@ namespace MyBot.Supporter.Main
             //Database.WriteLog("Checking Registry .Net Version");
             //Win32.GetVersionFromRegistry();
             Database.WriteLog("Checking Settings");
+            Array.Resize(ref Database.Bot, 44);
             try
             {
                 if (!File.Exists(Database.Location + "botsave"))
                 {
                     Database.WriteLog("Creating botsave");
-                    Array.Resize(ref Database.Bot, 44);
                     string[] profiles = Directory.GetDirectories(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "Profiles");
                     int y = 0;
                     foreach (var profile in profiles)
@@ -1677,10 +1714,10 @@ namespace MyBot.Supporter.Main
                         }
                     }
                     GenerateProfile g = new GenerateProfile();
-                    g.ShowDialog();
+                    g.Show();
                     File.WriteAllLines(Database.Location + "botsave", Database.Bot);
                 }
-                Array.Resize(ref Database.Bot, 44);
+                
                 Database.Bot = File.ReadAllLines(Database.Location + "botsave");
             }
             catch (Exception ex)
@@ -1982,8 +2019,8 @@ namespace MyBot.Supporter.Main
                     if (nic.Name != "Loopback Pseudo-Interface 1")
                     {
                         Database.Network = true;
-                        Database.Receive = nic.GetIPStatistics().BytesReceived; //Get Received nework data volume
-                        Database.Send = nic.GetIPStatistics().BytesSent; //Get Sended network data volume
+                        Database.startr = nic.GetIPStatistics().BytesReceived; //Get Received nework data volume
+                        Database.starts = nic.GetIPStatistics().BytesSent; //Get Sended network data volume
                         Database.NetName = nic.Name;
                         nics = nic;
                         break;
@@ -2073,13 +2110,14 @@ namespace MyBot.Supporter.Main
             NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAvailabilityChanged;
             Database.WriteLog("Form close thread handle called");
         }
+
         private void Language()//Set the language of the UI
         {
             switch (Database.Language)
             {
                 case "English":
                     this.Text = en_Lang.Form1 + " " + version;
-                    if (Update)
+                    if (Updates)
                     {
                         Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion;
                     }
@@ -2126,6 +2164,8 @@ namespace MyBot.Supporter.Main
                     checkBox34.Text = en_Lang.Telegram_RunningBotEarned_CheckBox;
                     checkBox35.Text = en_Lang.Telegram_CPUStatus_CheckBox;
                     button2.Text = en_Lang.Regenerate_Button;
+                    button3.Text = en_Lang.UpdateSupporterButton;
+                    button4.Text = en_Lang.UpdateMyBotButton;
                     button21.Text = en_Lang.CloseRunningBot_Button;
                     button18.Text = en_Lang.StartSelectedMyBot_Button;
                     button19.Text = en_Lang.CopySettings_Button;
@@ -2186,6 +2226,7 @@ namespace MyBot.Supporter.Main
                     groupbox2Text.Text = en_Lang.F1TabPage8;
                     groupbox3Text.Text = en_Lang.F1GroupBox1;
                     groupbox4Text.Text = en_Lang.F1GroupBox2;
+                    groupBox5.Text = en_Lang.UpdateBox;
                     tabPage3.Text = en_Lang.F1TabPage5;
                     tabPage4.Text = en_Lang.F1TabPage1;
                     tabPage7.Text = en_Lang.F1TabPage7;
@@ -2213,7 +2254,7 @@ namespace MyBot.Supporter.Main
                     break;
                 case "Chinese":
                     this.Text = cn_Lang.Form1 + " " + version;
-                    if (Update)
+                    if (Updates)
                     {
                         Text = Text + " / 可用升级: " + MyBotUpdator.NewestVersion;
                     }
@@ -2259,6 +2300,8 @@ namespace MyBot.Supporter.Main
                     checkBox34.Text = cn_Lang.Telegram_RunningBotEarned_CheckBox;
                     checkBox35.Text = cn_Lang.Telegram_CPUStatus_CheckBox;
                     button2.Text = cn_Lang.Regenerate_Button;
+                    button3.Text = cn_Lang.UpdateSupporterButton;
+                    button4.Text = cn_Lang.UpdateMyBotButton;
                     button21.Text = cn_Lang.CloseRunningBot_Button;
                     button18.Text = cn_Lang.StartSelectedMyBot_Button;
                     button19.Text = cn_Lang.CopySettings_Button;
@@ -2290,7 +2333,7 @@ namespace MyBot.Supporter.Main
                     label33.Text = cn_Lang.F1Label09;
                     label67.Text = cn_Lang.F1Label08;
                     label44.Text = cn_Lang.When_CPU;
-                    label32.Text = cn_Lang.When_CPU + en_Lang.IsNormal_Set_Maximum;
+                    label32.Text = cn_Lang.When_CPU + cn_Lang.IsNormal_Set_Maximum;
                     if (comboBox1.SelectedIndex == 0)
                     {
                         label103.Text = cn_Lang.IsOver70_Set_Maximum;
@@ -2319,6 +2362,7 @@ namespace MyBot.Supporter.Main
                     groupbox2Text.Text = cn_Lang.F1TabPage8;
                     groupbox3Text.Text = cn_Lang.F1GroupBox1;
                     groupbox4Text.Text = cn_Lang.F1GroupBox2;
+                    groupBox5.Text = cn_Lang.UpdateBox;
                     tabPage3.Text = cn_Lang.F1TabPage5;
                     tabPage4.Text = cn_Lang.F1TabPage1;
                     tabPage7.Text = cn_Lang.F1Tabpage7;
@@ -2585,6 +2629,8 @@ namespace MyBot.Supporter.Main
                             Database.Network = true;
                             Database.Receive = nic.GetIPStatistics().BytesReceived; //Get Received nework data volume
                             Database.Send = nic.GetIPStatistics().BytesSent; //Get Sended network data volume
+                            Database.startr = 0;//Reset Quota usage
+                            Database.starts = 0;//Reset Quota usage
                             Database.NetName = nic.Name;
                             nics = nic;
                             break;
@@ -2859,785 +2905,803 @@ namespace MyBot.Supporter.Main
             Array.Resize(ref Database.ProTime, 62);
             Database.WriteLog("Setting Textbox Text");
             int x = 0;
-            try
+            this.Invoke((MethodInvoker)delegate
             {
-                Database.WriteLog("Loading Bot Profile");
-                foreach (var bot in Database.Bot)
-                {
-                    if (bot.Length > 5)
-                    {
-                        string[] split = bot.Split(' ');
-                        Array.Resize(ref split, 4);
-                        switch (x)
-                        {
-                            case 0:
-                                if (split[0] == "#")
-                                {
-                                    checkBox1.Checked = false;
-                                    textBox27.Text = split[1];
-                                    comboBox1.Text = split[2];
-                                    textBox1.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox1.Checked = true;
-                                    textBox27.Text = split[0];
-                                    comboBox1.Text = split[1];
-                                    textBox1.Text = split[2];
-                                }
-                                break;
-                            case 1:
-                                if (split[0] == "#")
-                                {
-                                    checkBox2.Checked = false;
-                                    textBox26.Text = split[1];
-                                    comboBox2.Text = split[2];
-                                    textBox2.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox2.Checked = true;
-                                    textBox26.Text = split[0];
-                                    comboBox2.Text = split[1];
-                                    textBox2.Text = split[2];
-                                }
-                                break;
-                            case 2:
-                                if (split[0] == "#")
-                                {
-                                    checkBox3.Checked = false;
-                                    textBox25.Text = split[1];
-                                    comboBox3.Text = split[2];
-                                    textBox3.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox3.Checked = true;
-                                    textBox25.Text = split[0];
-                                    comboBox3.Text = split[1];
-                                    textBox3.Text = split[2];
-                                }
-                                break;
-                            case 3:
-                                if (split[0] == "#")
-                                {
-                                    checkBox4.Checked = false;
-                                    textBox24.Text = split[1];
-                                    comboBox4.Text = split[2];
-                                    textBox4.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox4.Checked = true;
-                                    textBox24.Text = split[0];
-                                    comboBox4.Text = split[1];
-                                    textBox4.Text = split[2];
-                                }
-                                break;
-                            case 4:
-                                if (split[0] == "#")
-                                {
-                                    checkBox5.Checked = false;
-                                    textBox23.Text = split[1];
-                                    comboBox5.Text = split[2];
-                                    textBox5.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox5.Checked = true;
-                                    textBox23.Text = split[0];
-                                    comboBox5.Text = split[1];
-                                    textBox5.Text = split[2];
-                                }
-                                break;
-                            case 5:
-                                if (split[0] == "#")
-                                {
-                                    checkBox6.Checked = false;
-                                    textBox22.Text = split[1];
-                                    comboBox6.Text = split[2];
-                                    textBox6.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox6.Checked = true;
-                                    textBox22.Text = split[0];
-                                    comboBox6.Text = split[1];
-                                    textBox6.Text = split[2];
-                                }
-                                break;
-                            case 6:
-                                if (split[0] == "#")
-                                {
-                                    checkBox7.Checked = false;
-                                    textBox21.Text = split[1];
-                                    comboBox7.Text = split[2];
-                                    textBox7.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox7.Checked = true;
-                                    textBox21.Text = split[0];
-                                    comboBox7.Text = split[1];
-                                    textBox7.Text = split[2];
-                                }
-                                break;
-                            case 7:
-                                if (split[0] == "#")
-                                {
-                                    checkBox8.Checked = false;
-                                    textBox19.Text = split[1];
-                                    comboBox8.Text = split[2];
-                                    textBox8.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox8.Checked = true;
-                                    textBox19.Text = split[0];
-                                    comboBox8.Text = split[1];
-                                    textBox8.Text = split[2];
-                                }
-                                break;
-                            case 8:
-                                if (split[0] == "#")
-                                {
-                                    checkBox9.Checked = false;
-                                    textBox18.Text = split[1];
-                                    comboBox9.Text = split[2];
-                                    textBox9.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox9.Checked = true;
-                                    textBox18.Text = split[0];
-                                    comboBox9.Text = split[1];
-                                    textBox9.Text = split[2];
-                                }
-                                break;
-                            case 9:
-                                if (split[0] == "#")
-                                {
-                                    checkBox10.Checked = false;
-                                    textBox17.Text = split[1];
-                                    comboBox10.Text = split[2];
-                                    textBox10.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox10.Checked = true;
-                                    textBox17.Text = split[0];
-                                    comboBox10.Text = split[1];
-                                    textBox10.Text = split[2];
-                                }
-                                break;
-                            case 10:
-                                if (split[0] == "#")
-                                {
-                                    checkBox11.Checked = false;
-                                    textBox16.Text = split[1];
-                                    comboBox11.Text = split[2];
-                                    textBox11.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox11.Checked = true;
-                                    textBox16.Text = split[0];
-                                    comboBox11.Text = split[1];
-                                    textBox11.Text = split[2];
-                                }
-                                break;
-                            case 11:
-                                if (split[0] == "#")
-                                {
-                                    checkBox12.Checked = false;
-                                    textBox12.Text = split[1];
-                                    comboBox12.Text = split[2];
-                                    textBox12.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox12.Checked = true;
-                                    textBox12.Text = split[0];
-                                    comboBox12.Text = split[1];
-                                    textBox12.Text = split[2];
-                                }
-                                break;
-                            case 12:
-                                if (split[0] == "#")
-                                {
-                                    checkBox13.Checked = false;
-                                    textBox13.Text = split[1];
-                                    comboBox13.Text = split[2];
-                                    textBox13.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox13.Checked = true;
-                                    textBox13.Text = split[0];
-                                    comboBox13.Text = split[1];
-                                    textBox13.Text = split[2];
-                                }
-                                break;
-                            case 13:
-                                if (split[0] == "#")
-                                {
-                                    checkBox14.Checked = false;
-                                    textBox14.Text = split[1];
-                                    comboBox14.Text = split[2];
-                                    textBox14.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox14.Checked = true;
-                                    textBox14.Text = split[0];
-                                    comboBox14.Text = split[1];
-                                    textBox14.Text = split[2];
-                                }
-                                break;
-                            case 14:
-                                if (split[0] == "#")
-                                {
-                                    checkBox15.Checked = false;
-                                    textBox15.Text = split[1];
-                                    comboBox15.Text = split[2];
-                                    textBox15.Text = split[3];
-                                }
-                                else
-                                {
-                                    checkBox15.Checked = true;
-                                    textBox15.Text = split[0];
-                                    comboBox15.Text = split[1];
-                                    textBox15.Text = split[2];
-                                }
-                                break;
-                        }
-                    }
-                    x++;
-                }
-                Database.WriteLog("Loading Start Hour");
-                shour1.Text = Database.Time[0];
-                shour2.Text = Database.Time[1];
-                shour3.Text = Database.Time[2];
-                shour4.Text = Database.Time[3];
-                shour5.Text = Database.Time[4];
-                shour6.Text = Database.Time[5];
-                shour7.Text = Database.Time[6];
-                shour8.Text = Database.Time[7];
-                shour9.Text = Database.Time[8];
-                shour10.Text = Database.Time[9];
-                shour11.Text = Database.Time[10];
-                shour12.Text = Database.Time[11];
-                shour13.Text = Database.Time[12];
-                shour14.Text = Database.Time[13];
-                shour15.Text = Database.Time[14];
-                Database.WriteLog("Loading End Hour");
-                Database.loadingprocess = 30;
-                ehour1.Text = Database.Time[15];
-                ehour2.Text = Database.Time[16];
-                ehour3.Text = Database.Time[17];
-                ehour4.Text = Database.Time[18];
-                ehour5.Text = Database.Time[19];
-                ehour6.Text = Database.Time[20];
-                ehour7.Text = Database.Time[21];
-                ehour8.Text = Database.Time[22];
-                ehour9.Text = Database.Time[23];
-                ehour10.Text = Database.Time[24];
-                ehour11.Text = Database.Time[25];
-                ehour12.Text = Database.Time[26];
-                ehour13.Text = Database.Time[27];
-                ehour14.Text = Database.Time[28];
-                ehour15.Text = Database.Time[29];
-                Database.WriteLog("Loading Start Minute");
-                smin1.Text = Database.Time[30];
-                smin2.Text = Database.Time[31];
-                smin3.Text = Database.Time[32];
-                smin4.Text = Database.Time[33];
-                smin5.Text = Database.Time[34];
-                smin6.Text = Database.Time[35];
-                smin7.Text = Database.Time[36];
-                smin8.Text = Database.Time[37];
-                smin9.Text = Database.Time[38];
-                smin10.Text = Database.Time[39];
-                smin11.Text = Database.Time[40];
-                smin12.Text = Database.Time[41];
-                smin13.Text = Database.Time[42];
-                smin14.Text = Database.Time[43];
-                smin15.Text = Database.Time[44];
-                Database.WriteLog("Loading End Minute");
-                Database.loadingprocess = 40;
-                emin1.Text = Database.Time[45];
-                emin2.Text = Database.Time[46];
-                emin3.Text = Database.Time[47];
-                emin4.Text = Database.Time[48];
-                emin5.Text = Database.Time[49];
-                emin6.Text = Database.Time[50];
-                emin7.Text = Database.Time[51];
-                emin8.Text = Database.Time[52];
-                emin9.Text = Database.Time[53];
-                emin10.Text = Database.Time[54];
-                emin11.Text = Database.Time[55];
-                emin12.Text = Database.Time[56];
-                emin13.Text = Database.Time[57];
-                emin14.Text = Database.Time[58];
-                emin15.Text = Database.Time[59];
-                Database.WriteLog("Loading Other Software");
-                textBox108.Text = Database.OtherBot[0];
-                textBox109.Text = Database.OtherBot[1];
-                textBox110.Text = Database.OtherBot[2];
-                textBox111.Text = Database.OtherBot[3];
-                textBox112.Text = Database.OtherBot[4];
-                textBox113.Text = Database.OtherBot[5];
-                textBox114.Text = Database.OtherBot[6];
-                textBox115.Text = Database.OtherBot[7];
-                textBox116.Text = Database.OtherBot[8];
-                textBox117.Text = Database.OtherBot[9];
-                textBox118.Text = Database.OtherBot[10];
-                textBox119.Text = Database.OtherBot[11];
-                Thread.Sleep(100);
-                Database.loadingprocess = 50;
-                Database.WriteLog("Loading Other Software Time");
-                textBox131.Text = Database.ProTime[0];
-                textBox143.Text = Database.ProTime[1];
-                textBox130.Text = Database.ProTime[2];
-                textBox142.Text = Database.ProTime[3];
-                textBox129.Text = Database.ProTime[4];
-                textBox141.Text = Database.ProTime[5];
-                textBox128.Text = Database.ProTime[6];
-                textBox140.Text = Database.ProTime[7];
-                textBox127.Text = Database.ProTime[8];
-                textBox139.Text = Database.ProTime[9];
-                textBox126.Text = Database.ProTime[10];
-                textBox138.Text = Database.ProTime[11];
-                textBox125.Text = Database.ProTime[12];
-                textBox137.Text = Database.ProTime[13];
-                textBox124.Text = Database.ProTime[14];
-                textBox136.Text = Database.ProTime[15];
-                textBox123.Text = Database.ProTime[16];
-                textBox135.Text = Database.ProTime[17];
-                textBox122.Text = Database.ProTime[18];
-                textBox134.Text = Database.ProTime[19];
-                textBox121.Text = Database.ProTime[20];
-                textBox133.Text = Database.ProTime[21];
-                textBox120.Text = Database.ProTime[22];
-                textBox132.Text = Database.ProTime[23];
-                textBox155.Text = Database.ProTime[24];
-                textBox167.Text = Database.ProTime[25];
-                textBox154.Text = Database.ProTime[26];
-                textBox166.Text = Database.ProTime[27];
-                textBox153.Text = Database.ProTime[28];
-                textBox165.Text = Database.ProTime[29];
-                textBox152.Text = Database.ProTime[30];
-                textBox164.Text = Database.ProTime[31];
-                textBox151.Text = Database.ProTime[32];
-                textBox163.Text = Database.ProTime[33];
-                textBox150.Text = Database.ProTime[34];
-                textBox162.Text = Database.ProTime[35];
-                textBox149.Text = Database.ProTime[36];
-                textBox161.Text = Database.ProTime[37];
-                textBox148.Text = Database.ProTime[38];
-                textBox160.Text = Database.ProTime[39];
-                textBox147.Text = Database.ProTime[40];
-                textBox159.Text = Database.ProTime[41];
-                textBox146.Text = Database.ProTime[42];
-                textBox158.Text = Database.ProTime[43];
-                textBox145.Text = Database.ProTime[44];
-                textBox157.Text = Database.ProTime[45];
-                textBox144.Text = Database.ProTime[46];
-                textBox156.Text = Database.ProTime[47];
-                textBox143.Text = Database.ProTime[48];
-                textBox172.Text = Database.Bot[21];
-                textBox173.Text = Database.Bot[22];
-                Database.loadingprocess = 60;
-                Database.WriteLog("Loading CPU Settings");
-                CPU_over.Text = Database.Time[95];
-                CPU_Normal.Text = Database.Time[96];
-                if(Database.Time[79] == "1")
-                {
-                    comboBox18.SelectedIndex = 1;
-                    ChangeUsingTemp = true;
-                }
-                else
-                {
-                    comboBox18.SelectedIndex = 0;
-                    ChangeUsingTemp = false;
-                }
-                if (Database.Time[80] == "1")
-                {
-                    checkBox17.Checked = true;
-                    Advance = true;
-                }
-                if(Database.Time[81] == "1")
-                {
-                    MyBotHide.Checked = true;
-                    Database.hide = true;
-                }
-                if(Database.Time[82] == "1")
-                {
-                    EmulatorHide.Checked = true;
-                    Database.hideEmulator = true;
-                }
-                if(Database.Time[83] == "1")
-                {
-                    checkBox31.Checked = true;
-                    Database.dock = true;
-                }
-                //Convert string into int
                 try
                 {
-                    Database.OtherTime = Array.ConvertAll(Database.ProTime, int.Parse);
-                    Database.Bot_Timer = Array.ConvertAll(Database.Time, int.Parse);
-                }
-                catch
-                {
-
-                }
-                //Other Settings
-                if (Convert.ToInt32(Database.Time[87]) == 1)
-                {
-                    Database.Language = "English";
-                    englishToolStripMenuItem1.Visible = false;
-                    中文ToolStripMenuItem1.Visible = true;
-                }
-                else
-                {
-                    Database.Language = "Chinese";
-                    中文ToolStripMenuItem1.Visible = false;
-                    englishToolStripMenuItem1.Visible = true;
-                }
-                if (Convert.ToInt32(Database.Time[93]) > 0)
-                {
-                    Priority.Checked = true;
-                }
-                if (Convert.ToInt32(Database.Time[84]) > 0)
-                {
-                    Shutdown.Checked = true;
-                }
-                Database.loadingprocess = 70;
-                if (Convert.ToInt32(Database.Time[85]) != 134217728 && Convert.ToInt32(Database.Time[86]) != 40)
-                {
-                    QuotaLimit.Checked = true;
-                    long tempvalue = Convert.ToInt64(Database.Time[85]) * Convert.ToInt64(Database.Time[86]);
-                    try
+                    Database.WriteLog("Loading Bot Profile");
+                    foreach (var bot in Database.Bot)
                     {
-                        tempvalue = tempvalue / 1024;
-                        if (tempvalue >= 1024)
+                        if (bot.Length > 5)
                         {
-                            tempvalue = tempvalue / 1024;
-                            Sizes.SelectedItem = "MB";
-                            if (tempvalue >= 1024)
+                            string[] split = bot.Split(' ');
+                            Array.Resize(ref split, 4);
+                            switch (x)
                             {
-                                tempvalue = tempvalue / 1024;
-                                Sizes.SelectedItem = "GB";
-                                if (tempvalue >= 1024)
-                                {
-                                    tempvalue = tempvalue / 1024;
-                                    Sizes.SelectedItem = "TB";
-                                }
+                                case 0:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox1.Checked = false;
+                                        textBox27.Text = split[1];
+                                        comboBox1.Text = split[2];
+                                        textBox1.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox1.Checked = true;
+                                        textBox27.Text = split[0];
+                                        comboBox1.Text = split[1];
+                                        textBox1.Text = split[2];
+                                    }
+                                    break;
+                                case 1:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox2.Checked = false;
+                                        textBox26.Text = split[1];
+                                        comboBox2.Text = split[2];
+                                        textBox2.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox2.Checked = true;
+                                        textBox26.Text = split[0];
+                                        comboBox2.Text = split[1];
+                                        textBox2.Text = split[2];
+                                    }
+                                    break;
+                                case 2:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox3.Checked = false;
+                                        textBox25.Text = split[1];
+                                        comboBox3.Text = split[2];
+                                        textBox3.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox3.Checked = true;
+                                        textBox25.Text = split[0];
+                                        comboBox3.Text = split[1];
+                                        textBox3.Text = split[2];
+                                    }
+                                    break;
+                                case 3:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox4.Checked = false;
+                                        textBox24.Text = split[1];
+                                        comboBox4.Text = split[2];
+                                        textBox4.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox4.Checked = true;
+                                        textBox24.Text = split[0];
+                                        comboBox4.Text = split[1];
+                                        textBox4.Text = split[2];
+                                    }
+                                    break;
+                                case 4:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox5.Checked = false;
+                                        textBox23.Text = split[1];
+                                        comboBox5.Text = split[2];
+                                        textBox5.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox5.Checked = true;
+                                        textBox23.Text = split[0];
+                                        comboBox5.Text = split[1];
+                                        textBox5.Text = split[2];
+                                    }
+                                    break;
+                                case 5:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox6.Checked = false;
+                                        textBox22.Text = split[1];
+                                        comboBox6.Text = split[2];
+                                        textBox6.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox6.Checked = true;
+                                        textBox22.Text = split[0];
+                                        comboBox6.Text = split[1];
+                                        textBox6.Text = split[2];
+                                    }
+                                    break;
+                                case 6:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox7.Checked = false;
+                                        textBox21.Text = split[1];
+                                        comboBox7.Text = split[2];
+                                        textBox7.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox7.Checked = true;
+                                        textBox21.Text = split[0];
+                                        comboBox7.Text = split[1];
+                                        textBox7.Text = split[2];
+                                    }
+                                    break;
+                                case 7:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox8.Checked = false;
+                                        textBox19.Text = split[1];
+                                        comboBox8.Text = split[2];
+                                        textBox8.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox8.Checked = true;
+                                        textBox19.Text = split[0];
+                                        comboBox8.Text = split[1];
+                                        textBox8.Text = split[2];
+                                    }
+                                    break;
+                                case 8:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox9.Checked = false;
+                                        textBox18.Text = split[1];
+                                        comboBox9.Text = split[2];
+                                        textBox9.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox9.Checked = true;
+                                        textBox18.Text = split[0];
+                                        comboBox9.Text = split[1];
+                                        textBox9.Text = split[2];
+                                    }
+                                    break;
+                                case 9:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox10.Checked = false;
+                                        textBox17.Text = split[1];
+                                        comboBox10.Text = split[2];
+                                        textBox10.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox10.Checked = true;
+                                        textBox17.Text = split[0];
+                                        comboBox10.Text = split[1];
+                                        textBox10.Text = split[2];
+                                    }
+                                    break;
+                                case 10:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox11.Checked = false;
+                                        textBox16.Text = split[1];
+                                        comboBox11.Text = split[2];
+                                        textBox11.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox11.Checked = true;
+                                        textBox16.Text = split[0];
+                                        comboBox11.Text = split[1];
+                                        textBox11.Text = split[2];
+                                    }
+                                    break;
+                                case 11:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox12.Checked = false;
+                                        textBox12.Text = split[1];
+                                        comboBox12.Text = split[2];
+                                        textBox12.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox12.Checked = true;
+                                        textBox12.Text = split[0];
+                                        comboBox12.Text = split[1];
+                                        textBox12.Text = split[2];
+                                    }
+                                    break;
+                                case 12:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox13.Checked = false;
+                                        textBox13.Text = split[1];
+                                        comboBox13.Text = split[2];
+                                        textBox13.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox13.Checked = true;
+                                        textBox13.Text = split[0];
+                                        comboBox13.Text = split[1];
+                                        textBox13.Text = split[2];
+                                    }
+                                    break;
+                                case 13:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox14.Checked = false;
+                                        textBox14.Text = split[1];
+                                        comboBox14.Text = split[2];
+                                        textBox14.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox14.Checked = true;
+                                        textBox14.Text = split[0];
+                                        comboBox14.Text = split[1];
+                                        textBox14.Text = split[2];
+                                    }
+                                    break;
+                                case 14:
+                                    if (split[0] == "#")
+                                    {
+                                        checkBox15.Checked = false;
+                                        textBox15.Text = split[1];
+                                        comboBox15.Text = split[2];
+                                        textBox15.Text = split[3];
+                                    }
+                                    else
+                                    {
+                                        checkBox15.Checked = true;
+                                        textBox15.Text = split[0];
+                                        comboBox15.Text = split[1];
+                                        textBox15.Text = split[2];
+                                    }
+                                    break;
                             }
                         }
-                        Limit.Value = tempvalue;
+                        x++;
+                    }
+                    Database.WriteLog("Loading Start Hour");
+                    shour1.Text = Database.Time[0];
+                    shour2.Text = Database.Time[1];
+                    shour3.Text = Database.Time[2];
+                    shour4.Text = Database.Time[3];
+                    shour5.Text = Database.Time[4];
+                    shour6.Text = Database.Time[5];
+                    shour7.Text = Database.Time[6];
+                    shour8.Text = Database.Time[7];
+                    shour9.Text = Database.Time[8];
+                    shour10.Text = Database.Time[9];
+                    shour11.Text = Database.Time[10];
+                    shour12.Text = Database.Time[11];
+                    shour13.Text = Database.Time[12];
+                    shour14.Text = Database.Time[13];
+                    shour15.Text = Database.Time[14];
+                    Database.WriteLog("Loading End Hour");
+                    Database.loadingprocess = 30;
+                    ehour1.Text = Database.Time[15];
+                    ehour2.Text = Database.Time[16];
+                    ehour3.Text = Database.Time[17];
+                    ehour4.Text = Database.Time[18];
+                    ehour5.Text = Database.Time[19];
+                    ehour6.Text = Database.Time[20];
+                    ehour7.Text = Database.Time[21];
+                    ehour8.Text = Database.Time[22];
+                    ehour9.Text = Database.Time[23];
+                    ehour10.Text = Database.Time[24];
+                    ehour11.Text = Database.Time[25];
+                    ehour12.Text = Database.Time[26];
+                    ehour13.Text = Database.Time[27];
+                    ehour14.Text = Database.Time[28];
+                    ehour15.Text = Database.Time[29];
+                    Database.WriteLog("Loading Start Minute");
+                    smin1.Text = Database.Time[30];
+                    smin2.Text = Database.Time[31];
+                    smin3.Text = Database.Time[32];
+                    smin4.Text = Database.Time[33];
+                    smin5.Text = Database.Time[34];
+                    smin6.Text = Database.Time[35];
+                    smin7.Text = Database.Time[36];
+                    smin8.Text = Database.Time[37];
+                    smin9.Text = Database.Time[38];
+                    smin10.Text = Database.Time[39];
+                    smin11.Text = Database.Time[40];
+                    smin12.Text = Database.Time[41];
+                    smin13.Text = Database.Time[42];
+                    smin14.Text = Database.Time[43];
+                    smin15.Text = Database.Time[44];
+                    Database.WriteLog("Loading End Minute");
+                    Database.loadingprocess = 40;
+                    emin1.Text = Database.Time[45];
+                    emin2.Text = Database.Time[46];
+                    emin3.Text = Database.Time[47];
+                    emin4.Text = Database.Time[48];
+                    emin5.Text = Database.Time[49];
+                    emin6.Text = Database.Time[50];
+                    emin7.Text = Database.Time[51];
+                    emin8.Text = Database.Time[52];
+                    emin9.Text = Database.Time[53];
+                    emin10.Text = Database.Time[54];
+                    emin11.Text = Database.Time[55];
+                    emin12.Text = Database.Time[56];
+                    emin13.Text = Database.Time[57];
+                    emin14.Text = Database.Time[58];
+                    emin15.Text = Database.Time[59];
+                    Database.WriteLog("Loading Other Software");
+                    textBox108.Text = Database.OtherBot[0];
+                    textBox109.Text = Database.OtherBot[1];
+                    textBox110.Text = Database.OtherBot[2];
+                    textBox111.Text = Database.OtherBot[3];
+                    textBox112.Text = Database.OtherBot[4];
+                    textBox113.Text = Database.OtherBot[5];
+                    textBox114.Text = Database.OtherBot[6];
+                    textBox115.Text = Database.OtherBot[7];
+                    textBox116.Text = Database.OtherBot[8];
+                    textBox117.Text = Database.OtherBot[9];
+                    textBox118.Text = Database.OtherBot[10];
+                    textBox119.Text = Database.OtherBot[11];
+                    Thread.Sleep(100);
+                    Database.loadingprocess = 50;
+                    Database.WriteLog("Loading Other Software Time");
+                    textBox131.Text = Database.ProTime[0];
+                    textBox143.Text = Database.ProTime[1];
+                    textBox130.Text = Database.ProTime[2];
+                    textBox142.Text = Database.ProTime[3];
+                    textBox129.Text = Database.ProTime[4];
+                    textBox141.Text = Database.ProTime[5];
+                    textBox128.Text = Database.ProTime[6];
+                    textBox140.Text = Database.ProTime[7];
+                    textBox127.Text = Database.ProTime[8];
+                    textBox139.Text = Database.ProTime[9];
+                    textBox126.Text = Database.ProTime[10];
+                    textBox138.Text = Database.ProTime[11];
+                    textBox125.Text = Database.ProTime[12];
+                    textBox137.Text = Database.ProTime[13];
+                    textBox124.Text = Database.ProTime[14];
+                    textBox136.Text = Database.ProTime[15];
+                    textBox123.Text = Database.ProTime[16];
+                    textBox135.Text = Database.ProTime[17];
+                    textBox122.Text = Database.ProTime[18];
+                    textBox134.Text = Database.ProTime[19];
+                    textBox121.Text = Database.ProTime[20];
+                    textBox133.Text = Database.ProTime[21];
+                    textBox120.Text = Database.ProTime[22];
+                    textBox132.Text = Database.ProTime[23];
+                    textBox155.Text = Database.ProTime[24];
+                    textBox167.Text = Database.ProTime[25];
+                    textBox154.Text = Database.ProTime[26];
+                    textBox166.Text = Database.ProTime[27];
+                    textBox153.Text = Database.ProTime[28];
+                    textBox165.Text = Database.ProTime[29];
+                    textBox152.Text = Database.ProTime[30];
+                    textBox164.Text = Database.ProTime[31];
+                    textBox151.Text = Database.ProTime[32];
+                    textBox163.Text = Database.ProTime[33];
+                    textBox150.Text = Database.ProTime[34];
+                    textBox162.Text = Database.ProTime[35];
+                    textBox149.Text = Database.ProTime[36];
+                    textBox161.Text = Database.ProTime[37];
+                    textBox148.Text = Database.ProTime[38];
+                    textBox160.Text = Database.ProTime[39];
+                    textBox147.Text = Database.ProTime[40];
+                    textBox159.Text = Database.ProTime[41];
+                    textBox146.Text = Database.ProTime[42];
+                    textBox158.Text = Database.ProTime[43];
+                    textBox145.Text = Database.ProTime[44];
+                    textBox157.Text = Database.ProTime[45];
+                    textBox144.Text = Database.ProTime[46];
+                    textBox156.Text = Database.ProTime[47];
+                    textBox143.Text = Database.ProTime[48];
+                    textBox172.Text = Database.Bot[21];
+                    textBox173.Text = Database.Bot[22];
+                    Database.loadingprocess = 60;
+                    Database.WriteLog("Loading CPU Settings");
+                    CPU_over.Text = Database.Time[95];
+                    CPU_Normal.Text = Database.Time[96];
+                    if (Database.Time[79] == "1")
+                    {
+                        comboBox18.SelectedIndex = 1;
+                        ChangeUsingTemp = true;
+                    }
+                    else
+                    {
+                        comboBox18.SelectedIndex = 0;
+                        ChangeUsingTemp = false;
+                    }
+                    if (Database.Time[80] == "1")
+                    {
+                        checkBox17.Checked = true;
+                        Advance = true;
+                    }
+                    if (Database.Time[81] == "1")
+                    {
+                        MyBotHide.Checked = true;
+                        Database.hide = true;
+                    }
+                    if (Database.Time[82] == "1")
+                    {
+                        EmulatorHide.Checked = true;
+                        Database.hideEmulator = true;
+                    }
+                    if (Database.Time[83] == "1")
+                    {
+                        checkBox31.Checked = true;
+                        Database.dock = true;
+                    }
+                    //Convert string into int
+                    try
+                    {
+                        Database.OtherTime = Array.ConvertAll(Database.ProTime, int.Parse);
+                        Database.Bot_Timer = Array.ConvertAll(Database.Time, int.Parse);
                     }
                     catch
                     {
 
                     }
-                }
-                if (!File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\MBR Global Variables(directX).au3"))
-                {
-                    if (Convert.ToInt32(Database.Time[88]) > 0)
+                    //Other Settings
+                    if (Convert.ToInt32(Database.Time[87]) == 1)
                     {
-                        CloseLID.Checked = true;
+                        Database.Language = "English";
+                        englishToolStripMenuItem1.Visible = false;
+                        中文ToolStripMenuItem1.Visible = true;
+                    }
+                    else
+                    {
+                        Database.Language = "Chinese";
+                        中文ToolStripMenuItem1.Visible = false;
+                        englishToolStripMenuItem1.Visible = true;
+                    }
+                    if (Convert.ToInt32(Database.Time[93]) > 0)
+                    {
+                        Priority.Checked = true;
+                    }
+                    if (Convert.ToInt32(Database.Time[84]) > 0)
+                    {
+                        Shutdown.Checked = true;
+                    }
+                    Database.loadingprocess = 70;
+                    if (Convert.ToInt32(Database.Time[85]) != 134217728 && Convert.ToInt32(Database.Time[86]) != 40)
+                    {
+                        QuotaLimit.Checked = true;
+                        long tempvalue = Convert.ToInt64(Database.Time[85]) * Convert.ToInt64(Database.Time[86]);
+                        try
+                        {
+                            tempvalue = tempvalue / 1024;
+                            if (tempvalue >= 1024)
+                            {
+                                tempvalue = tempvalue / 1024;
+                                Sizes.SelectedItem = "MB";
+                                if (tempvalue >= 1024)
+                                {
+                                    tempvalue = tempvalue / 1024;
+                                    Sizes.SelectedItem = "GB";
+                                    if (tempvalue >= 1024)
+                                    {
+                                        tempvalue = tempvalue / 1024;
+                                        Sizes.SelectedItem = "TB";
+                                    }
+                                }
+                            }
+                            Limit.Value = tempvalue;
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                    if (!File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\MBR Global Variables(directX).au3"))
+                    {
+                        if (Convert.ToInt32(Database.Time[88]) > 0)
+                        {
+                            CloseLID.Checked = true;
+                        }
+                        else
+                        {
+                            CloseLID.Checked = false;
+                        }
                     }
                     else
                     {
                         CloseLID.Checked = false;
+                        CloseLID.Enabled = false;
+                        CloseLID.Text = "Force DirectX MOD enabled";
                     }
-                }
-                else
-                {
-                    CloseLID.Checked = false;
-                    CloseLID.Enabled = false;
-                    CloseLID.Text = "Force DirectX MOD enabled";
-                }
-                if (Convert.ToInt32(Database.Time[89]) > 0)
-                {
-                    ShutdownWhenLimitReached.Checked = true;
-                }
-                else
-                {
-                    ShutdownWhenLimitReached.Checked = false;
-                }
-                if (Convert.ToInt32(Database.Time[90]) == 444)
-                {
-                    DisableMoney.Checked = false;
-                }
-                else
-                {
-                    DisableMoney.Checked = true;
-                }
-                if (Convert.ToInt32(Database.Time[91]) > 24 && Convert.ToInt32(Database.Time[92]) > 60)
-                {
-                    Scheduledshutdown.Checked = false;
-                }
-                else
-                {
-                    Scheduledshutdown.Checked = true;
-                    ShutdownTimeHour.Text = Database.Time[91];
-                    ShutdownTimeMinute.Text = Database.Time[92];
-                }
-                if (Convert.ToInt32(Database.Time[94]) == 108)
-                {
-                    RestartImm.Checked = true;
-                }
-                else
-                {
-                    RestartImm.Checked = false;
-                }
-                Database.WriteLog("Loading PowerConfig");
-                Database.loadingprocess = 80;
-                Thread.Sleep(500);
-                try
-                {
-                    Database.SleepOnBattery = Convert.ToInt32(Database.Time[97]);
-                    Database.SleepOnPower = Convert.ToInt32(Database.Time[98]);
-                    Database.ScreenOnBattery = Convert.ToInt32(Database.Time[99]);
-                    Database.ScreenOnPower = Convert.ToInt32(Database.Time[100]);
-                }
-                catch
-                {
-                    Database.SleepOnBattery = 0;
-                    Database.SleepOnPower = 0;
-                    Database.ScreenOnBattery = 0;
-                    Database.ScreenOnPower = 0;
-                }
-                ScreenOnBatterySize.SelectedIndex = 0;
-                ScreenOnPowerSize.SelectedIndex = 0;
-                SleepOnBatterySize.SelectedIndex = 0;
-                SleepOnPowerSize.SelectedIndex = 0;
-                int ScreenOnBattery_ = Database.ScreenOnBattery;
-                int ScreenOnPower_ = Database.ScreenOnPower;
-                int SleepOnBattery_ = Database.SleepOnBattery;
-                int SleepOnPower_ = Database.SleepOnPower;
-                if (ScreenOnBattery_ > 59)
-                {
-                    ScreenOnBattery_ /= 60;
-                    ScreenOnBatterySize.SelectedIndex = 1;
+                    if (Convert.ToInt32(Database.Time[89]) > 0)
+                    {
+                        ShutdownWhenLimitReached.Checked = true;
+                    }
+                    else
+                    {
+                        ShutdownWhenLimitReached.Checked = false;
+                    }
+                    if (Convert.ToInt32(Database.Time[90]) == 444)
+                    {
+                        DisableMoney.Checked = false;
+                    }
+                    else
+                    {
+                        DisableMoney.Checked = true;
+                    }
+                    if (Convert.ToInt32(Database.Time[91]) > 24 && Convert.ToInt32(Database.Time[92]) > 60)
+                    {
+                        Scheduledshutdown.Checked = false;
+                    }
+                    else
+                    {
+                        Scheduledshutdown.Checked = true;
+                        ShutdownTimeHour.Text = Database.Time[91];
+                        ShutdownTimeMinute.Text = Database.Time[92];
+                    }
+                    if (Convert.ToInt32(Database.Time[94]) == 108)
+                    {
+                        RestartImm.Checked = true;
+                    }
+                    else
+                    {
+                        RestartImm.Checked = false;
+                    }
+                    Database.WriteLog("Loading PowerConfig");
+                    Database.loadingprocess = 80;
+                    Thread.Sleep(500);
+                    try
+                    {
+                        Database.SleepOnBattery = Convert.ToInt32(Database.Time[97]);
+                        Database.SleepOnPower = Convert.ToInt32(Database.Time[98]);
+                        Database.ScreenOnBattery = Convert.ToInt32(Database.Time[99]);
+                        Database.ScreenOnPower = Convert.ToInt32(Database.Time[100]);
+                    }
+                    catch
+                    {
+                        Database.SleepOnBattery = 0;
+                        Database.SleepOnPower = 0;
+                        Database.ScreenOnBattery = 0;
+                        Database.ScreenOnPower = 0;
+                    }
+                    ScreenOnBatterySize.SelectedIndex = 0;
+                    ScreenOnPowerSize.SelectedIndex = 0;
+                    SleepOnBatterySize.SelectedIndex = 0;
+                    SleepOnPowerSize.SelectedIndex = 0;
+                    int ScreenOnBattery_ = Database.ScreenOnBattery;
+                    int ScreenOnPower_ = Database.ScreenOnPower;
+                    int SleepOnBattery_ = Database.SleepOnBattery;
+                    int SleepOnPower_ = Database.SleepOnPower;
                     if (ScreenOnBattery_ > 59)
                     {
                         ScreenOnBattery_ /= 60;
-                        ScreenOnBatterySize.SelectedIndex = 2;
+                        ScreenOnBatterySize.SelectedIndex = 1;
+                        if (ScreenOnBattery_ > 59)
+                        {
+                            ScreenOnBattery_ /= 60;
+                            ScreenOnBatterySize.SelectedIndex = 2;
+                        }
                     }
-                }
-                ScreenOnBattery.Text = ScreenOnBattery_.ToString();
-                if (ScreenOnPower_ > 59)
-                {
-                    ScreenOnPower_ /= 60;
-                    ScreenOnPowerSize.SelectedIndex = 1;
+                    ScreenOnBattery.Text = ScreenOnBattery_.ToString();
                     if (ScreenOnPower_ > 59)
                     {
                         ScreenOnPower_ /= 60;
-                        ScreenOnPowerSize.SelectedIndex = 2;
+                        ScreenOnPowerSize.SelectedIndex = 1;
+                        if (ScreenOnPower_ > 59)
+                        {
+                            ScreenOnPower_ /= 60;
+                            ScreenOnPowerSize.SelectedIndex = 2;
+                        }
                     }
-                }
-                ScreenOnPower.Text = ScreenOnPower_.ToString();
-                if (SleepOnBattery_ > 59)
-                {
-                    SleepOnBattery_ /= 60;
-                    SleepOnBatterySize.SelectedIndex = 1;
+                    ScreenOnPower.Text = ScreenOnPower_.ToString();
                     if (SleepOnBattery_ > 59)
                     {
                         SleepOnBattery_ /= 60;
-                        SleepOnBatterySize.SelectedIndex = 2;
+                        SleepOnBatterySize.SelectedIndex = 1;
+                        if (SleepOnBattery_ > 59)
+                        {
+                            SleepOnBattery_ /= 60;
+                            SleepOnBatterySize.SelectedIndex = 2;
+                        }
                     }
-                }
-                SleepOnBattery.Text = SleepOnBattery_.ToString();
-                if (SleepOnPower_ > 59)
-                {
-                    SleepOnPower_ /= 60;
-                    SleepOnPowerSize.SelectedIndex = 1;
+                    SleepOnBattery.Text = SleepOnBattery_.ToString();
                     if (SleepOnPower_ > 59)
                     {
                         SleepOnPower_ /= 60;
-                        SleepOnPowerSize.SelectedIndex = 2;
-                    }
-                }
-                SleepOnPower.Text = SleepOnPower_.ToString();
-                //ProfileSync
-                Database.loadingprocess = 90;
-                int botcount = 0;
-                int disabledbotcount = 0;
-                string[] Disabled = { };
-                Array.Resize(ref Disabled, 24);
-                foreach (var bot in Database.Bot)
-                {
-                    try
-                    {
-                        if (bot.Length > 3)
+                        SleepOnPowerSize.SelectedIndex = 1;
+                        if (SleepOnPower_ > 59)
                         {
-                            botcount++;
-                            var temp = bot.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries);
-                            if (temp.Contains("#"))
-                            {
-                                Disabled[disabledbotcount] = bot;
-                                disabledbotcount++;
-                            }
+                            SleepOnPower_ /= 60;
+                            SleepOnPowerSize.SelectedIndex = 2;
                         }
                     }
-                    catch (Exception ex)
+                    SleepOnPower.Text = SleepOnPower_.ToString();
+                    //ProfileSync
+                    Database.loadingprocess = 90;
+                    int botcount = 0;
+                    int disabledbotcount = 0;
+                    string[] Disabled = { };
+                    Array.Resize(ref Disabled, 24);
+                    foreach (var bot in Database.Bot)
                     {
-                        Array.Resize(ref Database.Bot, 44);
-                        File.WriteAllText("error.log", ex.ToString());
+                        try
+                        {
+                            if (bot.Length > 3)
+                            {
+                                botcount++;
+                                var temp = bot.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries);
+                                if (temp.Contains("#"))
+                                {
+                                    Disabled[disabledbotcount] = bot;
+                                    disabledbotcount++;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Array.Resize(ref Database.Bot, 44);
+                            File.WriteAllText("error.log", ex.ToString());
+                        }
                     }
-                }
-                int will;
-                try
-                {
-                    will = botcount - disabledbotcount;
-                }
-                catch
-                {
-                    will = 0;
-                }
-                if (Database.Time[102] == "1")
-                {
-                    HourSetting.Checked = true;
-                }
-                else
-                {
-                    HourSetting.Checked = false;
-                }
-                SetOtherNET(checkBox19, 49);
-                SetOtherNET(checkBox20, 50);
-                SetOtherNET(checkBox22, 51);
-                SetOtherNET(checkBox21, 52);
-                SetOtherNET(checkBox24, 53);
-                SetOtherNET(checkBox23, 54);
-                SetOtherNET(checkBox26, 55);
-                SetOtherNET(checkBox28, 56);
-                SetOtherNET(checkBox27, 57);
-                SetOtherNET(checkBox30, 58);
-                SetOtherNET(checkBox29, 59);
-                //numericUpDown1.Value = Convert.ToInt32(Database.Time[103]);
-                if (Convert.ToInt32(Database.Time[104]) < 36)
-                {
-                    Database.Time[104] = "36";
-                }
-                trackBar3.Value = Convert.ToInt32(Database.Time[104]);
-                TBot.Time = Convert.ToInt32(Database.Time[104]);
-                if (Database.Time[105] == "1")
-                {
-                    checkBox32.Checked = true;
-                }
-                else
-                {
-                    checkBox32.Checked = false;
-                }
-                if (Database.Time[106] == "1")
-                {
-                    checkBox33.Checked = true;
-                }
-                else
-                {
-                    checkBox33.Checked = false;
-                }
-                if (Database.Time[107] == "1")
-                {
-                    checkBox34.Checked = true;
-                }
-                else
-                {
-                    checkBox34.Checked = false;
-                }
-                if (Database.Time[108] == "1")
-                {
-                    checkBox35.Checked = true;
-                }
-                else
-                {
-                    checkBox35.Checked = false;
-                }
-                if (Database.Time[109] == "1")
-                {
-                    checkBox36.Checked = true;
-                }
-                else
-                {
-                    checkBox36.Checked = false;
-                }
-                if (Database.Time[110] == "1")
-                {
-                    checkBox37.Checked = true;
-                }
-                else
-                {
-                    checkBox37.Checked = false;
-                }
-                if (Database.Time[111] == "1")
-                {
-                    checkBox38.Checked = true;
-                }
-                else
-                {
-                    checkBox38.Checked = false;
-                }
-                if (Database.Time[112] == "1")
-                {
-                    checkBox39.Checked = true;
-                }
-                else
-                {
-                    checkBox39.Checked = false;
-                }
-                if (Database.Time[113] == "1")
-                {
-                    checkBox40.Checked = true;
-                }
-                else
-                {
-                    checkBox40.Checked = false;
-                }
-                if (Database.Time[114] == "1")
-                {
-                    checkBox42.Checked = true;
-                }
-                else
-                {
-                    checkBox42.Checked = false;
-                }
-                TBot.cid = Convert.ToInt32(Database.Time[115]);
-                if (Database.Time[116] == "1")
-                {
-                    checkBox1.Checked = true;
-                }
-                else
-                {
-                    checkBox1.Checked = false;
-                }
-                for (x = 117; x < 138; x++)
-                {
+                    int will;
                     try
                     {
-                        int temp = Convert.ToInt32(Database.Time[x]);
-                        if (temp < 6)
+                        will = botcount - disabledbotcount;
+                    }
+                    catch
+                    {
+                        will = 0;
+                    }
+                    if (Database.Time[102] == "1")
+                    {
+                        HourSetting.Checked = true;
+                    }
+                    else
+                    {
+                        HourSetting.Checked = false;
+                    }
+                    SetOtherNET(checkBox19, 49);
+                    SetOtherNET(checkBox20, 50);
+                    SetOtherNET(checkBox22, 51);
+                    SetOtherNET(checkBox21, 52);
+                    SetOtherNET(checkBox24, 53);
+                    SetOtherNET(checkBox23, 54);
+                    SetOtherNET(checkBox26, 55);
+                    SetOtherNET(checkBox28, 56);
+                    SetOtherNET(checkBox27, 57);
+                    SetOtherNET(checkBox30, 58);
+                    SetOtherNET(checkBox29, 59);
+                    //numericUpDown1.Value = Convert.ToInt32(Database.Time[103]);
+                    if (Convert.ToInt32(Database.Time[104]) < 36)
+                    {
+                        Database.Time[104] = "36";
+                    }
+                    trackBar3.Value = Convert.ToInt32(Database.Time[104]);
+                    TBot.Time = Convert.ToInt32(Database.Time[104]);
+                    if (Database.Time[105] == "1")
+                    {
+                        checkBox32.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox32.Checked = false;
+                    }
+                    if (Database.Time[106] == "1")
+                    {
+                        checkBox33.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox33.Checked = false;
+                    }
+                    if (Database.Time[107] == "1")
+                    {
+                        checkBox34.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox34.Checked = false;
+                    }
+                    if (Database.Time[108] == "1")
+                    {
+                        checkBox35.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox35.Checked = false;
+                    }
+                    if (Database.Time[109] == "1")
+                    {
+                        checkBox36.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox36.Checked = false;
+                    }
+                    if (Database.Time[110] == "1")
+                    {
+                        checkBox37.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox37.Checked = false;
+                    }
+                    if (Database.Time[111] == "1")
+                    {
+                        checkBox38.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox38.Checked = false;
+                    }
+                    if (Database.Time[112] == "1")
+                    {
+                        checkBox39.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox39.Checked = false;
+                    }
+                    if (Database.Time[113] == "1")
+                    {
+                        checkBox40.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox40.Checked = false;
+                    }
+                    if (Database.Time[114] == "1")
+                    {
+                        checkBox42.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox42.Checked = false;
+                    }
+                    TBot.cid = Convert.ToInt32(Database.Time[115]);
+                    if (Database.Time[116] == "1")
+                    {
+                        checkBox1.Checked = true;
+                    }
+                    else
+                    {
+                        checkBox1.Checked = false;
+                    }
+                    for (x = 117; x < 138; x++)
+                    {
+                        try
+                        {
+                            int temp = Convert.ToInt32(Database.Time[x]);
+                            if (temp < 6)
+                            {
+                                Database.Time[x] = "11";
+                            }
+                        }
+                        catch
                         {
                             Database.Time[x] = "11";
                         }
                     }
-                    catch
+                    if (!Directory.Exists(Environment.CurrentDirectory + "\\Plugins"))
+                        Directory.CreateDirectory(Environment.CurrentDirectory + "\\Plugins");
+                    foreach (var file in Directory.GetFiles(Environment.CurrentDirectory + "\\Plugins", "*.dll"))
                     {
-                        Database.Time[x] = "11";
+                        var assembly = Assembly.LoadFrom(file);
+                        foreach (var a in assembly.GetTypes())
+                        {
+                            if (a.GetInterfaces().Contains(typeof(plugin)))
+                            {
+                                var type = Activator.CreateInstance(a) as plugin;
+                                richTextBox4.AppendText(Environment.NewLine + "Loaded Custom Plugins from " + file);
+                                extrafunctions.Add(type);
+                            }
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Array.Resize(ref Database.Time, 138);
-                Array.Resize(ref Database.Bot, 44);
-                Array.Resize(ref Database.OtherBot, 12);
-                Array.Resize(ref Database.ProTime, 62);
-                Database.WriteLog(ex.ToString());
-                SetTextBox();
-            }
+                catch (Exception ex)
+                {
+                    Array.Resize(ref Database.Time, 138);
+                    Array.Resize(ref Database.Bot, 44);
+                    Array.Resize(ref Database.OtherBot, 12);
+                    Array.Resize(ref Database.ProTime, 62);
+                    Database.WriteLog(ex.ToString());
+                    SetTextBox();
+                }
+            });
         }
         private void 中文ToolStripMenuItem_Click(object sender, EventArgs e)//Change language to CN
         {
@@ -3979,41 +4043,9 @@ namespace MyBot.Supporter.Main
                     }
                 }
                 Botting.Other();
-                try
-                {
-                    Database.WriteLog("Checking AutoIT Error");
-                    IntPtr AutoITError = Win32.FindWindow("#32770", null);
-
-                    if (!AutoITError.Equals(IntPtr.Zero))
-                    {
-                        Win32.STRINGBUFFER sLimitedLengthWindowTitle;
-                        Win32.GetWindowText(AutoITError, out sLimitedLengthWindowTitle, 256);
-                        String sWindowTitle = sLimitedLengthWindowTitle.szText;
-                        if (sWindowTitle.Length > 0)
-                        {
-                            if (sWindowTitle.StartsWith("AutoIT Error"))
-                            {
-                                Database.WriteLog("AutoIT Error Found");
-                                Win32.SendMessage(AutoITError, 0x0112, 0xF060, null);
-                                Botting.Error[0] = true;
-                                AutoIT++;
-                            }
-                            else if (sWindowTitle.StartsWith(".NET-BroadcastEventWindow"))
-                            {
-                                Database.WriteLog(".NET-BroadcastEventWindow Error Found");
-                                Win32.SendMessage(AutoITError, 0x0010, 0, null);
-                                Botting.Error[0] = true;
-                                AutoIT++;
-                            }
-                        }
-                    }
-                }
-                catch
-                {
-
-                }
             }
         }
+
         private void ExtraParameters_Setup() //Load all settings from saved datain roaming folder
         {
             Database.WriteLog("Setup Environment");
@@ -4247,29 +4279,14 @@ namespace MyBot.Supporter.Main
                     File.WriteAllText(@"error.log", exception.ToString());
                 }
             }
-            if (Database.DisableMoney == 888)
+            if(extrafunctions.Count > 0)
             {
-                try
+                foreach (var func in extrafunctions)
                 {
-                    Database.ResetHost(); //Reset Host for not adding too much host lines in the host file
-                    Thread.Sleep(1000);
-                    Database.No_Mining(); //Edit Host for blocking mining websites
-                }
-                catch (Exception ex)
-                {
-                    File.WriteAllText("error.log", ex.ToString());
-                    Database.DisableMoney = 0;
-                }
-            }
-            else
-            {
-                try
-                {
-                    Database.ResetHost(); //Reset Host if Blocking Mining Web is disabled
-                }
-                catch
-                {
-                    Thread.Sleep(100);
+                    if (func.RunOnce())
+                    {
+                        func.function();
+                    }
                 }
             }
         }
@@ -4486,7 +4503,7 @@ namespace MyBot.Supporter.Main
             {
                 if (bot.Contains("#"))
                 {
-                    Database.Bot[x] = "";
+                    Database.Bot[x] = "   ";
                 }
                 x++;
             }
@@ -4500,6 +4517,7 @@ namespace MyBot.Supporter.Main
         {
             this.Enabled = true;
             SetTextBox();
+            Database.loadingprocess = 100;
         }
 
         private void TreeViewHandler()//Update treeview function
@@ -4683,15 +4701,136 @@ namespace MyBot.Supporter.Main
             {
                 case 0:
                     size = 1;
+                    Limit.Minimum = 500;
+                    Limit.Value = 500;
                     break;
                 case 1:
                     size = 1024;
+                    Limit.Minimum = 1;
+                    Limit.Value = 1;
                     break;
                 case 2:
                     size = 1024 * 1024;
+                    Limit.Minimum = 1;
+                    Limit.Value = 1;
                     break;
             }
 
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void DisableMoney_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DisableMoney.Checked)
+            {
+                try
+                {
+                    Thread set = new Thread(Database.No_Mining); //Edit Host for blocking mining websites
+                    set.Start();
+                }
+                catch (Exception ex)
+                {
+                    File.WriteAllText("error.log", ex.ToString());
+                }
+            }
+            else
+            {
+                try
+                {
+                    Thread set = new Thread(Database.ResetHost); //Reset Host if Blocking Mining Web is disabled
+                    set.Start();
+                }
+                catch (Exception ex)
+                {
+                    File.WriteAllText("error.log", ex.ToString());
+                }
+            }
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            switch (Database.Language)
+            {
+                case "English":
+                    groupBox5.Text = "Connecting...";
+                    break;
+                case "Chinese":
+                    groupBox5.Text = "正在连接...";
+                    break;
+            }
+            MyBotUpdator.Time = 999;
+            Thread t = new Thread(Updator);
+            t.Start();
+            while (t.IsAlive)
+            {
+                await Task.Delay(100);
+            }
+            if (IsNewest)
+            {
+                switch (Database.Language)
+                {
+                    case "English":
+                        MessageBox.Show(en_Lang.AlreadyNewest);
+                        break;
+                    case "Chinese":
+                        MessageBox.Show(cn_Lang.AlreadyNewest);
+                        break;
+                }
+            }
+            switch (Database.Language)
+            {
+                case "English":
+                    groupBox5.Text = en_Lang.UpdateBox;
+                    break;
+                case "Chinese":
+                    groupBox5.Text =cn_Lang.UpdateBox;
+                    break;
+            }
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            switch (Database.Language)
+            {
+                case "English":
+                    groupBox5.Text = "Connecting...";
+                    break;
+                case "Chinese":
+                    groupBox5.Text = "正在连接...";
+                    break;
+            }
+            MyBotUpdator.Time = 999;
+            Thread t = new Thread(UpdateMyBot);
+            t.Start();
+            while (t.IsAlive)
+            {
+                await Task.Delay(100);
+            }
+            if (IsNewest)
+            {
+                switch (Database.Language)
+                {
+                    case "English":
+                        MessageBox.Show(en_Lang.AlreadyNewest);
+                        break;
+                    case "Chinese":
+                        MessageBox.Show(cn_Lang.AlreadyNewest);
+                        break;
+                }
+            }
+            switch (Database.Language)
+            {
+                case "English":
+                    groupBox5.Text = en_Lang.UpdateBox;
+                    break;
+                case "Chinese":
+                    groupBox5.Text = cn_Lang.UpdateBox;
+                    break;
+            }
         }
 
         private void timer3_Tick(object sender, EventArgs e)
@@ -4766,8 +4905,8 @@ namespace MyBot.Supporter.Main
             {
                 try
                 {
-                    Database.Receive = nics.GetIPStatistics().BytesReceived; //Get Received nework data volume
-                    Database.Send = nics.GetIPStatistics().BytesSent; //Get Sended network data volume
+                    Database.Receive = nics.GetIPStatistics().BytesReceived - Database.startr; //Get Received nework data volume
+                    Database.Send = nics.GetIPStatistics().BytesSent - Database.starts; //Get Sended network data volume
                     Database.newr = Database.Receive;
                     Database.news = Database.Send;
                     Database.showr = Database.newr - Database.oldr;
@@ -4861,6 +5000,7 @@ namespace MyBot.Supporter.Main
 
         private void Updator()
         {
+            IsNewest = false;
             Database.WriteLog("Fetching Updates of MyBot.Supporter");
             try
             {
@@ -4885,11 +5025,22 @@ namespace MyBot.Supporter.Main
                                 Run = false;
                                 Pause = true;
                             }
-                            Update = true;
-                            this.Invoke(new Action(() =>Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion));
-                            button1.Invoke(new Action(() => button1.Enabled = false));
-                            button1.Invoke(new Action(() => button1.Text = "Updating"));
-                            button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                            Updates = true;
+                            switch (Database.Language)
+                            {
+                                case "English":
+                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / Update Available: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                                case "Chinese":
+                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / 可用升级: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                            }
                             MyBotUpdator.Github = true;
                             Database.SupporterUpdate = true;
                             this.Invoke((MethodInvoker)delegate ()
@@ -4898,6 +5049,10 @@ namespace MyBot.Supporter.Main
                                 update.FormClosing += Update_FormClosing;
                                 update.ShowDialog();
                             });
+                        }
+                        else
+                        {
+                            IsNewest = true;
                         }
                     }
                     catch 
@@ -4927,11 +5082,22 @@ namespace MyBot.Supporter.Main
                                 Run = false;
                                 Pause = true;
                             }
-                            Update = true;
-                            this.Invoke(new Action(() => Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion));
-                            button1.Invoke(new Action(() => button1.Enabled = false));
-                            button1.Invoke(new Action(() => button1.Text = "Updating"));
-                            button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                            Updates = true;
+                            switch (Database.Language)
+                            {
+                                case "English":
+                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / Update Available: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                                case "Chinese":
+                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / 可用升级: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                            }
                             Database.SupporterUpdate = true;
                             this.Invoke((MethodInvoker)delegate ()
                             {
@@ -4939,6 +5105,10 @@ namespace MyBot.Supporter.Main
                                 update.FormClosing += Update_FormClosing;
                                 update.ShowDialog();
                             });
+                        }
+                        else
+                        {
+                            IsNewest = true;
                         }
                     }
                     catch 
@@ -4960,15 +5130,20 @@ namespace MyBot.Supporter.Main
             MyBotUpdator.Github = false;
             this.Invoke((MethodInvoker)delegate ()
             {
-                if (Run)
+                if (!Run)
                 {
-                    button1.Text = en_Lang.Stop_Button;
-                    button1.BackColor = Color.Red;
-                }
-                else
-                {
-                    button1.Text = en_Lang.Start_Button;
-                    button1.BackColor = Color.Lime;
+                    switch (Database.Language)
+                    {
+                        case "English":
+                            button1.Text = en_Lang.Start_Button;
+                            button1.BackColor = Color.Lime;
+                            break;
+                        case "Chinese":
+                            button1.Text = cn_Lang.Start_Button;
+                            button1.BackColor = Color.Lime;
+                            break;
+                    }
+
                 }
             });
             if (Pause)
@@ -4981,6 +5156,7 @@ namespace MyBot.Supporter.Main
 
         private void UpdateMyBot()
         {
+            IsNewest = false;
             ServicePointManager.DefaultConnectionLimit = ServicePointManager.DefaultConnectionLimit;
             Database.WriteLog("Checking Update for MyBot.Run");
             try
@@ -5007,7 +5183,21 @@ namespace MyBot.Supporter.Main
                         if (compare1 != MyBotUpdator.MBNewestVersion)
                         {
                             UpdateMB = true;
-                            this.Invoke(new Action(() => Text = Text + " / MyBot Update Available: " + MyBotUpdator.MBNewestVersion));
+                            switch (Database.Language)
+                            {
+                                case "English":
+                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / MyBot Update Available: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                                case "Chinese":
+                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / MyBot可用升级: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                            }
                             MyBotUpdator.Github = true;
                             this.Invoke((MethodInvoker)delegate ()
                             {
@@ -5016,7 +5206,10 @@ namespace MyBot.Supporter.Main
                                 update.ShowDialog();
                             });
                         }
-
+                        else
+                        {
+                            IsNewest = true;
+                        }
                     }
                     catch 
                     {
@@ -5042,7 +5235,21 @@ namespace MyBot.Supporter.Main
                         if (compare1 != MyBotUpdator.MBNewestVersion)
                         {
                             UpdateMB = true;
-                            this.Invoke(new Action(() => Text = Text + " / MyBot Update Available: " + MyBotUpdator.MBNewestVersion));
+                            switch (Database.Language)
+                            {
+                                case "English":
+                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / MyBot Update Available: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                                case "Chinese":
+                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / MyBot可用升级: " + MyBotUpdator.NewestVersion));
+                                    button1.Invoke(new Action(() => button1.Enabled = false));
+                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
+                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                    break;
+                            }
                             this.Invoke((MethodInvoker)delegate ()
                             {
                                 MyBotUpdator update = new MyBotUpdator();
@@ -5050,6 +5257,10 @@ namespace MyBot.Supporter.Main
                                 update.ShowDialog();
                             });
                             
+                        }
+                        else
+                        {
+                            IsNewest = true;
                         }
                     }
                     catch 

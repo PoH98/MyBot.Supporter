@@ -649,17 +649,17 @@
   <data name="SwitchProfileIfResourcesFull" xml:space="preserve">
     <value>资源满后切换到选择的Profile</value>
   </data>
-  <data name="Valkryines" xml:space="preserve">
-    <value />
+  <data name="UpdateBox" xml:space="preserve">
+    <value>更新</value>
   </data>
-  <data name="Village" xml:space="preserve">
-    <value />
+  <data name="UpdateMyBotButton" xml:space="preserve">
+    <value>检查MyBot更新</value>
   </data>
-  <data name="WallBreakers" xml:space="preserve">
-    <value />
+  <data name="UpdateSupporterButton" xml:space="preserve">
+    <value>检查管理器更新</value>
   </data>
-  <data name="Witches" xml:space="preserve">
-    <value />
+  <data name="AlreadyNewest" xml:space="preserve">
+    <value>恭喜！您的软件已经是最新版本！</value>
   </data>
   <data name="Wizards" xml:space="preserve">
     <value />
@@ -721,8 +721,8 @@
   <data name="StarCollector" xml:space="preserve">
     <value />
   </data>
-  <data name="WinningStreak" xml:space="preserve">
-    <value />
+  <data name="IsNormal_Set_Maximum" xml:space="preserve">
+    <value>恢复正常，设置CPU使用率最高</value>
   </data>
   <data name="WizardTowerWarfare" xml:space="preserve">
     <value />

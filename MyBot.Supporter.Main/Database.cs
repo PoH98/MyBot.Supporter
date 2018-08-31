@@ -8,6 +8,10 @@ using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using System.IO.Compression;
+using Microsoft.CSharp;
+using System.CodeDom.Compiler;
+using System.Text;
+using System.Reflection;
 
 namespace MyBot.Supporter.Main
 {
@@ -15,7 +19,7 @@ namespace MyBot.Supporter.Main
     {
         //Networks
         public static bool SupporterUpdate;
-        public static long Receive, Send;
+        public static long Receive, Send, startr, starts;
         public static string NetName, Receive_size, Send_size, rsize, ssize;
         public static double Receive_Print, Send_Print, newr, news, oldr, olds, showr, shows;
         public static int Net_Error;
@@ -39,6 +43,7 @@ namespace MyBot.Supporter.Main
         //public static string Location2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar + "MyBot_Supporter" + Path.DirectorySeparatorChar + "MyBot_Supporter";
         public static bool hide, hideEmulator, dock, OnBattery;
         public static string[] Profile;
+        private static List<string> CustomizeCodes = new List<string>();
         //Functions that seperated from original form to prevent crackers
         public static void WriteLog(string Log)
         {
@@ -58,14 +63,32 @@ namespace MyBot.Supporter.Main
         {
             try
             {
-                Database.WriteLog("Setting Host");
-                File.WriteAllBytes("Host.zip",Characters.Host);
-                ZipFile.ExtractToDirectory("Host.zip",Environment.CurrentDirectory);
-                File.Delete("Host.zip");
-                File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"drivers\etc\hosts"));
-                File.Move("Host", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"drivers\etc\hosts"));
-                File.Delete("Host");
-                WriteLog("Set Host Success");
+                WriteLog("Setting Host");
+                if (!File.Exists(Location + "hosts"))
+                {
+                    try
+                    {
+                        WriteLog("Downloading Host");
+                        WebClientOverride wc = new WebClientOverride();
+                        var temp = wc.DownloadData("");
+                        File.WriteAllBytes(Location + "hosts", temp);
+                    }
+                    catch
+                    {
+                        WriteLog("Host Download Failed");
+                    }
+                }
+                if(File.Exists(Location + "hosts"))
+                {
+                    File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"drivers\etc\hosts"));
+                    File.Move(Location + "hosts", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"drivers\etc\hosts"));
+                    ProcessStartInfo cmd = new ProcessStartInfo();
+                    cmd.FileName = "cmd.exe";
+                    cmd.Arguments = "ipconfig /flushdns";
+                    cmd.CreateNoWindow = true;
+                    cmd.WindowStyle = ProcessWindowStyle.Hidden;
+                    WriteLog("Set Host Success");
+                }
             }
             catch(IOException)
             {
@@ -321,6 +344,113 @@ namespace MyBot.Supporter.Main
             {
                 return "";
             }
+        }
+        public static MethodInfo CustomizeCode(List<string> reference,string code,string Type, string Method, out string error)
+        {
+            CSharpCodeProvider provider = new CSharpCodeProvider(new Dictionary<string, string>() { {"CompilerVersion","v4.0" } });
+            CompilerParameters parameters = new CompilerParameters(new[] { "mscorlib.dll", "System.Core.dll" },"Supporter_Customize.dll",false);
+            // True - exe file generation, false - dll file generation
+            parameters.GenerateExecutable = false;
+            CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
+            if (results.Errors.HasErrors)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (CompilerError errors in results.Errors)
+                {
+                    sb.AppendLine(String.Format("Error ({0}): {1},Line: {2}", errors.ErrorNumber, errors.ErrorText,errors.Line));
+                }
+                error = sb.ToString();
+                return null;
+            }
+            Assembly assembly = results.CompiledAssembly;
+            Type program = assembly.GetType(Type);
+            error = "";
+            if(program!= null)
+            {
+                return program.GetMethod(Method);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static void UselessCodes()
+        {
+            string type = "", func = "", code = "";
+            List<string> Reference = new List<string>();
+            foreach (var c in CustomizeCodes)
+            {
+
+                if (c.Contains("namespace"))
+                {
+                    string temp = c.Remove(0, 10);
+                    if (temp.Contains("("))
+                    {
+                        temp = temp.Remove(temp.IndexOf('('), 1);
+                    }
+                    if (temp.Contains(")"))
+                    {
+                        temp = temp.Remove(temp.IndexOf(')'), 1);
+                    }
+                    if (temp.Contains("{"))
+                    {
+                        temp = temp.Remove(temp.IndexOf('{'), 1);
+                    }
+                    type = temp;
+                    code += c + Environment.NewLine;
+                }
+                else if (c.Contains("class"))
+                {
+                    string temp = c.Remove(0, 6);
+                    if (temp.Contains("("))
+                    {
+                        temp = temp.Remove(temp.IndexOf('('), 1);
+                    }
+                    if (temp.Contains(")"))
+                    {
+                        temp = temp.Remove(temp.IndexOf(')'), 1);
+                    }
+                    if (temp.Contains("{"))
+                    {
+                        temp = temp.Remove(temp.IndexOf('{'), 1);
+                    }
+                    type += "." + temp;
+                    code += c + Environment.NewLine;
+                }
+                else if (c.Contains("public static void"))
+                {
+                    string temp = c.Remove(0, 19);
+                    if (temp.Contains("("))
+                    {
+                        temp = temp.Remove(temp.IndexOf('('), 1);
+                    }
+                    if (temp.Contains(")"))
+                    {
+                        temp = temp.Remove(temp.IndexOf(')'), 1);
+                    }
+                    if (temp.Contains("{"))
+                    {
+                        temp = temp.Remove(temp.IndexOf('{'), 1);
+                    }
+                    func = temp;
+                    code += c + Environment.NewLine;
+                }
+                else if (c.Contains("using"))
+                {
+                    string temp = c.Remove(0, 6);
+                    if (temp.Contains(";"))
+                    {
+                        temp = temp.Remove(temp.IndexOf(';'), 1);
+                    }
+                    Reference.Add(temp + ".dll");
+                }
+                else
+                {
+                    code += c + Environment.NewLine;
+                }
+            }
+            //Database.CustomizeCode(Reference, code, type, func, out error);
         }
     }
     class Win32 //Win32 controllers, included power management, search for emulators, Get .NET versions and also taskbar hider
@@ -729,6 +859,53 @@ namespace MyBot.Supporter.Main
                 GenerateProfile f = new GenerateProfile();
                 f.Show();
             }
+        }
+        private delegate bool EnumWindowProc(IntPtr hwnd, IntPtr lParam);
+
+        [DllImport("user32")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool EnumChildWindows(IntPtr window, EnumWindowProc callback, IntPtr lParam);
+
+        private IntPtr _MainHandle;
+
+        public Win32(IntPtr handle)
+        {
+            this._MainHandle = handle;
+        }
+
+        public List<IntPtr> GetAllChildHandles()
+        {
+            List<IntPtr> childHandles = new List<IntPtr>();
+
+            GCHandle gcChildhandlesList = GCHandle.Alloc(childHandles);
+            IntPtr pointerChildHandlesList = GCHandle.ToIntPtr(gcChildhandlesList);
+
+            try
+            {
+                EnumWindowProc childProc = new EnumWindowProc(EnumWindow);
+                EnumChildWindows(this._MainHandle, childProc, pointerChildHandlesList);
+            }
+            finally
+            {
+                gcChildhandlesList.Free();
+            }
+
+            return childHandles;
+        }
+
+        private bool EnumWindow(IntPtr hWnd, IntPtr lParam)
+        {
+            GCHandle gcChildhandlesList = GCHandle.FromIntPtr(lParam);
+
+            if (gcChildhandlesList == null || gcChildhandlesList.Target == null)
+            {
+                return false;
+            }
+
+            List<IntPtr> childHandles = gcChildhandlesList.Target as List<IntPtr>;
+            childHandles.Add(hWnd);
+
+            return true;
         }
     }
 }

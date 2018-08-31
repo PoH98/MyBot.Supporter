@@ -106,6 +106,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 恭喜！您的软件已经是最新版本！ 的本地化字符串。
+        /// </summary>
+        internal static string AlreadyNewest {
+            get {
+                return ResourceManager.GetString("AlreadyNewest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 多开管理已在运行！是否关闭旧管理器？ 的本地化字符串。
         /// </summary>
         internal static string AnotherSupporterIsRunning {
@@ -1268,6 +1277,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 恢复正常，设置CPU使用率最高 的本地化字符串。
+        /// </summary>
+        internal static string IsNormal_Set_Maximum {
+            get {
+                return ResourceManager.GetString("IsNormal_Set_Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 超过60 °C，设置CPU最高 的本地化字符串。
         /// </summary>
         internal static string IsOver60C_Set_Maximum {
@@ -2191,6 +2209,24 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 更新 的本地化字符串。
+        /// </summary>
+        internal static string UpdateBox {
+            get {
+                return ResourceManager.GetString("UpdateBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 检查MyBot更新 的本地化字符串。
+        /// </summary>
+        internal static string UpdateMyBotButton {
+            get {
+                return ResourceManager.GetString("UpdateMyBotButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 更新！ 的本地化字符串。
         /// </summary>
         internal static string UpdateNow {
@@ -2200,38 +2236,20 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 检查管理器更新 的本地化字符串。
+        /// </summary>
+        internal static string UpdateSupporterButton {
+            get {
+                return ResourceManager.GetString("UpdateSupporterButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 使用 的本地化字符串。
         /// </summary>
         internal static string Usage {
             get {
                 return ResourceManager.GetString("Usage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Valkryines {
-            get {
-                return ResourceManager.GetString("Valkryines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Village {
-            get {
-                return ResourceManager.GetString("Village", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string WallBreakers {
-            get {
-                return ResourceManager.GetString("WallBreakers", resourceCulture);
             }
         }
         
@@ -2250,24 +2268,6 @@ namespace MyBot.Supporter.Main {
         internal static string WhiteColor {
             get {
                 return ResourceManager.GetString("WhiteColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string WinningStreak {
-            get {
-                return ResourceManager.GetString("WinningStreak", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Witches {
-            get {
-                return ResourceManager.GetString("Witches", resourceCulture);
             }
         }
         

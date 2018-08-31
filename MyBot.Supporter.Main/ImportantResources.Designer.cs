@@ -22,14 +22,14 @@ namespace MyBot.Supporter.Main {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Characters {
+    public class ImportantResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Characters() {
+        internal ImportantResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyBot.Supporter.Main {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyBot.Supporter.Main.Characters", typeof(Characters).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyBot.Supporter.Main.ImportantResources", typeof(ImportantResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,16 +61,6 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Icon _123456 {
-            get {
-                object obj = ResourceManager.GetObject("_123456", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
         public static byte[] DLL {
@@ -87,16 +77,6 @@ namespace MyBot.Supporter.Main {
             get {
                 object obj = ResourceManager.GetObject("ezgif_com_optimize", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] Host {
-            get {
-                object obj = ResourceManager.GetObject("Host", resourceCulture);
-                return ((byte[])(obj));
             }
         }
     }
