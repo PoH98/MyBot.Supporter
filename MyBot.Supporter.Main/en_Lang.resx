@@ -535,8 +535,8 @@ Quick Help:
   <data name="Dragons" xml:space="preserve">
     <value />
   </data>
-  <data name="Earthquake" xml:space="preserve">
-    <value />
+  <data name="CustomizeCodeBar" xml:space="preserve">
+    <value>Customize Plugins</value>
   </data>
   <data name="EnableSwitch" xml:space="preserve">
     <value>Enable Switch</value>

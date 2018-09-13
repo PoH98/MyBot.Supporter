@@ -517,8 +517,8 @@
   <data name="MyBotUpdateFound" xml:space="preserve">
     <value>MyBot有更新！是否后台下载？</value>
   </data>
-  <data name="Bowlers" xml:space="preserve">
-    <value />
+  <data name="CustomizeCodeBar" xml:space="preserve">
+    <value>额外dll</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>取消</value>

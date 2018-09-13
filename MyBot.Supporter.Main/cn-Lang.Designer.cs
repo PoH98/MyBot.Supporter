@@ -169,15 +169,6 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Bowlers {
-            get {
-                return ResourceManager.GetString("Bowlers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 建筑工人： 的本地化字符串。
         /// </summary>
         internal static string Builders {
@@ -345,6 +336,15 @@ namespace MyBot.Supporter.Main {
         internal static string CurrentSelectedProfile {
             get {
                 return ResourceManager.GetString("CurrentSelectedProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 额外dll 的本地化字符串。
+        /// </summary>
+        internal static string CustomizeCodeBar {
+            get {
+                return ResourceManager.GetString("CustomizeCodeBar", resourceCulture);
             }
         }
         

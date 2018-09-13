@@ -1264,6 +1264,17 @@ namespace MyBot.Supporter.Main
                     comboBox2.Items.Add(name);
                 }
             }
+            Ping ping = new Ping();
+            var respond = ping.Send("github.com").Status;
+            if(respond == IPStatus.Success)
+            {
+                webBrowser1.Navigate("");
+            }
+            else
+            {
+                webBrowser1.Navigate("");
+            }
+
             Database.loadingprocess = 100;
         }
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -1442,7 +1453,7 @@ namespace MyBot.Supporter.Main
                 label3.Text = "Clash of clans Version";
                 checkBox7.Text = "Change MyBot Language";
                 tabPage5.Text = "MyBot MOD";
-                tabPage3.Text = "Complete!";
+                tabPage4.Text = "Complete!";
                 button2.Text = "Inject!!";
                 button3.Text = "Cancel";
                 textBox1.Text = "Help" + Environment.NewLine + Environment.NewLine + "* MyBot Injector is a third-party *.ini pharser, which will maybe cause MyBot not working after injection"

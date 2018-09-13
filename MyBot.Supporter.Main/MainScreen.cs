@@ -39,7 +39,7 @@ namespace MyBot.Supporter.Main
         private static int CPUL, RAM, RefreshTreeNodes, NoNet;
         public static int AutoIT;
         private static string SelectedCPUV, SelectedCPUF, SelectedCPUT, SelectedRAML, SelectedCPUL;
-        private static List<plugin> extrafunctions = new List<plugin>();
+        
         protected static string version;
         private static WebProxy myProxy = new WebProxy();
         public MainScreen()
@@ -391,7 +391,6 @@ namespace MyBot.Supporter.Main
                 button1.Enabled = true;
             }
         }
-
         public void WriteAllSettings()//Save all settings into Database temp memory
         {
             Array.Resize(ref Database.Time, 138);
@@ -1015,7 +1014,6 @@ namespace MyBot.Supporter.Main
             });
             SetTextBox();
         }
-
         private void timer1_Tick(object sender, EventArgs e)//Refresh UI values and accept Telegram control commands
         {
             GC.Collect();
@@ -1260,6 +1258,28 @@ namespace MyBot.Supporter.Main
                 }
                 Database.WriteLog("Result: " + TBot.respond);
             }
+            foreach(var extra in Database.extrafunctions)
+            {
+                try
+                {
+                    if(extra.InstantTelegram() != null)
+                    {
+                        string text = extra.InstantTelegram();
+                        if (text.Length > 0)
+                        {
+                            TBot.Bot.SendTextMessageAsync(TBot.cid, text);
+                        }
+                    }
+                }
+                catch(NullReferenceException)
+                {
+
+                }
+                catch(Exception ex)
+                {
+                    richTextBox4.AppendText(Environment.NewLine + ex.ToString());
+                }
+            }
             switch (Database.Language)
             {
                 case "English":
@@ -1419,7 +1439,6 @@ namespace MyBot.Supporter.Main
                     DownSpeed.Text = Database.showr.ToString("0.00 ") + Database.rsize;
                 }
         }
-
         private void timer2_Tick(object sender, EventArgs e)//Timer that runs after botting started, used to set PC environment system and watchdog of MB
         {
             if (RefreshTreeNodes == 0)
@@ -1556,19 +1575,23 @@ namespace MyBot.Supporter.Main
             {
                 Database.Net_Error -= 1; //Check the program had been started for 10 sec over
             }
-            if(extrafunctions.Count > 0)
+            if(Database.extrafunctions.Count > 0)
             {
-                foreach (var func in extrafunctions)
+                foreach (var func in Database.extrafunctions)
                 {
                     if (func != null)
                     {
-                        if (!func.RunOnce())
+                        try
                         {
-                            func.function();
-                            if(func.WriteLog().Length > 0)
+                            func.Update();
+                            if (func.WriteLog().Length > 0)
                             {
                                 richTextBox4.AppendText(Environment.NewLine + func.WriteLog());
                             }
+                        }
+                        catch(Exception ex)
+                        {
+                            richTextBox4.AppendText(Environment.NewLine + ex.ToString());
                         }
                     }
                 }
@@ -2012,22 +2035,6 @@ namespace MyBot.Supporter.Main
             {
 
             }
-            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (nic.OperationalStatus == OperationalStatus.Up)
-                {
-                    if (nic.Name != "Loopback Pseudo-Interface 1")
-                    {
-                        Database.Network = true;
-                        Database.startr = nic.GetIPStatistics().BytesReceived; //Get Received nework data volume
-                        Database.starts = nic.GetIPStatistics().BytesSent; //Get Sended network data volume
-                        Database.NetName = nic.Name;
-                        nics = nic;
-                        break;
-                    }
-                }
-                x++;
-            }
             double highestV = 0;
             double highestT = 0;
             double highestC = 0;
@@ -2113,9 +2120,13 @@ namespace MyBot.Supporter.Main
                     {
                         var type = Activator.CreateInstance(a) as plugin;
                         richTextBox4.AppendText(Environment.NewLine + "Loaded Custom Plugins from " + file);
-                        extrafunctions.Add(type);
+                        Database.extrafunctions.Add(type);
                     }
                 }
+            }
+            if(Database.extrafunctions.Count == 0)
+            {
+                richTextBox4.AppendText(Environment.NewLine + "No Customize Plugins found, ignoring...");
             }
             GC.Collect();
             Database.loadingprocess = 100;
@@ -2213,7 +2224,7 @@ namespace MyBot.Supporter.Main
                     label67.Text = en_Lang.F1Label08;
                     label44.Text = en_Lang.When_CPU;
                     label32.Text = en_Lang.When_CPU + en_Lang.IsNormal_Set_Maximum;
-                    if(comboBox1.SelectedIndex == 0)
+                    if(!ChangeUsingTemp)
                     {
                         label103.Text = en_Lang.IsOver70_Set_Maximum;
                     }
@@ -2254,6 +2265,7 @@ namespace MyBot.Supporter.Main
                     tabPage2.Text = en_Lang.NetStatus;
                     tabPage9.Text = en_Lang.ErrorTab;
                     tabPage11.Text = en_Lang.MBResources;
+                    tabPage13.Text = en_Lang.CustomizeCodeBar;
                     ScreenOnBatterySize.Items[0] = en_Lang.Second;
                     ScreenOnBatterySize.Items[1] = en_Lang.Minute;
                     ScreenOnBatterySize.Items[2] = en_Lang.Hour;
@@ -2349,7 +2361,7 @@ namespace MyBot.Supporter.Main
                     label67.Text = cn_Lang.F1Label08;
                     label44.Text = cn_Lang.When_CPU;
                     label32.Text = cn_Lang.When_CPU + cn_Lang.IsNormal_Set_Maximum;
-                    if (comboBox1.SelectedIndex == 0)
+                    if (!ChangeUsingTemp)
                     {
                         label103.Text = cn_Lang.IsOver70_Set_Maximum;
                     }
@@ -2390,6 +2402,7 @@ namespace MyBot.Supporter.Main
                     tabPage2.Text = cn_Lang.NetStatus;
                     tabPage9.Text = cn_Lang.ErrorTab;
                     tabPage11.Text = cn_Lang.MBResources;
+                    tabPage13.Text = cn_Lang.CustomizeCodeBar;
                     ScreenOnBatterySize.Items[0] = cn_Lang.Second;
                     ScreenOnBatterySize.Items[1] = cn_Lang.Minute;
                     ScreenOnBatterySize.Items[2] = cn_Lang.Hour;
@@ -4280,13 +4293,17 @@ namespace MyBot.Supporter.Main
                     File.WriteAllText(@"error.log", exception.ToString());
                 }
             }
-            if(extrafunctions.Count > 0)
+            if(Database.extrafunctions.Count > 0)
             {
-                foreach (var func in extrafunctions)
+                foreach (var func in Database.extrafunctions)
                 {
-                    if (func.RunOnce())
+                    try
                     {
-                        func.function();
+                        func.Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        richTextBox4.AppendText(Environment.NewLine + ex.ToString());
                     }
                 }
             }
@@ -4972,16 +4989,7 @@ namespace MyBot.Supporter.Main
         {
             if(comboBox18.SelectedIndex == 1)
             {
-                ChangeUsingTemp = true;
-                switch (Database.Language)
-                {
-                    case "English":
-                        label103.Text = en_Lang.IsOver60C_Set_Maximum;
-                        break;
-                    case "Chinese":
-                        label103.Text = cn_Lang.IsOver60C_Set_Maximum;
-                        break;
-                }
+
             }
             else
             {

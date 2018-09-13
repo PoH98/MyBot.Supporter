@@ -84,16 +84,7 @@ namespace MyBot.Supporter.Main
                     {
                         if (!Bot.IsReceiving && API_Key.Length > 0)
                         {
-                            try
-                            {
                                 Bot.StartReceiving();
-                            }
-                            catch
-                            {
-                                API_Key = "";
-                                Bot.StopReceiving();
-                                Bot = null;
-                            }
 
                         }
                     }
@@ -104,7 +95,7 @@ namespace MyBot.Supporter.Main
         }
         public static async void BotMessageThreadStart()
         {
-            var proxy = new HttpToSocks5Proxy(Socks5ServerAddress, Socks5ServerPort);
+            HttpToSocks5Proxy proxy = new HttpToSocks5Proxy(Socks5ServerAddress, Socks5ServerPort);
             proxy.ResolveHostnamesLocally = true;
             if (removebug.ThreadState == System.Threading.ThreadState.Unstarted)
             {
@@ -172,6 +163,14 @@ namespace MyBot.Supporter.Main
                                     catch
                                     {
 
+                                    }
+                                }
+                                foreach(var extra in Database.extrafunctions)
+                                {
+                                    string text = extra.FixedTelegram();
+                                    if(text.Length > 0)
+                                    {
+                                        await Bot.SendTextMessageAsync(cid, text);
                                     }
                                 }
                                 runningcheckrespond = "";

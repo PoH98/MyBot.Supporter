@@ -134,6 +134,7 @@
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox6 = new System.Windows.Forms.RichTextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -142,6 +143,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl3.SuspendLayout();
@@ -188,6 +190,7 @@
             this.tabPage5.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -197,6 +200,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -1420,6 +1424,17 @@
             this.checkBox12.Text = "减少MyBot延时MOD";
             this.checkBox12.UseVisualStyleBackColor = true;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.webBrowser1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(694, 416);
+            this.tabPage4.TabIndex = 6;
+            this.tabPage4.Text = "Supporter Plugins";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.textBox6);
@@ -1433,8 +1448,8 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(694, 416);
-            this.tabPage3.TabIndex = 6;
-            this.tabPage3.Text = "完成注射！";
+            this.tabPage3.TabIndex = 7;
+            this.tabPage3.Text = "tabPage4";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // textBox6
@@ -1445,7 +1460,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(675, 86);
-            this.textBox6.TabIndex = 25;
+            this.textBox6.TabIndex = 32;
             this.textBox6.Text = "Waiting for input...";
             // 
             // comboBox1
@@ -1454,10 +1469,8 @@
             this.comboBox1.Location = new System.Drawing.Point(133, 66);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(109, 21);
-            this.comboBox1.TabIndex = 24;
+            this.comboBox1.TabIndex = 31;
             this.comboBox1.Text = "全部";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
             // 
             // label31
             // 
@@ -1465,7 +1478,7 @@
             this.label31.Location = new System.Drawing.Point(5, 69);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(122, 13);
-            this.label31.TabIndex = 23;
+            this.label31.TabIndex = 30;
             this.label31.Text = "选择要注射的Profiile：";
             // 
             // textBox1
@@ -1476,7 +1489,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(678, 156);
-            this.textBox1.TabIndex = 22;
+            this.textBox1.TabIndex = 29;
             this.textBox1.Text = "PoH98制作\r\n\r\n帮助：\r\n\r\n* MyBot注射器是强制调整MyBot的ini文件，因此可能出现错误！\r\n\r\n* 建议注射的MyBot为官方版本！\r\n\r\n*" +
     " 此注射器并不能取代MyBot本身！\r\n\r\n* 请注意注射完毕后MyBot的运行情况！";
             // 
@@ -1485,7 +1498,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(231, 7);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(216, 41);
-            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
             // 
             // button3
@@ -1493,20 +1506,27 @@
             this.button3.Location = new System.Drawing.Point(11, 346);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(337, 62);
-            this.button3.TabIndex = 20;
+            this.button3.TabIndex = 27;
             this.button3.Text = "取消";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(354, 347);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(335, 62);
-            this.button2.TabIndex = 19;
+            this.button2.TabIndex = 26;
             this.button2.Text = "注射MyBot";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(688, 410);
+            this.webBrowser1.TabIndex = 0;
             // 
             // MyBotSetter
             // 
@@ -1578,6 +1598,7 @@
             this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1678,14 +1699,7 @@
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.NumericUpDown numericUpDown73;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.RichTextBox textBox6;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.CheckBox checkBox14;
@@ -1701,5 +1715,14 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.RichTextBox textBox6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

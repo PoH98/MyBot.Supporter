@@ -12,11 +12,13 @@ using Microsoft.CSharp;
 using System.CodeDom.Compiler;
 using System.Text;
 using System.Reflection;
+using MyBot.Supporter.Plugin;
 
 namespace MyBot.Supporter.Main
 {
     public class Database //Save most public use values
     {
+        public static List<plugin> extrafunctions = new List<plugin>();
         //Networks
         public static bool SupporterUpdate;
         public static long Receive, Send, startr, starts;
@@ -44,6 +46,7 @@ namespace MyBot.Supporter.Main
         public static bool hide, hideEmulator, dock, OnBattery;
         public static string[] Profile;
         private static List<string> CustomizeCodes = new List<string>();
+        private static string FlushDNS = "ipconfig /flushdns";
         //Functions that seperated from original form to prevent crackers
         public static void WriteLog(string Log)
         {
@@ -70,7 +73,7 @@ namespace MyBot.Supporter.Main
                     {
                         WriteLog("Downloading Host");
                         WebClientOverride wc = new WebClientOverride();
-                        var temp = wc.DownloadData("");
+                        var temp = wc.DownloadData("https://github.com/PoH98/MyBot.Supporter/raw/master/hosts");
                         File.WriteAllBytes(Location + "hosts", temp);
                     }
                     catch
@@ -81,12 +84,15 @@ namespace MyBot.Supporter.Main
                 if(File.Exists(Location + "hosts"))
                 {
                     File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"drivers\etc\hosts"));
-                    File.Move(Location + "hosts", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"drivers\etc\hosts"));
+                    File.Copy(Location + "hosts", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), @"drivers\etc\hosts"));
+                    File.WriteAllText(Location + "flush.bat", FlushDNS);
                     ProcessStartInfo cmd = new ProcessStartInfo();
-                    cmd.FileName = "cmd.exe";
-                    cmd.Arguments = "ipconfig /flushdns";
+                    cmd.FileName = Location + "flush.bat";
+                    //cmd.Arguments = "/C ipconfig /flushdns";
                     cmd.CreateNoWindow = true;
                     cmd.WindowStyle = ProcessWindowStyle.Hidden;
+                    Process.Start(cmd);
+                    File.Delete(Location + "flush.bat");
                     WriteLog("Set Host Success");
                 }
             }
@@ -127,6 +133,14 @@ namespace MyBot.Supporter.Main
             try
             {
                 File.WriteAllLines(name + "hosts", DefaultHost);
+                File.WriteAllText(Location + "flush.bat", FlushDNS);
+                ProcessStartInfo cmd = new ProcessStartInfo();
+                cmd.FileName = Location + "flush.bat";
+                //cmd.Arguments = "/C ipconfig /flushdns";
+                cmd.CreateNoWindow = true;
+                cmd.WindowStyle = ProcessWindowStyle.Hidden;
+                Process.Start(cmd);
+                File.Delete(Location + "flush.bat");
                 WriteLog("Host set Success!");
             }
             catch(IOException)
@@ -453,7 +467,7 @@ namespace MyBot.Supporter.Main
             //Database.CustomizeCode(Reference, code, type, func, out error);
         }
     }
-    class Win32 //Win32 controllers, included power management, search for emulators, Get .NET versions and also taskbar hider
+    public class Win32 //Win32 controllers, included power management, search for emulators, Get .NET versions and also taskbar hider
     {
         internal struct LASTINPUTINFO
         {

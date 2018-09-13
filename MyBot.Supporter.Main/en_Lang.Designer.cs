@@ -349,6 +349,15 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Customize Plugins 的本地化字符串。
+        /// </summary>
+        internal static string CustomizeCodeBar {
+            get {
+                return ResourceManager.GetString("CustomizeCodeBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Detected customize MODs by injector, do you want to apply the MODs on the newer version of MyBot? (Warning! The newer version MyBot might not support the MOD and causing it to crush! You can reverse it using injector again if any bad things happen!) 的本地化字符串。
         /// </summary>
         internal static string CustomizeMODFound {
@@ -516,15 +525,6 @@ namespace MyBot.Supporter.Main {
         internal static string EarnedTrophyPH {
             get {
                 return ResourceManager.GetString("EarnedTrophyPH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        internal static string Earthquake {
-            get {
-                return ResourceManager.GetString("Earthquake", resourceCulture);
             }
         }
         
@@ -1080,7 +1080,7 @@ namespace MyBot.Supporter.Main {
         ///
         ///* You can download all the MyBot Supported Emulators by clicking &quot;Download Emulator&quot; button
         ///
-        ///* You can download AutoIT which needed [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///* You can download AutoIT which needed by MyBot fr [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string Help_Message2 {
             get {

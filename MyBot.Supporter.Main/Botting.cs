@@ -317,10 +317,16 @@ namespace MyBot.Supporter.Main
             {
                 try
                 {
-                    Process M = Process.GetProcessById(Main.Database.ID[botnum]);
-                    if (M.MainWindowHandle != IntPtr.Zero && Database.hWnd[botnum] == IntPtr.Zero)
+                    Process M = Process.GetProcessById(Database.ID[botnum]);
+                    string Title = M.MainWindowTitle;
+                    IntPtr compare = Win32.FindWindow(null, Title);
+                    IntPtr Main = M.MainWindowHandle;
+                    if(Main != IntPtr.Zero)
                     {
-                        Database.hWnd[botnum] = M.MainWindowHandle;
+                        if (Main == compare)
+                        {
+                            Database.hWnd[botnum] = Main;
+                        }
                     }
                     //IntPtr Render = IntPtr.Zero;
                     running = true;

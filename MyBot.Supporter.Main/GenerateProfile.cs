@@ -107,6 +107,10 @@ namespace MyBot.Supporter.Main
         {
             if(x < 15)
             {
+                if(Database.Bot[x] == "")
+                {
+                    this.Close();
+                }
                 if(Database.Bot[x] != null)
                 {
                     if (!Database.Bot[x].Contains("   "))
