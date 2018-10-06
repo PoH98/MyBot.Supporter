@@ -410,35 +410,7 @@ namespace MyBot.Supporter.Main
                             List<IntPtr> ChildWindows = new Win32(Database.hWnd[botnum]).GetAllChildHandles();
                             if (Child.Count > 8)
                             {
-                                if (Database.hideEmulator == true && Database.hide == true)
-                                {
-                                    if (MyBot_Child.Count < 7)
-                                    {
-                                        IntPtr Dock = Child[8];
-                                        if (Dock != IntPtr.Zero)
-                                        {
-                                            Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
-                                            Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
-                                        }
-                                    }
-                                    Win32.ShowWindow(Database.hWnd[botnum], 0);
 
-                                }
-                                else if (Database.dock == true && Database.hide == true)
-                                {
-                                    if (MyBot_Child.Count < 7)
-                                    {
-                                        IntPtr Dock = Child[8];
-                                        if (Dock != IntPtr.Zero)
-                                        {
-                                            Win32.PostMessage(Dock, 0x0201, 1, IntPtr.Zero);
-                                            Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
-                                        }
-                                    }
-                                    Win32.ShowWindow(Database.hWnd[botnum], 0);
-                                }
-                                else
-                                {
                                     if (Database.hide == true)
                                     {
                                         Win32.ShowWindow(Database.hWnd[botnum], 0);
@@ -470,19 +442,20 @@ namespace MyBot.Supporter.Main
                                                 Win32.PostMessage(Dock, 0x0202, 0, IntPtr.Zero);
                                             }
                                         }
-                                        if (Database.hideEmulator == true)
+                                        
+                                    
+                                 }
+                                if (Database.hideEmulator == true)
+                                {
+                                    const short SWP_NOZORDER = 0X4;
+                                    const int SWP_SHOWWINDOW = 0x0040;
+                                    const int SWP_NOSIZE = 0x0001;
+                                    foreach (var Android in Database.Emulator)
+                                    {
+                                        foreach (var Emulator in Process.GetProcessesByName(Android))
                                         {
-                                            const short SWP_NOZORDER = 0X4;
-                                            const int SWP_SHOWWINDOW = 0x0040;
-                                            const int SWP_NOSIZE = 0x0001;
-                                            foreach (var Android in Database.Emulator)
-                                            {
-                                                foreach (var Emulator in Process.GetProcessesByName(Android))
-                                                {
-                                                    var Handler = Emulator.MainWindowHandle;
-                                                    Win32.SetWindowPos(Handler, 0, -32000, -32000, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
-                                                }
-                                            }
+                                            var Handler = Emulator.MainWindowHandle;
+                                            Win32.SetWindowPos(Handler, 0, -32000, -32000, 0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_SHOWWINDOW);
                                         }
                                     }
                                 }
@@ -502,6 +475,26 @@ namespace MyBot.Supporter.Main
                                     }
 
                                 }
+                            }
+                            try
+                            {
+                                IntPtr dialog = Win32.FindWindow("#32770",null);
+                                Win32.STRINGBUFFER wintitle;
+                                Win32.GetWindowText(dialog, out wintitle, 256);
+                                String title = wintitle.szText;
+                                if (title.Length > 10)
+                                {
+                                    if (title.Contains("BroadcastEventWindow"))
+                                    {
+                                        Win32.SendMessage(dialog, 0x0010,0,null);
+                                        MainScreen.AutoIT++;
+                                    }
+                                }
+
+                            }
+                            catch
+                            {
+
                             }
                         }
                         catch (Exception ex)

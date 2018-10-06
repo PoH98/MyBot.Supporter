@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using SharpAdbClient;
 
 namespace MyBot.Supporter.Main
 {
@@ -418,19 +419,21 @@ namespace MyBot.Supporter.Main
                                 }
                                 break;
                             case "/capt":
-                                CaptureMyScreen();
+                                Image[] send = CaptureMyScreen();
                                 try
                                 {
-                                    if (File.Exists("Capture.jpg"))
+                                    if (send != null)
                                     {
                                         await Bot.SendChatActionAsync(cid, ChatAction.UploadPhoto);
-                                        const string file = @"Capture.jpg";
-                                        var fileName = file.Split(Path.DirectorySeparatorChar).Last();
-                                        using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+                                        foreach(var img in send)
                                         {
-                                            await Bot.SendPhotoAsync(cid, fileStream, "");
+                                            using (MemoryStream m = new MemoryStream())
+                                            {
+                                                img.Save(m, ImageFormat.Png);
+                                                m.Position = 0;
+                                                await Bot.SendPhotoAsync(cid, m, "");
+                                            }
                                         }
-                                        File.Delete(@"Capture.jpg");
                                     }
                                     else
                                     {
@@ -897,26 +900,58 @@ namespace MyBot.Supporter.Main
             SendMessage(hwnd, 0x000D, (IntPtr)sb.Capacity, sb);
             return sb.ToString();
         }
-        public static void CaptureMyScreen()
+        public static Image[] CaptureMyScreen()
         {
+            List<Image> captures = new List<Image>();
             try
             {
-                //Creating a new Bitmap object
-                Bitmap captureBitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-                Rectangle captureRectangle = Screen.PrimaryScreen.Bounds;
-                //Creating a New Graphics Object
-                Graphics captureGraphics = Graphics.FromImage(captureBitmap);
-                //Copying Image from The Screen
-                captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, 0, captureRectangle.Size);
-                captureBitmap.Save(@"Capture.jpg", ImageFormat.Jpeg);
+                AdbServer server = new AdbServer();
+                try
+                {
+                    string[] lines = File.ReadAllLines("Profile\\profile.ini");
+                    string path = null;
+                    foreach(var l in lines)
+                    {
+                        try
+                        {
+                            string[] split = l.Split('=');
+                            if (split[0].Contains("adb.path"))
+                            {
+                                path = split[1];
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                    if(path != null)
+                    {
+                        server.StartServer(path, restartServerIfNewer: false);
+                        List<DeviceData> Devices = AdbClient.Instance.GetDevices();
+                        foreach(var d in Devices)
+                        {
+                            if (d.ToString().Contains("127.0.0.1"))
+                            {
+                                captures.Add(AdbClient.Instance.GetFrameBufferAsync(d, CancellationToken.None).Result);
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
             }
             catch
             {
-                if (File.Exists(@"Capture.jpg"))
-                {
-                    File.Delete(@"Capture.jpg");
-                }
+                return null;
             }
+            if(captures.Count < 1)
+            {
+                captures = null;
+            }
+            return captures.ToArray();
         }
         #endregion
     }

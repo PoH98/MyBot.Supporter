@@ -1453,22 +1453,6 @@ namespace MyBot.Supporter.Main
                 Database.WriteLog("Waiting Tree Nodes Enter");
                 RefreshTreeNodes--;
             }
-            if (Database.Hour > 0 && Database.Hour < 8 && Win32.GetIdleTime() > 60000 && !File.Exists(Environment.CurrentDirectory + "\\MyBot_Supporter_MOD\\MBR Global Variables(directX).au3"))
-            {
-                if (!CloseLID.Checked)
-                {
-                    CloseLID.Checked = true; 
-                    AutoSet = true;
-                }
-            }
-            else
-            {
-                if (AutoSet)
-                {
-                    CloseLID.Checked = false;
-                    AutoSet = false;
-                }
-            }
             Database.WriteLog("Checking Power Status");
             if (SystemInformation.PowerStatus.BatteryChargeStatus != BatteryChargeStatus.NoSystemBattery)
             {

@@ -1080,7 +1080,7 @@ namespace MyBot.Supporter.Main {
         ///
         ///* You can download all the MyBot Supported Emulators by clicking &quot;Download Emulator&quot; button
         ///
-        ///* You can download AutoIT which needed by MyBot fr [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///* You can download AutoIT which needed [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string Help_Message2 {
             get {
