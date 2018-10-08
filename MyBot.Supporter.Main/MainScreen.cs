@@ -1342,7 +1342,7 @@ namespace MyBot.Supporter.Main
             {
                 richTextBox1.Visible = false;
                 Advance = false;
-                CPUTemp.Text = CPUT + " °C";
+                    CPUTemp.Text = CPUT + " °C";
                 if (CPUMaxTemp.Text != CPUTM + " °C")
                 {
                     CPUMaxTemp.Text = CPUTM + " °C";
@@ -2011,14 +2011,7 @@ namespace MyBot.Supporter.Main
             Database.WriteLog("CPU Monitor Start");
             computer.CPUEnabled = true;
             computer.RAMEnabled = true;
-            try
-            {
-                computer.Open();
-            }
-            catch
-            {
-
-            }
+            computer.Open();
             double highestV = 0;
             double highestT = 0;
             double highestC = 0;

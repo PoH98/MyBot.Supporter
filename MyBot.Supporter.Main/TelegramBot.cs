@@ -908,7 +908,7 @@ namespace MyBot.Supporter.Main
                 AdbServer server = new AdbServer();
                 try
                 {
-                    string[] lines = File.ReadAllLines("Profile\\profile.ini");
+                    string[] lines = File.ReadAllLines("Profiles\\profile.ini");
                     string path = null;
                     foreach(var l in lines)
                     {
@@ -925,10 +925,11 @@ namespace MyBot.Supporter.Main
 
                         }
                     }
-                    if(path != null)
+                    List<DeviceData> Devices = AdbClient.Instance.GetDevices();
+                    if (path != null && Devices.Count > 0)
                     {
-                        server.StartServer(path, restartServerIfNewer: false);
-                        List<DeviceData> Devices = AdbClient.Instance.GetDevices();
+                        server.StartServer(path, true);
+                        
                         foreach(var d in Devices)
                         {
                             if (d.ToString().Contains("127.0.0.1"))
