@@ -5024,6 +5024,9 @@ namespace MyBot.Supporter.Main
         {
             IsNewest = false;
             Database.WriteLog("Fetching Updates of MyBot.Supporter");
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = myFileVersionInfo.FileVersion;
             try
             {
                 Ping github = new Ping();
@@ -5087,9 +5090,6 @@ namespace MyBot.Supporter.Main
                     Database.WriteLog("Use Gitee for checking");
                     try
                     {
-                        Assembly assembly = Assembly.GetExecutingAssembly();
-                        FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-                        string version = myFileVersionInfo.FileVersion;
                         string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
                         WebClient wc = new WebClientOverride();
                         wc.Proxy = myProxy;

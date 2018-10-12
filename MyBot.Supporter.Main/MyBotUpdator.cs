@@ -5,6 +5,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using System.IO.Compression;
+using System.Text.RegularExpressions;
 
 namespace MyBot.Supporter.Main
 {
@@ -22,6 +23,7 @@ namespace MyBot.Supporter.Main
         {
             try
             {
+                NewestVersion = Regex.Replace(NewestVersion, @"\t|\n|\r", "");
                 string UpdateLink = "https://github.com/PoH98/MyBot.Supporter/releases/download/" + NewestVersion + "/MyBot.Supporter.Main.exe";
                 using (var client = new WebClientOverride())
                 {
