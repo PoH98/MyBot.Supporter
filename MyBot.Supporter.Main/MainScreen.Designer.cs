@@ -464,6 +464,7 @@
             this.stopBottingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.截图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBar2)).BeginInit();
@@ -5682,7 +5683,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.language语言ToolStripMenuItem});
+            this.language语言ToolStripMenuItem,
+            this.截图ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1135, 24);
@@ -5773,6 +5775,13 @@
             // 
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // 截图ToolStripMenuItem
+            // 
+            this.截图ToolStripMenuItem.Name = "截图ToolStripMenuItem";
+            this.截图ToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.截图ToolStripMenuItem.Text = "截图";
+            this.截图ToolStripMenuItem.Click += new System.EventHandler(this.截图ToolStripMenuItem_Click);
             // 
             // MainScreen
             // 
@@ -6410,5 +6419,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TabPage tabPage13;
         private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.ToolStripMenuItem 截图ToolStripMenuItem;
     }
 }

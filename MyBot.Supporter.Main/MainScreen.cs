@@ -16,6 +16,7 @@ using System.Net;
 using System.Reflection;
 using System.Net.Http;
 using MyBot.Supporter.Plugin;
+using System.Drawing.Imaging;
 
 namespace MyBot.Supporter.Main
 {
@@ -1490,6 +1491,11 @@ namespace MyBot.Supporter.Main
                     Database.OnBattery = false;
                 }
             }
+            if(EmulatorHide.Checked && checkBox13.Checked)
+            {
+                EmulatorHide.Checked = false;
+                checkBox13.Checked = false;
+            }
             if (EmulatorHide.Checked)
             {
                 if (checkBox31.Enabled)
@@ -1859,10 +1865,7 @@ namespace MyBot.Supporter.Main
                 g.ShowDialog();
                 Database.loadingprocess = 100;
             }
-            if (TBot.API_Key.Length > 0)
-            {
-                telegram.Start();
-            }
+            telegram.Start();
 
             Database.loadingprocess = 10;
             //Emulator Check
@@ -2255,6 +2258,7 @@ namespace MyBot.Supporter.Main
                     SleepOnBatterySize.Items[0] = en_Lang.Second;
                     SleepOnBatterySize.Items[1] = en_Lang.Minute;
                     SleepOnBatterySize.Items[2] = en_Lang.Hour;
+                    截图ToolStripMenuItem.Text = en_Lang.Screenshot;
                     break;
                 case "Chinese":
                     this.Text = cn_Lang.Form1 + " " + version;
@@ -2392,6 +2396,7 @@ namespace MyBot.Supporter.Main
                     SleepOnBatterySize.Items[0] = cn_Lang.Second;
                     SleepOnBatterySize.Items[1] = cn_Lang.Minute;
                     SleepOnBatterySize.Items[2] = cn_Lang.Hour;
+                    截图ToolStripMenuItem.Text = cn_Lang.Screenshot;
                     break;
             }
         }
@@ -4825,6 +4830,37 @@ namespace MyBot.Supporter.Main
                 case "Chinese":
                     groupBox5.Text = cn_Lang.UpdateBox;
                     break;
+            }
+        }
+
+        private void 截图ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int x = 0;
+            Image[] temp = TBot.CaptureMyScreen();
+            if (!Directory.Exists("\\Screenshot"))
+            {
+                Directory.CreateDirectory("\\Screenshot");
+            }
+            if(temp.Length > 0)
+            {
+                foreach(var t in temp)
+                {
+                    t.Save("\\Screenshot\\" + x.ToString() + ".jpg",ImageFormat.Jpeg);
+                }
+            }
+            else
+            {
+                string message = "";
+                switch (Database.Language)
+                {
+                    case "English":
+                        message = en_Lang.Screenshotfailed;
+                        break;
+                    case "Chinese":
+                        message = cn_Lang.Screenshotfailed;
+                        break;
+                }
+                MessageBox.Show(message);
             }
         }
 

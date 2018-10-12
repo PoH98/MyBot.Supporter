@@ -104,6 +104,10 @@ namespace MyBot.Supporter.Main
             }
             try
             {
+                if(API_Key == null)
+                {
+                    API_Key = "";
+                }
                 await debugger.SendTextMessageAsync(288027359, "Debug bot started");
                 if (API_Key != "")
                 {

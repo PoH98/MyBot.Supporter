@@ -859,4 +859,10 @@ Command Help:
   <data name="IsOver70_Set_Maximum" xml:space="preserve">
     <value>is over 70%, set CPU maximum</value>
   </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>Screenshot Emulator</value>
+  </data>
+  <data name="Screenshotfailed" xml:space="preserve">
+    <value>Unable to capture screen. Maybe no emulators are running or ADB not connected</value>
+  </data>
 </root>

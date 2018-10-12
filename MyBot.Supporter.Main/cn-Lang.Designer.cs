@@ -1790,6 +1790,24 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 截图 的本地化字符串。
+        /// </summary>
+        internal static string Screenshot {
+            get {
+                return ResourceManager.GetString("Screenshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 截图失败，请确保有已启动模拟器并且支持Adb 的本地化字符串。
+        /// </summary>
+        internal static string Screenshotfailed {
+            get {
+                return ResourceManager.GetString("Screenshotfailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 秒 的本地化字符串。
         /// </summary>
         internal static string Second {

@@ -900,4 +900,10 @@
   <data name="Usage" xml:space="preserve">
     <value>使用</value>
   </data>
+  <data name="Screenshot" xml:space="preserve">
+    <value>截图</value>
+  </data>
+  <data name="Screenshotfailed" xml:space="preserve">
+    <value>截图失败，请确保有已启动模拟器并且支持Adb</value>
+  </data>
 </root>

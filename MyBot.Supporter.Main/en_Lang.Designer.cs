@@ -1712,6 +1712,24 @@ namespace MyBot.Supporter.Main {
         }
         
         /// <summary>
+        ///   查找类似 Screenshot Emulator 的本地化字符串。
+        /// </summary>
+        internal static string Screenshot {
+            get {
+                return ResourceManager.GetString("Screenshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Unable to capture screen. Maybe no emulators are running or ADB not connected 的本地化字符串。
+        /// </summary>
+        internal static string Screenshotfailed {
+            get {
+                return ResourceManager.GetString("Screenshotfailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 S 的本地化字符串。
         /// </summary>
         internal static string Second {

@@ -18,9 +18,9 @@ namespace MyBot.Supporter.Main
         public static TimeSpan[] End;
         static TimeSpan Now;
         public static bool[] ReportedClosed;
-        public static int[] Gold,Elixir,DarkElixir,Trophy;
         public static int[] Refresh;
         public static int ImgLoc;
+        public static int[] Gold, Elixir, DarkElixir, Trophy;
         //public static int[] Townhall;
         public static void Bot()
         {
@@ -514,16 +514,16 @@ namespace MyBot.Supporter.Main
                                 Database.WriteLog("Gold: " + goldtemp);
                                 if (goldtemp.Length > 0)
                                 {
-                                    Gold[botnum] = Convert.ToInt32(goldtemp);
+                                    Botting.Gold[botnum] = Convert.ToInt32(goldtemp);
                                 }
                                 else
                                 {
-                                    Gold[botnum] = 0;
+                                    Botting.Gold[botnum] = 0;
                                 }
                             }
                             catch
                             {
-                                Gold[botnum] = 0;
+                                Botting.Gold[botnum] = 0;
                             }
                             try
                             {
@@ -531,12 +531,12 @@ namespace MyBot.Supporter.Main
                                 Database.WriteLog("Elixir: " + elixirtemp);
                                 if (elixirtemp.Length > 0)
                                 {
-                                    Elixir[botnum] = Convert.ToInt32(elixirtemp);
+                                    Botting.Elixir[botnum] = Convert.ToInt32(elixirtemp);
                                 }
                             }
                             catch
                             {
-                                Elixir[botnum] = 0;
+                                Botting.Elixir[botnum] = 0;
                             }
                             try
                             {
@@ -544,12 +544,12 @@ namespace MyBot.Supporter.Main
                                 Database.WriteLog("Dark Elixir: " + darkelixirtemp);
                                 if (darkelixirtemp.Length > 0)
                                 {
-                                    DarkElixir[botnum] = Convert.ToInt32(darkelixirtemp);
+                                    Botting.DarkElixir[botnum] = Convert.ToInt32(darkelixirtemp);
                                 }
                             }
                             catch
                             {
-                                DarkElixir[botnum] = 0;
+                                Botting.DarkElixir[botnum] = 0;
                             }
                             try
                             {
@@ -557,12 +557,12 @@ namespace MyBot.Supporter.Main
                                 Database.WriteLog("Trophy: " + trophytemp);
                                 if (trophytemp.Length > 0)
                                 {
-                                    Trophy[botnum] = Convert.ToInt32(trophytemp);
+                                    Botting.Trophy[botnum] = Convert.ToInt32(trophytemp);
                                 }
                             }
                             catch
                             {
-                                Trophy[botnum] = 0;
+                                Botting.Trophy[botnum] = 0;
                             }
                             Refresh[botnum] = 0;
                         }
