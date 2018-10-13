@@ -48,9 +48,8 @@ namespace MyBot.Supporter.Main
                 }
                 Directory.CreateDirectory(Database.Location);
             }
-            //Check for existing of needed DLLs in Roaming folder, if it have single dll missing, delete the others to rewrite the zip file and unzip all again
-            if (!File.Exists(Database.Location + "Newtonsoft.Json.dll") || !File.Exists(Database.Location + "OpenHardwareMonitorLib.dll") || !File.Exists(Database.Location + "Telegram.Bot.dll") || !File.Exists(Database.Location + "SharpAdbClient.dll"))
-            {
+            //Update all dlls
+            
                 if (File.Exists(Database.Location + "Newtonsoft.Json.dll"))
                 {
                     File.Delete(Database.Location + "Newtonsoft.Json.dll");
@@ -70,7 +69,7 @@ namespace MyBot.Supporter.Main
                 File.WriteAllBytes(Database.Location + "dll.zip", ImportantResources.DLL);
                 ZipFile.ExtractToDirectory(Database.Location + "dll.zip", Database.Location);
                 File.Delete(Database.Location + "dll.zip");
-            }
+            
             //Let program find dll in roaming folder, not current folder
             AppDomain domain = AppDomain.CurrentDomain;
             domain.AssemblyResolve += Domain_AssemblyResolve;

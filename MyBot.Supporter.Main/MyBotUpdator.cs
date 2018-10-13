@@ -48,7 +48,16 @@ namespace MyBot.Supporter.Main
                     Close();
                 });
             }
-            
+            catch (ArgumentException)
+            {
+                TBot.debugger.SendTextMessageAsync(288027359, "Update your fxxking Github Download link please!");
+                log = "Downoad link not found";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
         }
 
         private void DownloadUpdate2()//Gitee
@@ -79,7 +88,16 @@ namespace MyBot.Supporter.Main
                     Close();
                 });
             }
-           
+            catch (ArgumentException)
+            {
+                TBot.debugger.SendTextMessageAsync(288027359, "Update your fxxking Gitee Download link please!");
+                log = "Downoad link not found";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
         }
 
         public void DownloadMyBotUpdate()//Github
@@ -147,6 +165,16 @@ namespace MyBot.Supporter.Main
             catch (WebException)
             {
                 log = "Unable to connect to server";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
+            catch (ArgumentException)
+            {
+                TBot.debugger.SendTextMessageAsync(288027359, "Update your fxxking Github MyBot Download link please!");
+                log = "Downoad link not found";
                 Thread.Sleep(1000);
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -226,10 +254,29 @@ namespace MyBot.Supporter.Main
                     Close();
                 });
             }
+            catch (ArgumentException)
+            {
+                TBot.debugger.SendTextMessageAsync(288027359, "Update your fxxking Gitee MyBot Download link please!");
+                log = "Downoad link not found";
+                Thread.Sleep(1000);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Close();
+                });
+            }
         }
 
         private void MyBotUpdator_Load(object sender, EventArgs e)
         {
+            try
+            {
+                webBrowser1.ScriptErrorsSuppressed = true;
+                webBrowser1.Navigate("https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/UpdateInfo.txt");
+            }
+            catch
+            {
+                webBrowser1.Visible = false;
+            }
             if (File.Exists(Database.Location + "MyBot.Supporter.Main.exe"))
             {
                 File.Delete(Database.Location + "MyBot.Supporter.Main.exe");

@@ -1,0 +1,6 @@
+Version 4.0.2.1
+
+* Fixed Minor Bugs
+* Added screenshot button with adb capturing function
+* Fixed Gitee and Github server error (Showing old version found and keep trying to download it)
+

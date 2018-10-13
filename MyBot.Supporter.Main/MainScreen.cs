@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Net.Http;
 using MyBot.Supporter.Plugin;
 using System.Drawing.Imaging;
+using System.Text.RegularExpressions;
 
 namespace MyBot.Supporter.Main
 {
@@ -1664,7 +1665,7 @@ namespace MyBot.Supporter.Main
             notifyIcon1.Icon = Icon;
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            version = myFileVersionInfo.FileVersion;
+            version = Regex.Replace(myFileVersionInfo.FileVersion, @"\t|\n|\r", "");
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Supporter = false;
@@ -5024,9 +5025,6 @@ namespace MyBot.Supporter.Main
         {
             IsNewest = false;
             Database.WriteLog("Fetching Updates of MyBot.Supporter");
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            string version = myFileVersionInfo.FileVersion;
             try
             {
                 Ping github = new Ping();
@@ -5039,8 +5037,8 @@ namespace MyBot.Supporter.Main
                         string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
                         WebClient wc = new WebClientOverride();
                         wc.Proxy = myProxy;
-                        MyBotUpdator.NewestVersion = wc.DownloadString(new Uri(versionfile));
-                        if (version != MyBotUpdator.NewestVersion)
+                        MyBotUpdator.NewestVersion = Regex.Replace(wc.DownloadString(new Uri(versionfile)), @"\t|\n|\r", "") ;
+                        if (!version.Contains( MyBotUpdator.NewestVersion))
                         {
                             if (Run)
                             {
@@ -5093,8 +5091,8 @@ namespace MyBot.Supporter.Main
                         string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
                         WebClient wc = new WebClientOverride();
                         wc.Proxy = myProxy;
-                        MyBotUpdator.NewestVersion = wc.DownloadString(new Uri(versionfile));
-                        if (version != MyBotUpdator.NewestVersion)
+                        MyBotUpdator.NewestVersion = Regex.Replace(wc.DownloadString(new Uri(versionfile)), @"\t|\n|\r", "");
+                        if (!version.Contains(MyBotUpdator.NewestVersion))
                         {
                             if (Run)
                             {
@@ -5108,13 +5106,13 @@ namespace MyBot.Supporter.Main
                             switch (Database.Language)
                             {
                                 case "English":
-                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / Update Available: " + MyBotUpdator.NewestVersion));
+                                    this.Invoke(new Action(() => Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion));
                                     button1.Invoke(new Action(() => button1.Enabled = false));
                                     button1.Invoke(new Action(() => button1.Text = "Updating"));
                                     button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
                                     break;
                                 case "Chinese":
-                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / 可用升级: " + MyBotUpdator.NewestVersion));
+                                    this.Invoke(new Action(() => Text = Text + " / 可用升级: " + MyBotUpdator.NewestVersion));
                                     button1.Invoke(new Action(() => button1.Enabled = false));
                                     button1.Invoke(new Action(() => button1.Text = "正在更新"));
                                     button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
