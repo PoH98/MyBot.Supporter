@@ -34,14 +34,14 @@ namespace MyBot.Supporter.Main
         static Thread send = new Thread(ReportError);
         private int size;
         static List<string> TreeNode = new List<string>();
-        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, Advance, ResetUI,ChangeUsingTemp, Updates, UpdateMB, IsNewest;
+        public static bool RunningCheckCompleted, Run, Supporter, AutoSet, Advance, ResetUI, ChangeUsingTemp, Updates, UpdateMB, IsNewest;
         private static string CPUN;
         private static string[] AdvanceCPU = { };
         private static double CPUTM, CPUFM, CPUF, CPUV, CPUT;
         private static int CPUL, RAM, RefreshTreeNodes, NoNet;
         public static int AutoIT;
         private static string SelectedCPUV, SelectedCPUF, SelectedCPUT, SelectedRAML, SelectedCPUL;
-        
+
         protected static string version;
         private static WebProxy myProxy = new WebProxy();
         public MainScreen()
@@ -133,7 +133,7 @@ namespace MyBot.Supporter.Main
                     switch (Database.Language)
                     {
                         case "Chinese":
-                            TBot.runningcheckrespond += "\n" + cn_Lang.CPUName+": "+ CPUN + " \n" + cn_Lang.CPUTemp + ": " + CPUT + "°C \n" + cn_Lang.CPUPower + ": " + CPUV.ToString("0.00") + "W \n" + cn_Lang.CPUFrequency + ": " + CPUF.ToString("0.00") + "Ghz \n" + cn_Lang.CPUMaxTemp + ": " + CPUTM + "°C";
+                            TBot.runningcheckrespond += "\n" + cn_Lang.CPUName + ": " + CPUN + " \n" + cn_Lang.CPUTemp + ": " + CPUT + "°C \n" + cn_Lang.CPUPower + ": " + CPUV.ToString("0.00") + "W \n" + cn_Lang.CPUFrequency + ": " + CPUF.ToString("0.00") + "Ghz \n" + cn_Lang.CPUMaxTemp + ": " + CPUTM + "°C";
                             break;
                         case "English":
                             TBot.runningcheckrespond += "\n" + en_Lang.CPUName + ": " + CPUN + " \n" + en_Lang.CPUTemp + ": " + CPUT + "°C \n" + en_Lang.CPUPower + ": " + CPUV.ToString("0.00") + "W \n" + en_Lang.CPUFrequency + ": " + CPUF.ToString("0.00") + "Ghz \n" + en_Lang.CPUMaxTemp + ": " + CPUTM + "°C";
@@ -359,7 +359,7 @@ namespace MyBot.Supporter.Main
                 }
                 foreach (var Android in Database.Emulator)
                 {
-                    if(Android != null)
+                    if (Android != null)
                     {
                         if (Android.Length > 0)
                         {
@@ -1260,11 +1260,11 @@ namespace MyBot.Supporter.Main
                 }
                 Database.WriteLog("Result: " + TBot.respond);
             }
-            foreach(var extra in Database.extrafunctions)
+            foreach (var extra in Database.extrafunctions)
             {
                 try
                 {
-                    if(extra.InstantTelegram() != null)
+                    if (extra.InstantTelegram() != null)
                     {
                         string text = extra.InstantTelegram();
                         if (text.Length > 0)
@@ -1273,11 +1273,11 @@ namespace MyBot.Supporter.Main
                         }
                     }
                 }
-                catch(NullReferenceException)
+                catch (NullReferenceException)
                 {
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     richTextBox4.AppendText(Environment.NewLine + ex.ToString());
                 }
@@ -1313,7 +1313,7 @@ namespace MyBot.Supporter.Main
                         }
                         try
                         {
-                             TBot.Bot.SendTextMessageAsync(TBot.cid, alert);
+                            TBot.Bot.SendTextMessageAsync(TBot.cid, alert);
                         }
                         catch
                         {
@@ -1344,7 +1344,7 @@ namespace MyBot.Supporter.Main
             {
                 richTextBox1.Visible = false;
                 Advance = false;
-                    CPUTemp.Text = CPUT + " °C";
+                CPUTemp.Text = CPUT + " °C";
                 if (CPUMaxTemp.Text != CPUTM + " °C")
                 {
                     CPUMaxTemp.Text = CPUTM + " °C";
@@ -1375,8 +1375,8 @@ namespace MyBot.Supporter.Main
                 progressBar2.Value = RAM; //Setting tracebar value for RAM
                 progressBar1.Value = CPUL; //Setting tracebar value for CPU
             }
-            
-             Task.Delay(10);
+
+            Task.Delay(10);
             if (HourSetting.Checked)
             {
                 Time.Text = DateTime.Now.ToString("hh:mm:ss tt");
@@ -1385,61 +1385,61 @@ namespace MyBot.Supporter.Main
             {
                 Time.Text = DateTime.Now.ToString("HH:mm:ss");
             }
-                if (!Database.Network)
+            if (!Database.Network)
+            {
+                if (Received.BackColor != Color.LightYellow)
                 {
-                    if (Received.BackColor != Color.LightYellow)
+                    Received.BackColor = Color.Pink;
+                    Sent.BackColor = Color.Pink;
+                    UpSpeed.BackColor = Color.Pink;
+                    DownSpeed.BackColor = Color.Pink;
+                    NetworkName.BackColor = Color.Pink;
+                }
+                switch (Database.Language)
+                {
+                    case "English":
+                        Received.Text = en_Lang.NoNetwork;
+                        Sent.Text = en_Lang.NoNetwork;
+                        UpSpeed.Text = en_Lang.NoNetwork;
+                        DownSpeed.Text = en_Lang.NoNetwork;
+                        NetworkName.Text = string.Empty;
+                        break;
+                    case "Chinese":
+                        Received.Text = cn_Lang.NoNetwork;
+                        Sent.Text = cn_Lang.NoNetwork;
+                        UpSpeed.Text = cn_Lang.NoNetwork;
+                        DownSpeed.Text = cn_Lang.NoNetwork;
+                        NetworkName.Text = string.Empty;
+                        break;
+                }
+            }
+            else
+            {
+                if (Received.BackColor != Color.LightYellow)
+                {
+                    if (Database.Receive > 0 && Database.Send > 0)
                     {
-                        Received.BackColor = Color.Pink;
-                        Sent.BackColor = Color.Pink;
-                        UpSpeed.BackColor = Color.Pink;
-                        DownSpeed.BackColor = Color.Pink;
-                        NetworkName.BackColor = Color.Pink;
+                        Received.BackColor = Color.LightGreen;
+                        Sent.BackColor = Color.LightGreen;
+                        UpSpeed.BackColor = Color.LightGreen;
+                        DownSpeed.BackColor = Color.LightGreen;
+                        NetworkName.BackColor = Color.LightGreen;
                     }
-                    switch (Database.Language)
+                    else
                     {
-                        case "English":
-                            Received.Text = en_Lang.NoNetwork;
-                            Sent.Text = en_Lang.NoNetwork;
-                            UpSpeed.Text = en_Lang.NoNetwork;
-                            DownSpeed.Text = en_Lang.NoNetwork;
-                            NetworkName.Text = string.Empty;
-                            break;
-                        case "Chinese":
-                            Received.Text = cn_Lang.NoNetwork;
-                            Sent.Text = cn_Lang.NoNetwork;
-                            UpSpeed.Text = cn_Lang.NoNetwork;
-                            DownSpeed.Text = cn_Lang.NoNetwork;
-                            NetworkName.Text = string.Empty;
-                            break;
+                        Received.BackColor = Color.LightCyan;
+                        Sent.BackColor = Color.LightCyan;
+                        UpSpeed.BackColor = Color.LightCyan;
+                        DownSpeed.BackColor = Color.LightCyan;
+                        NetworkName.BackColor = Color.LightCyan;
                     }
                 }
-                else
-                {
-                    if (Received.BackColor != Color.LightYellow)
-                    {
-                        if (Database.Receive > 0 && Database.Send > 0)
-                        {
-                            Received.BackColor = Color.LightGreen;
-                            Sent.BackColor = Color.LightGreen;
-                            UpSpeed.BackColor = Color.LightGreen;
-                            DownSpeed.BackColor = Color.LightGreen;
-                            NetworkName.BackColor = Color.LightGreen;
-                        }
-                        else
-                        {
-                            Received.BackColor = Color.LightCyan;
-                            Sent.BackColor = Color.LightCyan;
-                            UpSpeed.BackColor = Color.LightCyan;
-                            DownSpeed.BackColor = Color.LightCyan;
-                            NetworkName.BackColor = Color.LightCyan;
-                        }
-                    }
-                    NetworkName.Text = Database.NetName;
-                    Received.Text = Database.Receive_Print.ToString("0.000 ") + Database.Receive_size;
-                    Sent.Text = Database.Send_Print.ToString("0.000 ") + Database.Send_size;
-                    UpSpeed.Text = Database.shows.ToString("0.00 ") + Database.ssize;
-                    DownSpeed.Text = Database.showr.ToString("0.00 ") + Database.rsize;
-                }
+                NetworkName.Text = Database.NetName;
+                Received.Text = Database.Receive_Print.ToString("0.000 ") + Database.Receive_size;
+                Sent.Text = Database.Send_Print.ToString("0.000 ") + Database.Send_size;
+                UpSpeed.Text = Database.shows.ToString("0.00 ") + Database.ssize;
+                DownSpeed.Text = Database.showr.ToString("0.00 ") + Database.rsize;
+            }
         }
         private void timer2_Tick(object sender, EventArgs e)//Timer that runs after botting started, used to set PC environment system and watchdog of MB
         {
@@ -1492,7 +1492,7 @@ namespace MyBot.Supporter.Main
                     Database.OnBattery = false;
                 }
             }
-            if(EmulatorHide.Checked && checkBox13.Checked)
+            if (EmulatorHide.Checked && checkBox13.Checked)
             {
                 EmulatorHide.Checked = false;
                 checkBox13.Checked = false;
@@ -1530,7 +1530,7 @@ namespace MyBot.Supporter.Main
                 }
             }
             Database.WriteLog("Quota Checking");
-            if(Database.Limit > 524288000)
+            if (Database.Limit > 524288000)
             {
                 if (Database.Limit <= Database.Receive + Database.Send) //Close all program that related to MyBot if Quota Limit Reached
                 {
@@ -1566,7 +1566,7 @@ namespace MyBot.Supporter.Main
             {
                 Database.Net_Error -= 1; //Check the program had been started for 10 sec over
             }
-            if(Database.extrafunctions.Count > 0)
+            if (Database.extrafunctions.Count > 0)
             {
                 foreach (var func in Database.extrafunctions)
                 {
@@ -1580,61 +1580,61 @@ namespace MyBot.Supporter.Main
                                 richTextBox4.AppendText(Environment.NewLine + func.WriteLog());
                             }
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             richTextBox4.AppendText(Environment.NewLine + ex.ToString());
                         }
                     }
                 }
             }
-           
+
             //if (error.Length > 0)
             //{
-              //  richTextBox4.AppendText(Environment.NewLine + error);
-              //  error = "";
+            //  richTextBox4.AppendText(Environment.NewLine + error);
+            //  error = "";
             //}
         }
 
         private static void ReportError()
         {
-                if (File.Exists("error.log"))
+            if (File.Exists("error.log"))
+            {
+                FileInfo file = new FileInfo("error.log");
+                try
                 {
-                    FileInfo file = new FileInfo("error.log");
+                    TBot.DebugBot(file.FullName);
+                }
+                catch
+                {
+
+                }
+                FileStream stream = null;
+                while (stream == null && File.Exists("error.log"))
+                {
                     try
                     {
-                        TBot.DebugBot(file.FullName);
+                        stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                     }
-                    catch
+                    catch (IOException)
                     {
 
                     }
-                    FileStream stream = null;
-                    while (stream == null && File.Exists("error.log"))
+                    finally
                     {
-                        try
-                        {
-                            stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                        }
-                        catch (IOException)
-                        {
-
-                        }
-                        finally
-                        {
-                            if (stream != null)
-                                stream.Close();
-                        }
-                    }
-                    string filename = "Sended_On_" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "." + DateTime.Now.Second + ".log";
-                    if (!Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error"))
-                    {
-                        Directory.CreateDirectory(Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error");
-                    }
-                    if (File.Exists("error.log"))
-                    {
-                        File.Move("error.log", Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error\\" + filename);
+                        if (stream != null)
+                            stream.Close();
                     }
                 }
+                string filename = "Sended_On_" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "." + DateTime.Now.Second + ".log";
+                if (!Directory.Exists(Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error"))
+                {
+                    Directory.CreateDirectory(Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error");
+                }
+                if (File.Exists("error.log"))
+                {
+                    File.Move("error.log", Environment.CurrentDirectory + "\\MyBot_Suporter_Archived_Error\\" + filename);
+                }
+            }
         }
         private void startBottingToolStripMenuItem_Click(object sender, EventArgs e)//Notification icon function
         {
@@ -1731,7 +1731,7 @@ namespace MyBot.Supporter.Main
                     g.Show();
                     File.WriteAllLines(Database.Location + "botsave", Database.Bot);
                 }
-                
+
                 Database.Bot = File.ReadAllLines(Database.Location + "botsave");
             }
             catch (Exception ex)
@@ -1803,7 +1803,7 @@ namespace MyBot.Supporter.Main
                 {
                     Database.Bot[x] = "";
                 }
-                if(x < 15 && Bot != temp)
+                if (x < 15 && Bot != temp)
                 {
                     Equal = false;
                 }
@@ -1931,7 +1931,7 @@ namespace MyBot.Supporter.Main
             {
                 if (nic.OperationalStatus == OperationalStatus.Up)
                 {
-                    if(nic.Name != "Loopback Pseudo-Interface 1")
+                    if (nic.Name != "Loopback Pseudo-Interface 1")
                     {
                         Database.Network = true;
                         Database.Receive = nic.GetIPStatistics().BytesReceived; //Get Received nework data volume
@@ -2105,7 +2105,7 @@ namespace MyBot.Supporter.Main
                     }
                 }
             }
-            if(Database.extrafunctions.Count == 0)
+            if (Database.extrafunctions.Count == 0)
             {
                 richTextBox4.AppendText(Environment.NewLine + "No Customize Plugins found, ignoring...");
             }
@@ -2205,7 +2205,7 @@ namespace MyBot.Supporter.Main
                     label67.Text = en_Lang.F1Label08;
                     label44.Text = en_Lang.When_CPU;
                     label32.Text = en_Lang.When_CPU + en_Lang.IsNormal_Set_Maximum;
-                    if(!ChangeUsingTemp)
+                    if (!ChangeUsingTemp)
                     {
                         label103.Text = en_Lang.IsOver70_Set_Maximum;
                     }
@@ -3687,7 +3687,7 @@ namespace MyBot.Supporter.Main
                             Database.Time[x] = "11";
                         }
                     }
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -4276,7 +4276,7 @@ namespace MyBot.Supporter.Main
                     File.WriteAllText(@"error.log", exception.ToString());
                 }
             }
-            if(Database.extrafunctions.Count > 0)
+            if (Database.extrafunctions.Count > 0)
             {
                 foreach (var func in Database.extrafunctions)
                 {
@@ -4788,7 +4788,7 @@ namespace MyBot.Supporter.Main
                     groupBox5.Text = en_Lang.UpdateBox;
                     break;
                 case "Chinese":
-                    groupBox5.Text =cn_Lang.UpdateBox;
+                    groupBox5.Text = cn_Lang.UpdateBox;
                     break;
             }
         }
@@ -4842,11 +4842,11 @@ namespace MyBot.Supporter.Main
             {
                 Directory.CreateDirectory("\\Screenshot");
             }
-            if(temp.Length > 0)
+            if (temp.Length > 0)
             {
-                foreach(var t in temp)
+                foreach (var t in temp)
                 {
-                    t.Save("\\Screenshot\\" + x.ToString() + ".jpg",ImageFormat.Jpeg);
+                    t.Save("\\Screenshot\\" + x.ToString() + ".jpg", ImageFormat.Jpeg);
                 }
             }
             else
@@ -5001,7 +5001,7 @@ namespace MyBot.Supporter.Main
 
         private void comboBox18_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox18.SelectedIndex == 1)
+            if (comboBox18.SelectedIndex == 1)
             {
 
             }
@@ -5018,7 +5018,7 @@ namespace MyBot.Supporter.Main
                         break;
                 }
             }
-            
+
         }
 
         private void Updator()
@@ -5027,118 +5027,68 @@ namespace MyBot.Supporter.Main
             Database.WriteLog("Fetching Updates of MyBot.Supporter");
             try
             {
-                Ping github = new Ping();
-                var respond = github.Send("www.github.com").Status;
-                if (respond == IPStatus.Success) //Github is usable
+                Database.WriteLog("Use Github for checking");
+                try
                 {
-                    Database.WriteLog("Use Github for checking");
-                    try
+                    string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
+                    WebClient wc = new WebClientOverride();
+                    wc.Proxy = myProxy;
+                    MyBotUpdator.NewestVersion = Regex.Replace(wc.DownloadString(new Uri(versionfile)), @"\t|\n|\r", "");
+                    if (!version.Contains(MyBotUpdator.NewestVersion))
                     {
-                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
-                        WebClient wc = new WebClientOverride();
-                        wc.Proxy = myProxy;
-                        MyBotUpdator.NewestVersion = Regex.Replace(wc.DownloadString(new Uri(versionfile)), @"\t|\n|\r", "") ;
-                        if (!version.Contains( MyBotUpdator.NewestVersion))
+                        if (Run)
                         {
-                            if (Run)
-                            {
-                                object sender = new object();
-                                EventArgs e = new EventArgs();
-                                button1_Click(sender, e);
-                                Run = false;
-                                Pause = true;
-                            }
-                            Updates = true;
-                            switch (Database.Language)
-                            {
-                                case "English":
-                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / Update Available: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                                case "Chinese":
-                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / 可用升级: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                            }
-                            MyBotUpdator.Github = true;
-                            Database.SupporterUpdate = true;
-                            this.Invoke((MethodInvoker)delegate ()
-                            {
-                                MyBotUpdator update = new MyBotUpdator();
-                                update.FormClosing += Update_FormClosing;
-                                update.ShowDialog();
-                            });
+                            object sender = new object();
+                            EventArgs e = new EventArgs();
+                            button1_Click(sender, e);
+                            Run = false;
+                            Pause = true;
                         }
-                        else
+                        Updates = true;
+                        switch (Database.Language)
                         {
-                            IsNewest = true;
+                            case "English":
+                                this.Invoke(new Action(() => Text = en_Lang.Form1 + " "+ version+ " / Update Available: " + MyBotUpdator.NewestVersion));
+                                button1.Invoke(new Action(() => button1.Enabled = false));
+                                button1.Invoke(new Action(() => button1.Text = "Updating"));
+                                button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                break;
+                            case "Chinese":
+                                this.Invoke(new Action(() => Text = cn_Lang.Form1 +" "+ version+ " / 可用升级: " + MyBotUpdator.NewestVersion));
+                                button1.Invoke(new Action(() => button1.Enabled = false));
+                                button1.Invoke(new Action(() => button1.Text = "正在更新"));
+                                button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                                break;
                         }
+                        Database.SupporterUpdate = true;
+                        this.Invoke((MethodInvoker)delegate ()
+                        {
+                            MyBotUpdator update = new MyBotUpdator();
+                            update.FormClosing += Update_FormClosing;
+                            update.ShowDialog();
+                        });
                     }
-                    catch 
+                    else
                     {
-
+                        IsNewest = true;
                     }
                 }
-                else //try using Gitee
+                catch
                 {
-                    Database.WriteLog("Use Gitee for checking");
-                    try
-                    {
-                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/Version.txt";
-                        WebClient wc = new WebClientOverride();
-                        wc.Proxy = myProxy;
-                        MyBotUpdator.NewestVersion = Regex.Replace(wc.DownloadString(new Uri(versionfile)), @"\t|\n|\r", "");
-                        if (!version.Contains(MyBotUpdator.NewestVersion))
-                        {
-                            if (Run)
-                            {
-                                object sender = new object();
-                                EventArgs e = new EventArgs();
-                                button1_Click(sender, e);
-                                Run = false;
-                                Pause = true;
-                            }
-                            Updates = true;
-                            switch (Database.Language)
-                            {
-                                case "English":
-                                    this.Invoke(new Action(() => Text = Text + " / Update Available: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                                case "Chinese":
-                                    this.Invoke(new Action(() => Text = Text + " / 可用升级: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                            }
-                            Database.SupporterUpdate = true;
-                            this.Invoke((MethodInvoker)delegate ()
-                            {
-                                MyBotUpdator update = new MyBotUpdator();
-                                update.FormClosing += Update_FormClosing;
-                                update.ShowDialog();
-                            });
-                        }
-                        else
-                        {
-                            IsNewest = true;
-                        }
-                    }
-                    catch 
-                    {
 
-                    }
                 }
             }
             catch
             {
+                switch (Database.Language)
+                {
+                    case "English":
+                        this.Invoke((MethodInvoker)delegate () { Text = Text + " | Unable to connect to servcer"; });
+                        break;
+                    case "Chinese":
+                        this.Invoke((MethodInvoker)delegate () { Text = Text + " | 无法连接服务器"; });
+                        break;
+                }
 
             }
         }
@@ -5147,7 +5097,6 @@ namespace MyBot.Supporter.Main
         {
             button1.Invoke(new Action(() => button1.Enabled = true));
             Database.SupporterUpdate = false;
-            MyBotUpdator.Github = false;
             this.Invoke((MethodInvoker)delegate ()
             {
                 if (!Run)
@@ -5181,117 +5130,66 @@ namespace MyBot.Supporter.Main
             Database.WriteLog("Checking Update for MyBot.Run");
             try
             {
-                Ping github = new Ping();
-                var respond = github.Send("www.github.com").Status;
-                if (respond == IPStatus.Success) //Github is usable
+                string version = "";
+                if (File.Exists("MyBot.Run.version.au3"))
                 {
-                    Database.WriteLog("Using Github for checking");
-                    try
+                    string[] temp = File.ReadAllLines("MyBot.Run.version.au3");
+                    foreach(var l in temp)
                     {
-                        string version = "";
-                        if (File.Exists("MyBot.Run.version.au3"))
+                        if(l.Contains("Global $g_sBotVersion"))
                         {
-                            version = File.ReadAllText("MyBot.Run.version.au3");
+                            version = Database.getBetween(l, "$g_sBotVersion\"", "\"");
+                            version = Regex.Replace(version, " |\n|\t|\r|=", "");
                         }
-             
-                        string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot.run.version.au3";
-                        WebClient wc = new WebClientOverride();
-                        wc.Proxy = myProxy;
-                        string s = wc.DownloadString(new Uri(versionfile));
-                        string compare1 = Database.getBetween(version, "$g_sBotVersion = \"","\"");
-                        MyBotUpdator.MBNewestVersion = Database.getBetween(s, "$g_sBotVersion = \"", "\"");
-                        if (compare1 != MyBotUpdator.MBNewestVersion)
-                        {
-                            UpdateMB = true;
-                            switch (Database.Language)
-                            {
-                                case "English":
-                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / MyBot Update Available: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                                case "Chinese":
-                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / MyBot可用升级: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                            }
-                            MyBotUpdator.Github = true;
-                            this.Invoke((MethodInvoker)delegate ()
-                            {
-                                MyBotUpdator update = new MyBotUpdator();
-                                update.FormClosing += Update_FormClosing;
-                                update.ShowDialog();
-                            });
-                        }
-                        else
-                        {
-                            IsNewest = true;
-                        }
-                    }
-                    catch 
-                    {
-
                     }
                 }
-                else //try using Gitee
+                string versionfile = "https://github.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot.run.version.au3";
+                WebClient wc = new WebClientOverride();
+                wc.Proxy = myProxy;
+                string s = wc.DownloadString(new Uri(versionfile));
+                MyBotUpdator.MBNewestVersion = Database.getBetween(s, "$g_sBotVersion = \"", "\"");
+                MyBotUpdator.MBNewestVersion = Regex.Replace(MyBotUpdator.MBNewestVersion, " |\n|\t|\r|=", "");
+                if (version != MyBotUpdator.MBNewestVersion)
                 {
-                    Database.WriteLog("Using Gitee for checking");
-                    try
+                    UpdateMB = true;
+                    switch (Database.Language)
                     {
-                        string version = "";
-                        if (File.Exists("MyBot.Run.version.au3"))
-                        {
-                            version = File.ReadAllText("MyBot.Run.version.au3");
-                        }
-                        string versionfile = "https://gitee.com/PoH98/MyBot.Supporter/raw/master/Downloadable_Contents/MyBot.run.version.au3";
-                        WebClient wc = new WebClientOverride();
-                        wc.Proxy = myProxy;
-                        string s = wc.DownloadString(new Uri(versionfile));
-                        string compare1 = Database.getBetween(version, "$g_sBotVersion = \"", "\"");
-                        MyBotUpdator.MBNewestVersion = Database.getBetween(s, "$g_sBotVersion = \"", "\"");
-                        if (compare1 != MyBotUpdator.MBNewestVersion)
-                        {
-                            UpdateMB = true;
-                            switch (Database.Language)
-                            {
-                                case "English":
-                                    this.Invoke(new Action(() => Text = en_Lang.Form1 + " / MyBot Update Available: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "Updating"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                                case "Chinese":
-                                    this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / MyBot可用升级: " + MyBotUpdator.NewestVersion));
-                                    button1.Invoke(new Action(() => button1.Enabled = false));
-                                    button1.Invoke(new Action(() => button1.Text = "正在更新"));
-                                    button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
-                                    break;
-                            }
-                            this.Invoke((MethodInvoker)delegate ()
-                            {
-                                MyBotUpdator update = new MyBotUpdator();
-                                update.FormClosing += Update_FormClosing;
-                                update.ShowDialog();
-                            });
-                            
-                        }
-                        else
-                        {
-                            IsNewest = true;
-                        }
+                        case "English":
+                            this.Invoke(new Action(() => Text = en_Lang.Form1 + " / MyBot Update Available: " + MyBotUpdator.NewestVersion));
+                            button1.Invoke(new Action(() => button1.Enabled = false));
+                            button1.Invoke(new Action(() => button1.Text = "Updating"));
+                            button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                            break;
+                        case "Chinese":
+                            this.Invoke(new Action(() => Text = cn_Lang.Form1 + " / MyBot可用升级: " + MyBotUpdator.NewestVersion));
+                            button1.Invoke(new Action(() => button1.Enabled = false));
+                            button1.Invoke(new Action(() => button1.Text = "正在更新"));
+                            button1.Invoke(new Action(() => button1.BackColor = Color.Yellow));
+                            break;
                     }
-                    catch 
+                    this.Invoke((MethodInvoker)delegate ()
                     {
-
-                    }
-                }              
+                        MyBotUpdator update = new MyBotUpdator();
+                        update.FormClosing += Update_FormClosing;
+                        update.ShowDialog();
+                    });
+                }
+                else
+                {
+                    IsNewest = true;
+                }
             }
             catch
             {
-
+                switch (Database.Language)
+                {
+                    case "English":
+                        this.Invoke((MethodInvoker)delegate () { Text = Text + " | Unable to connect to MyBot server"; });
+                        break;
+                    case "Chinese":
+                        this.Invoke((MethodInvoker)delegate () { Text = Text + " | 无法连接MyBot服务器"; });
+                        break;
+                }
             }
         }
 

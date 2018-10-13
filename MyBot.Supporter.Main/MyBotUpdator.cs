@@ -12,7 +12,7 @@ namespace MyBot.Supporter.Main
     public partial class MyBotUpdator : Form
     {
         public static int Time = 5;
-        public static bool IsDownloading = false, Github = false;
+        public static bool IsDownloading = false;
         public static string NewestVersion = "", MBNewestVersion = "", log = "Connecting...";
         public MyBotUpdator()
         {
@@ -60,7 +60,7 @@ namespace MyBot.Supporter.Main
             }
         }
 
-        private void DownloadUpdate2()//Gitee
+       /* private void DownloadUpdate2()//Gitee
         {
             try
             {
@@ -98,7 +98,7 @@ namespace MyBot.Supporter.Main
                     Close();
                 });
             }
-        }
+        }*/
 
         public void DownloadMyBotUpdate()//Github
         {
@@ -183,7 +183,7 @@ namespace MyBot.Supporter.Main
             }
         }
 
-        private void DownloadMyBotUpdate2()//Gitee
+        /*private void DownloadMyBotUpdate2()//Gitee
         {
             try
             {
@@ -264,7 +264,7 @@ namespace MyBot.Supporter.Main
                     Close();
                 });
             }
-        }
+        }*/
 
         private void MyBotUpdator_Load(object sender, EventArgs e)
         {
@@ -370,29 +370,14 @@ namespace MyBot.Supporter.Main
             button2.Enabled = false;
             if (Database.SupporterUpdate)
             {
-                if (Github)
-                {
-                    Thread download = new Thread(DownloadUpdate);
-                    download.Start();
-                }
-                else
-                {
-                    Thread download = new Thread(DownloadUpdate2);
-                    download.Start();
-                }
+                Thread download = new Thread(DownloadUpdate);
+                download.Start();
+                
             }
             else
             {
-                if (Github)
-                {
-                    Thread download = new Thread(DownloadMyBotUpdate);
-                    download.Start();
-                }
-                else
-                {
-                    Thread download = new Thread(DownloadMyBotUpdate2);
-                    download.Start();
-                }
+                Thread download = new Thread(DownloadMyBotUpdate);
+                download.Start();
             }
         }
 
