@@ -510,7 +510,7 @@ namespace MyBot.Supporter.Main
                             Database.WriteLog("Fetching Current Resources");
                             try
                             {
-                                goldtemp = new string(TBot.GetWindowTextRaw(Child[38]).ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+                                goldtemp = new string(TBot.GetWindowTextRaw(Child[39]).ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
                                 Database.WriteLog("Gold: " + goldtemp);
                                 if (goldtemp.Length > 0)
                                 {
@@ -527,7 +527,7 @@ namespace MyBot.Supporter.Main
                             }
                             try
                             {
-                                elixirtemp = new string(TBot.GetWindowTextRaw(Child[42]).ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+                                elixirtemp = new string(TBot.GetWindowTextRaw(Child[43]).ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
                                 Database.WriteLog("Elixir: " + elixirtemp);
                                 if (elixirtemp.Length > 0)
                                 {
@@ -540,7 +540,7 @@ namespace MyBot.Supporter.Main
                             }
                             try
                             {
-                                darkelixirtemp = new string(TBot.GetWindowTextRaw(Child[46]).ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+                                darkelixirtemp = new string(TBot.GetWindowTextRaw(Child[47]).ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
                                 Database.WriteLog("Dark Elixir: " + darkelixirtemp);
                                 if (darkelixirtemp.Length > 0)
                                 {
@@ -553,7 +553,7 @@ namespace MyBot.Supporter.Main
                             }
                             try
                             {
-                                trophytemp = new string(TBot.GetWindowTextRaw(Child[50]).ToArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+                                trophytemp = new string(TBot.GetWindowTextRaw(Child[51]).ToArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
                                 Database.WriteLog("Trophy: " + trophytemp);
                                 if (trophytemp.Length > 0)
                                 {

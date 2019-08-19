@@ -3111,14 +3111,14 @@ namespace MyBot.Supporter.Main
                                         checkBox12.Checked = false;
                                         textBox12.Text = split[1];
                                         comboBox12.Text = split[2];
-                                        textBox12.Text = split[3];
+                                        textBox60.Text = split[3];
                                     }
                                     else
                                     {
                                         checkBox12.Checked = true;
                                         textBox12.Text = split[0];
                                         comboBox12.Text = split[1];
-                                        textBox12.Text = split[2];
+                                        textBox60.Text = split[2];
                                     }
                                     break;
                                 case 12:
@@ -3127,14 +3127,14 @@ namespace MyBot.Supporter.Main
                                         checkBox13.Checked = false;
                                         textBox13.Text = split[1];
                                         comboBox13.Text = split[2];
-                                        textBox13.Text = split[3];
+                                        textBox61.Text = split[3];
                                     }
                                     else
                                     {
                                         checkBox13.Checked = true;
                                         textBox13.Text = split[0];
                                         comboBox13.Text = split[1];
-                                        textBox13.Text = split[2];
+                                        textBox61.Text = split[2];
                                     }
                                     break;
                                 case 13:
@@ -3143,14 +3143,14 @@ namespace MyBot.Supporter.Main
                                         checkBox14.Checked = false;
                                         textBox14.Text = split[1];
                                         comboBox14.Text = split[2];
-                                        textBox14.Text = split[3];
+                                        textBox62.Text = split[3];
                                     }
                                     else
                                     {
                                         checkBox14.Checked = true;
                                         textBox14.Text = split[0];
                                         comboBox14.Text = split[1];
-                                        textBox14.Text = split[2];
+                                        textBox62.Text = split[2];
                                     }
                                     break;
                                 case 14:
@@ -3159,14 +3159,14 @@ namespace MyBot.Supporter.Main
                                         checkBox15.Checked = false;
                                         textBox15.Text = split[1];
                                         comboBox15.Text = split[2];
-                                        textBox15.Text = split[3];
+                                        textBox63.Text = split[3];
                                     }
                                     else
                                     {
                                         checkBox15.Checked = true;
                                         textBox15.Text = split[0];
                                         comboBox15.Text = split[1];
-                                        textBox15.Text = split[2];
+                                        textBox63.Text = split[2];
                                     }
                                     break;
                             }
