@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MyBot.Supporter.V2.Helper;
+using System;
 using System.Diagnostics;
+using System.IO;
 using System.Management;
 using System.Timers;
 
@@ -9,17 +11,44 @@ namespace MyBot.Supporter.V2.Models
     {
         private readonly BotSettings settings;
         private readonly string ProcessName;
+        private readonly string AutoITProcess;
 
         public Worker(SupporterSettings settings)
         {
             this.settings = settings.Bots;
             if (settings.Mini)
             {
-                ProcessName = "MyBot.run.MiniGui.exe";
+                if (File.Exists("MyBot.run.MiniGui.exe"))
+                {
+                    ProcessName = "MyBot.run.MiniGui.exe";
+                }
+                else if (File.Exists("MyBot.run.MiniGui.au3"))
+                {
+                    if (!File.Exists("AutoIt3.exe"))
+                    {
+                        File.WriteAllBytes("AutoIT.zip", Resource.AutoIT);
+                        ZipExtract ex = new ZipExtract();
+                        ex.Extract("AutoIT.zip");
+                    }
+                    ProcessName = "MyBot.run.MiniGui.au3";
+                }
             }
             else
             {
-                ProcessName = "MyBot.run.exe";
+                if (File.Exists("MyBot.run.exe"))
+                {
+                    ProcessName = "MyBot.run.exe";
+                }
+                else if (File.Exists("MyBot.run.au3"))
+                {
+                    if (!File.Exists("AutoIt3.exe"))
+                    {
+                        File.WriteAllBytes("AutoIT.zip", Resource.AutoIT);
+                        ZipExtract ex = new ZipExtract();
+                        ex.Extract("AutoIT.zip");
+                    }
+                    ProcessName = "MyBot.run.au3";
+                }
             }
             Execute = new Timer();
             Execute.Elapsed += Execute_Elapsed;
@@ -93,14 +122,28 @@ namespace MyBot.Supporter.V2.Models
             {
                 return;
             }
-            ProcessStartInfo start = new ProcessStartInfo(ProcessName);
-            start.Arguments = botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs";
-            start.RedirectStandardError = false;
-            start.RedirectStandardOutput = false;
-            start.WindowStyle = ProcessWindowStyle.Hidden;
-            start.CreateNoWindow = true;
-            Process M = Process.Start(start);
-            botSetting.Id = M.Id;
+            if (ProcessName.EndsWith(".exe"))
+            {
+                ProcessStartInfo start = new ProcessStartInfo(ProcessName);
+                start.Arguments = botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs";
+                start.RedirectStandardError = false;
+                start.RedirectStandardOutput = false;
+                start.WindowStyle = ProcessWindowStyle.Hidden;
+                start.CreateNoWindow = true;
+                Process M = Process.Start(start);
+                botSetting.Id = M.Id;
+            }
+            else
+            {
+                ProcessStartInfo start = new ProcessStartInfo("AutoIt3.exe");
+                start.Arguments = ProcessName + " " + botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs";
+                start.RedirectStandardError = false;
+                start.RedirectStandardOutput = false;
+                start.WindowStyle = ProcessWindowStyle.Hidden;
+                start.CreateNoWindow = true;
+                Process M = Process.Start(start);
+                botSetting.Id = M.Id;
+            }
         }
 
         private void NotInTime(BotSetting botSetting)

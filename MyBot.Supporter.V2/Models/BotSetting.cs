@@ -19,7 +19,7 @@ namespace MyBot.Supporter.V2.Models
     {
         [JsonIgnore]
         public int? Id { get; set; }
-        public bool IsEnabled { get; set; }
+        public bool IsEnabled { get; set; } = true;
         public string ProfileName { get; set; }
         public Emulator Emulator { get; set; }
         public string Instance { get; set; }

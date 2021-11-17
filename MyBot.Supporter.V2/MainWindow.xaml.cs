@@ -1,10 +1,16 @@
-﻿using MyBot.Supporter.V2.Models;
+﻿using MyBot.Supporter.V2.Helper;
+using MyBot.Supporter.V2.Models;
 using Newtonsoft.Json;
 using OpenHardwareMonitor.Hardware;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
+using System.Net;
 using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -28,6 +34,55 @@ namespace MyBot.Supporter.V2
         private NetworkInterface nics;
         private Worker Worker;
         private Brush DefaultBrush;
+
+        private void UpdateBot_Click(object sender, RoutedEventArgs e)
+        {
+            if (Worker.IsRunning)
+            {
+                StartBot_Click(sender, e);
+            }
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (o, ev) =>
+            {
+                var version = "v0.0";
+                if (File.Exists("MyBot.run.version.au3"))
+                {
+                    var au3 = File.ReadAllText("MyBot.run.version.au3");
+                    version = Regex.Match(au3, "\\$g_sBotVersion = \"(.+)\"").Groups[0].Value.Replace("$g_sBotVersion =", "").Replace("\"", "").Trim().Split(' ')[0];
+                }
+                var wc = new WebClient();
+                wc.Headers.Add("User-Agent", "MyBot.Supporter.UpdateChecker");
+                var api = JsonConvert.DeserializeObject<GithubAPI>(wc.DownloadString("https://api.github.com/repos/MyBotRun/MyBot/releases/latest"));
+                var apiver = api.TagName.Replace("MBR_", "");
+                var compare = String.Compare(version, apiver, true);
+                if (compare < 0)
+                {
+                    MessageBox.Show("Start downloading latest version...");
+                    wc.Headers.Add("User-Agent", "MyBot.Supporter.UpdateChecker");
+                    wc.DownloadFile(api.Assets[0].BrowserDownloadUrl, api.Assets[0].Name);
+                    ZipExtract ex = new ZipExtract();
+                    ex.Extract(api.Assets[0].Name);
+                    MessageBox.Show("Job done!");
+                }
+                else if (compare > 0)
+                {
+                    MessageBox.Show("You are using future version of MyBot!");
+                }
+                else
+                {
+                    MessageBox.Show("You are using latest version of MyBot!");
+                }
+                wc.Dispose();
+            };
+            var frame = new DispatcherFrame();
+            worker.RunWorkerCompleted += (s2, args) =>
+            {
+                frame.Continue = false;
+            };
+            worker.RunWorkerAsync();
+            Dispatcher.PushFrame(frame);
+        }
+
 
         private void dataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
@@ -325,6 +380,11 @@ namespace MyBot.Supporter.V2
             if(Worker == null)
             {
                 Worker = new Worker(settings);
+            }
+            if (!File.Exists("MyBot.run.exe") && !File.Exists("MyBot.run.au3"))
+            {
+                MessageBox.Show("MyBot not found! Please press the Update MyBot for auto download latest version!");
+                return;
             }
             if (Worker.IsRunning)
             {

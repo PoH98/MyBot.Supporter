@@ -8,7 +8,7 @@
         xmlns:assembly="clr-namespace:System;assembly=mscorlib"
         x:Class="MyBot.Supporter.V2.MainWindow"
         mc:Ignorable="d"
-        Title="MyBot.Supporter" Height="470" Width="900"  AllowsTransparency="True" WindowStyle="None" Background="{DynamicResource MaterialDesignDarkBackground}" Foreground="{DynamicResource MaterialDesignDarkForeground}" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize" Opacity="0.95">
+        Title="MyBot.Supporter" Height="530" Width="900"  AllowsTransparency="True" WindowStyle="None" Background="{DynamicResource MaterialDesignDarkBackground}" Foreground="{DynamicResource MaterialDesignDarkForeground}" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize" Opacity="0.95">
     <Window.Resources>
         <local:BotSettings x:Key="settings"/>
         <ObjectDataProvider x:Key="emulator" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
@@ -75,7 +75,8 @@
                 <Border BorderThickness="1" Margin="0,10,0,10" BorderBrush="Black">
                     <TextBlock x:Name="Time" Margin="10,0,10,0" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
-                <Button x:Name="StartBot" Content="Start Botting" Click="StartBot_Click" Height="43"/>
+                <Button x:Name="StartBot" Margin="0,0,0,10" Content="Start Botting" Click="StartBot_Click" Height="43"/>
+                <Button x:Name="UpdateBot" Content="Update MyBot" Click="UpdateBot_Click"  Height="43" Background="#FF008BFF"/>
             </StackPanel>
             <mah:MetroAnimatedTabControl x:Name="metroAnimatedTabControl1" Margin="238,35,462,0">
                 <TabItem Header="PC Status">
