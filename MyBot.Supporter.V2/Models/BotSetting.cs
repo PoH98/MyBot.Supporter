@@ -10,7 +10,7 @@ namespace MyBot.Supporter.V2.Models
         public bool Mini { get; set; }
     }
 
-    public class BotSettings:List<BotSetting>
+    public class BotSettings : List<BotSetting>
     {
 
     }
@@ -27,7 +27,7 @@ namespace MyBot.Supporter.V2.Models
         public TimeSpan EndTime { get; set; } = new TimeSpan(23, 59, 59);
     }
 
-    public enum Emulator 
+    public enum Emulator
     {
         Bluestacks,
         MEmu,

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyBot.Supporter.V2.Helper
 {
@@ -16,6 +12,7 @@ namespace MyBot.Supporter.V2.Helper
             string destinationDirectoryFullPath = di.FullName;
             using (var strm = File.OpenRead(fileName))
             using (ZipArchive archive = new ZipArchive(strm))
+            {
                 foreach (ZipArchiveEntry file in archive.Entries)
                 {
                     string completeFileName = Path.GetFullPath(Path.Combine(destinationDirectoryFullPath, file.FullName));
@@ -39,6 +36,8 @@ namespace MyBot.Supporter.V2.Helper
 
                     }
                 }
+            }
+
             File.Delete(fileName);
         }
     }

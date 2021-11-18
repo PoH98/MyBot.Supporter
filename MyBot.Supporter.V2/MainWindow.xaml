@@ -69,7 +69,12 @@
                         <Border Width="191" Margin="246,5,0,10" BorderBrush="White" BorderThickness="1" CornerRadius="8,8,8,8">
                             <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="White">
                                 <StackPanel x:Name="downloadPanel">
-                                    <Label Content="Download Emulator" HorizontalAlignment="Left" VerticalAlignment="Top" Width="191" Foreground="White"/>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Width="191" TextAlignment="Center" Foreground="White">
+                                        Download Emulator
+                                    </TextBlock>
+                                    <TextBlock TextWrapping="WrapWithOverflow"  HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="190" Foreground="White" Height="29" FontSize="9">
+                                        All links are provided by MyBot's Discord Bot
+                                    </TextBlock>
                                 </StackPanel>
                             </materialDesign:Card>
                         </Border>
