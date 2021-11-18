@@ -32,6 +32,7 @@ namespace MyBot.Supporter.V2.Models
         Bluestacks,
         MEmu,
         ITools,
-        Nox
+        Nox,
+        Bluestacks2
     }
 }
