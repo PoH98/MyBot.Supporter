@@ -11,10 +11,12 @@ namespace MyBot.Supporter.V2.Models
     public class Worker
     {
         private BotSettings settings;
+        private readonly AndroidKiller AndroidKiller;
         private string ProcessName;
 
         public Worker()
         {
+            AndroidKiller = new AndroidKiller();
             Execute = new Timer();
             Execute.Elapsed += Execute_Elapsed;
             Execute.Interval = 1500;
@@ -89,14 +91,14 @@ namespace MyBot.Supporter.V2.Models
                 }
                 else if (set.IsEnabled)
                 {
-                    if(set.StartTime == set.EndTime)
+                    if (set.StartTime == set.EndTime)
                     {
                         //time not setted
                         InTime(set);
                     }
-                    else if(set.StartTime < set.EndTime)
+                    else if (set.StartTime < set.EndTime)
                     {
-                        if(set.StartTime <= now && now <= set.EndTime)
+                        if (set.StartTime <= now && now <= set.EndTime)
                         {
                             InTime(set);
                         }
@@ -125,8 +127,10 @@ namespace MyBot.Supporter.V2.Models
             Execute.Stop();
             foreach (var set in settings)
             {
+                //softkill first
                 NotInTime(set);
             }
+            //hardkill
             foreach (var process in Process.GetProcesses())
             {
                 switch (process.ProcessName)
@@ -159,23 +163,27 @@ namespace MyBot.Supporter.V2.Models
             }
             if (ProcessName.EndsWith(".exe"))
             {
-                ProcessStartInfo start = new ProcessStartInfo(ProcessName);
-                start.Arguments = botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs";
-                start.RedirectStandardError = false;
-                start.RedirectStandardOutput = false;
-                start.WindowStyle = ProcessWindowStyle.Hidden;
-                start.CreateNoWindow = true;
+                ProcessStartInfo start = new ProcessStartInfo(ProcessName)
+                {
+                    Arguments = botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs",
+                    RedirectStandardError = false,
+                    RedirectStandardOutput = false,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    CreateNoWindow = true
+                };
                 Process M = Process.Start(start);
                 botSetting.Id = M.Id;
             }
             else
             {
-                ProcessStartInfo start = new ProcessStartInfo("AutoIt3.exe");
-                start.Arguments = ProcessName + " " + botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs";
-                start.RedirectStandardError = false;
-                start.RedirectStandardOutput = false;
-                start.WindowStyle = ProcessWindowStyle.Hidden;
-                start.CreateNoWindow = true;
+                ProcessStartInfo start = new ProcessStartInfo("AutoIt3.exe")
+                {
+                    Arguments = ProcessName + " " + botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs",
+                    RedirectStandardError = false,
+                    RedirectStandardOutput = false,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    CreateNoWindow = true
+                };
                 Process M = Process.Start(start);
                 botSetting.Id = M.Id;
             }
@@ -187,7 +195,23 @@ namespace MyBot.Supporter.V2.Models
             {
                 return;
             }
-            KillProcessAndChildren(botSetting.Id.Value);
+            try
+            {
+                if(!AndroidKiller.Close(botSetting.Emulator, botSetting.Instance))
+                {
+                    KillProcessAndChildren(botSetting.Id.Value);
+                }
+                else
+                {
+                    var mbr = Process.GetProcessById(botSetting.Id.Value);
+                    mbr.CloseMainWindow();
+                    mbr.Close();
+                }
+            }
+            catch
+            {
+
+            }
             botSetting.Id = null;
         }
 

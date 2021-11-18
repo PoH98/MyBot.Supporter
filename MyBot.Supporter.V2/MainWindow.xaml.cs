@@ -34,7 +34,7 @@ namespace MyBot.Supporter.V2
         private double Receive, Send, OldSend, OldReceive, USpeed, DSpeed;
         private NetworkInterface nics;
         private Worker Worker;
-        private Brush DefaultBrush;
+        private readonly Brush DefaultBrush;
         private readonly Dictionary<Emulator, string> downloadEmulator = new Dictionary<Emulator, string>
         {
             {
@@ -78,7 +78,7 @@ namespace MyBot.Supporter.V2
                 wc.Headers.Add("User-Agent", "MyBot.Supporter.UpdateChecker");
                 var api = JsonConvert.DeserializeObject<GithubAPI>(wc.DownloadString("https://api.github.com/repos/MyBotRun/MyBot/releases/latest"));
                 var apiver = api.TagName.Replace("MBR_", "");
-                var compare = String.Compare(version, apiver, true);
+                var compare = string.Compare(version, apiver, true);
                 if (compare < 0)
                 {
                     MessageBox.Show("Start downloading latest version...");
@@ -113,7 +113,8 @@ namespace MyBot.Supporter.V2
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 var newItem = e.Row.DataContext as BotSetting;
-                if(!settings.Bots.Contains(newItem)){
+                if (!settings.Bots.Contains(newItem))
+                {
                     settings.Bots.Add(newItem);
                 }
             }
@@ -129,7 +130,7 @@ namespace MyBot.Supporter.V2
             {
                 settings = JsonConvert.DeserializeObject<SupporterSettings>(File.ReadAllText("conf.json"));
             }
-            if(settings.Bots == null)
+            if (settings.Bots == null)
             {
                 settings.Bots = new BotSettings();
             }
@@ -137,7 +138,7 @@ namespace MyBot.Supporter.V2
             mini.DataContext = settings;
             mini.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Mini)));
             Worker = new Worker();
-            foreach(var e in downloadEmulator)
+            foreach (var e in downloadEmulator)
             {
                 var btn = new Button
                 {
@@ -161,7 +162,7 @@ namespace MyBot.Supporter.V2
                 Worker.Stop();
             }
             me.Close();
-            File.WriteAllText("conf.json",JsonConvert.SerializeObject(settings));
+            File.WriteAllText("conf.json", JsonConvert.SerializeObject(settings));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -279,12 +280,12 @@ namespace MyBot.Supporter.V2
             string[] sizes = new string[] { "KB", "MB", "GB", "TB", "PB" };
             string size = "B";
             int loopCount = 0;
-            while(data > 1024)
+            while (data > 1024)
             {
                 size = sizes[loopCount];
                 data = data / 1024;
                 loopCount++;
-                if(loopCount > sizes.Length - 1)
+                if (loopCount > sizes.Length - 1)
                 {
                     break;
                 }
@@ -300,7 +301,7 @@ namespace MyBot.Supporter.V2
                 {
                     hardware.Update();
                     foreach (ISensor sensor in hardware.Sensors)
-
+                    {
                         switch (sensor.SensorType)
                         {
                             case SensorType.Temperature:
@@ -332,12 +333,13 @@ namespace MyBot.Supporter.V2
                                 }
                                 break;
                         }
+                    }
                 }
                 else if (hardware.HardwareType == HardwareType.RAM)
                 {
                     hardware.Update();
                     foreach (ISensor sensor in hardware.Sensors)
-
+                    {
                         if (sensor.SensorType == SensorType.Load)
                         {
                             if (sensor.Name == SelectedRAML)
@@ -345,6 +347,7 @@ namespace MyBot.Supporter.V2
                                 RAML = Convert.ToDouble(sensor.Value);
                             }
                         }
+                    }
                 }
             }
             if (Network)
@@ -368,15 +371,15 @@ namespace MyBot.Supporter.V2
             NetS.Text = Calc(Send);
             NetU.Text = Calc(USpeed) + "/s";
             NetD.Text = Calc(DSpeed) + "/s";
-            for(int i = 0; i < settings.Bots.Count; i++)
+            for (int i = 0; i < settings.Bots.Count; i++)
             {
                 DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
-                if(settings.Bots[i].Id != null && Worker.IsRunning)
+                if (settings.Bots[i].Id != null && Worker.IsRunning)
                 {
                     try
                     {
                         Process p = Process.GetProcessById(settings.Bots[i].Id.Value);
-                        if(p != null)
+                        if (p != null)
                         {
                             row.Background = new SolidColorBrush(Color.FromRgb(0, 110, 0));
                         }
@@ -410,12 +413,14 @@ namespace MyBot.Supporter.V2
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+            {
+                DragMove();
+            }
         }
 
         private void StartBot_Click(object sender, RoutedEventArgs e)
         {
-            if(Worker == null)
+            if (Worker == null)
             {
                 Worker = new Worker();
             }
