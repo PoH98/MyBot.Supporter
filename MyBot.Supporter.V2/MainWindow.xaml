@@ -65,7 +65,14 @@
                 </TabItem>
                 <TabItem Header="Other Settings">
                     <Grid  Opacity="0.8">
-                        <CheckBox x:Name="mini" Content="Enable Mini" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+                        <CheckBox x:Name="mini" Content="Enable Mini" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Background="White" BorderBrush="White"/>
+                        <Border Width="191" Margin="246,5,0,10" BorderBrush="White" BorderThickness="1" CornerRadius="8,8,8,8">
+                            <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="White">
+                                <StackPanel x:Name="downloadPanel">
+                                    <Label Content="Download Emulator" HorizontalAlignment="Left" VerticalAlignment="Top" Width="191" Foreground="White"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+                        </Border>
 
                     </Grid>
                 </TabItem>

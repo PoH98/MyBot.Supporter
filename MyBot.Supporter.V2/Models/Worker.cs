@@ -3,17 +3,28 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Management;
+using System.Net;
 using System.Timers;
 
 namespace MyBot.Supporter.V2.Models
 {
     public class Worker
     {
-        private readonly BotSettings settings;
-        private readonly string ProcessName;
-        private readonly string AutoITProcess;
+        private BotSettings settings;
+        private string ProcessName;
 
-        public Worker(SupporterSettings settings)
+        public Worker()
+        {
+            Execute = new Timer();
+            Execute.Elapsed += Execute_Elapsed;
+            Execute.Interval = 1500;
+        }
+
+        public bool IsRunning => Execute.Enabled;
+
+        private Timer Execute { get; set; }
+
+        public void Run(SupporterSettings settings)
         {
             this.settings = settings.Bots;
             if (settings.Mini)
@@ -24,13 +35,12 @@ namespace MyBot.Supporter.V2.Models
                 }
                 else if (File.Exists("MyBot.run.MiniGui.au3"))
                 {
+                    ProcessName = "MyBot.run.MiniGui.au3";
                     if (!File.Exists("AutoIt3.exe"))
                     {
-                        File.WriteAllBytes("AutoIT.zip", Resource.AutoIT);
-                        ZipExtract ex = new ZipExtract();
-                        ex.Extract("AutoIT.zip");
+                        DownloadAutoIT();
+                        return;
                     }
-                    ProcessName = "MyBot.run.MiniGui.au3";
                 }
             }
             else
@@ -41,26 +51,30 @@ namespace MyBot.Supporter.V2.Models
                 }
                 else if (File.Exists("MyBot.run.au3"))
                 {
+                    ProcessName = "MyBot.run.au3";
                     if (!File.Exists("AutoIt3.exe"))
                     {
-                        File.WriteAllBytes("AutoIT.zip", Resource.AutoIT);
-                        ZipExtract ex = new ZipExtract();
-                        ex.Extract("AutoIT.zip");
+                        DownloadAutoIT();
+                        return;
                     }
-                    ProcessName = "MyBot.run.au3";
                 }
             }
-            Execute = new Timer();
-            Execute.Elapsed += Execute_Elapsed;
-            Execute.Interval = 3000;
+            Execute.Start();
         }
 
-        public bool IsRunning => Execute.Enabled;
-
-        private Timer Execute { get; set; }
-
-        public void Run()
+        private void DownloadAutoIT()
         {
+            WebClient wc = new WebClient();
+            wc.Headers.Add("User-Agent", "MyBot.Supporter.UpdateChecker");
+            wc.DownloadFileCompleted += Wc_DownloadFileCompleted;
+            wc.DownloadFileAsync(new Uri("https://github.com/PoH98/MyBot.Supporter/raw/v2/MyBot.Supporter.V2/AutoIT.zip"), "AutoIT.zip");
+
+        }
+
+        private void Wc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            ZipExtract ex = new ZipExtract();
+            ex.Extract("AutoIT.zip");
             Execute.Start();
         }
 
@@ -112,6 +126,27 @@ namespace MyBot.Supporter.V2.Models
             foreach (var set in settings)
             {
                 NotInTime(set);
+            }
+            foreach (var process in Process.GetProcesses())
+            {
+                switch (process.ProcessName)
+                {
+                    case "MyBot.run":
+                    case "adb":
+                    case "MEmuHeadless":
+                    case "MyBot.run.Watchdog":
+                    case "MyBot.run.MiniGui":
+                    case "AutoIt3":
+                        try
+                        {
+                            process.Kill();
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                        break;
+                }
             }
         }
 
@@ -173,7 +208,16 @@ namespace MyBot.Supporter.V2.Models
             try
             {
                 Process proc = Process.GetProcessById(pid);
-                proc.Kill();
+                try
+                {
+                    proc.CloseMainWindow();
+                    proc.Close();
+                    proc.Kill();
+                }
+                catch
+                {
+
+                }
             }
             catch (ArgumentException)
             {

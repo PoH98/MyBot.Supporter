@@ -3,16 +3,17 @@ using MyBot.Supporter.V2.Models;
 using Newtonsoft.Json;
 using OpenHardwareMonitor.Hardware;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -34,6 +35,29 @@ namespace MyBot.Supporter.V2
         private NetworkInterface nics;
         private Worker Worker;
         private Brush DefaultBrush;
+        private readonly Dictionary<Emulator, string> downloadEmulator = new Dictionary<Emulator, string>
+        {
+            {
+                Emulator.Bluestacks,
+                "https://mega.nz/#!GFVilDAL!Wkyp2xpxFOx8J_Gz8wIf0jGSxTT3IiT6xthvrHhRbME"
+            },
+            {
+                Emulator.Bluestacks2,
+                "https://mega.nz/#!BpdEUBbZ!4unxWMPzA5rESONTVgNrxlNxSj8H2wwicx4Q15PmBo4"
+            },
+            {
+                Emulator.MEmu,
+                "https://mega.nz/file/hhI0RbRQ#ztf3bVkOwfBB7nMfmK_kihmW9py7PhyLSE-Zcy3Aq0o"
+            },
+            {
+                Emulator.ITools,
+                "https://mega.nz/file/Gc9QlI5R#FCrXIpi-27Ja9kqwkcyzbeu9HoMlxR2NGjb3KS0m6NM"
+            },
+            {
+                Emulator.Nox,
+                "https://mega.nz/file/fJsCnABZ#SGrKLMow7NPgC0y_Xl5nMXJUtWQZ8Z9FJ0zcJ0DIIBQ"
+            }
+        };
 
         private void UpdateBot_Click(object sender, RoutedEventArgs e)
         {
@@ -110,7 +134,21 @@ namespace MyBot.Supporter.V2
                 settings.Bots = new BotSettings();
             }
             dataGrid.ItemsSource = settings.Bots;
-            Worker = new Worker(settings);
+            mini.DataContext = settings;
+            mini.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Mini)));
+            Worker = new Worker();
+            foreach(var e in downloadEmulator)
+            {
+                var btn = new Button
+                {
+                    Content = e.Key.ToString()
+                };
+                btn.Click += (o, s) =>
+                {
+                    Process.Start(e.Value);
+                };
+                downloadPanel.Children.Add(btn);
+            }
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
@@ -379,7 +417,7 @@ namespace MyBot.Supporter.V2
         {
             if(Worker == null)
             {
-                Worker = new Worker(settings);
+                Worker = new Worker();
             }
             if (!File.Exists("MyBot.run.exe") && !File.Exists("MyBot.run.au3"))
             {
@@ -396,7 +434,7 @@ namespace MyBot.Supporter.V2
             {
                 StartBot.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 StartBot.Content = "Stop Botting";
-                Worker.Run();
+                Worker.Run(settings);
             }
         }
     }
