@@ -137,6 +137,10 @@ namespace MyBot.Supporter.V2
             dataGrid.ItemsSource = settings.Bots;
             mini.DataContext = settings;
             mini.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Mini)));
+            hideandroid.DataContext = settings;
+            hideandroid.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.HideAndroid)));
+            dock.DataContext = settings;
+            dock.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Dock)));
             Worker = new Worker();
             foreach (var e in downloadEmulator)
             {
@@ -155,7 +159,7 @@ namespace MyBot.Supporter.V2
             timer.Start();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (Worker != null && Worker.IsRunning)
             {

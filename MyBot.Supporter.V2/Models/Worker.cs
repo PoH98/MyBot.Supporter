@@ -10,7 +10,14 @@ namespace MyBot.Supporter.V2.Models
 {
     public class Worker
     {
-        private BotSettings settings;
+        private BotSettings settings
+        {
+            get
+            {
+                return supporterSettings.Bots;
+            }
+        }
+        private SupporterSettings supporterSettings;
         private readonly AndroidKiller AndroidKiller;
         private string ProcessName;
 
@@ -28,39 +35,7 @@ namespace MyBot.Supporter.V2.Models
 
         public void Run(SupporterSettings settings)
         {
-            this.settings = settings.Bots;
-            if (settings.Mini)
-            {
-                if (File.Exists("MyBot.run.MiniGui.exe"))
-                {
-                    ProcessName = "MyBot.run.MiniGui.exe";
-                }
-                else if (File.Exists("MyBot.run.MiniGui.au3"))
-                {
-                    ProcessName = "MyBot.run.MiniGui.au3";
-                    if (!File.Exists("AutoIt3.exe"))
-                    {
-                        DownloadAutoIT();
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                if (File.Exists("MyBot.run.exe"))
-                {
-                    ProcessName = "MyBot.run.exe";
-                }
-                else if (File.Exists("MyBot.run.au3"))
-                {
-                    ProcessName = "MyBot.run.au3";
-                    if (!File.Exists("AutoIt3.exe"))
-                    {
-                        DownloadAutoIT();
-                        return;
-                    }
-                }
-            }
+            this.supporterSettings = settings;
             Execute.Start();
         }
 
@@ -98,7 +73,9 @@ namespace MyBot.Supporter.V2.Models
                     }
                     else if (set.StartTime < set.EndTime)
                     {
-                        if (set.StartTime <= now && now <= set.EndTime)
+                        var end = new TimeSpan(set.EndTime.Hours, set.EndTime.Minutes, 59);
+                        var start = new TimeSpan(set.StartTime.Hours, set.StartTime.Minutes, 0);
+                        if (start <= now && now <= end)
                         {
                             InTime(set);
                         }
@@ -109,7 +86,9 @@ namespace MyBot.Supporter.V2.Models
                     }
                     else
                     {
-                        if (set.StartTime >= now && now >= set.EndTime)
+                        var end = new TimeSpan(set.EndTime.Hours, set.EndTime.Minutes, 59);
+                        var start = new TimeSpan(set.StartTime.Hours, set.StartTime.Minutes, 0);
+                        if (start >= now && now >= end)
                         {
                             InTime(set);
                         }
@@ -161,6 +140,38 @@ namespace MyBot.Supporter.V2.Models
             {
                 return;
             }
+            if (supporterSettings.Mini)
+            {
+                if (File.Exists("MyBot.run.MiniGui.exe"))
+                {
+                    ProcessName = "MyBot.run.MiniGui.exe";
+                }
+                else if (File.Exists("MyBot.run.MiniGui.au3"))
+                {
+                    ProcessName = "MyBot.run.MiniGui.au3";
+                    if (!File.Exists("AutoIt3.exe"))
+                    {
+                        DownloadAutoIT();
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                if (File.Exists("MyBot.run.exe"))
+                {
+                    ProcessName = "MyBot.run.exe";
+                }
+                else if (File.Exists("MyBot.run.au3"))
+                {
+                    ProcessName = "MyBot.run.au3";
+                    if (!File.Exists("AutoIt3.exe"))
+                    {
+                        DownloadAutoIT();
+                        return;
+                    }
+                }
+            }
             if (ProcessName.EndsWith(".exe"))
             {
                 ProcessStartInfo start = new ProcessStartInfo(ProcessName)
@@ -171,6 +182,14 @@ namespace MyBot.Supporter.V2.Models
                     WindowStyle = ProcessWindowStyle.Hidden,
                     CreateNoWindow = true
                 };
+                if (supporterSettings.HideAndroid)
+                {
+                    start.Arguments += " -hideandroid";
+                }
+                if (supporterSettings.Dock)
+                {
+                    start.Arguments += " -dock";
+                }
                 Process M = Process.Start(start);
                 botSetting.Id = M.Id;
             }
@@ -184,6 +203,14 @@ namespace MyBot.Supporter.V2.Models
                     WindowStyle = ProcessWindowStyle.Hidden,
                     CreateNoWindow = true
                 };
+                if (supporterSettings.HideAndroid)
+                {
+                    start.Arguments += " -hideandroid";
+                }
+                if (supporterSettings.Dock)
+                {
+                    start.Arguments += " -dock";
+                }
                 Process M = Process.Start(start);
                 botSetting.Id = M.Id;
             }

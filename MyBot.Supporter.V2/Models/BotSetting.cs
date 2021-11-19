@@ -8,6 +8,8 @@ namespace MyBot.Supporter.V2.Models
     {
         public BotSettings Bots { get; set; }
         public bool Mini { get; set; }
+        public bool HideAndroid { get; set; }
+        public bool Dock { get; set; }
     }
 
     public class BotSettings : List<BotSetting>
