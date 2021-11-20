@@ -1,4 +1,5 @@
-﻿using MyBot.Supporter.V2.Helper;
+﻿using MaterialDesignThemes.Wpf;
+using MyBot.Supporter.V2.Helper;
 using MyBot.Supporter.V2.Models;
 using Newtonsoft.Json;
 using OpenHardwareMonitor.Hardware;
@@ -34,7 +35,18 @@ namespace MyBot.Supporter.V2
         private double Receive, Send, OldSend, OldReceive, USpeed, DSpeed;
         private NetworkInterface nics;
         private Worker Worker;
-        private readonly Brush DefaultBrush;
+
+        private void mode_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ToggleBaseColour(false);
+        }
+
+        private void mode_Checked(object sender, RoutedEventArgs e)
+        {
+            ToggleBaseColour(true);
+        }
+
+        private readonly PaletteHelper _paletteHelper = new PaletteHelper();
         private readonly Dictionary<Emulator, string> downloadEmulator = new Dictionary<Emulator, string>
         {
             {
@@ -123,7 +135,6 @@ namespace MyBot.Supporter.V2
         public MainWindow()
         {
             InitializeComponent();
-            DefaultBrush = (Brush)FindResource("MaterialDesignDarkBackground");
             me.CPUEnabled = true;
             me.RAMEnabled = true;
             if (File.Exists("conf.json"))
@@ -141,6 +152,16 @@ namespace MyBot.Supporter.V2
             hideandroid.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.HideAndroid)));
             dock.DataContext = settings;
             dock.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Dock)));
+            mode.DataContext = settings;
+            mode.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.DarkMode)));
+            if (settings.DarkMode)
+            {
+                ToggleBaseColour(true);
+            }
+            else
+            {
+                ToggleBaseColour(false);
+            }
             Worker = new Worker();
             foreach (var e in downloadEmulator)
             {
@@ -287,7 +308,7 @@ namespace MyBot.Supporter.V2
             while (data > 1024)
             {
                 size = sizes[loopCount];
-                data = data / 1024;
+                data /= 1024;
                 loopCount++;
                 if (loopCount > sizes.Length - 1)
                 {
@@ -363,12 +384,12 @@ namespace MyBot.Supporter.V2
                 OldSend = Send;
                 OldReceive = Receive;
             }
-            CPULoad.Value = CPUL;
+            CPULoad.Value = 100 - CPUL;
             CPUName.Text = CPUN;
             CPUTemp.Text = CPUT.ToString("N3") + " °C";
             CPUMaxTemp.Text = CPUTM.ToString("N3") + " °C";
             CPUFreq.Text = CPUF.ToString("N2") + " Ghz";
-            RAMLoad.Value = RAML;
+            RAMLoad.Value = 100 - RAML;
             CPUPower.Text = CPUV.ToString("N2") + " W";
             Time.Text = DateTime.Now.ToString("hh:mm:ss tt");
             NetR.Text = Calc(Receive);
@@ -378,6 +399,11 @@ namespace MyBot.Supporter.V2
             for (int i = 0; i < settings.Bots.Count; i++)
             {
                 DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
+                //unable to fetch row
+                if (row == null)
+                {
+                    break;
+                }
                 if (settings.Bots[i].Id != null && Worker.IsRunning)
                 {
                     try
@@ -385,7 +411,14 @@ namespace MyBot.Supporter.V2
                         Process p = Process.GetProcessById(settings.Bots[i].Id.Value);
                         if (p != null)
                         {
-                            row.Background = new SolidColorBrush(Color.FromRgb(0, 110, 0));
+                            if (settings.DarkMode)
+                            {
+                                row.Background = new SolidColorBrush(Color.FromRgb(0, 110, 0));
+                            }
+                            else
+                            {
+                                row.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                            }
                         }
                         else
                         {
@@ -394,12 +427,19 @@ namespace MyBot.Supporter.V2
                     }
                     catch
                     {
-                        row.Background = new SolidColorBrush(Color.FromRgb(110, 110, 0));
+                        if (settings.DarkMode)
+                        {
+                            row.Background = new SolidColorBrush(Color.FromRgb(110, 110, 0));
+                        }
+                        else
+                        {
+                            row.Background = new SolidColorBrush(Color.FromRgb(225, 255, 0));
+                        }
                     }
                 }
                 else
                 {
-                    row.Background = DefaultBrush;
+                    row.Background = Brushes.Transparent;
                 }
             }
         }
@@ -445,6 +485,14 @@ namespace MyBot.Supporter.V2
                 StartBot.Content = "Stop Botting";
                 Worker.Run(settings);
             }
+        }
+
+        private void ToggleBaseColour(bool isDark)
+        {
+            ITheme theme = _paletteHelper.GetTheme();
+            IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
+            theme.SetBaseTheme(baseTheme);
+            _paletteHelper.SetTheme(theme);
         }
     }
 }

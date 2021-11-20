@@ -10,6 +10,7 @@ namespace MyBot.Supporter.V2.Models
         public bool Mini { get; set; }
         public bool HideAndroid { get; set; }
         public bool Dock { get; set; }
+        public bool DarkMode { get; set; } = true;
     }
 
     public class BotSettings : List<BotSetting>

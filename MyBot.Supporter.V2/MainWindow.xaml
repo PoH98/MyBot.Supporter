@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" xmlns:local="clr-namespace:MyBot.Supporter.V2.Models"
+        xmlns:local="clr-namespace:MyBot.Supporter.V2.Models"
         xmlns:assembly="clr-namespace:System;assembly=mscorlib"
         x:Class="MyBot.Supporter.V2.MainWindow"
         mc:Ignorable="d"
-        Title="MyBot.Supporter" Height="530" Width="900"  AllowsTransparency="True" WindowStyle="None" Background="{DynamicResource MaterialDesignDarkBackground}" Foreground="{DynamicResource MaterialDesignDarkForeground}" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize" Opacity="0.95">
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Title="MyBot.Supporter" 
+        Height="530" 
+        Width="900" 
+        AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize" Opacity="0.95">
     <Window.Resources>
         <local:BotSettings x:Key="settings"/>
         <ObjectDataProvider x:Key="emulator" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
@@ -20,8 +25,8 @@
     <Grid>
         <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="{DynamicResource PrimaryHueMidBrush}" MouseDown="Window_MouseDown" Width="900">
             <Grid>
-                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,7,0,0" Text="MyBot.Supporter" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignLightBackground}"/>
-                <Button BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="35" Click="minimize_Click" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource MaterialDesignLightBackground}" Margin="0,0,35,0">
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,7,0,0" Text="MyBot.Supporter" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" />
+                <Button BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="35" Click="minimize_Click" Background="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,35,0" Foreground="White">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Content" Value="{materialDesign:PackIcon Minus}"/>
@@ -33,7 +38,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="35" Click="close_Click" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="{DynamicResource MaterialDesignLightBackground}">
+                <Button BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="35" Click="close_Click" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="White">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Content" Value="{materialDesign:PackIcon Close}"/>
@@ -48,84 +53,117 @@
             </Grid>
         </materialDesign:Card>
         <Grid Margin="5,5,5,5">
-            <mah:MetroAnimatedTabControl x:Name="metroAnimatedTabControl" Margin="433,35,20,0">
+            <TabControl Margin="405,35,10,0" Background="{x:Null}" >
                 <TabItem Header="Multi-Bot Settings">
                     <Grid  Opacity="0.8">
-                        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" ItemsSource="{StaticResource settings}" HeadersVisibility="Column" SelectionMode="Extended" SelectionUnit="FullRow" Foreground="{DynamicResource MaterialDesignDarkForeground}" Background="{DynamicResource MaterialDesignDarkBackground}" FontSize="10" MinColumnWidth="10" CanUserResizeColumns="False" GridLinesVisibility="All" CanUserReorderColumns="False" CanUserSortColumns="False" Margin="0,0,10,0" RowEditEnding="dataGrid_RowEditEnding">
+                        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" ItemsSource="{StaticResource settings}" HeadersVisibility="Column" SelectionMode="Extended" SelectionUnit="FullRow" Foreground="{DynamicResource MaterialDesignBody}" FontSize="10" MinColumnWidth="10" CanUserResizeColumns="False" GridLinesVisibility="All" CanUserReorderColumns="False" CanUserSortColumns="False" Margin="0,0,10,0" RowEditEnding="dataGrid_RowEditEnding">
                             <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Binding="{Binding IsEnabled,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="47" />
-                                <DataGridTextColumn Header="Profile" Binding="{Binding ProfileName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" />
-                                <DataGridComboBoxColumn Header="Emulator" ItemsSource="{Binding Source={StaticResource emulator}}" SelectedItemBinding="{Binding Emulator}" Width="80" />
-                                <DataGridTextColumn Header="Instance" Binding="{Binding Instance,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" />
-                                <DataGridTextColumn Header="Start" Binding="{Binding StartTime, StringFormat=hh\\:mm,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70" />
-                                <DataGridTextColumn Header="End " Binding="{Binding EndTime, StringFormat=hh\\:mm,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70" />
+                                <DataGridCheckBoxColumn Binding="{Binding IsEnabled,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
+                                <materialDesign:DataGridTextColumn ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Profile" Binding="{Binding ProfileName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" />
+                                <materialDesign:DataGridComboBoxColumn Header="Emulator" IsEditable="True" ItemsSource="{Binding Source={StaticResource emulator}}" SelectedItemBinding="{Binding Emulator}" Width="82" />
+                                <materialDesign:DataGridTextColumn ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Instance" Binding="{Binding Instance,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" />
+                                <materialDesign:DataGridTextColumn ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="Start" Binding="{Binding StartTime, StringFormat=hh\\:mm,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70" />
+                                <materialDesign:DataGridTextColumn ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}" EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" Header="End " Binding="{Binding EndTime, StringFormat=hh\\:mm,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Other Settings">
                     <Grid  Opacity="0.8">
-                        <CheckBox x:Name="mini" Content="Enable Mini" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Background="Lime" BorderBrush="White"/>
-                        <Border Width="191" Margin="246,5,0,10" BorderBrush="White" BorderThickness="1" CornerRadius="8,8,8,8">
-                            <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="White">
-                                <StackPanel x:Name="downloadPanel">
-                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Width="191" TextAlignment="Center" Foreground="White">
+                        <CheckBox x:Name="mini" Content="Enable Mini" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
+                        <Border Width="191" Margin="246,5,0,10" BorderBrush="{DynamicResource MaterialDesignBody}" BorderThickness="1" CornerRadius="8,8,8,8">
+                            <StackPanel x:Name="downloadPanel" >
+                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Width="191" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}">
                                         Download Emulator
-                                    </TextBlock>
-                                    <TextBlock TextWrapping="WrapWithOverflow"  HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="190" Foreground="White" Height="29" FontSize="9">
+                                </TextBlock>
+                                <TextBlock TextWrapping="WrapWithOverflow"  HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="190" Foreground="{DynamicResource MaterialDesignBody}" Height="29" FontSize="9">
                                         All links are provided by MyBot's Discord Bot
-                                    </TextBlock>
-                                </StackPanel>
-                            </materialDesign:Card>
+                                </TextBlock>
+                            </StackPanel>
                         </Border>
-                        <CheckBox x:Name="hideandroid" Content="Hide Android" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Foreground="White" Background="Lime" BorderBrush="White"/>
-                        <CheckBox x:Name="dock" Content="Dock Bot" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Foreground="White" Background="Lime" BorderBrush="White"/>
-
+                        <CheckBox x:Name="hideandroid" Content="Hide Android" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
+                        <CheckBox x:Name="dock" Content="Dock Bot" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
+                        <CheckBox x:Name="mode" Content="Dark Mode" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White" Checked="mode_Checked"  Unchecked="mode_Unchecked"/>
                     </Grid>
                 </TabItem>
-            </mah:MetroAnimatedTabControl>
+            </TabControl>
             <StackPanel Margin="0,30,652,0">
-                <Calendar x:Name="calendar" Height="328" Background="{DynamicResource MaterialDesignDarkBackground}" Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
+                <Calendar x:Name="calendar" Height="328"/>
                 <Border BorderThickness="1" Margin="0,10,0,10" BorderBrush="Black">
-                    <TextBlock x:Name="Time" Margin="10,0,10,0" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock x:Name="Time" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
-                <Button x:Name="StartBot" Margin="0,0,0,10" Content="Start Botting" Click="StartBot_Click" Height="43"/>
-                <Button x:Name="UpdateBot" Content="Update MyBot" Click="UpdateBot_Click"  Height="43" Background="#FF008BFF"/>
+                <Button x:Name="StartBot" Margin="0,0,0,10" Content="Start Botting" Click="StartBot_Click" Height="43" />
+                <Button x:Name="UpdateBot" Content="Update MyBot" Click="UpdateBot_Click" BorderThickness="0"  Height="43" Background="#FF008BFF"/>
             </StackPanel>
-            <mah:MetroAnimatedTabControl x:Name="metroAnimatedTabControl1" Margin="238,35,462,0">
+            <TabControl Margin="243,35,490,0">
+                <TabControl.Background>
+                    <ImageBrush/>
+                </TabControl.Background>
                 <TabItem Header="PC Status">
                     <StackPanel Margin="5,10,5,10" Opacity="0.8">
-                        <Label Content="CPU Usage" Margin="5,10,5,0" Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <mah:MetroProgressBar x:Name="CPULoad" Height="15" Padding="10,0,10,0" Foreground="#FF8000FF"/>
-                        <Label Content="Processor Name" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="CPUName" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="CPU Temperature" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="CPUTemp" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="CPU Max Temp" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="CPUMaxTemp" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="CPU Frequency" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="CPUFreq" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="CPU Power Usage" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="CPUPower" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="RAM Usage" Margin="5,10,5,0" Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <mah:MetroProgressBar x:Name="RAMLoad" Height="15" Padding="10,0,10,0" Foreground="#FF8000FF"/>
+                        <Label Content="CPU Usage" Margin="5,10,5,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ProgressBar x:Name="CPULoad" Height="15" Padding="10,0,10,0" materialDesign:TransitionAssist.DisableTransitions="True" BorderBrush="{x:Null}" Foreground="#FF303030" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.5"  >
+                            <ProgressBar.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </ProgressBar.RenderTransform>
+                            <ProgressBar.Background>
+                                <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
+                                    <GradientStop Color="Red" Offset="1"/>
+                                    <GradientStop Color="Yellow" Offset="0.5"/>
+                                    <GradientStop Color="Lime" Offset="0"/>
+                                </LinearGradientBrush>
+                            </ProgressBar.Background>
+                        </ProgressBar>
+                        <Label Content="Processor Name" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="CPUName" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="CPU Temperature" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="CPUTemp" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="CPU Max Temp" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="CPUMaxTemp" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="CPU Frequency" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="CPUFreq" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="CPU Power Usage" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="CPUPower" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="RAM Usage" Margin="5,10,5,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ProgressBar x:Name="RAMLoad" Height="15" Padding="10,0,10,0" materialDesign:TransitionAssist.DisableTransitions="True" BorderBrush="{x:Null}" Foreground="#FF303030" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.5" >
+                            <ProgressBar.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </ProgressBar.RenderTransform>
+                            <ProgressBar.Background>
+                                <LinearGradientBrush EndPoint="0,0" StartPoint="1,1">
+                                    <GradientStop Color="Red" Offset="1"/>
+                                    <GradientStop Color="Yellow" Offset="0.5"/>
+                                    <GradientStop Color="Lime" Offset="0"/>
+                                </LinearGradientBrush>
+                            </ProgressBar.Background>
+                        </ProgressBar>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Net Status">
                     <StackPanel Margin="5,10,5,10" Opacity="0.8">
-                        <Label Content="Network" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="NetName" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="Net Sended" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="NetS" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="Net Received" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="NetR" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="Upload Speed" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="NetU" Margin="10,0,10,0" Foreground="White"></TextBlock>
-                        <Label Content="Download Speed" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignDarkForeground}"/>
-                        <TextBlock x:Name="NetD" Margin="10,0,10,0" Foreground="White"></TextBlock>
+                        <Label Content="Network" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="NetName" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="Net Sended" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="NetS" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="Net Received" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="NetR" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="Upload Speed" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="NetU" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
+                        <Label Content="Download Speed" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="NetD" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
                     </StackPanel>
                 </TabItem>
-            </mah:MetroAnimatedTabControl>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>
