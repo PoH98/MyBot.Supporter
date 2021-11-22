@@ -1,12 +1,14 @@
 ﻿using MyBot.Supporter.V2.Helper;
+using MyBot.Supporter.V2.Models;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Management;
 using System.Net;
+using System.Threading.Tasks;
 using System.Timers;
 
-namespace MyBot.Supporter.V2.Models
+namespace MyBot.Supporter.V2.Service
 {
     public class Worker
     {
@@ -39,22 +41,6 @@ namespace MyBot.Supporter.V2.Models
             Execute.Start();
         }
 
-        private void DownloadAutoIT()
-        {
-            WebClient wc = new WebClient();
-            wc.Headers.Add("User-Agent", "MyBot.Supporter.UpdateChecker");
-            wc.DownloadFileCompleted += Wc_DownloadFileCompleted;
-            wc.DownloadFileAsync(new Uri("https://github.com/PoH98/MyBot.Supporter/raw/v2/MyBot.Supporter.V2/AutoIT.zip"), "AutoIT.zip");
-
-        }
-
-        private void Wc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        {
-            ZipExtract ex = new ZipExtract();
-            ex.Extract("AutoIT.zip");
-            Execute.Start();
-        }
-
         private void Execute_Elapsed(object sender, ElapsedEventArgs e)
         {
             var now = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
@@ -69,7 +55,7 @@ namespace MyBot.Supporter.V2.Models
                     if (set.StartTime == set.EndTime)
                     {
                         //time not setted
-                        InTime(set);
+                        _ = InTime(set);
                     }
                     else if (set.StartTime < set.EndTime)
                     {
@@ -77,7 +63,7 @@ namespace MyBot.Supporter.V2.Models
                         var start = new TimeSpan(set.StartTime.Hours, set.StartTime.Minutes, 0);
                         if (start <= now && now <= end)
                         {
-                            InTime(set);
+                            _ = InTime(set);
                         }
                         else
                         {
@@ -90,7 +76,7 @@ namespace MyBot.Supporter.V2.Models
                         var start = new TimeSpan(set.StartTime.Hours, set.StartTime.Minutes, 0);
                         if (start >= now && now >= end)
                         {
-                            InTime(set);
+                            _ = InTime(set);
                         }
                         else
                         {
@@ -134,7 +120,7 @@ namespace MyBot.Supporter.V2.Models
         }
 
 
-        private void InTime(BotSetting botSetting)
+        private async Task InTime(BotSetting botSetting)
         {
             if (botSetting.Id.HasValue)
             {
@@ -151,7 +137,8 @@ namespace MyBot.Supporter.V2.Models
                     ProcessName = "MyBot.run.MiniGui.au3";
                     if (!File.Exists("AutoIt3.exe"))
                     {
-                        DownloadAutoIT();
+                        AutoITDownloader downloader = new AutoITDownloader();
+                        await downloader.DownloadAutoIT();
                         return;
                     }
                 }
@@ -167,7 +154,8 @@ namespace MyBot.Supporter.V2.Models
                     ProcessName = "MyBot.run.au3";
                     if (!File.Exists("AutoIt3.exe"))
                     {
-                        DownloadAutoIT();
+                        AutoITDownloader downloader = new AutoITDownloader();
+                        await downloader.DownloadAutoIT();
                         return;
                     }
                 }

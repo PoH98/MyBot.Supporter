@@ -70,7 +70,7 @@
                 </TabItem>
                 <TabItem Header="Other Settings">
                     <Grid  Opacity="0.8">
-                        <CheckBox x:Name="mini" Content="Enable Mini" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
+                        <CheckBox x:Name="mini" Content="Enable Mini" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
                         <Border Width="191" Margin="246,5,0,10" BorderBrush="{DynamicResource MaterialDesignBody}" BorderThickness="1" CornerRadius="8,8,8,8">
                             <StackPanel x:Name="downloadPanel" >
                                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Width="191" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}">
@@ -81,9 +81,10 @@
                                 </TextBlock>
                             </StackPanel>
                         </Border>
-                        <CheckBox x:Name="hideandroid" Content="Hide Android" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
-                        <CheckBox x:Name="dock" Content="Dock Bot" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
+                        <CheckBox x:Name="hideandroid" Content="Hide Android" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
+                        <CheckBox x:Name="dock" Content="Dock Bot" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
                         <CheckBox x:Name="mode" Content="Dark Mode" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White" Checked="mode_Checked"  Unchecked="mode_Unchecked"/>
+                        <Button x:Name="compile" Margin="10,10,221,405" Content="Compile MyBot" Click="compile_Click" Height="Auto" Background="Yellow" BorderBrush="Yellow" Foreground="Black" />
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -102,7 +103,7 @@
                 <TabItem Header="PC Status">
                     <StackPanel Margin="5,10,5,10" Opacity="0.8">
                         <Label Content="CPU Usage" Margin="5,10,5,0" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <ProgressBar x:Name="CPULoad" Height="15" Padding="10,0,10,0" materialDesign:TransitionAssist.DisableTransitions="True" BorderBrush="{x:Null}" Foreground="#FF303030" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.5"  >
+                        <ProgressBar x:Name="CPULoad" Height="15" Padding="10,0,10,0" materialDesign:TransitionAssist.DisableTransitions="True" BorderBrush="{x:Null}" Foreground="{DynamicResource MaterialDesignPaper}" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.5" Margin="8,0"  >
                             <ProgressBar.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -130,7 +131,7 @@
                         <Label Content="CPU Power Usage" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
                         <TextBlock x:Name="CPUPower" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
                         <Label Content="RAM Usage" Margin="5,10,5,0" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <ProgressBar x:Name="RAMLoad" Height="15" Padding="10,0,10,0" materialDesign:TransitionAssist.DisableTransitions="True" BorderBrush="{x:Null}" Foreground="#FF303030" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.5" >
+                        <ProgressBar x:Name="RAMLoad" Height="15" Padding="10,0,10,0" materialDesign:TransitionAssist.DisableTransitions="True" BorderBrush="{x:Null}" Foreground="{DynamicResource MaterialDesignPaper}" HorizontalContentAlignment="Right" RenderTransformOrigin="0.5,0.5" Margin="8,0" >
                             <ProgressBar.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>

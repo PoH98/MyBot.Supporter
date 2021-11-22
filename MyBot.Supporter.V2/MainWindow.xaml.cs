@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MyBot.Supporter.V2.Helper;
 using MyBot.Supporter.V2.Models;
+using MyBot.Supporter.V2.Service;
 using Newtonsoft.Json;
 using OpenHardwareMonitor.Hardware;
 using System;
@@ -11,6 +12,7 @@ using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -44,6 +46,23 @@ namespace MyBot.Supporter.V2
         private void mode_Checked(object sender, RoutedEventArgs e)
         {
             ToggleBaseColour(true);
+        }
+
+        private async void compile_Click(object sender, RoutedEventArgs e)
+        {
+            if (!File.Exists("Compiler.exe"))
+            {
+                AutoITDownloader downloader = new AutoITDownloader();
+                await downloader.DownloadAutoIT();
+            }
+            ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe");
+            compiler.Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\"";
+            Process com = Process.Start(compiler);
+            while (!com.HasExited)
+            {
+                await Task.Delay(100);
+            }
+            MessageBox.Show("Compile Completed","Compile Result");
         }
 
         private readonly PaletteHelper _paletteHelper = new PaletteHelper();
