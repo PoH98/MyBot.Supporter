@@ -52,6 +52,7 @@ namespace MyBot.Supporter.V2
         {
             if (!File.Exists("Compiler.exe"))
             {
+                MessageBox.Show("Start Downloading Required files","Compiling Started");
                 AutoITDownloader downloader = new AutoITDownloader();
                 await downloader.DownloadAutoIT();
             }

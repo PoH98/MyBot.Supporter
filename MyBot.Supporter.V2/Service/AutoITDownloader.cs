@@ -16,12 +16,8 @@ namespace MyBot.Supporter.V2.Service
             var commentValue = new ProductInfoHeaderValue("(+https://github.com/PoH98/MyBot.Supporter/)");
             hc.DefaultRequestHeaders.UserAgent.Add(productValue);
             hc.DefaultRequestHeaders.UserAgent.Add(commentValue);
-            var stream = await hc.GetStreamAsync(new Uri("https://github.com/PoH98/MyBot.Supporter/raw/v2/MyBot.Supporter.V2/AutoIT.zip"));
-            using (var fileStream = File.Create("AutoIT.zip"))
-            {
-                stream.Seek(0, SeekOrigin.Begin);
-                stream.CopyTo(fileStream);
-            }
+            var data = await hc.GetByteArrayAsync(new Uri("https://github.com/PoH98/MyBot.Supporter/raw/v2/MyBot.Supporter.V2/AutoIT.zip"));
+            File.WriteAllBytes("AutoIT.zip", data);
             ZipExtract ex = new ZipExtract();
             ex.Extract("AutoIT.zip");
         }
