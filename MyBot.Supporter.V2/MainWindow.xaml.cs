@@ -155,6 +155,12 @@ namespace MyBot.Supporter.V2
         public MainWindow()
         {
             InitializeComponent();
+            AppDomain.CurrentDomain.UnhandledException += (s, e) => LogUnhandledException((Exception)e.ExceptionObject);
+            TaskScheduler.UnobservedTaskException += (s, e) =>
+            {
+                LogUnhandledException(e.Exception);
+                e.SetObserved();
+            };
             me.CPUEnabled = true;
             me.RAMEnabled = true;
             if (File.Exists("conf.json"))
@@ -198,6 +204,11 @@ namespace MyBot.Supporter.V2
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
+        }
+
+        private void LogUnhandledException(Exception exception)
+        {
+            File.WriteAllText("Supporter.error", exception.ToString());
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
