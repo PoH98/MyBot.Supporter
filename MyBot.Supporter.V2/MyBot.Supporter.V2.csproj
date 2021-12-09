@@ -2,13 +2,15 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>123456.ico</ApplicationIcon>
     <StartupObject />
     <AssemblyVersion>1.0.0.3</AssemblyVersion>
     <FileVersion>1.0.0.3</FileVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>

@@ -56,8 +56,10 @@ namespace MyBot.Supporter.V2
                 AutoITDownloader downloader = new AutoITDownloader();
                 await downloader.DownloadAutoIT();
             }
-            ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe");
-            compiler.Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\"";
+            ProcessStartInfo compiler = new ProcessStartInfo("Compiler.exe")
+            {
+                Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\""
+            };
             Process com = Process.Start(compiler);
             while (!com.HasExited)
             {

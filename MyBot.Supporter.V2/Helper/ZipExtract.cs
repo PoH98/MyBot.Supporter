@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyBot.Supporter.V2.Service;
+using System;
 using System.IO;
 using System.IO.Compression;
 
@@ -10,6 +11,7 @@ namespace MyBot.Supporter.V2.Helper
         {
             DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory());
             string destinationDirectoryFullPath = di.FullName;
+            Logger.Instance.Write("Extracting Zip in " + di.FullName);
             using (var strm = File.OpenRead(fileName))
             using (ZipArchive archive = new ZipArchive(strm))
             {

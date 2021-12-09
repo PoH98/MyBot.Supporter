@@ -4,9 +4,10 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Management;
-using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using Timer = System.Timers.Timer;
 
 namespace MyBot.Supporter.V2.Service
 {
@@ -29,6 +30,7 @@ namespace MyBot.Supporter.V2.Service
             Execute = new Timer();
             Execute.Elapsed += Execute_Elapsed;
             Execute.Interval = 1500;
+            Logger.Instance.Write("Creating Worker...");
         }
 
         public bool IsRunning => Execute.Enabled;
@@ -212,16 +214,15 @@ namespace MyBot.Supporter.V2.Service
             }
             try
             {
-                if(!AndroidKiller.Close(botSetting.Emulator, botSetting.Instance))
+                if(AndroidKiller.Close(botSetting.Emulator, botSetting.Instance))
                 {
                     KillProcessAndChildren(botSetting.Id.Value);
                 }
                 else
                 {
-                    var mbr = Process.GetProcessById(botSetting.Id.Value);
-                    mbr.CloseMainWindow();
-                    mbr.Close();
+                    KillProcessAndChildren(botSetting.Id.Value);
                 }
+                Thread.Sleep(3000);
             }
             catch
             {
@@ -251,12 +252,29 @@ namespace MyBot.Supporter.V2.Service
                 {
                     proc.CloseMainWindow();
                     proc.Close();
-                    proc.Kill();
+                    _ = Task.Run(() =>
+                    {
+                        Thread.Sleep(3000);
+                        try
+                        {
+                            while (!proc.HasExited)
+                            {
+                                Thread.Sleep(500);
+                                proc.Kill();
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+
+                    });
                 }
                 catch
                 {
 
                 }
+
             }
             catch (ArgumentException)
             {

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Win32;
 using MyBot.Supporter.V2.Models;
+using MyBot.Supporter.V2.Service;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MyBot.Supporter.V2.Helper
 {
@@ -34,35 +36,48 @@ namespace MyBot.Supporter.V2.Helper
                         virtualboxPath = GetNoxPath();
                         break;
                 }
+                Logger.Instance.Write("Detected " + emulator.ToString() + " with installed path " + virtualboxPath);
                 if (virtualboxPath != null)
                 {
 
                     ProcessStartInfo psi = new ProcessStartInfo
                     {
                         FileName = virtualboxPath,
-                        Arguments = "controlvm " + instance + " poweroff"
+                        Arguments = "controlvm " + instance + " poweroff",
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true,
                     };
-                    Process.Start(psi);
+                    var p = Process.Start(psi);
+                    p.BeginOutputReadLine();
+                    p.OutputDataReceived += P_OutputDataReceived;
                     return true;
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                Logger.Instance.Write("Error while fetching emulator's details. Skipping... \n"+ ex.ToString());
             }
             return false;
+        }
+
+        private void P_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Logger.Instance.Write(e.Data);
         }
 
         private string GetMEmuPath()
         {
             var loc = Registry.LocalMachine.OpenSubKey(@"SOFTWARE" + x64x86 + @"\Microsoft\Windows\CurrentVersion\Uninstall\MEmu")?.GetValue("InstallLocation")?.ToString();
+            loc = loc.Replace("\0", "");
             if (loc != null && File.Exists(Path.Combine(loc, @"MEmu\MEmu.exe")))
             {
-                return Path.Combine(loc.Substring(0, loc.LastIndexOf("\\")), @"MEmuHyperv\MEmuManage.exe");
+                return Path.Combine(loc, @"MEmuHyperv\MEmuManage.exe");
             }
             else
             {
                 loc = Registry.LocalMachine.OpenSubKey(@"SOFTWARE" + x64x86 + @"\Microsoft\Windows\CurrentVersion\Uninstall\MEmu")?.GetValue("DisplayIcon")?.ToString();
+                loc = loc.Replace("\0", "");
                 if (loc != null)
                 {
                     loc = loc.Substring(0, loc.LastIndexOf("\\"));
@@ -113,6 +128,7 @@ namespace MyBot.Supporter.V2.Helper
         private string GetIToolsPath()
         {
             var loc = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Oracle\VirtualBox")?.GetValue("InstallDir")?.ToString();
+            loc = loc.Replace("\0", "");
             if (loc != null && File.Exists(Path.Combine(loc.Substring(0, loc.LastIndexOf('\\')), @"VBoxManage.exe")))
             {
                 return Path.Combine(loc.Substring(0, loc.LastIndexOf('\\')), @"VBoxManage.exe");
