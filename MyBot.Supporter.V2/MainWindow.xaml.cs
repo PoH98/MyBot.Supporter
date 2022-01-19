@@ -182,6 +182,8 @@ namespace MyBot.Supporter.V2
             dock.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Dock)));
             mode.DataContext = settings;
             mode.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.DarkMode)));
+            restart.DataContext = settings;
+            restart.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Restart)));
             if (settings.DarkMode)
             {
                 ToggleBaseColour(true);
@@ -439,26 +441,18 @@ namespace MyBot.Supporter.V2
                 }
                 if (settings.Bots[i].Id != null && Worker.IsRunning)
                 {
-                    try
+                    if (ProcessPing.IsProcessAlive(settings.Bots[i].Id.Value))
                     {
-                        Process p = Process.GetProcessById(settings.Bots[i].Id.Value);
-                        if (p != null)
+                        if (settings.DarkMode)
                         {
-                            if (settings.DarkMode)
-                            {
-                                row.Background = new SolidColorBrush(Color.FromRgb(0, 110, 0));
-                            }
-                            else
-                            {
-                                row.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                            }
+                            row.Background = new SolidColorBrush(Color.FromRgb(0, 110, 0));
                         }
                         else
                         {
-                            throw new Exception();
+                            row.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                         }
                     }
-                    catch
+                    else
                     {
                         if (settings.DarkMode)
                         {

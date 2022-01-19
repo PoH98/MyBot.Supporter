@@ -50,7 +50,7 @@ namespace MyBot.Supporter.V2.Service
             {
                 if (!set.IsEnabled && set.Id.HasValue)
                 {
-                    KillProcessAndChildren(set.Id.Value);
+                    _ = NotInTime(set);
                 }
                 else if (set.IsEnabled)
                 {
@@ -69,7 +69,7 @@ namespace MyBot.Supporter.V2.Service
                         }
                         else
                         {
-                            NotInTime(set);
+                            _ = NotInTime(set);
                         }
                     }
                     else
@@ -82,7 +82,7 @@ namespace MyBot.Supporter.V2.Service
                         }
                         else
                         {
-                            NotInTime(set);
+                            _ = NotInTime(set);
                         }
                     }
                 }
@@ -95,7 +95,7 @@ namespace MyBot.Supporter.V2.Service
             foreach (var set in settings)
             {
                 //softkill first
-                NotInTime(set);
+                _ = NotInTime(set);
             }
             //hardkill
             foreach (var process in Process.GetProcesses())
@@ -126,7 +126,19 @@ namespace MyBot.Supporter.V2.Service
         {
             if (botSetting.Id.HasValue)
             {
-                return;
+                if (ProcessPing.IsProcessAlive(botSetting.Id.Value))
+                {
+                    return;
+                }
+                else
+                {
+                    //not found, maybe it is killed or closed
+                    if (!supporterSettings.Restart)
+                    {
+                        //no restart needed, return
+                        return;
+                    }
+                }
             }
             if (supporterSettings.Mini)
             {
@@ -206,7 +218,7 @@ namespace MyBot.Supporter.V2.Service
             }
         }
 
-        private void NotInTime(BotSetting botSetting)
+        private async Task NotInTime(BotSetting botSetting)
         {
             if (!botSetting.Id.HasValue)
             {
@@ -214,21 +226,19 @@ namespace MyBot.Supporter.V2.Service
             }
             try
             {
-                if(AndroidKiller.Close(botSetting.Emulator, botSetting.Instance))
-                {
-                    KillProcessAndChildren(botSetting.Id.Value);
-                }
-                else
-                {
-                    KillProcessAndChildren(botSetting.Id.Value);
-                }
-                Thread.Sleep(3000);
+                AndroidKiller.Close(botSetting.Emulator, botSetting.Instance);
+                await Task.Delay(3000);
+                KillProcessAndChildren(botSetting.Id.Value);
+                await Task.Delay(3000);
             }
             catch
             {
-
+                //unable to kill the processes, ignore
             }
-            botSetting.Id = null;
+            finally
+            {
+                botSetting.Id = null;
+            }
         }
 
         private void KillProcessAndChildren(int pid)//Kill Proceess Tree
