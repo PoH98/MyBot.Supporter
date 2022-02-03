@@ -86,6 +86,8 @@
                         <CheckBox x:Name="mode" Content="Dark Mode" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White" Checked="mode_Checked"  Unchecked="mode_Unchecked"/>
                         <Button x:Name="compile" Margin="10,10,221,405" Content="Compile MyBot" Click="compile_Click" Height="Auto" Background="Yellow" BorderBrush="Yellow" Foreground="Black" />
                         <CheckBox x:Name="restart" Content="Auto Restart Closed Mybot" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
+                        <CheckBox x:Name="autoRun" Content="Auto Start Botting After Startup" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White" />
+                        <CheckBox x:Name="enableMBRLimit" Content="Enable MBR Default Performance Limit" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
                     </Grid>
                 </TabItem>
             </TabControl>
@@ -149,6 +151,8 @@
                                 </LinearGradientBrush>
                             </ProgressBar.Background>
                         </ProgressBar>
+                        <Label Content="Bot Time" Margin="5,10,5,0"  Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock x:Name="BotTime" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}"></TextBlock>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Net Status">

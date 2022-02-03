@@ -12,6 +12,7 @@ namespace MyBot.Supporter.V2.Models
         public bool Dock { get; set; }
         public bool DarkMode { get; set; } = true;
         public bool Restart { get; set; } = true;
+        public bool AutoRun { get; set; }
     }
 
     public class BotSettings : List<BotSetting>

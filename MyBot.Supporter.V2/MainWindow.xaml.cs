@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using MyBot.Supporter.V2.Helper;
 using MyBot.Supporter.V2.Models;
 using MyBot.Supporter.V2.Service;
@@ -11,6 +12,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,7 +39,7 @@ namespace MyBot.Supporter.V2
         private double Receive, Send, OldSend, OldReceive, USpeed, DSpeed;
         private NetworkInterface nics;
         private Worker Worker;
-
+        private DateTime startup = DateTime.Now;
         private void mode_Unchecked(object sender, RoutedEventArgs e)
         {
             ToggleBaseColour(false);
@@ -60,15 +62,21 @@ namespace MyBot.Supporter.V2
             {
                 Arguments = "/in \"" + Environment.CurrentDirectory + "\\MyBot.run.au3\" /out \"" + Environment.CurrentDirectory + "\\MyBot.run.exe\" /icon \"" + Environment.CurrentDirectory + "\\images\\MyBot.ico\""
             };
+            IsEnabled = false;
+            var win = new SplashScreen();
+            win.Show();
             Process com = Process.Start(compiler);
             while (!com.HasExited)
             {
                 await Task.Delay(100);
             }
+            win.Close();
+            IsEnabled = true;
             MessageBox.Show("Compile Completed","Compile Result");
         }
 
         private readonly PaletteHelper _paletteHelper = new PaletteHelper();
+
         private readonly Dictionary<Emulator, string> downloadEmulator = new Dictionary<Emulator, string>
         {
             {
@@ -99,9 +107,12 @@ namespace MyBot.Supporter.V2
             {
                 StartBot_Click(sender, e);
             }
+            var win = new SplashScreen();
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (o, ev) =>
             {
+                Dispatcher.Invoke(() => { this.IsEnabled = false; });
+                win.Dispatcher.Invoke(() => { win.Show(); });
                 var version = "v0.0";
                 if (File.Exists("MyBot.run.version.au3"))
                 {
@@ -120,14 +131,20 @@ namespace MyBot.Supporter.V2
                     wc.DownloadFile(api.Assets[0].BrowserDownloadUrl, api.Assets[0].Name);
                     ZipExtract ex = new ZipExtract();
                     ex.Extract(api.Assets[0].Name);
+                    win.Dispatcher.Invoke(() => { win.Close(); });
+                    Dispatcher.Invoke(() => { this.IsEnabled = true; });
                     MessageBox.Show("Job done!");
                 }
                 else if (compare > 0)
                 {
+                    win.Dispatcher.Invoke(() => { win.Close(); });
+                    Dispatcher.Invoke(() => { this.IsEnabled = true; });
                     MessageBox.Show("You are using future version of MyBot!");
                 }
                 else
                 {
+                    win.Dispatcher.Invoke(() => { win.Close(); });
+                    Dispatcher.Invoke(() => { this.IsEnabled = true; });
                     MessageBox.Show("You are using latest version of MyBot!");
                 }
                 wc.Dispose();
@@ -184,6 +201,8 @@ namespace MyBot.Supporter.V2
             mode.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.DarkMode)));
             restart.DataContext = settings;
             restart.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.Restart)));
+            autoRun.DataContext = settings;
+            autoRun.SetBinding(ToggleButton.IsCheckedProperty, new Binding(nameof(settings.AutoRun)));
             if (settings.DarkMode)
             {
                 ToggleBaseColour(true);
@@ -307,6 +326,10 @@ namespace MyBot.Supporter.V2
                 }
             }
             NetworkChange.NetworkAvailabilityChanged += NetworkChange_NetworkAvailabilityChanged;
+            if (autoRun.IsChecked != null && autoRun.IsChecked.Value)
+            {
+                StartBot.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+            }
         }
 
         private void NetworkChange_NetworkAvailabilityChanged(object sender, NetworkAvailabilityEventArgs e)
@@ -431,6 +454,8 @@ namespace MyBot.Supporter.V2
             NetS.Text = Calc(Send);
             NetU.Text = Calc(USpeed) + "/s";
             NetD.Text = Calc(DSpeed) + "/s";
+            var t = (DateTime.Now - startup);
+            BotTime.Text = t.Days + " day(s) " + t.Hours.ToString("00") + ":" + t.Minutes.ToString("00") + ":" + t.Seconds.ToString("00");
             for (int i = 0; i < settings.Bots.Count; i++)
             {
                 DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
