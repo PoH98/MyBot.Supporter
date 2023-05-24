@@ -1,10 +1,9 @@
-﻿using MaterialDesignThemes.Wpf;
-using Microsoft.Win32;
+﻿using LibreHardwareMonitor.Hardware;
+using MaterialDesignThemes.Wpf;
 using MyBot.Supporter.V2.Helper;
 using MyBot.Supporter.V2.Models;
 using MyBot.Supporter.V2.Service;
 using Newtonsoft.Json;
-using OpenHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +11,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -86,6 +84,10 @@ namespace MyBot.Supporter.V2
             {
                 Emulator.Bluestacks2,
                 "https://mega.nz/#!BpdEUBbZ!4unxWMPzA5rESONTVgNrxlNxSj8H2wwicx4Q15PmBo4"
+            },
+            {
+                Emulator.Bluestacks5,
+                "https://cdn3.bluestacks.com/downloads/windows/nxt/5.11.100.1063/a2851e52720cc67bfe72ee23599fcaa0/FullInstaller/x64/BlueStacksFullInstaller_5.11.100.1063_amd64_native.exe"
             },
             {
                 Emulator.MEmu,
@@ -180,8 +182,8 @@ namespace MyBot.Supporter.V2
                 LogUnhandledException(e.Exception);
                 e.SetObserved();
             };
-            me.CPUEnabled = true;
-            me.RAMEnabled = true;
+            me.IsCpuEnabled = true;
+            me.IsMemoryEnabled = true;
             if (File.Exists("conf.json"))
             {
                 settings = JsonConvert.DeserializeObject<SupporterSettings>(File.ReadAllText("conf.json"));
@@ -254,7 +256,7 @@ namespace MyBot.Supporter.V2
             double highestLR = 0;
             foreach (var h in me.Hardware)
             {
-                if (h.HardwareType == HardwareType.CPU)
+                if (h.HardwareType == HardwareType.Cpu)
                 {
                     h.Update();
                     CPUN = h.Name;
@@ -294,7 +296,7 @@ namespace MyBot.Supporter.V2
                         }
                     }
                 }
-                else if (h.HardwareType == HardwareType.RAM)
+                else if (h.HardwareType == HardwareType.Memory)
                 {
                     h.Update();
                     foreach (var s in h.Sensors)
@@ -380,7 +382,7 @@ namespace MyBot.Supporter.V2
         {
             foreach (var hardware in me.Hardware)
             {
-                if (hardware.HardwareType == HardwareType.CPU)
+                if (hardware.HardwareType == HardwareType.Cpu)
                 {
                     hardware.Update();
                     foreach (ISensor sensor in hardware.Sensors)
@@ -418,7 +420,7 @@ namespace MyBot.Supporter.V2
                         }
                     }
                 }
-                else if (hardware.HardwareType == HardwareType.RAM)
+                else if (hardware.HardwareType == HardwareType.Memory)
                 {
                     hardware.Update();
                     foreach (ISensor sensor in hardware.Sensors)
