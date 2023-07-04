@@ -12,7 +12,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Title="MyBot.Supporter" 
         Height="530" 
-        Width="900" 
+        Width="950" 
         AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize" Opacity="0.95">
     <Window.Resources>
         <local:BotSettings x:Key="settings"/>
@@ -23,7 +23,7 @@
         </ObjectDataProvider>
     </Window.Resources>
     <Grid>
-        <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="{DynamicResource PrimaryHueMidBrush}" MouseDown="Window_MouseDown" Width="900">
+        <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Background="{DynamicResource PrimaryHueMidBrush}" MouseDown="Window_MouseDown" Width="950">
             <Grid>
                 <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,7,0,0" Text="MyBot.Supporter" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" />
                 <Button BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="35" Click="minimize_Click" Background="{DynamicResource PrimaryHueMidBrush}" Margin="0,0,35,0" Foreground="White">
@@ -53,7 +53,7 @@
             </Grid>
         </materialDesign:Card>
         <Grid Margin="5,5,5,5">
-            <TabControl Margin="405,35,10,0" Background="{x:Null}" >
+            <TabControl Margin="470,35,10,0" Background="{x:Null}" >
                 <TabItem Header="Multi-Bot Settings">
                     <Grid  Opacity="0.8">
                         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" ItemsSource="{StaticResource settings}" HeadersVisibility="Column" SelectionMode="Extended" SelectionUnit="FullRow" Foreground="{DynamicResource MaterialDesignBody}" FontSize="10" MinColumnWidth="10" CanUserResizeColumns="False" GridLinesVisibility="All" CanUserReorderColumns="False" CanUserSortColumns="False" Margin="0,0,10,0" RowEditEnding="dataGrid_RowEditEnding">
@@ -83,16 +83,16 @@
                         </Border>
                         <CheckBox x:Name="hideandroid" Content="Hide Android" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
                         <CheckBox x:Name="dock" Content="Dock Bot" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
-                        <CheckBox x:Name="mode" Content="Dark Mode" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White" Checked="mode_Checked"  Unchecked="mode_Unchecked"/>
-                        <Button x:Name="compile" Margin="10,10,221,408" Content="Compile MyBot" Click="compile_Click" Height="Auto" Background="Yellow" BorderBrush="Yellow" Foreground="Black" />
+                        <CheckBox x:Name="mode" Content="Dark Mode" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White" Checked="mode_Checked"  Unchecked="mode_Unchecked"/>
+                        <Button x:Name="compile" Margin="10,10,221,400" Content="Compile MyBot" Click="compile_Click" Height="Auto" Background="Yellow" BorderBrush="Yellow" Foreground="Black" />
                         <CheckBox x:Name="restart" Content="Auto Restart Closed Mybot" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
                         <CheckBox x:Name="autoRun" Content="Auto Start Botting After Startup" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White" />
                         <CheckBox x:Name="enableMBRLimit" Content="Enable MBR Default Performance Limit" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MaterialDesignBody}" Background="Lime" BorderBrush="White"/>
                     </Grid>
                 </TabItem>
             </TabControl>
-            <StackPanel Margin="0,30,652,0">
-                <Calendar x:Name="calendar" Height="328"/>
+            <StackPanel Margin="0,30,710,0">
+                <Calendar x:Name="calendar" Height="328" Width="232"/>
                 <Border BorderThickness="1" Margin="0,10,0,10" BorderBrush="Black">
                     <TextBlock x:Name="Time" Margin="10,0,10,0" Foreground="{DynamicResource MaterialDesignBody}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
