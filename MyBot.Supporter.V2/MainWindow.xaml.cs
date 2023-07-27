@@ -250,7 +250,6 @@ namespace MyBot.Supporter.V2
         {
             me.Open();
             double highestV = 0;
-            double highestT = 0;
             double highestC = 0;
             double highestL = 0;
             double highestLR = 0;
@@ -280,9 +279,8 @@ namespace MyBot.Supporter.V2
                         }
                         else if (s.SensorType == SensorType.Temperature)
                         {
-                            if (highestT < Convert.ToDouble(s.Value))
+                            if (s.Name.Contains("Package"))
                             {
-                                highestT = Convert.ToDouble(s.Value);
                                 SelectedCPUT = s.Name;
                             }
                         }

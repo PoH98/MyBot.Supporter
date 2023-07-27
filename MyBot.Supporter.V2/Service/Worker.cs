@@ -3,6 +3,7 @@ using MyBot.Supporter.V2.Models;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
@@ -176,6 +177,25 @@ namespace MyBot.Supporter.V2.Service
             }
             if (ProcessName.EndsWith(".exe"))
             {
+                foreach (var proc in Process.GetProcesses().Where(x => x.ProcessName.Contains(ProcessName.Remove(ProcessName.LastIndexOf(".")))))
+                {
+                    string wmiQuery = string.Format("select CommandLine from Win32_Process where ProcessId='{0}'", proc.Id);
+                    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery))
+                    {
+                        using (ManagementObjectCollection retObjectCollection = searcher.Get())
+                        {
+                            foreach (ManagementObject retObject in retObjectCollection)
+                            {
+                                if (retObject["CommandLine"].ToString() == botSetting.ProfileName)
+                                {
+                                    //profile already running
+                                    botSetting.Id = proc.Id;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
                 ProcessStartInfo start = new ProcessStartInfo(ProcessName)
                 {
                     Arguments = botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs",
@@ -197,6 +217,25 @@ namespace MyBot.Supporter.V2.Service
             }
             else
             {
+                foreach (var proc in Process.GetProcesses().Where(x => x.ProcessName.Contains("AutoIt3")))
+                {
+                    string wmiQuery = string.Format("select CommandLine from Win32_Process where ProcessId='{0}'", proc.Id);
+                    using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(wmiQuery))
+                    {
+                        using (ManagementObjectCollection retObjectCollection = searcher.Get())
+                        {
+                            foreach (ManagementObject retObject in retObjectCollection)
+                            {
+                                if (retObject["CommandLine"].ToString() == botSetting.ProfileName)
+                                {
+                                    //profile already running
+                                    botSetting.Id = proc.Id;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
                 ProcessStartInfo start = new ProcessStartInfo("AutoIt3.exe")
                 {
                     Arguments = ProcessName + " " + botSetting.ProfileName + " " + botSetting.Emulator + " " + botSetting.Instance + " " + "-a" + " " + "-nwd" + " " + "-nbs",
