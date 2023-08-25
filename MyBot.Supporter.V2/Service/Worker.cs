@@ -8,6 +8,7 @@ using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using ThreadState = System.Threading.ThreadState;
 using Timer = System.Timers.Timer;
 
 namespace MyBot.Supporter.V2.Service
@@ -24,41 +25,48 @@ namespace MyBot.Supporter.V2.Service
         private SupporterSettings supporterSettings;
         private readonly AndroidKiller AndroidKiller;
         private string ProcessName;
+        private bool Running;
 
         public Worker()
         {
             AndroidKiller = new AndroidKiller();
-            Execute = new Timer();
-            Execute.Elapsed += Execute_Elapsed;
-            Execute.Interval = 1500;
+            Execute = new Thread(() =>
+            {
+                do
+                {
+                    Execute_Elapsed();
+                }
+                while(Running);
+            });
             Logger.Instance.Write("Creating Worker...");
         }
 
-        public bool IsRunning => Execute.Enabled;
+        public bool IsRunning => Execute.ThreadState == ThreadState.Running;
 
-        private Timer Execute { get; set; }
+        private Thread Execute { get; set; }
 
         public void Run(SupporterSettings settings)
         {
             this.supporterSettings = settings;
+            Running = true;
             Execute.Start();
         }
 
-        private void Execute_Elapsed(object sender, ElapsedEventArgs e)
+        private async void Execute_Elapsed()
         {
             var now = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             foreach (var set in settings)
             {
                 if (!set.IsEnabled && set.Id.HasValue)
                 {
-                    _ = NotInTime(set);
+                    await NotInTime(set);
                 }
                 else if (set.IsEnabled)
                 {
                     if (set.StartTime == set.EndTime)
                     {
                         //time not setted
-                        _ = InTime(set);
+                        await InTime(set);
                     }
                     else if (set.StartTime < set.EndTime)
                     {
@@ -66,11 +74,11 @@ namespace MyBot.Supporter.V2.Service
                         var start = new TimeSpan(set.StartTime.Hours, set.StartTime.Minutes, 0);
                         if (start <= now && now <= end)
                         {
-                            _ = InTime(set);
+                            await InTime(set);
                         }
                         else
                         {
-                            _ = NotInTime(set);
+                            await NotInTime(set);
                         }
                     }
                     else
@@ -79,11 +87,11 @@ namespace MyBot.Supporter.V2.Service
                         var start = new TimeSpan(set.StartTime.Hours, set.StartTime.Minutes, 0);
                         if (start >= now && now >= end)
                         {
-                            _ = InTime(set);
+                            await InTime(set);
                         }
                         else
                         {
-                            _ = NotInTime(set);
+                            await NotInTime(set);
                         }
                     }
                 }
@@ -92,7 +100,7 @@ namespace MyBot.Supporter.V2.Service
 
         public void Stop()
         {
-            Execute.Stop();
+            Running = false;
             foreach (var set in settings)
             {
                 //softkill first
@@ -109,6 +117,7 @@ namespace MyBot.Supporter.V2.Service
                     case "MyBot.run.Watchdog":
                     case "MyBot.run.MiniGui":
                     case "AutoIt3":
+                    case "HD-Adb":
                         try
                         {
                             process.Kill();
@@ -213,6 +222,7 @@ namespace MyBot.Supporter.V2.Service
                     start.Arguments += " -dock";
                 }
                 Process M = Process.Start(start);
+                await Task.Delay(3000);
                 botSetting.Id = M.Id;
             }
             else
@@ -253,6 +263,7 @@ namespace MyBot.Supporter.V2.Service
                     start.Arguments += " -dock";
                 }
                 Process M = Process.Start(start);
+                await Task.Delay(3000);
                 botSetting.Id = M.Id;
             }
         }
@@ -269,6 +280,11 @@ namespace MyBot.Supporter.V2.Service
                 await Task.Delay(3000);
                 KillProcessAndChildren(botSetting.Id.Value);
                 await Task.Delay(3000);
+                //kill adb
+                foreach(var adb in Process.GetProcessesByName("HD-Adb"))
+                {
+                    adb.Kill();
+                }
             }
             catch
             {
