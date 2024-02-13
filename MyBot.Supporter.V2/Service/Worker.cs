@@ -7,9 +7,7 @@ using System.Linq;
 using System.Management;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using ThreadState = System.Threading.ThreadState;
-using Timer = System.Timers.Timer;
 
 namespace MyBot.Supporter.V2.Service
 {
@@ -30,29 +28,43 @@ namespace MyBot.Supporter.V2.Service
         public Worker()
         {
             AndroidKiller = new AndroidKiller();
-            Execute = new Thread(() =>
+            Execute = new Thread(async () =>
             {
                 do
                 {
-                    Execute_Elapsed();
+                    await Task.Delay(1250);
+                    await Execute_Elapsed();
+                    await Task.Delay(1250);
                 }
                 while(Running);
             });
+            Execute.IsBackground = true;
             Logger.Instance.Write("Creating Worker...");
         }
 
-        public bool IsRunning => Execute.ThreadState == ThreadState.Running;
+        public bool IsRunning => Execute.ThreadState == ThreadState.Running || Running;
 
         private Thread Execute { get; set; }
 
-        public void Run(SupporterSettings settings)
+        public async void Run(SupporterSettings settings)
         {
-            this.supporterSettings = settings;
+            supporterSettings = settings;
             Running = true;
-            Execute.Start();
+            try
+            {
+                while(Execute.ThreadState == ThreadState.Running)
+                {
+                    await Task.Delay(1000);
+                }
+                Execute.Start();
+            }
+            catch
+            {
+
+            }
         }
 
-        private async void Execute_Elapsed()
+        private async Task Execute_Elapsed()
         {
             var now = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             foreach (var set in settings)
@@ -136,7 +148,7 @@ namespace MyBot.Supporter.V2.Service
         {
             if (botSetting.Id.HasValue)
             {
-                if (ProcessPing.IsProcessAlive(botSetting.Id.Value))
+                if (Process.GetProcessById(botSetting.Id.Value) != null)
                 {
                     return;
                 }
@@ -222,8 +234,9 @@ namespace MyBot.Supporter.V2.Service
                     start.Arguments += " -dock";
                 }
                 Process M = Process.Start(start);
-                await Task.Delay(3000);
+                await Task.Delay(5000);
                 botSetting.Id = M.Id;
+
             }
             else
             {
@@ -263,7 +276,7 @@ namespace MyBot.Supporter.V2.Service
                     start.Arguments += " -dock";
                 }
                 Process M = Process.Start(start);
-                await Task.Delay(3000);
+                await Task.Delay(5000);
                 botSetting.Id = M.Id;
             }
         }
