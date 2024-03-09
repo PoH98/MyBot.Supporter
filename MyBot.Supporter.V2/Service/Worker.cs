@@ -148,18 +148,25 @@ namespace MyBot.Supporter.V2.Service
         {
             if (botSetting.Id.HasValue)
             {
-                if (Process.GetProcessById(botSetting.Id.Value) != null)
+                try
                 {
-                    return;
-                }
-                else
-                {
-                    //not found, maybe it is killed or closed
-                    if (!supporterSettings.Restart)
+                    if (Process.GetProcessById(botSetting.Id.Value) != null)
                     {
-                        //no restart needed, return
                         return;
                     }
+                    else
+                    {
+                        //not found, maybe it is killed or closed
+                        if (!supporterSettings.Restart)
+                        {
+                            //no restart needed, return
+                            return;
+                        }
+                    }
+                }
+                catch
+                {
+
                 }
             }
             if (supporterSettings.Mini)
